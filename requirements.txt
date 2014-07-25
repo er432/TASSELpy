@@ -7,4 +7,6 @@ docutils==0.12
 javabridge==1.0.4
 numpy==1.8.1
 numpydoc==0.5
+pyjavadoc==0.1.dev-20140723132102
+-e git+https://github.com/er432/TASSELpy.git@0df6f4072a30a09963c17e71a8bf67307924f9ad#egg=tasselpy-origin/develop
 wsgiref==0.1.2
