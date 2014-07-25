@@ -1,0 +1,544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.analysis.distance package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.net.maizegenetics.analysis package" href="TASSELpy.net.maizegenetics.analysis.html" />
+    <link rel="prev" title="TASSELpy.net.maizegenetics.analysis package" href="TASSELpy.net.maizegenetics.analysis.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.net.maizegenetics.analysis.html" title="TASSELpy.net.maizegenetics.analysis package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.analysis.html" accesskey="U">TASSELpy.net.maizegenetics.analysis package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-net-maizegenetics-analysis-distance-package">
+<h1>TASSELpy.net.maizegenetics.analysis.distance package<a class="headerlink" href="#tasselpy-net-maizegenetics-analysis-distance-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix">
+<span id="tasselpy-net-maizegenetics-analysis-distance-ibsdistancematrix-module"></span><h2>TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.</tt><tt class="descname">IBSDistanceMatrix</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/IBSDistanceMatrix.html#IBSDistanceMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix</span></tt></a></p>
+<p>This class calculates an identity by state matrix. It is scaled so only
+non-missing comparison are used.  It conducts bit level calculations of IBS for genotypes.
+Only the two most common alleles are used in the distance calculations.</p>
+<p>Please note that when heterozygous genotypes are used, Het to Het distance is 0.5 NOT 0.0. The default
+along the identity diagonal is 0 (isTrueIBS = false), but changing isTrueIBS = true will calculate
+the identity.</p>
+<p>The distance estimates become wildly inaccurate when too few sites are used to calculate
+distance.  The minSiteComp parameter can be used to control the minimum number of sites
+used for a calculation.  If there are insufficient sites in the estimate, then Double.NaN
+is returned.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">absoluteDistance</span></tt>(*args)</td>
+<td>Compute absolute distance to second distance matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.computeHetBitDistances" title="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.computeHetBitDistances"><tt class="xref py py-obj docutils literal"><span class="pre">computeHetBitDistances</span></tt></a>(*args)</td>
+<td>Compute distance for a pair of taxa</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.getAverageTotalSites" title="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.getAverageTotalSites"><tt class="xref py py-obj docutils literal"><span class="pre">getAverageTotalSites</span></tt></a>(*args)</td>
+<td>Gets average number of sites used in calculating the distance matrix</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getClonedDistances</span></tt>(*args)</td>
+<td>Returns the distances as a 2-dimensional array of doubles.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getClosestIndex</span></tt>(*args)</td>
+<td>Gets the index of the taxon closest to a given taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnName</span></tt>(*args)</td>
+<td>Gets a column name</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDistance</span></tt>(*args)</td>
+<td>Returns the distance calculated for two taxa with the indices</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDistances</span></tt>(*args)</td>
+<td>Returns the distances as a 2-dimensional array of doubles (in the actual array used</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getSize</span></tt>(*args)</td>
+<td>Returns the number of rows and columns that the distance matrix has</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxaList</span></tt>(*args)</td>
+<td>Return TaxaList of this matrix</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxon</span></tt>(*args)</td>
+<td>Gets a Taxon</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isSymmetric</span></tt>(*args)</td>
+<td>Test whether this matrix is a symmetrix distance matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.isTrueIBS" title="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.isTrueIBS"><tt class="xref py py-obj docutils literal"><span class="pre">isTrueIBS</span></tt></a>(*args)</td>
+<td>Returns whether true IBS is calculated for the diagonal</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">meanDistance</span></tt>(*args)</td>
+<td>Returns the mean pairwise distnace of this matrix</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">numberOfTaxa</span></tt>(*args)</td>
+<td>Gets the number of taxa</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">squaredDistance</span></tt>(*args)</td>
+<td>Compute squared distance to second distance matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.toString" title="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.toString"><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt></a>(*args)</td>
+<td>Gets string representation of this matrix with &#8216;d&#8217; displayed digits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">whichIdNumber</span></tt>(*args)</td>
+<td>Gets the id number of a taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/IBSDistanceMatrix.html#IBSDistanceMatrix.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute observed distances for all taxa. Missing sites are ignored</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>IBSDistanceMatrix</em> (GenotypeTable <strong>theAlignment</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>IBSDistanceMatrix</em> (GenotypeTable <strong>theAlignment</strong>, ProgressListener <strong>listener</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>IBSDistanceMatrix</em> (GenotypeTable <strong>theAlignment</strong>, int <strong>minSiteComp</strong>, ProgressListener <strong>listener</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>IBSDistanceMatrix</em> (GenotypeTable <strong>theAlignment</strong>, int <strong>minSiteComp</strong>, boolean <strong>trueIBS</strong>, ProgressListener <strong>listener</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>theAlignment</strong> (<em>GenotypeTable</em>) &#8211; Alignment used to compute distances</li>
+<li><strong>listener</strong> (<em>ProgressListener</em>) &#8211; Listener to track progress in calculations</li>
+<li><strong>minSiteComp</strong> (<em>int</em>) &#8211; Minimum number of sites needed to estimate distance</li>
+<li><strong>trueIBS</strong> (<em>boolean</em>) &#8211; Estimate diagonal distance based IBS (default = false, i=i=0.0)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.computeHetBitDistances">
+<em class="property">static </em><tt class="descname">computeHetBitDistances</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/IBSDistanceMatrix.html#IBSDistanceMatrix.computeHetBitDistances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.computeHetBitDistances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute distance for a pair of taxa</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>computeHetBitDistances</em> (GenotypeTable <strong>theTBA</strong>, int <strong>taxon1</strong>, int <strong>taxon2</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>computeHetBitDistances</em> (GenotypeTable <strong>theTBA</strong>, int <strong>taxon1</strong>, int <strong>taxon2</strong>, int <strong>minSitesCompared</strong>, boolean <strong>isTrueIBS</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>computeHetBitDistances</em> (GenotypeTable <strong>theTBA</strong>, int <strong>taxon1</strong>, int <strong>taxon2</strong>, int <strong>minSitesCompared</strong>, int <strong>firstWord</strong>, int <strong>lastWord</strong>, BitSet <strong>maskBadSet</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>computeHetBitDistances</em> (long[] <strong>iMj</strong>, long[] <strong>iMn</strong>, long[] <strong>jMj</strong>, long[] <strong>jMn</strong>, int <strong>minSitesCompared</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>computeHetBitDistances</em> (long[] <strong>iMj</strong>, long[] <strong>iMn</strong>, long[] <strong>jMj</strong>, long[] <strong>jMn</strong>, int <strong>minSitesCompared</strong>, int <strong>firstWord</strong>, int <strong>lastWord</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>theTBA</strong> (<em>GenotypeTable</em>) &#8211; input alignment</li>
+<li><strong>taxon1</strong> (<em>int</em>) &#8211; index of taxon 1</li>
+<li><strong>taxon2</strong> (<em>int</em>) &#8211; index of taxon 2</li>
+<li><strong>minSitesCompared</strong> (<em>int</em>) &#8211; Minimum number of sites needed to estimate distance</li>
+<li><strong>isTrueIBS</strong> (<em>boolean</em>) &#8211; estimate diagonal distance based IBS (default = False, i=i=0.0)</li>
+<li><strong>firstWord</strong> (<em>int</em>) &#8211; Starting word for calculating distance site=(firstWord*64)</li>
+<li><strong>lastWord</strong> (<em>int</em>) &#8211; Ending word for calculating distance inclusive site=(lastWord*64+63)</li>
+<li><strong>maskBadSet</strong> (<em>BitSet</em>) &#8211; Optional mask for sites (those set to 1 are kept)</li>
+<li><strong>iMj</strong> (<em>long[]</em>) &#8211; Vector of major alleles for taxon i</li>
+<li><strong>iMn</strong> (<em>long[]</em>) &#8211; Vector of minor alleles for taxon i</li>
+<li><strong>jMj</strong> (<em>long[]</em>) &#8211; Vector of major alleles for taxon j</li>
+<li><strong>jMn</strong> (<em>long[]</em>) &#8211; Vector of minor alleles for taxon j</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Array of {distance, number of sites used in comparison}</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double[]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.getAverageTotalSites">
+<tt class="descname">getAverageTotalSites</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/IBSDistanceMatrix.html#IBSDistanceMatrix.getAverageTotalSites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.getAverageTotalSites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets average number of sites used in calculating the distance matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getAverageTotalSits</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Average number of sites used in calculating the distance matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">double</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.isTrueIBS">
+<tt class="descname">isTrueIBS</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/IBSDistanceMatrix.html#IBSDistanceMatrix.isTrueIBS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.isTrueIBS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether true IBS is calculated for the diagonal</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>IsTrueIBS</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Whether true IBS is calculated for the diagonal</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.toString">
+<tt class="descname">toString</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/IBSDistanceMatrix.html#IBSDistanceMatrix.toString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.toString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets string representation of this matrix with &#8216;d&#8217; displayed digits</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>toString</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>toString</em> (int <strong>d</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>d</strong> (<em>int</em>) &#8211; The number of digits to display</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">String representation of this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.analysis.distance.Kinship">
+<span id="tasselpy-net-maizegenetics-analysis-distance-kinship-module"></span><h2>TASSELpy.net.maizegenetics.analysis.distance.Kinship module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.analysis.distance.Kinship" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.analysis.distance.Kinship.</tt><tt class="descname">Kinship</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/Kinship.html#Kinship"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix</span></tt></a></p>
+<p>Kinship tools by Zhiwu Zhang</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">absoluteDistance</span></tt>(*args)</td>
+<td>Compute absolute distance to second distance matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getClonedDistances</span></tt>(*args)</td>
+<td>Returns the distances as a 2-dimensional array of doubles.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getClosestIndex</span></tt>(*args)</td>
+<td>Gets the index of the taxon closest to a given taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnName</span></tt>(*args)</td>
+<td>Gets a column name</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDistance</span></tt>(*args)</td>
+<td>Returns the distance calculated for two taxa with the indices</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDistances</span></tt>(*args)</td>
+<td>Returns the distances as a 2-dimensional array of doubles (in the actual array used</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship.getDm" title="TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship.getDm"><tt class="xref py py-obj docutils literal"><span class="pre">getDm</span></tt></a>(*args)</td>
+<td>Gets the DistanceMatrix containing the Kinship values</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getSize</span></tt>(*args)</td>
+<td>Returns the number of rows and columns that the distance matrix has</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxaList</span></tt>(*args)</td>
+<td>Return TaxaList of this matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxon</span></tt>(*args)</td>
+<td>Gets a Taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">isSymmetric</span></tt>(*args)</td>
+<td>Test whether this matrix is a symmetrix distance matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">meanDistance</span></tt>(*args)</td>
+<td>Returns the mean pairwise distnace of this matrix</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">numberOfTaxa</span></tt>(*args)</td>
+<td>Gets the number of taxa</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">squaredDistance</span></tt>(*args)</td>
+<td>Compute squared distance to second distance matrix</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Get string representation of alignment as a string</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">whichIdNumber</span></tt>(*args)</td>
+<td>Gets the id number of a taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/Kinship.html#Kinship.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a kinship matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>Kinship</em> (GenotypeTable <strong>mar</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>Kinship</em> (SimplePhenotype <strong>ped</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>Kinship</em> (DistanceMatrix <strong>dm</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>mar</strong> (<em>GenotypeTable</em>) &#8211; A GenotypeTable used to calculated Kinship</li>
+<li><strong>ped</strong> (<em>SimplePhenotype</em>) &#8211; A SimplePhenotype table for calculating from Phenotype</li>
+<li><strong>dm</strong> (<em>DistanceMatrix</em>) &#8211; A DistanceMatrix instance</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship.getDm">
+<tt class="descname">getDm</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/distance/Kinship.html#Kinship.getDm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship.getDm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the DistanceMatrix containing the Kinship values</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getDm</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">DistanceMatrix containing kinship values</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DistanceMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.analysis.distance">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.analysis.distance" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.net.maizegenetics.analysis.distance package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix">TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.analysis.distance.Kinship">TASSELpy.net.maizegenetics.analysis.distance.Kinship module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.analysis.distance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="TASSELpy.net.maizegenetics.analysis.html"
+                        title="previous chapter">TASSELpy.net.maizegenetics.analysis package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.net.maizegenetics.analysis.distance.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.net.maizegenetics.analysis.html" title="TASSELpy.net.maizegenetics.analysis package"
+             >previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.analysis.html" >TASSELpy.net.maizegenetics.analysis package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

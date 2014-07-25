@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.test.javaObjTest &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.test.javaObjTest</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.TASSELbridge</span> <span class="kn">import</span> <span class="n">TASSELbridge</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&quot;Could not start JVM&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">String</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">Integer</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.ArrayList</span> <span class="kn">import</span> <span class="n">ArrayList</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">}</span>
+<div class="viewcode-block" id="javaObjTest"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaObjTest">[docs]</a><span class="k">class</span> <span class="nc">javaObjTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Tests for javaObj in javaObj.py &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="javaObjTest.test_javaObjType"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaObjTest.test_javaObjType">[docs]</a>    <span class="k">def</span> <span class="nf">test_javaObjType</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing javaObj type instance with String&quot;</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSELpy&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">javaObj</span><span class="p">)</span></div>
+<div class="viewcode-block" id="javaObjTest.test_getArray"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaObjTest.test_getArray">[docs]</a>    <span class="k">def</span> <span class="nf">test_getArray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing javaObj.getArray method with String&quot;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;TASSELpy&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;TASSELpy&#39;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="javaObjTest.test_getDblArray"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaObjTest.test_getDblArray">[docs]</a>    <span class="k">def</span> <span class="nf">test_getDblArray</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing javaObj.getDblArray method with String&quot;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">getDblArray</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;TASSELpy&#39;</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;TASSEL&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;TASSELpy&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;TASSEL&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span></div>
+<div class="viewcode-block" id="javaObjTest.test_wrap_existing_array"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaObjTest.test_wrap_existing_array">[docs]</a>    <span class="k">def</span> <span class="nf">test_wrap_existing_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing javaObj.wrap_existing_array with String&quot;</span>
+        <span class="n">string_class</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">find_class</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">])</span>
+        <span class="n">str_constructor</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_method_id</span><span class="p">(</span><span class="n">string_class</span><span class="p">,</span><span class="s">&#39;&lt;init&gt;&#39;</span><span class="p">,</span><span class="s">&#39;(Ljava/lang/String;)V&#39;</span><span class="p">)</span>
+        <span class="n">str1</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">new_object</span><span class="p">(</span><span class="n">string_class</span><span class="p">,</span><span class="n">str_constructor</span><span class="p">,</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSELpy&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">o</span><span class="p">)</span>
+        <span class="n">str2</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">new_object</span><span class="p">(</span><span class="n">string_class</span><span class="p">,</span><span class="n">str_constructor</span><span class="p">,</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSEL&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">o</span><span class="p">)</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_object_array</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">string_class</span><span class="p">)</span>
+        <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">set_object_array_element</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">str1</span><span class="p">)</span>
+        <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">set_object_array_element</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">str2</span><span class="p">)</span>
+        <span class="n">pyarr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">pyarr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;TASSELpy&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">pyarr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&#39;TASSEL&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">pyarr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">String</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">pyarr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">String</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="javaArrayTest"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaArrayTest">[docs]</a><span class="k">class</span> <span class="nc">javaArrayTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Tests for javaArray in javaObj.py &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="javaArrayTest.setUp"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaArrayTest.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># Set up a test String array</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;TASSELpy&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;TASSEL&#39;</span></div>
+<div class="viewcode-block" id="javaArrayTest.test_setitem"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaArrayTest.test_setitem">[docs]</a>    <span class="k">def</span> <span class="nf">test_setitem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing javaArray __setitem__&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;Eli&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s">&#39;Eli&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="o">.</span><span class="n">__setitem__</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,))</span></div>
+<div class="viewcode-block" id="javaArrayTest.test_len"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaArrayTest.test_len">[docs]</a>    <span class="k">def</span> <span class="nf">test_len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing javaArray __len__&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span></div>
+<div class="viewcode-block" id="javaArrayTest.test_iter"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaArrayTest.test_iter">[docs]</a>    <span class="k">def</span> <span class="nf">test_iter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing javaArray __iter__&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="p">],[</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSELpy&#39;</span><span class="p">),</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSEL&#39;</span><span class="p">)])</span></div>
+<div class="viewcode-block" id="javaArrayTest.test_get_array_type"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaArrayTest.test_get_array_type">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_array_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing javaArray get_array_type&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="p">,</span> <span class="n">javaArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="n">String</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIsInstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="p">,</span> <span class="n">javaArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="n">Integer</span><span class="p">))</span></div>
+<div class="viewcode-block" id="javaArrayTest.test_to_numpy_array"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.javaArrayTest.test_to_numpy_array">[docs]</a>    <span class="k">def</span> <span class="nf">test_to_numpy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing to_numpy_array&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">(),</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arr</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">()</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">getDblArray</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;TASSELpy&#39;</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;TASSEL&#39;</span>
+        <span class="n">np_arr</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">to_numpy_array</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">np_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">np_arr</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="genericJavaObjTest"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.genericJavaObjTest">[docs]</a><span class="k">class</span> <span class="nc">genericJavaObjTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Tests for genericJavaObj &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="genericJavaObjTest.test_constructor"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.genericJavaObjTest.test_constructor">[docs]</a>    <span class="k">def</span> <span class="nf">test_constructor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing genericJavaObj constructor using ArrayList with Strings&quot;</span>
+        <span class="n">arrlist</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">(</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">String</span><span class="p">,))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arrlist</span><span class="p">,</span> <span class="n">ArrayList</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">arrlist</span><span class="p">,</span><span class="s">&#39;generic_dict&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arrlist</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="s">&#39;/@1/&#39;</span><span class="p">],</span><span class="n">String</span><span class="p">)</span></div>
+<div class="viewcode-block" id="genericJavaObjTest.test_generic_setitem"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.genericJavaObjTest.test_generic_setitem">[docs]</a>    <span class="k">def</span> <span class="nf">test_generic_setitem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing setitem on ArrayList with Strings, Integers for genericJavaObj&quot;</span>
+        <span class="n">arrlist</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">(</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">String</span><span class="p">,))</span>
+        <span class="n">arrlist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSELpy&#39;</span><span class="p">))</span>
+        <span class="n">arrlist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSEL&#39;</span><span class="p">))</span>
+        <span class="n">arrlist2</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">(</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Integer</span><span class="p">,))</span>
+        <span class="n">arrlist2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">arrlist2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">arrlist2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arrlist</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arrlist2</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">arrlist</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSELpy&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">arrlist</span><span class="o">.</span><span class="n">__setitem__</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="p">),</span>
+                             <span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">),))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">arrlist2</span><span class="o">.</span><span class="n">__setitem__</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">x</span><span class="p">),</span>
+                             <span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">),))</span>        </div>
+<div class="viewcode-block" id="genericJavaObjTest.test_generic_getitem"><a class="viewcode-back" href="../../../TASSELpy.test.html#TASSELpy.test.javaObjTest.genericJavaObjTest.test_generic_getitem">[docs]</a>    <span class="k">def</span> <span class="nf">test_generic_getitem</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getitem on ArrayList with Strings, Integers for genericJavaObj&quot;</span>
+        <span class="n">arrlist</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">(</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">String</span><span class="p">,))</span>
+        <span class="n">arrlist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSELpy&#39;</span><span class="p">))</span>
+        <span class="n">arrlist</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSEL&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arrlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">String</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arrlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">String</span><span class="p">)</span>
+        <span class="n">arrlist2</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">(</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Integer</span><span class="p">,))</span>
+        <span class="n">arrlist2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">arrlist2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">arrlist2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arrlist</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSELpy&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arrlist</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;TASSEL&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arrlist2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Integer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arrlist2</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">Integer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="n">arrlist2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">Integer</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+        
+</div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="nb">exit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

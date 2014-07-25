@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.util.Iterator &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.java.util.Iterator</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaGenericOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">genericJavaObj</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Iterator&#39;</span><span class="p">:</span><span class="s">&#39;java/util/Iterator&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">}</span>
+<div class="viewcode-block" id="Iterator"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Iterator.Iterator">[docs]</a><span class="k">class</span> <span class="nc">Iterator</span><span class="p">(</span><span class="n">genericJavaObj</span><span class="p">,</span> <span class="n">Object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    From docs.oracle.com:</span>
+<span class="sd">    </span>
+<span class="sd">    An iterator over a collection. Iterator takes the place of Enumeration</span>
+<span class="sd">    in the Java Collections Framework. Iterators differ from enumerations in 2</span>
+<span class="sd">    wyas:</span>
+
+<span class="sd">    Iterators allow the caller to remove elements from the underlying collection during</span>
+<span class="sd">    the iteration with well-defined semantics.</span>
+
+<span class="sd">    Method names have been improved</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Iterator&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Iterator&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="Iterator.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Iterator.Iterator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Iterator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c">## Define iterator function for the iterator</span></div>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasNext</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+    <span class="c">## Returns true if the iteration has more elements. (In other words,</span>
+    <span class="c"># returns true if next() would return an elemen rather than throwing</span>
+    <span class="c"># an exception</span>
+    <span class="c"># @return true if the iteration has more elements</span>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;hasNext&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Iterator.hasNext"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Iterator.Iterator.hasNext">[docs]</a>    <span class="k">def</span> <span class="nf">hasNext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if the iteration has more elements. (In other</span>
+<span class="sd">        words, returns true if next() would return an element</span>
+<span class="sd">        rather than throwing an exception.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean hasNext()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if the iteration has more elements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the next element in the iteration</span>
+    <span class="c"># @return the next element in the iteration</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;next&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),(),</span><span class="s">&quot;/@1/&quot;</span><span class="p">))</span>
+<div class="viewcode-block" id="Iterator.next"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Iterator.Iterator.next">[docs]</a>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the next element in the iteration</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        E next()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        the next element in the iteration</span>
+
+<span class="sd">        Throws:</span>
+
+<span class="sd">        NoSuchElementException if iteration has no more elements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Removes from the underyling collection the last element returned by this iterator.</span>
+    <span class="c"># The method can be called only once per call to next(). The behavior of an iterator is</span>
+    <span class="c"># unspecified if the underlying collection is modified while the iteration is in progress</span>
+    <span class="c"># in any way other than by calling this method</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;remove&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;void&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Iterator.remove"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Iterator.Iterator.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes from the underlying collection the last element returned by this iterator.</span>
+<span class="sd">        The method can be called only once per call to next(). The behavior of an iterator is</span>
+<span class="sd">        unspecified if the underlying collection is modified while the itartion is in progress</span>
+<span class="sd">        in any way othe rthan by calling this method.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void remove()</span>
+
+<span class="sd">        Throws:</span>
+
+<span class="sd">        UnsupportedOperationException -- if remove operation is not supported by this iterator</span>
+<span class="sd">        IllegalStateException -- if the next method has not yet been called, or the remove method</span>
+<span class="sd">                                 has already been called after the last call to the next method</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

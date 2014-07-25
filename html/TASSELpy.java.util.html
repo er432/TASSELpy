@@ -1,0 +1,2042 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.util package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.java package" href="TASSELpy.java.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.java.html" accesskey="U">TASSELpy.java package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-java-util-package">
+<h1>TASSELpy.java.util package<a class="headerlink" href="#tasselpy-java-util-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.java.util.AbstractMap">
+<span id="tasselpy-java-util-abstractmap-module"></span><h2>TASSELpy.java.util.AbstractMap module<a class="headerlink" href="#module-TASSELpy.java.util.AbstractMap" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.AbstractMap.AbstractMap">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.AbstractMap.</tt><tt class="descname">AbstractMap</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/AbstractMap.html#AbstractMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.AbstractMap.AbstractMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.Map.Map" title="TASSELpy.java.util.Map.Map"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.Map.Map</span></tt></a>, <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p>public abstract class AbstractMap&lt;K,V&gt;
+extends Object
+implements Map&lt;K,V&gt;
+This class provides a skeletal implementation of the Map interface, to minimize the effort required to implement this interface.
+To implement an unmodifiable map, the programmer needs only to extend this class and provide an implementation for the entrySet method, which returns a set-view of the map&#8217;s mappings. Typically, the returned set will, in turn, be implemented atop AbstractSet. This set should not support the add or remove methods, and its iterator should not support the remove method.</p>
+<p>To implement a modifiable map, the programmer must additionally override this class&#8217;s put method (which otherwise throws an UnsupportedOperationException), and the iterator returned by entrySet().iterator() must additionally implement its remove method.</p>
+<p>The programmer should generally provide a void (no argument) and map constructor, as per the recommendation in the Map interface specification.</p>
+<p>The documentation for each non-abstract method in this class describes its implementation in detail. Each of these methods may be overridden if the map being implemented admits a more efficient implementation.</p>
+<p>This class is a member of the Java Collections Framework.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">Entry</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Removes all of the mappings from this map</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsKey</span></tt>(*args)</td>
+<td>Returns true if this map contains a mapping for the specified key</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsValue</span></tt>(*args)</td>
+<td>Returns true if this map contains a mapping for the specified value</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">entrySet</span></tt>(*args)</td>
+<td>Returns a Set view of the mappings contained in this map</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>(*args)</td>
+<td>Gets the vlaue to which the specified key is mapped, or null if this map contains no</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if this map contains no key-value mappings</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">keySet</span></tt>(*args)</td>
+<td>Returns a Set view of the keys contained in this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">put</span></tt>(*args)</td>
+<td>Associates the specified value with the specified key in this map</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">putAll</span></tt>(*args)</td>
+<td>Copies all of the mappings from the specified map to this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes the mapping for a key from this map if it is present</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the number of key-value mappings in this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">values</span></tt>(*args)</td>
+<td>Returns a Collection view of the values contained in this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.AbstractMap.AbstractMap.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/AbstractMap.html#AbstractMap.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.AbstractMap.AbstractMap.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sole constructor</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.ArrayList">
+<span id="tasselpy-java-util-arraylist-module"></span><h2>TASSELpy.java.util.ArrayList module<a class="headerlink" href="#module-TASSELpy.java.util.ArrayList" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.ArrayList.ArrayList">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.ArrayList.</tt><tt class="descname">ArrayList</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ArrayList.html#ArrayList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ArrayList.ArrayList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.List.List" title="TASSELpy.java.util.List.List"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.List.List</span></tt></a></p>
+<p>From docs.oracle.com:</p>
+<p>public class ArrayList&lt;E&gt;
+extends AbstractList&lt;E&gt;
+implements List&lt;E&gt;, RandomAccess, Cloneable, Serializable
+Resizable-array implementation of the List interface. Implements all optional list operations, and permits all elements, including null. In addition to implementing the List interface, this class provides methods to manipulate the size of the array that is used internally to store the list. (This class is roughly equivalent to Vector, except that it is unsynchronized.)
+The size, isEmpty, get, set, iterator, and listIterator operations run in constant time. The add operation runs in amortized constant time, that is, adding n elements requires O(n) time. All of the other operations run in linear time (roughly speaking). The constant factor is low compared to that for the LinkedList implementation.</p>
+<p>Each ArrayList instance has a capacity. The capacity is the size of the array used to store the elements in the list. It is always at least as large as the list size. As elements are added to an ArrayList, its capacity grows automatically. The details of the growth policy are not specified beyond the fact that adding an element has constant amortized time cost.</p>
+<p>An application can increase the capacity of an ArrayList instance before adding a large number of elements using the ensureCapacity operation. This may reduce the amount of incremental reallocation.</p>
+<p>Note that this implementation is not synchronized. If multiple threads access an ArrayList instance concurrently, and at least one of the threads modifies the list structurally, it must be synchronized externally. (A structural modification is any operation that adds or deletes one or more elements, or explicitly resizes the backing array; merely setting the value of an element is not a structural modification.) This is typically accomplished by synchronizing on some object that naturally encapsulates the list. If no such object exists, the list should be &#8220;wrapped&#8221; using the Collections.synchronizedList method. This is best done at creation time, to prevent accidental unsynchronized access to the list:</p>
+<blockquote>
+<div>List list = Collections.synchronizedList(new ArrayList(...));</div></blockquote>
+<p>The iterators returned by this class&#8217;s iterator and listIterator methods are fail-fast: if the list is structurally modified at any time after the iterator is created, in any way except through the iterator&#8217;s own remove or add methods, the iterator will throw a ConcurrentModificationException. Thus, in the face of concurrent modification, the iterator fails quickly and cleanly, rather than risking arbitrary, non-deterministic behavior at an undetermined time in the future.</p>
+<p>Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally speaking, impossible to make any hard guarantees in the presence of unsynchronized concurrent modification. Fail-fast iterators throw ConcurrentModificationException on a best-effort basis. Therefore, it would be wrong to write a program that depended on this exception for its correctness: the fail-fast behavior of iterators should be used only to detect bugs.</p>
+<p>This class is a member of the Java Collections Framework.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.ArrayList.ArrayList.add" title="TASSELpy.java.util.ArrayList.ArrayList.add"><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt></a>(*args)</td>
+<td>Appends specified element to end of list or inserts specified element at given position</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addAll</span></tt>(*args)</td>
+<td>Adds all of the elements in the specified collection to this collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Removes all of the elements from this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">contains</span></tt>(*args)</td>
+<td>Returns true if this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsAll</span></tt>(*args)</td>
+<td>Returns true if this collection contains all of the elements in the specified collection</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>(*args)</td>
+<td>Returns the element at the specified position in this list</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if this collection contains no elements</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterator</span></tt>(*args)</td>
+<td>Returns an iterator over a set of elements of type T</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">listIterator</span></tt>(*args)</td>
+<td>Returns a list iterator over the elements in this list</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes a single instance of the specified element from this collection, if it is present.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">removeAll</span></tt>(*args)</td>
+<td>Removes all of this collection&#8217;s elements that are also contained in the specified collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">retainAll</span></tt>(*args)</td>
+<td>Retains only the elements in this collection that are contained in the specified collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt>(*args)</td>
+<td>Replaces the element at the specified position in this list with</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.ArrayList.ArrayList.size" title="TASSELpy.java.util.ArrayList.ArrayList.size"><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt></a>(*args)</td>
+<td>Returns the number of elements in this list</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">subList</span></tt>(*args)</td>
+<td>REturns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toArray</span></tt>(*args)</td>
+<td>Returns an array containing all of the elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.ArrayList.ArrayList.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ArrayList.html#ArrayList.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ArrayList.ArrayList.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a wrapped ArrayList object</p>
+<p>Signatures:</p>
+<p>ArrayList()
+ArrayList(Collection&lt;? extends E&gt; c)
+ArrayList(int initialCapacity)</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>ArrayList(Collection&lt;? extends E&gt; c)</dt>
+<dd>Constructs a list containing the elements of the specified collection,
+in the order they are returned by the collections&#8217; iterator
+c &#8211; the collection whose elements are to be placed into this list</dd>
+<dt>ArrayList(int initialCapacity)</dt>
+<dd>initialCapacity &#8211; the initial capacity of the list</dd>
+</dl>
+<p>Keyword Arguments:</p>
+<p>generic &#8211; Python wrapper class specifying types of elements in this arrayList</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.ArrayList.ArrayList.add">
+<tt class="descname">add</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ArrayList.html#ArrayList.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ArrayList.ArrayList.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends specified element to end of list or inserts specified element at given position</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>add</em> (E <strong>e</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>add</em> (int <strong>index</strong>, E <strong>element</strong>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.ArrayList.ArrayList.size">
+<tt class="descname">size</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ArrayList.html#ArrayList.size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ArrayList.ArrayList.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of elements in this list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>size</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of elements in this list</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.Collection">
+<span id="tasselpy-java-util-collection-module"></span><h2>TASSELpy.java.util.Collection module<a class="headerlink" href="#module-TASSELpy.java.util.Collection" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.Collection.Collection">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.Collection.</tt><tt class="descname">Collection</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.Collection.metaCollection" title="TASSELpy.java.util.Collection.metaCollection"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.Collection.metaCollection</span></tt></a></p>
+<p>From docs.oracle.com:</p>
+<p>public interface Collection&lt;E&gt;
+extends Iterable&lt;E&gt;</p>
+<p>The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements. Some collections allow duplicate elements and others do not. Some are ordered and others unordered. The JDK does not provide any direct implementations of this interface: it provides implementations of more specific subinterfaces like Set and List. This interface is typically used to pass collections around and manipulate them where maximum generality is desired.
+Bags or multisets (unordered collections that may contain duplicate elements) should implement this interface directly.</p>
+<p>All general-purpose Collection implementation classes (which typically implement Collection indirectly through one of its subinterfaces) should provide two &#8220;standard&#8221; constructors: a void (no arguments) constructor, which creates an empty collection, and a constructor with a single argument of type Collection, which creates a new collection with the same elements as its argument. In effect, the latter constructor allows the user to copy any collection, producing an equivalent collection of the desired implementation type. There is no way to enforce this convention (as interfaces cannot contain constructors) but all of the general-purpose Collection implementations in the Java platform libraries comply.</p>
+<p>The &#8220;destructive&#8221; methods contained in this interface, that is, the methods that modify the collection on which they operate, are specified to throw UnsupportedOperationException if this collection does not support the operation. If this is the case, these methods may, but are not required to, throw an UnsupportedOperationException if the invocation would have no effect on the collection. For example, invoking the addAll(Collection) method on an unmodifiable collection may, but is not required to, throw the exception if the collection to be added is empty.</p>
+<p>Some collection implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null elements, and some have restrictions on the types of their elements. Attempting to add an ineligible element throws an unchecked exception, typically NullPointerException or ClassCastException. Attempting to query the presence of an ineligible element may throw an exception, or it may simply return false; some implementations will exhibit the former behavior and some will exhibit the latter. More generally, attempting an operation on an ineligible element whose completion would not result in the insertion of an ineligible element into the collection may throw an exception or it may succeed, at the option of the implementation. Such exceptions are marked as &#8220;optional&#8221; in the specification for this interface.</p>
+<p>It is up to each collection to determine its own synchronization policy. In the absence of a stronger guarantee by the implementation, undefined behavior may result from the invocation of any method on a collection that is being mutated by another thread; this includes direct invocations, passing the collection to a method that might perform invocations, and using an existing iterator to examine the collection.</p>
+<p>Many methods in Collections Framework interfaces are defined in terms of the equals method. For example, the specification for the contains(Object o) method says: &#8220;returns true if and only if this collection contains at least one element e such that (o==null ? e==null : o.equals(e)).&#8221; This specification should not be construed to imply that invoking Collection.contains with a non-null argument o will cause o.equals(e) to be invoked for any element e. Implementations are free to implement optimizations whereby the equals invocation is avoided, for example, by first comparing the hash codes of the two elements. (The Object.hashCode() specification guarantees that two objects with unequal hash codes cannot be equal.) More generally, implementations of the various Collections Framework interfaces are free to take advantage of the specified behavior of underlying Object methods wherever the implementor deems it appropriate.</p>
+<p>This interface is a member of the Java Collections Framework.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.add" title="TASSELpy.java.util.Collection.Collection.add"><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt></a>(*args)</td>
+<td>Ensures that this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.addAll" title="TASSELpy.java.util.Collection.Collection.addAll"><tt class="xref py py-obj docutils literal"><span class="pre">addAll</span></tt></a>(*args)</td>
+<td>Adds all of the elements in the specified collection to this collection.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.clear" title="TASSELpy.java.util.Collection.Collection.clear"><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt></a>(*args)</td>
+<td>Removes all of the elements from this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.contains" title="TASSELpy.java.util.Collection.Collection.contains"><tt class="xref py py-obj docutils literal"><span class="pre">contains</span></tt></a>(*args)</td>
+<td>Returns true if this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.containsAll" title="TASSELpy.java.util.Collection.Collection.containsAll"><tt class="xref py py-obj docutils literal"><span class="pre">containsAll</span></tt></a>(*args)</td>
+<td>Returns true if this collection contains all of the elements in the specified collection</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.isEmpty" title="TASSELpy.java.util.Collection.Collection.isEmpty"><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt></a>(*args)</td>
+<td>Returns true if this collection contains no elements</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterator</span></tt>(*args)</td>
+<td>Returns an iterator over a set of elements of type T</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.remove" title="TASSELpy.java.util.Collection.Collection.remove"><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt></a>(*args)</td>
+<td>Removes a single instance of the specified element from this collection, if it is present.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.removeAll" title="TASSELpy.java.util.Collection.Collection.removeAll"><tt class="xref py py-obj docutils literal"><span class="pre">removeAll</span></tt></a>(*args)</td>
+<td>Removes all of this collection&#8217;s elements that are also contained in the specified collection.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.retainAll" title="TASSELpy.java.util.Collection.Collection.retainAll"><tt class="xref py py-obj docutils literal"><span class="pre">retainAll</span></tt></a>(*args)</td>
+<td>Retains only the elements in this collection that are contained in the specified collection.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.size" title="TASSELpy.java.util.Collection.Collection.size"><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt></a>(*args)</td>
+<td>Returns the number of elements in this collection.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Collection.Collection.toArray" title="TASSELpy.java.util.Collection.Collection.toArray"><tt class="xref py py-obj docutils literal"><span class="pre">toArray</span></tt></a>(*args)</td>
+<td>Returns an array containing all of the elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.add">
+<tt class="descname">add</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensures that this collection contains the specified element. Returns true if this collection
+changed as a result of the call. Returns false if this collection does not permit duplicates
+and already contains the specified element.</p>
+<p>Collections that support this operation may place limitations on what elements may be added to
+this collection. In particular, some collections will refuse to add null elements, and others
+will impose restrictions on the type of elements that may be added. Collection classes should
+clearly specify in their documentation any restrictions on what elements may be added.</p>
+<p>Signatures:</p>
+<p>boolean add(E e)</p>
+<p>Arguments:</p>
+<p>e &#8211; element whose presence in this collection is to be ensured</p>
+<p>throws:</p>
+<p>UnsupportedOperationException &#8211; if the add operation is not supported by this collection
+ClassCastException &#8211; if the class of the specified element presents it from being added to this collection
+NullPointerException &#8211; if the specified element is null and this collection does not permit null elements
+IllegalArgumentException &#8211; if some property of the element prevents it from being added to this collection
+IllegalStateException &#8211; if the element cannot be added at this time due to insertion restrictions</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.addAll">
+<tt class="descname">addAll</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.addAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.addAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds all of the elements in the specified collection to this collection.</p>
+<p>Signatures:</p>
+<p>boolean addAll(Collection&lt;? extends E&gt; c</p>
+<p>Arguments:</p>
+<p>c &#8211; The collection you want to add</p>
+<p>Returns:</p>
+<p>true if collection changed as a result of the call</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.clear">
+<tt class="descname">clear</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all of the elements from this collection. The collection will be
+empty after this method returns</p>
+<p>Signatures:</p>
+<p>void clear()</p>
+<p>Throws:</p>
+<p>UnsupportedOperationException &#8211; if clear operation not supported by this collection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.contains">
+<tt class="descname">contains</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.contains"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.contains" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this collection contains the specified element. More formally, returns true
+if and only if this collection contains at least one element e such that
+(o == null ? e == null: o.equals(e))</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>contains</em> (Object <strong>o</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>o</strong> (<em>Object</em>) &#8211; element whose presence in this collection is to be tested</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">true if this collection contains the specified element</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.containsAll">
+<tt class="descname">containsAll</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.containsAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.containsAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this collection contains all of the elements in the specified collection</p>
+<p>Signatures:</p>
+<p>boolean constainsAll(Collection&lt;?&gt; c)</p>
+<p>Arguments:</p>
+<p>c &#8211; collection to be checked for containment in this collection</p>
+<p>Returns:</p>
+<p>true if this collection contains all of the elements in the specified collection</p>
+<p>Throws:</p>
+<dl class="docutils">
+<dt>ClassCastException &#8211; if the types of one or more elements in the specified collection are</dt>
+<dd>incompatible with this collection</dd>
+<dt>NullPointerException &#8211; If the specified collection contains one or more null elements and</dt>
+<dd>this colelction does not permit null elements</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.isEmpty">
+<tt class="descname">isEmpty</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.isEmpty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.isEmpty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this collection contains no elements</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>isEmpty</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if this collection contains no elements</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.remove">
+<tt class="descname">remove</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a single instance of the specified element from this collection, if it is present.
+More formally, removes an element e such that (o==null ? e==null : o.equals(e)), if this
+collection contains one or more such elements. Returns true if this collection contained the
+specified element (or equivalently, if this collection changed as a result of the call).</p>
+<p>Arguments:</p>
+<p>boolean remove(Object o)</p>
+<p>Arguments:</p>
+<p>o &#8211; element to be removed from this collection</p>
+<p>Returns:</p>
+<p>true if an element was removed as a result of this call</p>
+<p>Throws:</p>
+<p>ClassCastException &#8211; if the type of the specified element is incompatible with this collection
+NullPointerException &#8211; if the specified element is nujll and this collection does not permit null elements
+UnsupportedOperationException &#8211; if the remove operation is not supported by this collection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.removeAll">
+<tt class="descname">removeAll</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.removeAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.removeAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all of this collection&#8217;s elements that are also contained in the specified
+collection. After this call returns, this collection will contain no elements in common
+with the specified collection</p>
+<p>Signatures:</p>
+<p>boolean removeAll(Collection&lt;?&gt; c)</p>
+<p>Arguments:</p>
+<p>c &#8211; collection containing elements to be removed from this collection</p>
+<p>Returns:</p>
+<p>true if this collection changed as a result of the call</p>
+<p>Throws:</p>
+<p>UnsupportedOperationException &#8211; if the removeAll method is not supported by this collection
+ClassCastException &#8211; if the types of one or more elements in this collection are incompatible</p>
+<blockquote>
+<div>with the specified collection</div></blockquote>
+<dl class="docutils">
+<dt>NullPointerException &#8211; if this collection contains one or more null elements and the specified</dt>
+<dd>collection does not support null elements</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.retainAll">
+<tt class="descname">retainAll</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.retainAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.retainAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retains only the elements in this collection that are contained in the specified collection.
+In other words, removes from this collection all of its elements that are not contained
+in the specified collection</p>
+<p>Signatures:</p>
+<p>boolean retainAll(Collection&lt;?&gt; c)</p>
+<p>Arguments:</p>
+<p>c &#8211; collection containing elements to be retained in this collection</p>
+<p>Returns:</p>
+<p>true if this collection changed as a result of the call</p>
+<p>Throws:</p>
+<p>UnsupportedOperationException &#8211; if the retainAll operation is not supported by this collection
+ClassCastException &#8211; if the types of one or more of the elemtns in the collection are icompatible</p>
+<blockquote>
+<div>with the specified collection</div></blockquote>
+<dl class="docutils">
+<dt>NullPointerException &#8211; if this collection contains one or more null elements and the specified</dt>
+<dd>collection does not permit null elements, or if the specified collection
+is null</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.size">
+<tt class="descname">size</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of elements in this collection. If the collection contains more than
+Integer.MAX_VALUE elements, returns Integer.MAX_VALUE</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>size</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the number of elements in this collection</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.Collection.toArray">
+<tt class="descname">toArray</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#Collection.toArray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.Collection.toArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array containing all of the elements in this collection. If this collection
+makes any guarantees as to what order its elements are returned by its iterator, this method
+must return the elements in the same order. The returned array will be &#8220;safe&#8221; in that no
+references to it are maintained in this collection. (In other words, this method must allocate
+a new array even if this collection is backed by an array). The caller is thus free to modify the
+returned array.</p>
+<p>Signatures:</p>
+<p>Object[] toArray()
+&lt;T&gt; T[] toArray(T[] a)</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>&lt;T&gt; T[] toArray(T[] a)</dt>
+<dd><dl class="first last docutils">
+<dt>a &#8211; the array into which the elements of this collection are to be stored, if it</dt>
+<dd>is big enough; otherwise, a new array of the same runtime type is allocated for
+this purpose</dd>
+</dl>
+</dd>
+</dl>
+<p>Returns:</p>
+<p>An array containing all of the elements in this collection</p>
+<p>Throws:</p>
+<dl class="docutils">
+<dt>ArrayStoreException &#8211; if the runtime type of the specified array is not a supertype of the</dt>
+<dd>runtime type of every element in this collection</dd>
+</dl>
+<p>NullPointerException &#8211; if the specified array is null</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.java.util.Collection.metaCollection">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.Collection.</tt><tt class="descname">metaCollection</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#metaCollection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.metaCollection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Iterable.Iterable" title="TASSELpy.java.lang.Iterable.Iterable"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Iterable.Iterable</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterator</span></tt>(*args)</td>
+<td>Returns an iterator over a set of elements of type T</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.Collection.metaCollection.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Collection.html#metaCollection.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Collection.metaCollection.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.FilterList">
+<span id="tasselpy-java-util-filterlist-module"></span><h2>TASSELpy.java.util.FilterList module<a class="headerlink" href="#module-TASSELpy.java.util.FilterList" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.FilterList.FilterList">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.FilterList.</tt><tt class="descname">FilterList</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/FilterList.html#FilterList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.FilterList.FilterList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.List.List" title="TASSELpy.java.util.List.List"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.List.List</span></tt></a></p>
+<p>Python-specific class used to apply functional programming
+filtering to a wrapped java list</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt>(*args)</td>
+<td>Ensures that this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addAll</span></tt>(*args)</td>
+<td>Adds all of the elements in the specified collection to this collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Removes all of the elements from this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">contains</span></tt>(*args)</td>
+<td>Returns true if this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsAll</span></tt>(*args)</td>
+<td>Returns true if this collection contains all of the elements in the specified collection</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.FilterList.FilterList.filterEnumerator" title="TASSELpy.java.util.FilterList.FilterList.filterEnumerator"><tt class="xref py py-obj docutils literal"><span class="pre">filterEnumerator</span></tt></a>(filterFunc)</td>
+<td>Enumerates the list, returning index and items for which a function</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.FilterList.FilterList.filterIterator" title="TASSELpy.java.util.FilterList.FilterList.filterIterator"><tt class="xref py py-obj docutils literal"><span class="pre">filterIterator</span></tt></a>(filterFunc)</td>
+<td>Iterates through the list, but only returns items for which a function evaluates True.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>(*args)</td>
+<td>Returns the element at the specified position in this list</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if this collection contains no elements</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterator</span></tt>(*args)</td>
+<td>Returns an iterator over a set of elements of type T</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">listIterator</span></tt>(*args)</td>
+<td>Returns a list iterator over the elements in this list</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes a single instance of the specified element from this collection, if it is present.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">removeAll</span></tt>(*args)</td>
+<td>Removes all of this collection&#8217;s elements that are also contained in the specified collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">retainAll</span></tt>(*args)</td>
+<td>Retains only the elements in this collection that are contained in the specified collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt>(*args)</td>
+<td>Replaces the element at the specified position in this list with</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the number of elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">subList</span></tt>(*args)</td>
+<td>REturns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toArray</span></tt>(*args)</td>
+<td>Returns an array containing all of the elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.FilterList.FilterList.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/FilterList.html#FilterList.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.FilterList.FilterList.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.FilterList.FilterList.filterEnumerator">
+<tt class="descname">filterEnumerator</tt><big>(</big><em>filterFunc</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/FilterList.html#FilterList.filterEnumerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.FilterList.FilterList.filterEnumerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enumerates the list, returning index and items for which a function
+evaluates True</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>filterFunc &#8211; A function that accepts the list generic type as an argument and</dt>
+<dd>returns true or false</dd>
+</dl>
+<p>Returns:</p>
+<p>An iterator of (index, object) for objects evaluating true</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.FilterList.FilterList.filterIterator">
+<tt class="descname">filterIterator</tt><big>(</big><em>filterFunc</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/FilterList.html#FilterList.filterIterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.FilterList.FilterList.filterIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterates through the list, but only returns items for which a function
+evaluates True.</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>filterFunc &#8211; A function that accepts the list generic type as an argument and</dt>
+<dd>returns true or false</dd>
+</dl>
+<p>Returns:</p>
+<p>An iterator that only returns objects evaluating true</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.HashMap">
+<span id="tasselpy-java-util-hashmap-module"></span><h2>TASSELpy.java.util.HashMap module<a class="headerlink" href="#module-TASSELpy.java.util.HashMap" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.HashMap.HashMap">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.HashMap.</tt><tt class="descname">HashMap</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/HashMap.html#HashMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.HashMap.HashMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.AbstractMap.AbstractMap" title="TASSELpy.java.util.AbstractMap.AbstractMap"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.AbstractMap.AbstractMap</span></tt></a></p>
+<p>public class HashMap&lt;K,V&gt;
+extends AbstractMap&lt;K,V&gt;
+implements Map&lt;K,V&gt;, Cloneable, Serializable
+Hash table based implementation of the Map interface. This implementation provides all of the optional map operations, and permits null values and the null key. (The HashMap class is roughly equivalent to Hashtable, except that it is unsynchronized and permits nulls.) This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.
+This implementation provides constant-time performance for the basic operations (get and put), assuming the hash function disperses the elements properly among the buckets. Iteration over collection views requires time proportional to the &#8220;capacity&#8221; of the HashMap instance (the number of buckets) plus its size (the number of key-value mappings). Thus, it&#8217;s very important not to set the initial capacity too high (or the load factor too low) if iteration performance is important.</p>
+<p>An instance of HashMap has two parameters that affect its performance: initial capacity and load factor. The capacity is the number of buckets in the hash table, and the initial capacity is simply the capacity at the time the hash table is created. The load factor is a measure of how full the hash table is allowed to get before its capacity is automatically increased. When the number of entries in the hash table exceeds the product of the load factor and the current capacity, the hash table is rehashed (that is, internal data structures are rebuilt) so that the hash table has approximately twice the number of buckets.</p>
+<p>As a general rule, the default load factor (.75) offers a good tradeoff between time and space costs. Higher values decrease the space overhead but increase the lookup cost (reflected in most of the operations of the HashMap class, including get and put). The expected number of entries in the map and its load factor should be taken into account when setting its initial capacity, so as to minimize the number of rehash operations. If the initial capacity is greater than the maximum number of entries divided by the load factor, no rehash operations will ever occur.</p>
+<p>If many mappings are to be stored in a HashMap instance, creating it with a sufficiently large capacity will allow the mappings to be stored more efficiently than letting it perform automatic rehashing as needed to grow the table.</p>
+<p>Note that this implementation is not synchronized. If multiple threads access a hash map concurrently, and at least one of the threads modifies the map structurally, it must be synchronized externally. (A structural modification is any operation that adds or deletes one or more mappings; merely changing the value associated with a key that an instance already contains is not a structural modification.) This is typically accomplished by synchronizing on some object that naturally encapsulates the map. If no such object exists, the map should be &#8220;wrapped&#8221; using the Collections.synchronizedMap method. This is best done at creation time, to prevent accidental unsynchronized access to the map:</p>
+<blockquote>
+<div>Map m = Collections.synchronizedMap(new HashMap(...));</div></blockquote>
+<p>The iterators returned by all of this class&#8217;s &#8220;collection view methods&#8221; are fail-fast: if the map is structurally modified at any time after the iterator is created, in any way except through the iterator&#8217;s own remove method, the iterator will throw a ConcurrentModificationException. Thus, in the face of concurrent modification, the iterator fails quickly and cleanly, rather than risking arbitrary, non-deterministic behavior at an undetermined time in the future.</p>
+<p>Note that the fail-fast behavior of an iterator cannot be guaranteed as it is, generally speaking, impossible to make any hard guarantees in the presence of unsynchronized concurrent modification. Fail-fast iterators throw ConcurrentModificationException on a best-effort basis. Therefore, it would be wrong to write a program that depended on this exception for its correctness: the fail-fast behavior of iterators should be used only to detect bugs.</p>
+<p>This class is a member of the Java Collections Framework.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">Entry</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Removes all of the mappings from this map</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsKey</span></tt>(*args)</td>
+<td>Returns true if this map contains a mapping for the specified key</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsValue</span></tt>(*args)</td>
+<td>Returns true if this map contains a mapping for the specified value</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">entrySet</span></tt>(*args)</td>
+<td>Returns a Set view of the mappings contained in this map</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>(*args)</td>
+<td>Gets the vlaue to which the specified key is mapped, or null if this map contains no</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if this map contains no key-value mappings</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">keySet</span></tt>(*args)</td>
+<td>Returns a Set view of the keys contained in this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">put</span></tt>(*args)</td>
+<td>Associates the specified value with the specified key in this map</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">putAll</span></tt>(*args)</td>
+<td>Copies all of the mappings from the specified map to this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes the mapping for a key from this map if it is present</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the number of key-value mappings in this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">values</span></tt>(*args)</td>
+<td>Returns a Collection view of the values contained in this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.HashMap.HashMap.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/HashMap.html#HashMap.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.HashMap.HashMap.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a HashMap</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>HashMap</em> ()</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>HashMap</em> (int <strong>initialCapacity</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>HashMap</em> (int <strong>initialCapacity</strong>, float <strong>loadFactor</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>initialCapacity</strong> (<em>int</em>) &#8211; the initial capcity</li>
+<li><strong>loadFactor</strong> (<em>float</em>) &#8211; the load factor HashMap(Map&lt;? extends K, ? extends V&gt; m)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.Iterator">
+<span id="tasselpy-java-util-iterator-module"></span><h2>TASSELpy.java.util.Iterator module<a class="headerlink" href="#module-TASSELpy.java.util.Iterator" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.Iterator.Iterator">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.Iterator.</tt><tt class="descname">Iterator</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Iterator.html#Iterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Iterator.Iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.html#TASSELpy.javaObj.genericJavaObj" title="TASSELpy.javaObj.genericJavaObj"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.javaObj.genericJavaObj</span></tt></a>, <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p>From docs.oracle.com:</p>
+<p>An iterator over a collection. Iterator takes the place of Enumeration
+in the Java Collections Framework. Iterators differ from enumerations in 2
+wyas:</p>
+<p>Iterators allow the caller to remove elements from the underlying collection during
+the iteration with well-defined semantics.</p>
+<p>Method names have been improved</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Iterator.Iterator.hasNext" title="TASSELpy.java.util.Iterator.Iterator.hasNext"><tt class="xref py py-obj docutils literal"><span class="pre">hasNext</span></tt></a>(*args)</td>
+<td>Returns true if the iteration has more elements.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Iterator.Iterator.next" title="TASSELpy.java.util.Iterator.Iterator.next"><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt></a>(*args)</td>
+<td>Returns the next element in the iteration</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Iterator.Iterator.remove" title="TASSELpy.java.util.Iterator.Iterator.remove"><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt></a>(*args)</td>
+<td>Removes from the underlying collection the last element returned by this iterator.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.Iterator.Iterator.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Iterator.html#Iterator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Iterator.Iterator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Iterator.Iterator.hasNext">
+<tt class="descname">hasNext</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Iterator.html#Iterator.hasNext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Iterator.Iterator.hasNext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the iteration has more elements. (In other
+words, returns true if next() would return an element
+rather than throwing an exception.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>hasNext</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if the iteration has more elements</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Iterator.Iterator.next">
+<tt class="descname">next</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Iterator.html#Iterator.next"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Iterator.Iterator.next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the next element in the iteration</p>
+<p>Signatures:</p>
+<p>E next()</p>
+<p>Returns:</p>
+<p>the next element in the iteration</p>
+<p>Throws:</p>
+<p>NoSuchElementException if iteration has no more elements</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Iterator.Iterator.remove">
+<tt class="descname">remove</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Iterator.html#Iterator.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Iterator.Iterator.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes from the underlying collection the last element returned by this iterator.
+The method can be called only once per call to next(). The behavior of an iterator is
+unspecified if the underlying collection is modified while the itartion is in progress
+in any way othe rthan by calling this method.</p>
+<p>Signatures:</p>
+<p>void remove()</p>
+<p>Throws:</p>
+<p>UnsupportedOperationException &#8211; if remove operation is not supported by this iterator
+IllegalStateException &#8211; if the next method has not yet been called, or the remove method</p>
+<blockquote>
+<div>has already been called after the last call to the next method</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.List">
+<span id="tasselpy-java-util-list-module"></span><h2>TASSELpy.java.util.List module<a class="headerlink" href="#module-TASSELpy.java.util.List" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.List.List">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.List.</tt><tt class="descname">List</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/List.html#List"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.List.List" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.List.metaList" title="TASSELpy.java.util.List.metaList"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.List.metaList</span></tt></a></p>
+<p>From docs.oracle.com:</p>
+<p>public interface List&lt;E&gt;
+extends Collection&lt;E&gt;
+An ordered collection (also known as a sequence). The user of this interface has precise control over where in the list each element is inserted. The user can access elements by their integer index (position in the list), and search for elements in the list.
+Unlike sets, lists typically allow duplicate elements. More formally, lists typically allow pairs of elements e1 and e2 such that e1.equals(e2), and they typically allow multiple null elements if they allow null elements at all. It is not inconceivable that someone might wish to implement a list that prohibits duplicates, by throwing runtime exceptions when the user attempts to insert them, but we expect this usage to be rare.</p>
+<p>The List interface places additional stipulations, beyond those specified in the Collection interface, on the contracts of the iterator, add, remove, equals, and hashCode methods. Declarations for other inherited methods are also included here for convenience.</p>
+<p>The List interface provides four methods for positional (indexed) access to list elements. Lists (like Java arrays) are zero based. Note that these operations may execute in time proportional to the index value for some implementations (the LinkedList class, for example). Thus, iterating over the elements in a list is typically preferable to indexing through it if the caller does not know the implementation.</p>
+<p>The List interface provides a special iterator, called a ListIterator, that allows element insertion and replacement, and bidirectional access in addition to the normal operations that the Iterator interface provides. A method is provided to obtain a list iterator that starts at a specified position in the list.</p>
+<p>The List interface provides two methods to search for a specified object. From a performance standpoint, these methods should be used with caution. In many implementations they will perform costly linear searches.</p>
+<p>The List interface provides two methods to efficiently insert and remove multiple elements at an arbitrary point in the list.</p>
+<p>Note: While it is permissible for lists to contain themselves as elements, extreme caution is advised: the equals and hashCode methods are no longer well defined on such a list.</p>
+<p>Some list implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null elements, and some have restrictions on the types of their elements. Attempting to add an ineligible element throws an unchecked exception, typically NullPointerException or ClassCastException. Attempting to query the presence of an ineligible element may throw an exception, or it may simply return false; some implementations will exhibit the former behavior and some will exhibit the latter. More generally, attempting an operation on an ineligible element whose completion would not result in the insertion of an ineligible element into the list may throw an exception or it may succeed, at the option of the implementation. Such exceptions are marked as &#8220;optional&#8221; in the specification for this interface.</p>
+<p>This interface is a member of the Java Collections Framework.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt>(*args)</td>
+<td>Ensures that this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addAll</span></tt>(*args)</td>
+<td>Adds all of the elements in the specified collection to this collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Removes all of the elements from this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">contains</span></tt>(*args)</td>
+<td>Returns true if this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsAll</span></tt>(*args)</td>
+<td>Returns true if this collection contains all of the elements in the specified collection</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.List.List.get" title="TASSELpy.java.util.List.List.get"><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt></a>(*args)</td>
+<td>Returns the element at the specified position in this list</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if this collection contains no elements</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterator</span></tt>(*args)</td>
+<td>Returns an iterator over a set of elements of type T</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.List.List.listIterator" title="TASSELpy.java.util.List.List.listIterator"><tt class="xref py py-obj docutils literal"><span class="pre">listIterator</span></tt></a>(*args)</td>
+<td>Returns a list iterator over the elements in this list</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes a single instance of the specified element from this collection, if it is present.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">removeAll</span></tt>(*args)</td>
+<td>Removes all of this collection&#8217;s elements that are also contained in the specified collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">retainAll</span></tt>(*args)</td>
+<td>Retains only the elements in this collection that are contained in the specified collection.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.List.List.set" title="TASSELpy.java.util.List.List.set"><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt></a>(*args)</td>
+<td>Replaces the element at the specified position in this list with</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the number of elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.List.List.subList" title="TASSELpy.java.util.List.List.subList"><tt class="xref py py-obj docutils literal"><span class="pre">subList</span></tt></a>(*args)</td>
+<td>REturns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toArray</span></tt>(*args)</td>
+<td>Returns an array containing all of the elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.List.List.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/List.html#List.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.List.List.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.List.List.get">
+<tt class="descname">get</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/List.html#List.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.List.List.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the element at the specified position in this list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>get</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>int</em>) &#8211; The index of the item you want</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The element at the specified position in the list</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">E</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.List.List.listIterator">
+<tt class="descname">listIterator</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/List.html#List.listIterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.List.List.listIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list iterator over the elements in this list</p>
+<p>Signatures:</p>
+<p>ListIterator&lt;E&gt; listIterator()
+ListIterator&lt;E&gt; listIterator(int index)</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>ListIterator&lt;E&gt; listIterator(int index)</dt>
+<dd><dl class="first last docutils">
+<dt>index &#8211; index of the first element to be returned from the list iterator</dt>
+<dd>(by a call to next)</dd>
+</dl>
+</dd>
+</dl>
+<p>Returns:</p>
+<p>a list iterator over the elements in this list (in proper sequence),
+starting at the specified position in the list</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.List.List.set">
+<tt class="descname">set</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/List.html#List.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.List.List.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces the element at the specified position in this list with
+the specified element</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>set</em> (int <strong>index</strong>, E <strong>element</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>index</strong> (<em>int</em>) &#8211; index of the element to replace</li>
+<li><strong>element</strong> (<em>E</em>) &#8211; element to be stored at the specified position</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the element previously at the specified position</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">E</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.List.List.subList">
+<tt class="descname">subList</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/List.html#List.subList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.List.List.subList" title="Permalink to this definition">¶</a></dt>
+<dd><p>REturns a view of the portion of this list between the specified fromIndex,
+inclusive, and toIndex, exclusive. If they are equal, the returned list is empty).
+The returned list is backed by this list, so non-structural changes in the returned list
+are reflected in this list, and vice-versa. The returned list supports all of the
+optional list operations supported by this list.</p>
+<p>This method eliminates the need for explicit range operations. Any operation that
+expects a list can be used as a range operations by passing a subList view instead
+of a whole list. For example, the following idiom removes a range of elements from a list:</p>
+<p>list.subList(from, to).clear();</p>
+<p>Similar idioms may be constructed for indexOf and lastIndexOf, and all of the algorithms
+in the Collections class can be applied to a subList.</p>
+<p>Signatures:</p>
+<p>List&lt;E&gt; subList(int fromIndex, int toIndex)</p>
+<p>Arguments:</p>
+<p>fromIndex &#8211; low endpoint (inclusive) of the subList
+toIndex &#8211; high endpoint (exclusive) of the subList</p>
+<p>Returns:</p>
+<p>a view of the specified range within this list</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.java.util.List.metaList">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.List.</tt><tt class="descname">metaList</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/List.html#metaList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.List.metaList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.Collection.Collection" title="TASSELpy.java.util.Collection.Collection"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.Collection.Collection</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt>(*args)</td>
+<td>Ensures that this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addAll</span></tt>(*args)</td>
+<td>Adds all of the elements in the specified collection to this collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Removes all of the elements from this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">contains</span></tt>(*args)</td>
+<td>Returns true if this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsAll</span></tt>(*args)</td>
+<td>Returns true if this collection contains all of the elements in the specified collection</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if this collection contains no elements</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterator</span></tt>(*args)</td>
+<td>Returns an iterator over a set of elements of type T</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes a single instance of the specified element from this collection, if it is present.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">removeAll</span></tt>(*args)</td>
+<td>Removes all of this collection&#8217;s elements that are also contained in the specified collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">retainAll</span></tt>(*args)</td>
+<td>Retains only the elements in this collection that are contained in the specified collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the number of elements in this collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toArray</span></tt>(*args)</td>
+<td>Returns an array containing all of the elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.List.metaList.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/List.html#metaList.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.List.metaList.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.ListIterator">
+<span id="tasselpy-java-util-listiterator-module"></span><h2>TASSELpy.java.util.ListIterator module<a class="headerlink" href="#module-TASSELpy.java.util.ListIterator" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.ListIterator.ListIterator">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.ListIterator.</tt><tt class="descname">ListIterator</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ListIterator.html#ListIterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ListIterator.ListIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.Iterator.Iterator" title="TASSELpy.java.util.Iterator.Iterator"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.Iterator.Iterator</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.ListIterator.ListIterator.add" title="TASSELpy.java.util.ListIterator.ListIterator.add"><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt></a>(*args)</td>
+<td>Inserts the specified element into the list</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hasNext</span></tt>(*args)</td>
+<td>Returns true if the iteration has more elements.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.ListIterator.ListIterator.hasPrevious" title="TASSELpy.java.util.ListIterator.ListIterator.hasPrevious"><tt class="xref py py-obj docutils literal"><span class="pre">hasPrevious</span></tt></a>(*args)</td>
+<td>Returns true if this list iterator has more elements when traversing the list</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt>(*args)</td>
+<td>Returns the next element in the iteration</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.ListIterator.ListIterator.nextIndex" title="TASSELpy.java.util.ListIterator.ListIterator.nextIndex"><tt class="xref py py-obj docutils literal"><span class="pre">nextIndex</span></tt></a>(*args)</td>
+<td>Returns the index of the element that would be returned by a subsequent call to</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.ListIterator.ListIterator.previous" title="TASSELpy.java.util.ListIterator.ListIterator.previous"><tt class="xref py py-obj docutils literal"><span class="pre">previous</span></tt></a>(*args)</td>
+<td>Returns the previous element in the list and moves the cursor position backwards</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.ListIterator.ListIterator.previousIndex" title="TASSELpy.java.util.ListIterator.ListIterator.previousIndex"><tt class="xref py py-obj docutils literal"><span class="pre">previousIndex</span></tt></a>(*args)</td>
+<td>Returns the index of the element that would be returned by a subsequent call</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes from the underlying collection the last element returned by this iterator.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.ListIterator.ListIterator.set" title="TASSELpy.java.util.ListIterator.ListIterator.set"><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt></a>(*args)</td>
+<td>Replaces the last element returned by next() or previous() with the specified</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.ListIterator.ListIterator.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ListIterator.html#ListIterator.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ListIterator.ListIterator.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.ListIterator.ListIterator.add">
+<tt class="descname">add</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ListIterator.html#ListIterator.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ListIterator.ListIterator.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inserts the specified element into the list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>add</em> (E <strong>e</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>e</strong> (<em>E</em>) &#8211; the element you want to add to the list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.ListIterator.ListIterator.hasPrevious">
+<tt class="descname">hasPrevious</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ListIterator.html#ListIterator.hasPrevious"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ListIterator.ListIterator.hasPrevious" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this list iterator has more elements when traversing the list
+in the reverse direction</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>hasPrevious</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if the list iterator has more elements in the reverse direction</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.ListIterator.ListIterator.nextIndex">
+<tt class="descname">nextIndex</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ListIterator.html#ListIterator.nextIndex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ListIterator.ListIterator.nextIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index of the element that would be returned by a subsequent call to
+next()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>nextIndex</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the index of the element that would be returned by a subsequent call to next()</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.ListIterator.ListIterator.previous">
+<tt class="descname">previous</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ListIterator.html#ListIterator.previous"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ListIterator.ListIterator.previous" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the previous element in the list and moves the cursor position backwards</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>previous</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The previous element in the list</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">E</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.ListIterator.ListIterator.previousIndex">
+<tt class="descname">previousIndex</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ListIterator.html#ListIterator.previousIndex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ListIterator.ListIterator.previousIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index of the element that would be returned by a subsequent call
+to previous()</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>previousIndex</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The index of the element that would be returned by a subsequent call to previous()</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.ListIterator.ListIterator.set">
+<tt class="descname">set</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/ListIterator.html#ListIterator.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.ListIterator.ListIterator.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces the last element returned by next() or previous() with the specified
+element</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>set</em> (E <strong>e</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>e</strong> (<em>E</em>) &#8211; the element with which to replace the last element returned by next or previous</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.Map">
+<span id="tasselpy-java-util-map-module"></span><h2>TASSELpy.java.util.Map module<a class="headerlink" href="#module-TASSELpy.java.util.Map" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.Map.Map">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.Map.</tt><tt class="descname">Map</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.html#TASSELpy.javaObj.genericJavaObj" title="TASSELpy.javaObj.genericJavaObj"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.javaObj.genericJavaObj</span></tt></a>, <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p>An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.
+This interface takes the place of the Dictionary class, which was a totally abstract class rather than an interface.</p>
+<p>The Map interface provides three collection views, which allow a map&#8217;s contents to be viewed as a set of keys, collection of values, or set of key-value mappings. The order of a map is defined as the order in which the iterators on the map&#8217;s collection views return their elements. Some map implementations, like the TreeMap class, make specific guarantees as to their order; others, like the HashMap class, do not.</p>
+<p>Note: great care must be exercised if mutable objects are used as map keys. The behavior of a map is not specified if the value of an object is changed in a manner that affects equals comparisons while the object is a key in the map. A special case of this prohibition is that it is not permissible for a map to contain itself as a key. While it is permissible for a map to contain itself as a value, extreme caution is advised: the equals and hashCode methods are no longer well defined on such a map.</p>
+<p>All general-purpose map implementation classes should provide two &#8220;standard&#8221; constructors: a void (no arguments) constructor which creates an empty map, and a constructor with a single argument of type Map, which creates a new map with the same key-value mappings as its argument. In effect, the latter constructor allows the user to copy any map, producing an equivalent map of the desired class. There is no way to enforce this recommendation (as interfaces cannot contain constructors) but all of the general-purpose map implementations in the JDK comply.</p>
+<p>The &#8220;destructive&#8221; methods contained in this interface, that is, the methods that modify the map on which they operate, are specified to throw UnsupportedOperationException if this map does not support the operation. If this is the case, these methods may, but are not required to, throw an UnsupportedOperationException if the invocation would have no effect on the map. For example, invoking the putAll(Map) method on an unmodifiable map may, but is not required to, throw the exception if the map whose mappings are to be &#8220;superimposed&#8221; is empty.</p>
+<p>Some map implementations have restrictions on the keys and values they may contain. For example, some implementations prohibit null keys and values, and some have restrictions on the types of their keys. Attempting to insert an ineligible key or value throws an unchecked exception, typically NullPointerException or ClassCastException. Attempting to query the presence of an ineligible key or value may throw an exception, or it may simply return false; some implementations will exhibit the former behavior and some will exhibit the latter. More generally, attempting an operation on an ineligible key or value whose completion would not result in the insertion of an ineligible element into the map may throw an exception or it may succeed, at the option of the implementation. Such exceptions are marked as &#8220;optional&#8221; in the specification for this interface.</p>
+<p>This interface is a member of the Java Collections Framework.</p>
+<p>Many methods in Collections Framework interfaces are defined in terms of the equals method. For example, the specification for the containsKey(Object key) method says: &#8220;returns true if and only if this map contains a mapping for a key k such that (key==null ? k==null : key.equals(k)).&#8221; This specification should not be construed to imply that invoking Map.containsKey with a non-null argument key will cause key.equals(k) to be invoked for any key k. Implementations are free to implement optimizations whereby the equals invocation is avoided, for example, by first comparing the hash codes of the two keys. (The Object.hashCode() specification guarantees that two objects with unequal hash codes cannot be equal.) More generally, implementations of the various Collections Framework interfaces are free to take advantage of the specified behavior of underlying Object methods wherever the implementor deems it appropriate.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.Entry" title="TASSELpy.java.util.Map.Map.Entry"><tt class="xref py py-obj docutils literal"><span class="pre">Entry</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.clear" title="TASSELpy.java.util.Map.Map.clear"><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt></a>(*args)</td>
+<td>Removes all of the mappings from this map</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.containsKey" title="TASSELpy.java.util.Map.Map.containsKey"><tt class="xref py py-obj docutils literal"><span class="pre">containsKey</span></tt></a>(*args)</td>
+<td>Returns true if this map contains a mapping for the specified key</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.containsValue" title="TASSELpy.java.util.Map.Map.containsValue"><tt class="xref py py-obj docutils literal"><span class="pre">containsValue</span></tt></a>(*args)</td>
+<td>Returns true if this map contains a mapping for the specified value</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.entrySet" title="TASSELpy.java.util.Map.Map.entrySet"><tt class="xref py py-obj docutils literal"><span class="pre">entrySet</span></tt></a>(*args)</td>
+<td>Returns a Set view of the mappings contained in this map</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.get" title="TASSELpy.java.util.Map.Map.get"><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt></a>(*args)</td>
+<td>Gets the vlaue to which the specified key is mapped, or null if this map contains no</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.isEmpty" title="TASSELpy.java.util.Map.Map.isEmpty"><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt></a>(*args)</td>
+<td>Returns true if this map contains no key-value mappings</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.keySet" title="TASSELpy.java.util.Map.Map.keySet"><tt class="xref py py-obj docutils literal"><span class="pre">keySet</span></tt></a>(*args)</td>
+<td>Returns a Set view of the keys contained in this map</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.put" title="TASSELpy.java.util.Map.Map.put"><tt class="xref py py-obj docutils literal"><span class="pre">put</span></tt></a>(*args)</td>
+<td>Associates the specified value with the specified key in this map</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.putAll" title="TASSELpy.java.util.Map.Map.putAll"><tt class="xref py py-obj docutils literal"><span class="pre">putAll</span></tt></a>(*args)</td>
+<td>Copies all of the mappings from the specified map to this map</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.remove" title="TASSELpy.java.util.Map.Map.remove"><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt></a>(*args)</td>
+<td>Removes the mapping for a key from this map if it is present</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.size" title="TASSELpy.java.util.Map.Map.size"><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt></a>(*args)</td>
+<td>Returns the number of key-value mappings in this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.values" title="TASSELpy.java.util.Map.Map.values"><tt class="xref py py-obj docutils literal"><span class="pre">values</span></tt></a>(*args)</td>
+<td>Returns a Collection view of the values contained in this map</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="TASSELpy.java.util.Map.Map.Entry">
+<em class="property">class </em><tt class="descname">Entry</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.Entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.Entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.html#TASSELpy.javaObj.genericJavaObj" title="TASSELpy.javaObj.genericJavaObj"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.javaObj.genericJavaObj</span></tt></a>, <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p>A map entry (key-value pair). The Map.entrySet method returns a collection-view of the map,
+whose elements are of this class. The only way to obtain a reference to a map entry is from
+the iterator of this collection-view. These Map.Entry objects are valid only for the duration
+of the iteration; more formally, the behavior of a map entry is undefined if the backing map
+has been modified after the entry was returned by the iterator, except through the setValue
+operation on the map entry.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.Entry.getKey" title="TASSELpy.java.util.Map.Map.Entry.getKey"><tt class="xref py py-obj docutils literal"><span class="pre">getKey</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.Entry.getValue" title="TASSELpy.java.util.Map.Map.Entry.getValue"><tt class="xref py py-obj docutils literal"><span class="pre">getValue</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.java.util.Map.Map.Entry.setValue" title="TASSELpy.java.util.Map.Map.Entry.setValue"><tt class="xref py py-obj docutils literal"><span class="pre">setValue</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.Entry.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.Entry.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.Entry.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.Entry.getKey">
+<tt class="descname">getKey</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.Entry.getKey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.Entry.getKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the key corresponding to this entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getKey</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Key corresponding to this entry</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">K</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.Entry.getValue">
+<tt class="descname">getValue</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.Entry.getValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.Entry.getValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value corresponding to this entry</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getValue</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Value corresponding to this entry</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">K</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.Entry.setValue">
+<tt class="descname">setValue</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.Entry.setValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.Entry.setValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replaces the value corresponding to this entry with the specified value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>setValue</em> (V <strong>value</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>V</em>) &#8211; new value to be stored in this entry</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Old value corresponding to the entry</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">V</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.__init__">
+<tt class="descclassname">Map.</tt><tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.clear">
+<tt class="descclassname">Map.</tt><tt class="descname">clear</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes all of the mappings from this map</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>clear</em> ()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.containsKey">
+<tt class="descclassname">Map.</tt><tt class="descname">containsKey</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.containsKey"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.containsKey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this map contains a mapping for the specified key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>containsKey</em> (Object <strong>key</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> (<em>Object</em>) &#8211; key whose presence in map is to be tested</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if this map contains a mapping for the specified key</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.containsValue">
+<tt class="descclassname">Map.</tt><tt class="descname">containsValue</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.containsValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.containsValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this map contains a mapping for the specified value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>containsValue</em> (Object <strong>value</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>Object</em>) &#8211; value whose presence in map is to be tested</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">True if this map contains a mapping for the specified value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.entrySet">
+<tt class="descclassname">Map.</tt><tt class="descname">entrySet</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.entrySet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.entrySet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Set view of the mappings contained in this map</p>
+<p>Signatures:</p>
+<p>Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()</p>
+<p>Returns:</p>
+<p>Set view of the mappings contained in this map</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.get">
+<tt class="descclassname">Map.</tt><tt class="descname">get</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the vlaue to which the specified key is mapped, or null if this map contains no
+mapping for the key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>get</em> (Object <strong>key</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> (<em>Object</em>) &#8211; the key whose associated value is to be returned</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The value to which the specified key is mapped, or null if htis map contains no mapping for the key</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">V</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.isEmpty">
+<tt class="descclassname">Map.</tt><tt class="descname">isEmpty</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.isEmpty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.isEmpty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this map contains no key-value mappings</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>isEmpty</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Whether this map contains any key-value mappings</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.keySet">
+<tt class="descclassname">Map.</tt><tt class="descname">keySet</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.keySet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.keySet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Set view of the keys contained in this map</p>
+<p>Signatures:</p>
+<p>Set&lt;K&gt; keySet()</p>
+<p>Returns:</p>
+<p>Set of the keys in the map</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.put">
+<tt class="descclassname">Map.</tt><tt class="descname">put</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.put"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Associates the specified value with the specified key in this map</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>put</em> (K <strong>key</strong>, V <strong>value</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> (<em>K</em>) &#8211; key with which the specified value is to be associated</li>
+<li><strong>value</strong> (<em>V</em>) &#8211; value to be associated with the specified key</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Previous value associated with key, or null if there was no mapping for key</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">V</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.putAll">
+<tt class="descclassname">Map.</tt><tt class="descname">putAll</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.putAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.putAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies all of the mappings from the specified map to this map</p>
+<p>Signatures:</p>
+<p>void putAll(Map&lt;? extends K, ? extends V&gt; m)</p>
+<p>Arguments:</p>
+<p>m &#8211; Mappings to be stored in this map</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.remove">
+<tt class="descclassname">Map.</tt><tt class="descname">remove</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the mapping for a key from this map if it is present</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>remove</em> (Object <strong>key</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>key</strong> (<em>Object</em>) &#8211; Key for the key-value pair you want to remove</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The previous value associated with key, or null if there was no mapping for key</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">V</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.size">
+<tt class="descclassname">Map.</tt><tt class="descname">size</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of key-value mappings in this map</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>size</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of key-value mappings in this map</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.java.util.Map.Map.values">
+<tt class="descclassname">Map.</tt><tt class="descname">values</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#Map.values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.Map.values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a Collection view of the values contained in this map</p>
+<p>Signatures:</p>
+<p>Collection&lt;V&gt; values()</p>
+<p>Returns:</p>
+<p>The Collection view of the values contained in this map</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.java.util.Map.metaMap">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.Map.</tt><tt class="descname">metaMap</tt><a class="reference internal" href="_modules/TASSELpy/java/util/Map.html#metaMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Map.metaMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util.Set">
+<span id="tasselpy-java-util-set-module"></span><h2>TASSELpy.java.util.Set module<a class="headerlink" href="#module-TASSELpy.java.util.Set" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.java.util.Set.Set">
+<em class="property">class </em><tt class="descclassname">TASSELpy.java.util.Set.</tt><tt class="descname">Set</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Set.html#Set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Set.Set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.java.util.Collection.Collection" title="TASSELpy.java.util.Collection.Collection"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.Collection.Collection</span></tt></a></p>
+<p>From docs.oracle.com:</p>
+<p>public interface Set&lt;E&gt;
+extends Collection&lt;E&gt;
+A collection that contains no duplicate elements. More formally, sets contain no pair of elements e1 and e2 such that e1.equals(e2), and at most one null element. As implied by its name, this interface models the mathematical set abstraction.
+The Set interface places additional stipulations, beyond those inherited from the Collection interface, on the contracts of all constructors and on the contracts of the add, equals and hashCode methods. Declarations for other inherited methods are also included here for convenience. (The specifications accompanying these declarations have been tailored to the Set interface, but they do not contain any additional stipulations.)</p>
+<p>The additional stipulation on constructors is, not surprisingly, that all constructors must create a set that contains no duplicate elements (as defined above).</p>
+<p>Note: Great care must be exercised if mutable objects are used as set elements. The behavior of a set is not specified if the value of an object is changed in a manner that affects equals comparisons while the object is an element in the set. A special case of this prohibition is that it is not permissible for a set to contain itself as an element.</p>
+<p>Some set implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null elements, and some have restrictions on the types of their elements. Attempting to add an ineligible element throws an unchecked exception, typically NullPointerException or ClassCastException. Attempting to query the presence of an ineligible element may throw an exception, or it may simply return false; some implementations will exhibit the former behavior and some will exhibit the latter. More generally, attempting an operation on an ineligible element whose completion would not result in the insertion of an ineligible element into the set may throw an exception or it may succeed, at the option of the implementation. Such exceptions are marked as &#8220;optional&#8221; in the specification for this interface.</p>
+<p>This interface is a member of the Java Collections Framework.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt>(*args)</td>
+<td>Ensures that this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addAll</span></tt>(*args)</td>
+<td>Adds all of the elements in the specified collection to this collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Removes all of the elements from this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">contains</span></tt>(*args)</td>
+<td>Returns true if this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsAll</span></tt>(*args)</td>
+<td>Returns true if this collection contains all of the elements in the specified collection</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if this collection contains no elements</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterator</span></tt>(*args)</td>
+<td>Returns an iterator over a set of elements of type T</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes a single instance of the specified element from this collection, if it is present.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">removeAll</span></tt>(*args)</td>
+<td>Removes all of this collection&#8217;s elements that are also contained in the specified collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">retainAll</span></tt>(*args)</td>
+<td>Retains only the elements in this collection that are contained in the specified collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the number of elements in this collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toArray</span></tt>(*args)</td>
+<td>Returns an array containing all of the elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.java.util.Set.Set.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/java/util/Set.html#Set.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.java.util.Set.Set.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.java.util">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.java.util" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.java.util package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.AbstractMap">TASSELpy.java.util.AbstractMap module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.ArrayList">TASSELpy.java.util.ArrayList module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.Collection">TASSELpy.java.util.Collection module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.FilterList">TASSELpy.java.util.FilterList module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.HashMap">TASSELpy.java.util.HashMap module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.Iterator">TASSELpy.java.util.Iterator module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.List">TASSELpy.java.util.List module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.ListIterator">TASSELpy.java.util.ListIterator module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.Map">TASSELpy.java.util.Map module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util.Set">TASSELpy.java.util.Set module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.java.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.java.util.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.java.html" >TASSELpy.java package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.test.java.util.MapTest &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.test.java.util.MapTest</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.TASSELbridge</span> <span class="kn">import</span> <span class="n">TASSELbridge</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;AssertionError: start bridge&quot;</span><span class="p">)</span>
+        <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&quot;Could not start JVM&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.HashMap</span> <span class="kn">import</span> <span class="n">HashMap</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">Integer</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">String</span>
+
+<span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+
+<div class="viewcode-block" id="MapTest"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest">[docs]</a><span class="k">class</span> <span class="nc">MapTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Tests for Map.py &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="MapTest.setUp"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map</span> <span class="o">=</span> <span class="n">HashMap</span><span class="p">(</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">Integer</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;one&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;two&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;three&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s">&quot;Map put fail&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="MapTest.test_clear"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_clear">[docs]</a>    <span class="k">def</span> <span class="nf">test_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing clear using HashMap&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span></div>
+<div class="viewcode-block" id="MapTest.test_containsKey"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_containsKey">[docs]</a>    <span class="k">def</span> <span class="nf">test_containsKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing containsKey using HashMap&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;two&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;four&#39;</span><span class="p">)))</span></div>
+<div class="viewcode-block" id="MapTest.test_containsValue"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_containsValue">[docs]</a>    <span class="k">def</span> <span class="nf">test_containsValue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing containsValue using HashMap&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">containsValue</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">containsValue</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">4</span><span class="p">)))</span></div>
+<div class="viewcode-block" id="MapTest.test_entrySet"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_entrySet">[docs]</a>    <span class="k">def</span> <span class="nf">test_entrySet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing entrySet using HashMap&quot;</span>
+        <span class="n">entryset</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">entrySet</span><span class="p">()]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">entryset</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">entryset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getKey</span><span class="p">(),</span><span class="n">String</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">entryset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getValue</span><span class="p">(),</span><span class="n">Integer</span><span class="p">)</span></div>
+<div class="viewcode-block" id="MapTest.test_get"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_get">[docs]</a>    <span class="k">def</span> <span class="nf">test_get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing get using HashMap&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;one&#39;</span><span class="p">)),</span><span class="n">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;one&#39;</span><span class="p">)],</span><span class="n">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span></div>
+<div class="viewcode-block" id="MapTest.test_isEmpty"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_isEmpty">[docs]</a>    <span class="k">def</span> <span class="nf">test_isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing isEmpty using HashMap&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">())</span></div>
+<div class="viewcode-block" id="MapTest.test_keySet"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_keySet">[docs]</a>    <span class="k">def</span> <span class="nf">test_keySet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing keySet using HashMap&quot;</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">keySet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;two&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;four&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">)</span></div>
+<div class="viewcode-block" id="MapTest.test_putAll"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_putAll">[docs]</a>    <span class="k">def</span> <span class="nf">test_putAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing putAll using HashMap&quot;</span>
+        <span class="n">new_map</span> <span class="o">=</span> <span class="n">HashMap</span><span class="p">(</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">Integer</span><span class="p">))</span>
+        <span class="n">new_map</span><span class="p">[</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;four&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">new_map</span><span class="p">[</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;five&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">Integer</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">putAll</span><span class="p">(</span><span class="n">new_map</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;four&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span></div>
+<div class="viewcode-block" id="MapTest.test_remove"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_remove">[docs]</a>    <span class="k">def</span> <span class="nf">test_remove</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing remove using HashMap&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;three&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;three&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;two&#39;</span><span class="p">)))</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">[</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;two&#39;</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">String</span><span class="p">(</span><span class="s">&#39;two&#39;</span><span class="p">)))</span></div>
+<div class="viewcode-block" id="MapTest.test_size"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_size">[docs]</a>    <span class="k">def</span> <span class="nf">test_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing size using HashMap&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEquals</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span></div>
+<div class="viewcode-block" id="MapTest.test_values"><a class="viewcode-back" href="../../../../../TASSELpy.test.java.util.html#TASSELpy.test.java.util.MapTest.MapTest.test_values">[docs]</a>    <span class="k">def</span> <span class="nf">test_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing values using HashMap&quot;</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">Integer</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">)</span></div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="nb">exit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

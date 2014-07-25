@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.utils.primativeArray &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.utils.primativeArray</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">javaArray</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.reflect.Array</span> <span class="kn">import</span> <span class="n">Array</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Byte</span> <span class="kn">import</span> <span class="n">metaByte</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Boolean</span> <span class="kn">import</span> <span class="n">metaBoolean</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Long</span> <span class="kn">import</span> <span class="n">metaLong</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Float</span> <span class="kn">import</span> <span class="n">metaFloat</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Double</span> <span class="kn">import</span> <span class="n">metaDouble</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<div class="viewcode-block" id="meta_byte_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.meta_byte_array">[docs]</a><span class="k">class</span> <span class="nc">meta_byte_array</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="n">java_arr_type</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="o">=</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;byte&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">C</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="meta_int_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.meta_int_array">[docs]</a><span class="k">class</span> <span class="nc">meta_int_array</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="n">java_arr_type</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="o">=</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;int&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">C</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="meta_long_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.meta_long_array">[docs]</a><span class="k">class</span> <span class="nc">meta_long_array</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="n">java_arr_type</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="o">=</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">C</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        </div>
+<div class="viewcode-block" id="meta_float_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.meta_float_array">[docs]</a><span class="k">class</span> <span class="nc">meta_float_array</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="n">java_arr_type</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="o">=</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;float&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">C</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="meta_double_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.meta_double_array">[docs]</a><span class="k">class</span> <span class="nc">meta_double_array</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="n">java_arr_type</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span> <span class="o">=</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">C</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">cls</span><span class="o">.</span><span class="n">java_arr_type</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+<span class="c">## Java Object to represent arrays of wrapped primatives</span></div>
+<div class="viewcode-block" id="javaPrimativeArray"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.javaPrimativeArray">[docs]</a><span class="k">class</span> <span class="nc">javaPrimativeArray</span><span class="p">(</span><span class="n">javaArray</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wraps arrays of primative types</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="c"># Check if value member of baseClass</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Value not an instance of </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setter</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">key</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getter</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="c">## Makes a numpy array copy of the Java primative array</span>
+    <span class="c"># @return numpy array containing data</span>
+<div class="viewcode-block" id="javaPrimativeArray.to_numpy_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.javaPrimativeArray.to_numpy_array">[docs]</a>    <span class="k">def</span> <span class="nf">to_numpy_array</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes a numpy array copy of the Java primative array</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Numpy array containing data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">_dtype</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span> <span class="o">==</span> <span class="n">metaByte</span><span class="p">:</span> <span class="n">_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span> <span class="o">==</span> <span class="n">metaBoolean</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span> <span class="o">==</span> <span class="n">metaInteger</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span> <span class="o">==</span> <span class="n">metaLong</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span> <span class="o">==</span> <span class="n">metaFloat</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span> <span class="o">==</span> <span class="n">metaDouble</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="n">_dtype</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">_dtype</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">==</span> <span class="n">metaByte</span><span class="p">:</span> <span class="n">_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">==</span> <span class="n">metaBoolean</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">==</span> <span class="n">metaInteger</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">==</span> <span class="n">metaLong</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">==</span> <span class="n">metaFloat</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">==</span> <span class="n">metaDouble</span><span class="p">:</span> <span class="n">_dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span>
+            <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span><span class="n">dtype</span><span class="o">=</span><span class="n">_dtype</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="n">_dtype</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">arr</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Dimensions over 2 not implemented&quot;</span><span class="p">)</span></div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="javaPrimativeArray.get_array_type"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.javaPrimativeArray.get_array_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_array_type</span><span class="p">(</span><span class="n">primative_name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;byte&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;byte&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaByte</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;boolean&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;boolean&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaBoolean</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;int&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;int&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaInteger</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;long&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaLong</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;float&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;float&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaFloat</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;double&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaDouble</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> is not an implemented java primative type&quot;</span> <span class="o">%</span> <span class="n">primative_name</span><span class="p">)</span>
+        <span class="n">arr_type</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">arr_type</span><span class="o">.</span><span class="n">primative</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="n">arr_type</span><span class="p">()</span>
+    <span class="c">## Wraps a java array of this class&#39;s type</span>
+    <span class="c"># @param arr_instance The java array</span>
+    <span class="c"># @return The wrapped java array</span></div>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="javaPrimativeArray.wrap_existing_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.javaPrimativeArray.wrap_existing_array">[docs]</a>    <span class="k">def</span> <span class="nf">wrap_existing_array</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">arr_instance</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wraps a java array of this class&#39;s type</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        arr_instance -- The java array</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The wrapped java array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">to_wrapped_array</span><span class="p">(</span><span class="n">arr_instance</span><span class="p">,</span> <span class="n">cls</span><span class="p">)</span>
+    <span class="c">## Makes a wrapped java array for some java primative</span>
+    <span class="c"># @param primative_name The name of the java primative (e.g. &#39;int&#39;)</span>
+    <span class="c"># @param length The length of the array</span>
+    <span class="c"># @return The wrapped java array</span></div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="javaPrimativeArray.make_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.javaPrimativeArray.make_array">[docs]</a>    <span class="k">def</span> <span class="nf">make_array</span><span class="p">(</span><span class="n">primative_name</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes a wrapped java array for some java primative</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        primative_name -- The name of the java primative (e.g. &#39;int&#39;)</span>
+<span class="sd">        length -- The length of the array</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The wrapped java array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">## Create the java array and the array type</span>
+        <span class="k">if</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;byte&#39;</span><span class="p">:</span>
+            <span class="n">java_arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_byte_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">))</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;byte&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaByte</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getByte</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setByte</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;boolean&#39;</span><span class="p">:</span>
+            <span class="n">java_arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_boolean_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">))</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;boolean&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaBoolean</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getBoolean</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setBoolean</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;int&#39;</span><span class="p">:</span>
+            <span class="n">java_arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_int_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">))</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;int&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaInteger</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getInt</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setInt</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;long&#39;</span><span class="p">:</span>
+            <span class="n">java_arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_long_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaLong</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getLong</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setLong</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;float&#39;</span><span class="p">:</span>
+            <span class="n">java_arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_float_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;float&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaFloat</span><span class="p">,</span> <span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getFloat</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setFloat</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;double&#39;</span><span class="p">:</span>
+            <span class="n">java_arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_double_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaDouble</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getDouble</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setDouble</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> is not an implemented java primative type&quot;</span> <span class="o">%</span> <span class="n">primative_name</span><span class="p">)</span>
+        <span class="c">## Create the array python object</span>
+        <span class="n">arr_type</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">arr_type</span><span class="o">.</span><span class="n">primative</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">py_arr_obj</span> <span class="o">=</span> <span class="n">arr_type</span><span class="p">()</span>
+        <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">o</span> <span class="o">=</span> <span class="n">java_arr</span>
+        <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">_java_name</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_class</span><span class="p">(</span><span class="n">java_arr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">py_arr_obj</span>
+    <span class="c">## Makes an empty wrapped java array that can accept the type of other wrapped java arrays</span>
+    <span class="c"># of a primative type: e.g. double[][]</span>
+    <span class="c"># @param rows The number of rows that should be in the array (the first dimension</span>
+    <span class="c"># @param cols The number of columns that should be in the array (if not specified, the</span>
+    <span class="c"># array objects will not be instantiated at these locations</span>
+    <span class="c"># @return An instance of an array of arrays</span></div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="javaPrimativeArray.make_dbl_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.javaPrimativeArray.make_dbl_array">[docs]</a>    <span class="k">def</span> <span class="nf">make_dbl_array</span><span class="p">(</span><span class="n">primative_name</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes an empty wrapped java array that can accept the type of other</span>
+<span class="sd">        wrapped java arrays of a primative type: e.g. double[][]</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        rows -- The number of rows that should be in the array (the first dimension)</span>
+<span class="sd">        cols -- The number of columns that should be in the array (if not specified, the</span>
+<span class="sd">                array objects will not be instantiated at these locations)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An instance of an array of arrays</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">array_array</span> <span class="o">=</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array</span><span class="p">(</span><span class="n">primative_name</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cols</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+                <span class="n">array_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array</span><span class="p">(</span><span class="n">primative_name</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">array_array</span>
+    <span class="c">## Sends a returned java object to a wrapped java array</span>
+    <span class="c"># @param primative_name The name of the java primative (e.g. &#39;int&#39;)</span>
+    <span class="c"># @param obj The java object</span>
+    <span class="c"># @return The wrapped java array</span></div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="javaPrimativeArray.make_array_from_obj"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.javaPrimativeArray.make_array_from_obj">[docs]</a>    <span class="k">def</span> <span class="nf">make_array_from_obj</span><span class="p">(</span><span class="n">primative_name</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sends a returned java object of a wrapped java array</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        primative_name -- The name of the java primative (e.g. &#39;int&#39;)</span>
+<span class="sd">        obj -- The java object</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The wrapped java array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">## Create the java array and the array type</span>
+        <span class="k">if</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;byte&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;byte&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaByte</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getByte</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setByte</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;boolean&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;boolean&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaBoolean</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getBoolean</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setBoolean</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;int&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;int&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaInteger</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getInt</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setInt</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;long&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaLong</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getLong</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setLong</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;float&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;float&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaFloat</span><span class="p">,</span> <span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getFloat</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setFloat</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;double&#39;</span><span class="p">:</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,(</span><span class="n">javaPrimativeArray</span><span class="p">,),</span>
+                            <span class="p">{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">metaDouble</span><span class="p">,</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getDouble</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setDouble</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> is not an implemented java primative type&quot;</span> <span class="o">%</span> <span class="n">primative_name</span><span class="p">)</span>
+        <span class="c">## Create the array python object</span>
+        <span class="n">arr_type</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">arr_type</span><span class="o">.</span><span class="n">primative</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="n">py_arr_obj</span> <span class="o">=</span> <span class="n">arr_type</span><span class="p">()</span>
+        <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">o</span> <span class="o">=</span> <span class="n">obj</span>
+        <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">_java_name</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_class</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">py_arr_obj</span>
+    <span class="c">## Wraps a current array</span>
+    <span class="c"># @param arr_instance A java object containing the array</span>
+    <span class="c"># @param pyType The type of the javaObj.</span>
+    <span class="c"># @return The wrapped java array</span></div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="javaPrimativeArray.to_wrapped_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.primativeArray.javaPrimativeArray.to_wrapped_array">[docs]</a>    <span class="k">def</span> <span class="nf">to_wrapped_array</span><span class="p">(</span><span class="n">arr_instance</span><span class="p">,</span> <span class="n">pyType</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wraps a current array</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        arr_instance -- A java object containing the array</span>
+<span class="sd">        pyType -- The type of the javaObj</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The wrapped java array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pyClass_base</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;(?&lt;=\.)[a-zA-Z0-9_]+(?=</span><span class="se">\&#39;</span><span class="s">\&gt;)&#39;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">pyType</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+        <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">pyClass_base</span> <span class="o">==</span> <span class="s">&#39;metaByte&#39;</span><span class="p">:</span>
+            <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getByte</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setByte</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">pyClass_base</span> <span class="o">==</span> <span class="s">&#39;metaBoolean&#39;</span><span class="p">:</span>
+            <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getBoolean</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setBoolean</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">pyClass_base</span> <span class="o">==</span> <span class="s">&#39;metaInteger&#39;</span><span class="p">:</span>
+            <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getInt</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">set</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">pyClass_base</span> <span class="o">==</span> <span class="s">&#39;metaLong&#39;</span><span class="p">:</span>
+            <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getLong</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setLong</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">pyClass_base</span> <span class="o">==</span> <span class="s">&#39;metaFloat&#39;</span><span class="p">:</span>
+            <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getFloat</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setFloat</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">pyClass_base</span> <span class="o">==</span> <span class="s">&#39;metaDouble&#39;</span><span class="p">:</span>
+            <span class="n">func_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;getter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">getDouble</span><span class="p">,</span>
+                             <span class="s">&#39;setter&#39;</span><span class="p">:</span><span class="n">Array</span><span class="o">.</span><span class="n">setDouble</span><span class="p">}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">pyType</span><span class="p">,</span><span class="n">javaArray</span><span class="p">):</span>
+            <span class="n">primative_name</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;(?&lt;=meta).+&#39;</span><span class="p">,</span><span class="n">pyClass_base</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">primative_name</span> <span class="o">==</span> <span class="s">&#39;integer&#39;</span><span class="p">:</span> <span class="n">primative_name</span> <span class="o">=</span> <span class="n">primative_name</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="n">primative_name</span><span class="p">,</span> <span class="n">arr_instance</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">pyType</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c">## Create the array python object</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">pyClass_base</span><span class="p">,(</span><span class="n">javaArray</span><span class="p">,),{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">pyType</span><span class="p">})</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">pyType</span><span class="p">,</span> <span class="s">&#39;ref_type&#39;</span><span class="p">):</span>
+                <span class="n">arr_type</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">=</span> <span class="n">pyType</span><span class="o">.</span><span class="n">baseClass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arr_type</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">=</span> <span class="n">pyType</span><span class="o">.</span><span class="n">ref_type</span>
+            <span class="n">arr_type</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">pyType</span><span class="o">.</span><span class="n">dim</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">py_arr_obj</span> <span class="o">=</span> <span class="n">arr_type</span><span class="p">()</span>
+            <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">o</span> <span class="o">=</span> <span class="n">arr_instance</span>
+            <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">_java_name</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_class</span><span class="p">(</span><span class="n">arr_instance</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">pyType</span><span class="p">,</span> <span class="n">javaArray</span><span class="p">):</span>
+                <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">pyArr</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="n">pyClass_base</span><span class="p">,</span>
+                                                                                        <span class="n">x</span><span class="p">),</span>
+                                       <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">arr_instance</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">py_arr_obj</span>
+        <span class="k">elif</span> <span class="n">pyType</span><span class="o">.</span><span class="n">dim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Dimensions greater than 2 not supported for primative types&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Invalid input&quot;</span><span class="p">)</span>
+    
+            </div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

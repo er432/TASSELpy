@@ -1,0 +1,888 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.utils package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy package" href="TASSELpy.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" accesskey="U">TASSELpy package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-utils-package">
+<h1>TASSELpy.utils package<a class="headerlink" href="#tasselpy-utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.utils.DocInherit">
+<span id="tasselpy-utils-docinherit-module"></span><h2>TASSELpy.utils.DocInherit module<a class="headerlink" href="#module-TASSELpy.utils.DocInherit" title="Permalink to this headline">¶</a></h2>
+<p>doc_inherit decorator</p>
+<p>Usage:</p>
+<dl class="docutils">
+<dt>class Foo(object):</dt>
+<dd><dl class="first last docutils">
+<dt>def foo(self):</dt>
+<dd>&#8220;Frobber&#8221;
+pass</dd>
+</dl>
+</dd>
+<dt>class Bar(Foo):</dt>
+<dd><p class="first">&#64;doc_inherit
+def foo(self):</p>
+<blockquote class="last">
+<div>pass</div></blockquote>
+</dd>
+</dl>
+<p>Now, Bar.foo.__doc__ == Bar().foo.__doc__ == Foo.foo.__doc__ == &#8220;Frobber&#8221;</p>
+<dl class="class">
+<dt id="TASSELpy.utils.DocInherit.DocInherit">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.DocInherit.</tt><tt class="descname">DocInherit</tt><big>(</big><em>mthd</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/DocInherit.html#DocInherit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.DocInherit.DocInherit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Docstring inheriting method descriptor</p>
+<p>The class itself is also used as a decorator</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.DocInherit.DocInherit.get_no_inst" title="TASSELpy.utils.DocInherit.DocInherit.get_no_inst"><tt class="xref py py-obj docutils literal"><span class="pre">get_no_inst</span></tt></a>(cls)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.utils.DocInherit.DocInherit.get_with_inst" title="TASSELpy.utils.DocInherit.DocInherit.get_with_inst"><tt class="xref py py-obj docutils literal"><span class="pre">get_with_inst</span></tt></a>(obj,&nbsp;cls)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.DocInherit.DocInherit.use_parent_doc" title="TASSELpy.utils.DocInherit.DocInherit.use_parent_doc"><tt class="xref py py-obj docutils literal"><span class="pre">use_parent_doc</span></tt></a>(func,&nbsp;source)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.utils.DocInherit.DocInherit.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>mthd</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/DocInherit.html#DocInherit.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.DocInherit.DocInherit.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.utils.DocInherit.DocInherit.get_no_inst">
+<tt class="descname">get_no_inst</tt><big>(</big><em>cls</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/DocInherit.html#DocInherit.get_no_inst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.DocInherit.DocInherit.get_no_inst" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.utils.DocInherit.DocInherit.get_with_inst">
+<tt class="descname">get_with_inst</tt><big>(</big><em>obj</em>, <em>cls</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/DocInherit.html#DocInherit.get_with_inst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.DocInherit.DocInherit.get_with_inst" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.utils.DocInherit.DocInherit.use_parent_doc">
+<tt class="descname">use_parent_doc</tt><big>(</big><em>func</em>, <em>source</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/DocInherit.html#DocInherit.use_parent_doc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.DocInherit.DocInherit.use_parent_doc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="TASSELpy.utils.DocInherit.doc_inherit">
+<tt class="descclassname">TASSELpy.utils.DocInherit.</tt><tt class="descname">doc_inherit</tt><a class="headerlink" href="#TASSELpy.utils.DocInherit.doc_inherit" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#TASSELpy.utils.DocInherit.DocInherit" title="TASSELpy.utils.DocInherit.DocInherit"><tt class="xref py py-class docutils literal"><span class="pre">DocInherit</span></tt></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.utils.OrderedSet">
+<span id="tasselpy-utils-orderedset-module"></span><h2>TASSELpy.utils.OrderedSet module<a class="headerlink" href="#module-TASSELpy.utils.OrderedSet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.utils.OrderedSet.OrderedSet">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.OrderedSet.</tt><tt class="descname">OrderedSet</tt><big>(</big><em>iterable=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/OrderedSet.html#OrderedSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.OrderedSet.OrderedSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">_abcoll.MutableSet</span></tt></p>
+<p>Set that remembers original insertion order</p>
+<p>Based on the following code:
+<a class="reference external" href="http://code.activestate.com/recipes/576694/">http://code.activestate.com/recipes/576694/</a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.OrderedSet.OrderedSet.add" title="TASSELpy.utils.OrderedSet.OrderedSet.add"><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt></a>(key)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>()</td>
+<td>This is slow (creates N new iterators!) but effective.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.OrderedSet.OrderedSet.discard" title="TASSELpy.utils.OrderedSet.OrderedSet.discard"><tt class="xref py py-obj docutils literal"><span class="pre">discard</span></tt></a>(key)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isdisjoint</span></tt>(other)</td>
+<td>Return True if two sets have a null intersection.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.OrderedSet.OrderedSet.pop" title="TASSELpy.utils.OrderedSet.OrderedSet.pop"><tt class="xref py py-obj docutils literal"><span class="pre">pop</span></tt></a>([last])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(value)</td>
+<td>Remove an element.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.utils.OrderedSet.OrderedSet.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>iterable=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/OrderedSet.html#OrderedSet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.OrderedSet.OrderedSet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.utils.OrderedSet.OrderedSet.add">
+<tt class="descname">add</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/OrderedSet.html#OrderedSet.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.OrderedSet.OrderedSet.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.utils.OrderedSet.OrderedSet.discard">
+<tt class="descname">discard</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/OrderedSet.html#OrderedSet.discard"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.OrderedSet.OrderedSet.discard" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.utils.OrderedSet.OrderedSet.pop">
+<tt class="descname">pop</tt><big>(</big><em>last=True</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/OrderedSet.html#OrderedSet.pop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.OrderedSet.OrderedSet.pop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.OrderedSet.lruOrderedSet">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.OrderedSet.</tt><tt class="descname">lruOrderedSet</tt><big>(</big><em>maxSize=1000</em>, <em>iterable=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/OrderedSet.html#lruOrderedSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.OrderedSet.lruOrderedSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.utils.OrderedSet.OrderedSet" title="TASSELpy.utils.OrderedSet.OrderedSet"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.utils.OrderedSet.OrderedSet</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.OrderedSet.lruOrderedSet.add" title="TASSELpy.utils.OrderedSet.lruOrderedSet.add"><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt></a>(key)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>()</td>
+<td>This is slow (creates N new iterators!) but effective.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">discard</span></tt>(key)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isdisjoint</span></tt>(other)</td>
+<td>Return True if two sets have a null intersection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">pop</span></tt>([last])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(value)</td>
+<td>Remove an element.</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.utils.OrderedSet.lruOrderedSet.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>maxSize=1000</em>, <em>iterable=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/OrderedSet.html#lruOrderedSet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.OrderedSet.lruOrderedSet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.utils.OrderedSet.lruOrderedSet.add">
+<tt class="descname">add</tt><big>(</big><em>key</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/OrderedSet.html#lruOrderedSet.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.OrderedSet.lruOrderedSet.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.utils.Overloading">
+<span id="tasselpy-utils-overloading-module"></span><h2>TASSELpy.utils.Overloading module<a class="headerlink" href="#module-TASSELpy.utils.Overloading" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.utils.Overloading.bidirectional_dict">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.Overloading.</tt><tt class="descname">bidirectional_dict</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#bidirectional_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.bidirectional_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">copy</span></tt>(()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fromkeys</span></tt>(...)</td>
+<td>v defaults to None.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>((k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">has_key</span></tt>((k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">items</span></tt>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">iteritems</span></tt>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterkeys</span></tt>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">itervalues</span></tt>(...)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">keys</span></tt>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;keys)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">pop</span></tt>((k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;...)</td>
+<td>If key is not found, d is returned if given, otherwise KeyError is raised</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">popitem</span></tt>(()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;...)</td>
+<td>2-tuple; but raise KeyError if D is empty.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">setdefault</span></tt>((k[,d])&nbsp;-&gt;&nbsp;D.get(k,d),&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">update</span></tt>(([E,&nbsp;...)</td>
+<td>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">values</span></tt>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;values)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">viewitems</span></tt>(...)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">viewkeys</span></tt>(...)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">viewvalues</span></tt>(...)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.utils.Overloading.bidirectional_dict.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#bidirectional_dict.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.bidirectional_dict.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.Overloading.javaConstructorOverload">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.Overloading.</tt><tt class="descname">javaConstructorOverload</tt><big>(</big><em>class_name</em>, <em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#javaConstructorOverload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.javaConstructorOverload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Creates a function decorator for a javabridge function that is
+a constructor for an instantiated class</p>
+<p>Arguments:</p>
+<p>class_name &#8211; The name of the java class, as in path/to/class
+args &#8211; tuples of form (java signature,(python arg types))</p>
+<blockquote>
+<div>e.g. (&#8220;(I)V&#8221;,(int,))</div></blockquote>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt>(f)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.utils.Overloading.javaConstructorOverload.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>class_name</em>, <em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#javaConstructorOverload.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.javaConstructorOverload.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a function decorator for a javabridge function that is
+a constructor for an instantiated class</p>
+<p>Arguments:</p>
+<p>class_name &#8211; The name of the java class, as in path/to/class
+args &#8211; tuples of form (java signature,(python arg types))</p>
+<blockquote>
+<div>e.g. (&#8220;(I)V&#8221;,(int,))</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.Overloading.javaGenericOverload">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.Overloading.</tt><tt class="descname">javaGenericOverload</tt><big>(</big><em>func_name</em>, <em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#javaGenericOverload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.javaGenericOverload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Creates a function decorator for a javabridge function that
+is the member of a class and returns and/or accepts a generic type</p>
+<p>Arguments:</p>
+<p>func_name &#8211; The name of the java function
+args &#8211; tuples of form (java_signature, (python arg types),post_process_func)</p>
+<blockquote>
+<div><p>Java signatures should have java/lang/Object where generic types go.</p>
+<p>In the Python arg types, a generic types specified as, say (type1,type2)
+in the generic argument of the constructor should be specified as a string
+&#8220;<a class="reference external" href="mailto:/&#37;&#52;&#48;1/">/<span>&#64;</span>1/</a>&#8221; or &#8220;<a class="reference external" href="mailto:/&#37;&#52;&#48;2/">/<span>&#64;</span>2/</a>&#8221;, corresponding to type1 and type2 respectively.</p>
+<p>In the post_process_func, you can specify None or a function as usual in
+order to deal with pre-specified types. Alternatively, you can put in
+the string &#8220;<a class="reference external" href="mailto:/&#37;&#52;&#48;1/">/<span>&#64;</span>1/</a>&#8221; or whatever the corresponding string is for a given type
+in order to send the return object through the constructor of that type
+(e.g. type1(obj=x)). In the case of types that should receive generic arguments,
+you can specify a dictionary with &#8216;type&#8217; and &#8216;generic&#8217; keys. For instance,
+to send the return object to a wrapper class named MyClass that should receive
+type1 as its one and only generic type argument, you can put in the following
+dictionary:</p>
+<p>dict(type=MyClass, generic=(&#8220;<a class="reference external" href="mailto:/&#37;&#52;&#48;1/">/<span>&#64;</span>1/</a>&#8221;,))</p>
+</div></blockquote>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt>(f)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.utils.Overloading.javaGenericOverload.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>func_name</em>, <em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#javaGenericOverload.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.javaGenericOverload.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a function decorator for a javabridge function that
+is the member of a class</p>
+<p>Arguments:</p>
+<p>func_name &#8211; The name of the java function
+args &#8211; tuples of form (java_signature, (python arg types or None),post_process_func)</p>
+<blockquote>
+<div>For java signature, put /&#64;/ sign where the actual type of the generic should be placed.
+For python args/return type put None where it should be
+Note that if the returned type is the generic, the post-process function will
+cast to the specified type unless otherwise specified
+e.g. (&#8220;(/&#64;/)I&#8221;,(None,),None)
+or (&#8220;(/&#64;/)[L&#8221;,(None,),lambda x: javabridge.get_env().get_long_array_elements(x))</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.Overloading.javaOverload">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.Overloading.</tt><tt class="descname">javaOverload</tt><big>(</big><em>func_name</em>, <em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#javaOverload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.javaOverload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Creates a function decorator for a javabridge function that
+is the member of a class</p>
+<p>Arguments:</p>
+<p>func_name &#8211; The name of the java function
+args &#8211; tuples of form (java_signature, (python arg types),post_process_func)</p>
+<blockquote>
+<div>e.g. (&#8220;(I)I&#8221;,(int,),None)
+or (&#8220;(I)[L&#8221;,(int,),lambda x: javabridge.get_env().get_long_array_elements(x))</div></blockquote>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt>(f)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.utils.Overloading.javaOverload.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>func_name</em>, <em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#javaOverload.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.javaOverload.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a function decorator for a javabridge function that
+is the member of a class</p>
+<p>Arguments:</p>
+<p>func_name &#8211; The name of the java function
+args &#8211; tuples of form (java_signature, (python arg types),post_process_func)</p>
+<blockquote>
+<div>e.g. (&#8220;(I)I&#8221;,(int,),None)
+or (&#8220;(I)[L&#8221;,(int,),lambda x: javabridge.get_env().get_long_array_elements(x))</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.Overloading.javaStaticOverload">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.Overloading.</tt><tt class="descname">javaStaticOverload</tt><big>(</big><em>class_name</em>, <em>func_name</em>, <em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#javaStaticOverload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.javaStaticOverload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Creates a function decorator for a javabridge static function</p>
+<p>Arguments:</p>
+<p>class_name &#8211; The name of the java class containing the method, as in path/to/class
+func_name &#8211; The name of the java function
+args &#8211; tuples of form (java signature, (python arg types), post process function)</p>
+<blockquote>
+<div>e.g. (&#8220;(I)I&#8221;,(int,),None)
+or (&#8220;(I)[L&#8221;,(int,),lambda x: javabridge.get_env().get_long_array_elements(x))</div></blockquote>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt>(f)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.utils.Overloading.javaStaticOverload.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>class_name</em>, <em>func_name</em>, <em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#javaStaticOverload.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.javaStaticOverload.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a function decorator for a javabridge static function</p>
+<p>Arguments:</p>
+<p>class_name &#8211; The name of the java class containing the method, as in path/to/class
+func_name &#8211; The name of the java function
+args &#8211; tuples of form (java signature, (python arg types), post process function)</p>
+<blockquote>
+<div>e.g. (&#8220;(I)I&#8221;,(int,),None)
+or (&#8220;(I)[L&#8221;,(int,),lambda x: javabridge.get_env().get_long_array_elements(x))</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="TASSELpy.utils.Overloading.make_string_array">
+<tt class="descclassname">TASSELpy.utils.Overloading.</tt><tt class="descname">make_string_array</tt><big>(</big><em>arr</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#make_string_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.make_string_array" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.Overloading.signature_dict">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.Overloading.</tt><tt class="descname">signature_dict</tt><a class="reference internal" href="_modules/TASSELpy/utils/Overloading.html#signature_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.Overloading.signature_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">dict</span></tt></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(()&nbsp;-&gt;&nbsp;None.&nbsp;&nbsp;Remove&nbsp;all&nbsp;items&nbsp;from&nbsp;D.)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">copy</span></tt>(()&nbsp;-&gt;&nbsp;a&nbsp;shallow&nbsp;copy&nbsp;of&nbsp;D)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fromkeys</span></tt>(...)</td>
+<td>v defaults to None.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>((k[,d])&nbsp;-&gt;&nbsp;D[k]&nbsp;if&nbsp;k&nbsp;in&nbsp;D,&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">has_key</span></tt>((k)&nbsp;-&gt;&nbsp;True&nbsp;if&nbsp;D&nbsp;has&nbsp;a&nbsp;key&nbsp;k,&nbsp;else&nbsp;False)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">items</span></tt>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;(key,&nbsp;value)&nbsp;pairs,&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">iteritems</span></tt>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;(key,&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterkeys</span></tt>(()&nbsp;-&gt;&nbsp;an&nbsp;iterator&nbsp;over&nbsp;the&nbsp;keys&nbsp;of&nbsp;D)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">itervalues</span></tt>(...)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">keys</span></tt>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;keys)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">pop</span></tt>((k[,d])&nbsp;-&gt;&nbsp;v,&nbsp;...)</td>
+<td>If key is not found, d is returned if given, otherwise KeyError is raised</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">popitem</span></tt>(()&nbsp;-&gt;&nbsp;(k,&nbsp;v),&nbsp;...)</td>
+<td>2-tuple; but raise KeyError if D is empty.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">setdefault</span></tt>((k[,d])&nbsp;-&gt;&nbsp;D.get(k,d),&nbsp;...)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">update</span></tt>(([E,&nbsp;...)</td>
+<td>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">values</span></tt>(()&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;D&#8217;s&nbsp;values)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">viewitems</span></tt>(...)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">viewkeys</span></tt>(...)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">viewvalues</span></tt>(...)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.utils.helper">
+<span id="tasselpy-utils-helper-module"></span><h2>TASSELpy.utils.helper module<a class="headerlink" href="#module-TASSELpy.utils.helper" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="TASSELpy.utils.helper.make_constructor_sig">
+<tt class="descclassname">TASSELpy.utils.helper.</tt><tt class="descname">make_constructor_sig</tt><big>(</big><em>args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/helper.html#make_constructor_sig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.helper.make_constructor_sig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs the signature needed by javabridge for a function</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>args &#8211; A list of argument types for the function. If an array is specified, the class name</dt>
+<dd>should end with []. The beginning L and end ; will be added if not already present.
+Otherwise, just put in the primative name (i.e. int char, etc)</dd>
+</dl>
+<p>Returns:</p>
+<p>The signature for the java constructor</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TASSELpy.utils.helper.make_sig">
+<tt class="descclassname">TASSELpy.utils.helper.</tt><tt class="descname">make_sig</tt><big>(</big><em>args</em>, <em>return_type</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/helper.html#make_sig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.helper.make_sig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs the signature needed by javabridge for a function</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>args &#8211; A list of argument types for the function. If an array is specified, the class name</dt>
+<dd>should end with []. The beginning L and end ; will be added if not already present.
+Otherwise, just put in the primative name (i.e. int char, etc)</dd>
+</dl>
+<p>return_type &#8211; The return type of the function, specified in the same way as the arguments</p>
+<p>Returns:</p>
+<p>The signature for the java method</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TASSELpy.utils.helper.send_to_java">
+<tt class="descclassname">TASSELpy.utils.helper.</tt><tt class="descname">send_to_java</tt><big>(</big><em>prim_val</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/helper.html#send_to_java"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.helper.send_to_java" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.utils.primativeArray">
+<span id="tasselpy-utils-primativearray-module"></span><h2>TASSELpy.utils.primativeArray module<a class="headerlink" href="#module-TASSELpy.utils.primativeArray" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.utils.primativeArray.javaPrimativeArray">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.primativeArray.</tt><tt class="descname">javaPrimativeArray</tt><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#javaPrimativeArray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.javaPrimativeArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.html#TASSELpy.javaObj.javaArray" title="TASSELpy.javaObj.javaArray"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.javaObj.javaArray</span></tt></a></p>
+<p>Wraps arrays of primative types</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.get_array_type" title="TASSELpy.utils.primativeArray.javaPrimativeArray.get_array_type"><tt class="xref py py-obj docutils literal"><span class="pre">get_array_type</span></tt></a>(primative_name)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.make_array" title="TASSELpy.utils.primativeArray.javaPrimativeArray.make_array"><tt class="xref py py-obj docutils literal"><span class="pre">make_array</span></tt></a>(primative_name,&nbsp;length)</td>
+<td>Makes a wrapped java array for some java primative</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.make_array_from_obj" title="TASSELpy.utils.primativeArray.javaPrimativeArray.make_array_from_obj"><tt class="xref py py-obj docutils literal"><span class="pre">make_array_from_obj</span></tt></a>(primative_name,&nbsp;obj)</td>
+<td>Sends a returned java object of a wrapped java array</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.make_dbl_array" title="TASSELpy.utils.primativeArray.javaPrimativeArray.make_dbl_array"><tt class="xref py py-obj docutils literal"><span class="pre">make_dbl_array</span></tt></a>(primative_name,&nbsp;rows[,&nbsp;cols])</td>
+<td>Makes an empty wrapped java array that can accept the type of other wrapped java arrays of a primative type: e.g.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.to_numpy_array" title="TASSELpy.utils.primativeArray.javaPrimativeArray.to_numpy_array"><tt class="xref py py-obj docutils literal"><span class="pre">to_numpy_array</span></tt></a>()</td>
+<td>Makes a numpy array copy of the Java primative array</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.to_wrapped_array" title="TASSELpy.utils.primativeArray.javaPrimativeArray.to_wrapped_array"><tt class="xref py py-obj docutils literal"><span class="pre">to_wrapped_array</span></tt></a>(arr_instance,&nbsp;pyType)</td>
+<td>Wraps a current array</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.wrap_existing_array" title="TASSELpy.utils.primativeArray.javaPrimativeArray.wrap_existing_array"><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt></a>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="TASSELpy.utils.primativeArray.javaPrimativeArray.get_array_type">
+<em class="property">static </em><tt class="descname">get_array_type</tt><big>(</big><em>primative_name</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#javaPrimativeArray.get_array_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.get_array_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.utils.primativeArray.javaPrimativeArray.make_array">
+<em class="property">static </em><tt class="descname">make_array</tt><big>(</big><em>primative_name</em>, <em>length</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#javaPrimativeArray.make_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.make_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a wrapped java array for some java primative</p>
+<p>Arguments:</p>
+<p>primative_name &#8211; The name of the java primative (e.g. &#8216;int&#8217;)
+length &#8211; The length of the array</p>
+<p>Returns:</p>
+<p>The wrapped java array</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.utils.primativeArray.javaPrimativeArray.make_array_from_obj">
+<em class="property">static </em><tt class="descname">make_array_from_obj</tt><big>(</big><em>primative_name</em>, <em>obj</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#javaPrimativeArray.make_array_from_obj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.make_array_from_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a returned java object of a wrapped java array</p>
+<p>Arguments:</p>
+<p>primative_name &#8211; The name of the java primative (e.g. &#8216;int&#8217;)
+obj &#8211; The java object</p>
+<p>Returns:</p>
+<p>The wrapped java array</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.utils.primativeArray.javaPrimativeArray.make_dbl_array">
+<em class="property">static </em><tt class="descname">make_dbl_array</tt><big>(</big><em>primative_name</em>, <em>rows</em>, <em>cols=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#javaPrimativeArray.make_dbl_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.make_dbl_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes an empty wrapped java array that can accept the type of other
+wrapped java arrays of a primative type: e.g. double[][]</p>
+<p>Arguments:</p>
+<p>rows &#8211; The number of rows that should be in the array (the first dimension)
+cols &#8211; The number of columns that should be in the array (if not specified, the</p>
+<blockquote>
+<div>array objects will not be instantiated at these locations)</div></blockquote>
+<p>Returns:</p>
+<p>An instance of an array of arrays</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.utils.primativeArray.javaPrimativeArray.to_numpy_array">
+<tt class="descname">to_numpy_array</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#javaPrimativeArray.to_numpy_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.to_numpy_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a numpy array copy of the Java primative array</p>
+<p>Returns:</p>
+<p>Numpy array containing data</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.utils.primativeArray.javaPrimativeArray.to_wrapped_array">
+<em class="property">static </em><tt class="descname">to_wrapped_array</tt><big>(</big><em>arr_instance</em>, <em>pyType</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#javaPrimativeArray.to_wrapped_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.to_wrapped_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps a current array</p>
+<p>Arguments:</p>
+<p>arr_instance &#8211; A java object containing the array
+pyType &#8211; The type of the javaObj</p>
+<p>Returns:</p>
+<p>The wrapped java array</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="TASSELpy.utils.primativeArray.javaPrimativeArray.wrap_existing_array">
+<em class="property">classmethod </em><tt class="descname">wrap_existing_array</tt><big>(</big><em>arr_instance</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#javaPrimativeArray.wrap_existing_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.javaPrimativeArray.wrap_existing_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps a java array of this class&#8217;s type</p>
+<p>Arguments:</p>
+<p>arr_instance &#8211; The java array</p>
+<p>Returns:</p>
+<p>The wrapped java array</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.primativeArray.meta_byte_array">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.primativeArray.</tt><tt class="descname">meta_byte_array</tt><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#meta_byte_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_byte_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>java_arr_type</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="TASSELpy.utils.primativeArray.meta_byte_array.java_arr_type">
+<tt class="descname">java_arr_type</tt><em class="property"> = None</em><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_byte_array.java_arr_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.primativeArray.meta_double_array">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.primativeArray.</tt><tt class="descname">meta_double_array</tt><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#meta_double_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_double_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>java_arr_type</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="TASSELpy.utils.primativeArray.meta_double_array.java_arr_type">
+<tt class="descname">java_arr_type</tt><em class="property"> = None</em><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_double_array.java_arr_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.primativeArray.meta_float_array">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.primativeArray.</tt><tt class="descname">meta_float_array</tt><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#meta_float_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_float_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>java_arr_type</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="TASSELpy.utils.primativeArray.meta_float_array.java_arr_type">
+<tt class="descname">java_arr_type</tt><em class="property"> = None</em><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_float_array.java_arr_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.primativeArray.meta_int_array">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.primativeArray.</tt><tt class="descname">meta_int_array</tt><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#meta_int_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_int_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>java_arr_type</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="TASSELpy.utils.primativeArray.meta_int_array.java_arr_type">
+<tt class="descname">java_arr_type</tt><em class="property"> = None</em><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_int_array.java_arr_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.utils.primativeArray.meta_long_array">
+<em class="property">class </em><tt class="descclassname">TASSELpy.utils.primativeArray.</tt><tt class="descname">meta_long_array</tt><a class="reference internal" href="_modules/TASSELpy/utils/primativeArray.html#meta_long_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_long_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p class="rubric">Attributes</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="57%" />
+<col width="43%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>java_arr_type</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="TASSELpy.utils.primativeArray.meta_long_array.java_arr_type">
+<tt class="descname">java_arr_type</tt><em class="property"> = None</em><a class="headerlink" href="#TASSELpy.utils.primativeArray.meta_long_array.java_arr_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.utils" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.utils package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.utils.DocInherit">TASSELpy.utils.DocInherit module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.utils.OrderedSet">TASSELpy.utils.OrderedSet module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.utils.Overloading">TASSELpy.utils.Overloading module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.utils.helper">TASSELpy.utils.helper module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.utils.primativeArray">TASSELpy.utils.primativeArray module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.utils.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,2039 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.dna.snp.GenotypeTable &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.dna.snp.GenotypeTable</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.util.OpenBitSet</span> <span class="kn">import</span> <span class="n">OpenBitSet</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.WHICH_ALLELE</span> <span class="kn">import</span> <span class="n">WHICH_ALLELE</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.map.Chromosome</span> <span class="kn">import</span> <span class="n">Chromosome</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth</span> <span class="kn">import</span> <span class="n">AlleleDepth</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.map.PositionList</span> <span class="kn">import</span> <span class="n">PositionList</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Enum</span> <span class="kn">import</span> <span class="n">enum</span> <span class="k">as</span> <span class="n">java_enum</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">String</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Long</span> <span class="kn">import</span> <span class="n">Long</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Byte</span> <span class="kn">import</span> <span class="n">metaByte</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">javaArray</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">javaPrimativeArray</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.TaxaList</span> <span class="kn">import</span> <span class="n">TaxaList</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+
+<span class="c">## Dictionary to hold java imports</span>
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;AlleleDepth&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/depth/AlleleDepth&#39;</span><span class="p">,</span>
+                <span class="s">&#39;BitSet&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/util/BitSet&#39;</span><span class="p">,</span>
+                <span class="s">&#39;BitStorage&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/bit/BitStorage&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Chromosome&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/map/Chromosome&#39;</span><span class="p">,</span>
+                <span class="s">&#39;CoreGenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/CoreGenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/GenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GenotypeCallTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/genotypecall/GenotypeCallTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">,</span>
+                <span class="s">&#39;PositionList&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/map/PositionList&#39;</span><span class="p">,</span>
+                <span class="s">&#39;SiteScore&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/score/SiteScore&#39;</span><span class="p">,</span>
+                <span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                <span class="s">&#39;TaxaList&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/TaxaList&#39;</span><span class="p">,</span>
+                <span class="s">&#39;WHICH_ALLELE&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/WHICH_ALLELE&#39;</span><span class="p">}</span>
+
+<span class="c">## Class only used to allow GenotypeTable to refer to itself</span>
+<div class="viewcode-block" id="MetaGenotypeTable"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.MetaGenotypeTable">[docs]</a><span class="k">class</span> <span class="nc">MetaGenotypeTable</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="GenotypeTable"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable">[docs]</a><span class="k">class</span> <span class="nc">GenotypeTable</span><span class="p">(</span><span class="n">MetaGenotypeTable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A representation of the SNP and indel variation for a set of taxa</span>
+<span class="sd">    and genomic positions.</span>
+
+<span class="sd">    GenotypeTable always consists of a TaxaList, PositionList, and</span>
+<span class="sd">    GenotypeCallTable. Additionally, as needed they also represent alleles</span>
+<span class="sd">    in bit form, with sequencing depth, or other scores (e.g. quality scores).</span>
+
+<span class="sd">    Use GenotypeTableBuilder to create GenotypeTable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c">## SITE_SCORE_TYPE enum</span>
+    <span class="n">SITE_SCORE_TYPE</span><span class="o">=</span><span class="n">java_enum</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$SITE_SCORE_TYPE&#39;</span><span class="p">,</span>
+                              <span class="s">&quot;None&quot;</span><span class="p">,</span><span class="s">&quot;MixedScoreTypes&quot;</span><span class="p">,</span><span class="s">&quot;QualityScore&quot;</span><span class="p">,</span>
+                              <span class="s">&quot;ImputedProbablity&quot;</span><span class="p">,</span><span class="s">&quot;Dosage&quot;</span><span class="p">,</span>
+                              <span class="n">subclass</span><span class="o">=</span><span class="s">&#39;SITE_SCORE_TYPE&#39;</span><span class="p">)</span>
+    <span class="c">## ALLELE_SORT_TYPE enum</span>
+    <span class="n">ALLELE_SORT_TYPE</span><span class="o">=</span><span class="n">java_enum</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$ALLELE_SORT_TYPE&#39;</span><span class="p">,</span>
+                            <span class="s">&quot;Frequency&quot;</span><span class="p">,</span><span class="s">&quot;Depth&quot;</span><span class="p">,</span><span class="s">&quot;Global_Frequency&quot;</span><span class="p">,</span><span class="s">&quot;Reference&quot;</span><span class="p">,</span>
+                            <span class="n">subclass</span><span class="o">=</span><span class="s">&#39;ALLELE_SORT_TYPE&#39;</span><span class="p">)</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="GenotypeTable.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the immutable genotype matrix. Taxa and positions are</span>
+    <span class="c"># not part of the matrix. This method is used for copying genotype tables,</span>
+    <span class="c"># when either the taxa or positions have changed</span>
+    <span class="c"># @return genotype matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeMatrix&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeCallTable&#39;</span><span class="p">]),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeMatrix"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeMatrix">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the immutable genotype matrix. Taxa and positions are not</span>
+<span class="sd">        part of the matrix. This method is used for copying genotype tables,</span>
+<span class="sd">        when either the taxa or positions have changed</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        GenotypeCallTable genotypeMatrix()</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Genotype matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns diploid values for given taxon and site. Same values as</span>
+    <span class="c"># genotype(), except two values are already separated into two bytes</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return First byte (index 0) holds first allele value in right-most four</span>
+    <span class="c"># bits. Second byte (index 1) holds second allele value in right-most four</span>
+    <span class="c"># bits</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeArray&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeArray"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeArray">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns diploid values for given taxon and site. Same values as</span>
+<span class="sd">        genotype(), except two values are already separated into two bytes.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] genotypeArray(int taxon, int site)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        First byte (index 0) holds first allele value in right-most four</span>
+<span class="sd">        bits. Second byte (index 1) holds second allele value in right-most four</span>
+<span class="sd">        bits</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns diploid value (genotype) for a given taxon and site</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return High four bits generally encode the more frequent allele and</span>
+    <span class="c"># the lower four bits encode the less frequent allele</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotype&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte&#39;</span><span class="p">),</span>
+                    <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">Chromosome</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotype"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotype">[docs]</a>    <span class="k">def</span> <span class="nf">genotype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns diploid value (genotype) for a given taxon and site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte genotype(int taxon, int site)</span>
+<span class="sd">        byte genotype(int taxon, Chromosome chromosome, int physicalPosition)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+<span class="sd">           genotype(int taxon, int site):</span>
+<span class="sd">              taxon -- taxon</span>
+<span class="sd">              site -- site</span>
+<span class="sd">           genotype(int taxon, Chromosome chromosome, int physicalPosition):</span>
+<span class="sd">              taxon -- taxon</span>
+<span class="sd">              chromosome -- chromosome</span>
+<span class="sd">              physicalPosition -- physicalPosition</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        High four bits generally encode more frequent allele and lower</span>
+<span class="sd">        four bits encode the less frequent allele</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of diploid allele values for given taxon in</span>
+    <span class="c"># specified range (end site excluded). Each value in array is what</span>
+    <span class="c"># would be returned by genotype().</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param startSite start site</span>
+    <span class="c"># @param endSite end site</span>
+    <span class="c"># @return sequence of diploid allele values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeRange&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeRange"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeRange">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sequence of diploid allele values for given taxon in specified</span>
+<span class="sd">        range (end site excluded). Each value in array is what would be returned</span>
+<span class="sd">        by genotype()</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] genotypeRange(int taxon, int startSite, int endSite)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        startSite -- start site</span>
+<span class="sd">        endSite -- end site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Sequence of diploid allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of diploid allele values for all sites for given</span>
+    <span class="c"># taxon. Each value is what would be returned by genotype().</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Sequence of diploid allele values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeAllSites&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeAllSites"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeAllSites">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeAllSites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sequence of diploid allele values for all taxa for given site.</span>
+<span class="sd">        Each value in array is what would be returned by genotype().</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] genotypeAllSites(int taxon)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Sequence of diploid allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of diploid allele values for all taxa for</span>
+    <span class="c"># a given site. Each value in array is what would be returned by</span>
+    <span class="c"># genotype().</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Sequence of diploid allele values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeAllTaxa&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeAllTaxa"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeAllTaxa">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeAllTaxa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sequence of diploid allele values for all taxa for given</span>
+<span class="sd">        site. Each value in array is what would be returned by genotype().</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] genotypeAllTaxa(int site)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Sequence of diploid allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of true/false values indicating whether taxon at</span>
+    <span class="c"># each site matches a specific allele (based on frequency). Allele</span>
+    <span class="c"># number of value 0 would be the major allele. Allele number of value 1</span>
+    <span class="c"># would be the minor allele. Allele number of value 2 would be the third</span>
+    <span class="c"># most frequent allele value and so on.</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param allele allele</span>
+    <span class="c"># @return Sequence of true/false value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;allelePresenceForAllSites&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;WHICH_ALLELE&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">WHICH_ALLELE</span><span class="o">.</span><span class="n">subclass</span><span class="p">),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">OpenBitSet</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.allelePresenceForAllSites"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.allelePresenceForAllSites">[docs]</a>    <span class="k">def</span> <span class="nf">allelePresenceForAllSites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sequence of true/false values indicating whether taxon at</span>
+<span class="sd">        each site matches a specific allele (based on frequency). Allele</span>
+<span class="sd">        number of value 0 would be the major allele. Allele number of value 1</span>
+<span class="sd">        would be the minor allele. Allele number of value 2 would be the third</span>
+<span class="sd">        most frequent allele value and so on.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        BitSet allelePresenceForAllSites(int taxon, WHICH_ALLELE allele)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon (int)</span>
+<span class="sd">        allele -- allele (WHICH_ALLELE)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Sequence of true/false value (BitSet)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of true/false values indicating whether taxon at site</span>
+    <span class="c"># (in given blocks, 64 sites per block including start block but excluding</span>
+    <span class="c"># end block) matches a specific allele</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param allele allele</span>
+    <span class="c"># @param startBlock starting block</span>
+    <span class="c"># @param endBlock end block</span>
+    <span class="c"># @return sequence of true/false values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;allelePresenceForSitesBlock&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;WHICH_ALLELE&#39;</span><span class="p">],</span>
+                             <span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;long[]&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">WHICH_ALLELE</span><span class="o">.</span><span class="n">subclass</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.allelePresenceForSitesBlock"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.allelePresenceForSitesBlock">[docs]</a>    <span class="k">def</span> <span class="nf">allelePresenceForSitesBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sequence of true/false values indicating whether taxon at site</span>
+<span class="sd">        (in given blocks, 64 sites per block including start block but excluding</span>
+<span class="sd">        end block) matches a specific allele</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        long[] allelePresenceForSitesBlock(int taxon, WHICH_ALLELE allele, int startBlock, int endBlock)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon (int)</span>
+<span class="sd">        allele -- allele (WHICH_ALLELE)</span>
+<span class="sd">        startBlock -- starting block (int)</span>
+<span class="sd">        endBlock -- end block (int)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Sequence of true/false values (long[])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of true/false values indicating whether taxon at each site</span>
+    <span class="c"># for given parent matches a specific allele</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param firstParent true for first parent (false for second parent)</span>
+    <span class="c"># @param allele allele</span>
+    <span class="c"># @return sequence of true/false values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;haplotypeAllelePresenceForAllSites&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;WHICH_ALLELE&#39;</span><span class="p">]],</span>
+                            <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="nb">bool</span><span class="p">,</span><span class="n">WHICH_ALLELE</span><span class="o">.</span><span class="n">subclass</span><span class="p">),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">OpenBitSet</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.haplotypeAllelePresenceForAllSites"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.haplotypeAllelePresenceForAllSites">[docs]</a>    <span class="k">def</span> <span class="nf">haplotypeAllelePresenceForAllSites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxon</span><span class="p">,</span> <span class="n">firstParent</span><span class="p">,</span> <span class="n">allele</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sequence of true/false values indicating whether taxon at each</span>
+<span class="sd">        site for given parent matches a specific allele</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        BitSet haplotypeAllelePresenceForAllSites(int taxon, boolean firstParent, WHICH_ALLELE allele)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon (int)</span>
+<span class="sd">        firstParent -- true for first parent (false for second parent)</span>
+<span class="sd">        allele -- allele (WHICH_ALLELE)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Sequence of true/false values (BitSet)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of true/false values indicating whether site at each taxon</span>
+    <span class="c"># for given parent matches a specific allele (based on frequency). Allele number</span>
+    <span class="c"># of value 0 would be the major allele. Allele number of value 1 would be the</span>
+    <span class="c"># minor allele. Allele number of value 2 would be the third most frequent allele</span>
+    <span class="c"># value and so on</span>
+    <span class="c"># @param site site (int)</span>
+    <span class="c"># @param firstParent true for first parent (false for second parent) (boolean)</span>
+    <span class="c"># @param allele allele (WHICH_ALLELE)</span>
+    <span class="c"># @return sequence of true/false values (BitSet)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;haplotypeAllelePresenceForAllTaxa&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;WHICH_ALLELE&#39;</span><span class="p">]],</span>
+                            <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="nb">bool</span><span class="p">,</span><span class="n">WHICH_ALLELE</span><span class="o">.</span><span class="n">subclass</span><span class="p">),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">OpenBitSet</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.haplotypeAllelePresenceForAllTaxa"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.haplotypeAllelePresenceForAllTaxa">[docs]</a>    <span class="k">def</span> <span class="nf">haplotypeAllelePresenceForAllTaxa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a sequence of true/false values indicating whether site at each</span>
+<span class="sd">        taxon for given parent matches a specific allele (based on frequency).</span>
+<span class="sd">        Allele number of value 0 would be the major allele. Allele number of value</span>
+<span class="sd">        1 would be the minor allele. Allele number of value 2 would be the third</span>
+<span class="sd">        most frequent allele value and so on</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        BitSet haplotypeAllelePresenceForAllTaxa(int site, boolean firstParent, WHICH_ALLELE allele)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site (int)</span>
+<span class="sd">        firstParent -- true for first parent (false for second parent)</span>
+<span class="sd">        allele -- allele (WHICH_ALLELE)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Sequence of true/false values (BitSet)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of true/false values indicating whether taxon at sites</span>
+    <span class="c"># (in given blocks, 64 sites per block including start block but excluding</span>
+    <span class="c"># end block) for given parent matches a specific allele (based on frequency).</span>
+    <span class="c"># Allele number of value 0 would be the major allele. Allele number of value 1</span>
+    <span class="c"># would be the minor allele. Allele number of value 2 would be the third most</span>
+    <span class="c"># frequent allele value and so on.</span>
+    <span class="c"># @param taxon taxon (int)</span>
+    <span class="c"># @param firstParent true for first parent (false for second parent)</span>
+    <span class="c"># @param allele allele (WHICH_ALLELE)</span>
+    <span class="c"># @param startBlock starting block (int)</span>
+    <span class="c"># @param endBlock ending block (int)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;haplotypeAllelePresenceForSitesBlock&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;WHICH_ALLELE&#39;</span><span class="p">],</span>
+                             <span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;long[]&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="nb">bool</span><span class="p">,</span><span class="n">WHICH_ALLELE</span><span class="o">.</span><span class="n">subclass</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.haplotypeAllelePresenceForSitesBlock"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.haplotypeAllelePresenceForSitesBlock">[docs]</a>    <span class="k">def</span> <span class="nf">haplotypeAllelePresenceForSitesBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sequence of true/false values indicating whether taxon at sites</span>
+<span class="sd">        (in given blocks, 64 sites per block including start block but excluding</span>
+<span class="sd">        end block) for given parent matches a specific allele (based on frequency).</span>
+<span class="sd">        Allele number of value 0 would be the major allele. Allele number of value 1</span>
+<span class="sd">        would be the minor allele. Allele number of value 2 would be the third most</span>
+<span class="sd">        frequent allele value and so on.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        long[] haplotypeAllelePresenceForSitesBlock(int taxon, boolean firstParent,</span>
+<span class="sd">              WHICH_ALLELE allele, int startBlock, int endBlock)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon (int)</span>
+<span class="sd">        firstParent -- true for first parent (false for second parent)</span>
+<span class="sd">        allele -- allele (WHICH_ALLELE)</span>
+<span class="sd">        startBlock -- starting block (int)</span>
+<span class="sd">        endBlock -- ending block (int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns a string representation of diploid values returned by genotype()</span>
+    <span class="c"># for given taxon and site. The two allele values will be separated by colon (:)</span>
+    <span class="c"># delimiter</span>
+    <span class="c"># @param taxon taxon (int)</span>
+    <span class="c"># @param site site (int)</span>
+    <span class="c"># @return string representation of diploid values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeAsString&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;byte&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaByte</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeAsString"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeAsString">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeAsString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns string representation of diploid values returned by genotype()</span>
+<span class="sd">        for given taxon and site. The two allele values will be separated by a</span>
+<span class="sd">        colon (:) delimiter.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String genotypeAsString(int taxon, int site)</span>
+<span class="sd">        String genotypeAsString(int site, byte value)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        String genotypeAsString(int taxon, int site)</span>
+<span class="sd">           taxon -- taxon (int)</span>
+<span class="sd">           site -- site (int)</span>
+<span class="sd">        String genotypeAsString(int site, byte value)</span>
+<span class="sd">           site -- site</span>
+<span class="sd">           value -- allele value</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        string representation of diploid values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns string representation of diploid alleles for given taxon</span>
+    <span class="c"># in specified range (end site excluded). Each value in string is what would</span>
+    <span class="c"># be returned by genotypeAsString()</span>
+    <span class="c"># @param taxon taxon (int)</span>
+    <span class="c"># @param startSite start site (int)</span>
+    <span class="c"># @param endSite end site (int)</span>
+    <span class="c"># @return string representation of alleles in range</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeAsStringRange&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span>
+                                                                         <span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeAsStringRange"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeAsStringRange">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeAsStringRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns string representation of diploid alleles for given taxon</span>
+<span class="sd">        in specified range (end site excluded). Each value in string is what would</span>
+<span class="sd">        be retuned by genotypeAsString()</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String genotypeAsStringRange(int taxon, int startSite, int endSite)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon (int)</span>
+<span class="sd">        startSite -- start site (int)</span>
+<span class="sd">        endSite -- end site (int)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        string representation of alleles in range</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns string representation of diploid alleles for given taxon for all</span>
+    <span class="c"># sites. Each value in string is what would be returned by genotypeAsString()</span>
+    <span class="c"># @param taxon taxon (int)</span>
+    <span class="c"># @return string representation of alleles</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeAsStringRow&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeAsStringRow"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeAsStringRow">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeAsStringRow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns string representation of diploid alleles for given taxon for all</span>
+<span class="sd">        sites. Each value in string is what would be returned by genotypeAsString()</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String genotypeAsStringRow(int taxon)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon (int)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        string representaiton of alleles</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns string representation of diploid values returned by genotypeArray() for</span>
+    <span class="c"># given taxon and site. Same two allele values as genotypeAsString(), except</span>
+    <span class="c"># already separated into two Strings.</span>
+    <span class="c"># @param taxon taxon (int)</span>
+    <span class="c"># @param site site (int)</span>
+    <span class="c"># @return string representations of diploid values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genotypeAsStringArray&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">String</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.genotypeAsStringArray"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genotypeAsStringArray">[docs]</a>    <span class="k">def</span> <span class="nf">genotypeAsStringArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns string representation of diploid values returned by genotypeArray() for</span>
+<span class="sd">        given taxon and site. Same two allele values as genotypeAsString(), except</span>
+<span class="sd">        already separated by two Strings.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String[] genotypeAsStringArray(int taxon, int site)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon (int)</span>
+<span class="sd">        site -- site (int)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        string representation of diploid values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return reference diploid allele values at given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return First 4 bits are the first allele value and the second 4 bits</span>
+    <span class="c"># are the second allele value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;referenceAllele&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.referenceAllele"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.referenceAllele">[docs]</a>    <span class="k">def</span> <span class="nf">referenceAllele</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns reference diploid allele values at given site.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte referenceAllele(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        First 4 bits are the first allele value and the second 4 bits are the second allele</span>
+<span class="sd">        value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns reference sequence of diploid allele values for given taxon in specified range</span>
+    <span class="c"># (end site not included). Each value in array contains both diploid values. First 4 bits</span>
+    <span class="c"># holds the first allele, and the second 4 bits holds the second allele</span>
+    <span class="c"># @param startSite start site</span>
+    <span class="c"># @param endSite end site</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;referenceAlleles&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.referenceAlleles"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.referenceAlleles">[docs]</a>    <span class="k">def</span> <span class="nf">referenceAlleles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns reference sequence of diploid allele values for given taxon in specified</span>
+<span class="sd">        range (end site not included). Each value in array contains both diploid values. First 4</span>
+<span class="sd">        bits holds the first allele, and the second 4 bits holds the second allele</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] referenceAlleles(int startSite, int endSite)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        startSite -- start site</span>
+<span class="sd">        endSite -- end site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Reference sequence of diploid allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns reference sequence of diploid allele values. Each value</span>
+    <span class="c"># in array contains both diploid values. First 4 bits holds the first allele</span>
+    <span class="c"># and second 4 bits holds the second allele</span>
+    <span class="c"># @return Reference sequence of diploid allele values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;referenceAlleleForAllSites&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.referenceAlleleForAllSites"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.referenceAlleleForAllSites">[docs]</a>    <span class="k">def</span> <span class="nf">referenceAlleleForAllSites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns reference sequence of diploid allele values. Each value</span>
+<span class="sd">        in array contains both diploid values. First 4 bits holds the first allele,</span>
+<span class="sd">        and the second 4 bits holds the second allele</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] referenceAlleleForAllSites()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Reference sequence of diploid allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether this genotype table has defined reference sequence</span>
+    <span class="c"># @return True if this genotype table has reference sequence</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;hasReference&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.hasReference"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.hasReference">[docs]</a>    <span class="k">def</span> <span class="nf">hasReference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether this genotype table has defined reference sequence.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean hasReference()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        True if this genotype table has reference sequence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether allele values at given taxon and site are heterozygous</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param site site</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isHeterozygous&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.isHeterozygous"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.isHeterozygous">[docs]</a>    <span class="k">def</span> <span class="nf">isHeterozygous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether allele values at given taxon and site are heterozygous.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isHeterozygous(int taxon, int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        site -- site</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Whether heterozygous</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns number of heterozygous taxa at given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Number of heterozygous taxa</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;heterozygousCount&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.heterozygousCount"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.heterozygousCount">[docs]</a>    <span class="k">def</span> <span class="nf">heterozygousCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns number of heterozygous taxa at given site</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int heterozygousCount(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of heterozygous taxa</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Get SNP ID for specified site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Site name</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;siteName&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.siteName"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.siteName">[docs]</a>    <span class="k">def</span> <span class="nf">siteName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get SNP ID for specified site</span>
+
+<span class="sd">        Signature:</span>
+
+<span class="sd">        String siteName(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Site name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns total number of sites in this genotype table</span>
+    <span class="c"># @return number of sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;numberOfSites&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.numberOfSites"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.numberOfSites">[docs]</a>    <span class="k">def</span> <span class="nf">numberOfSites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total number of sites of this genotype table</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int numberOfSites()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return number of sites for given chromosome</span>
+    <span class="c"># @param chromosome chromosome</span>
+    <span class="c"># @return Number of sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomeSiteCount&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">Chromosome</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.chromosomeSiteCount"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.chromosomeSiteCount">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomeSiteCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return number of sites for given chromosome</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int chromosomeSiteCount(Chromosome chromosome)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        chromosome -- chromosome</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Get the first (inclusive) and last (exclusive) site of the specified</span>
+    <span class="c"># chromosome in this genotype table</span>
+    <span class="c"># @param chromosome chromosome</span>
+    <span class="c"># @return first and last site</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;firstLastSiteOfChromosome&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(</span><span class="n">Chromosome</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.firstLastSiteOfChromosome"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.firstLastSiteOfChromosome">[docs]</a>    <span class="k">def</span> <span class="nf">firstLastSiteOfChromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the first (inclusive) and last (exclusive) site of the specified</span>
+<span class="sd">        chromosome in this genotype table</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] firstLastSiteOfChromosome(Chromosome chromosome)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        chromosome -- chromosome</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        first and last site</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the number of taxa</span>
+    <span class="c"># @return Number of taxa</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;numberOfTaxa&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.numberOfTaxa"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.numberOfTaxa">[docs]</a>    <span class="k">def</span> <span class="nf">numberOfTaxa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the number of taxa</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int numberOfTaxa()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of taxa</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return the position list for the genotype table</span>
+    <span class="c"># @return PositionList for all sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;positions&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;PositionList&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">PositionList</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.positions"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.positions">[docs]</a>    <span class="k">def</span> <span class="nf">positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the position list for the gneotype table</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        PositionList positions()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        PositionList for all sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the physical position at given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return physical position</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomalPosition&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.chromosomalPosition"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.chromosomalPosition">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomalPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the physical position at given site</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+<span class="sd">        </span>
+<span class="sd">        int chromosomalPosition(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        physical position</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sites of given physical position/SNP ID in chromosome. If the physical</span>
+    <span class="c"># position doesn&#39;t exist (-(insertion point) -1) is returned. If chromosome is not found,</span>
+    <span class="c"># an exception is thrown. This can support multiple sites with the same physical position</span>
+    <span class="c"># but different SNP IDs</span>
+    <span class="c"># @param physicalPosition physical position</span>
+    <span class="c"># @param chromosome chromsoome. If null, the first chromosome is used</span>
+    <span class="c"># @param snpName SNP ID</span>
+    <span class="c"># @return index</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;siteOfPhysicalPosition&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">Chromosome</span><span class="p">),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">Chromosome</span><span class="p">,</span><span class="nb">str</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.siteOfPhysicalPosition"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.siteOfPhysicalPosition">[docs]</a>    <span class="k">def</span> <span class="nf">siteOfPhysicalPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sites of given physical position/SNP ID in chromosome. If the</span>
+<span class="sd">        physical position doesn&#39;t exist, (-(insertion point) -1) is returned. If chromosome</span>
+<span class="sd">        is not found, an exception is thrown. This can support multiple sites with the same</span>
+<span class="sd">        physical position but different SNP IDs</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int siteOfPhysicalPosition(int physicalPosition, Chromosome chromosome)</span>
+<span class="sd">        int siteOfPhysicalPosition(int physicalPosition, Chromosome chromosome, String snpName)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        physicalPosition -- physical position</span>
+<span class="sd">        chromosome -- chromosome. If null, the first chromosome is used</span>
+<span class="sd">        snpName -- SNP ID</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Index</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all physical positions.</span>
+    <span class="c"># @return physical positions</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;physicalPositions&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_int_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.physicalPositions"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.physicalPositions">[docs]</a>    <span class="k">def</span> <span class="nf">physicalPositions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all physical positions</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] physicalPositions()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        physical positions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return chromosome name for given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Chromosome name</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomeName&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.chromosomeName"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.chromosomeName">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomeName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return chromosome name for given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String chromosomeName(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Chromosome name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns chromosome for given site or with matching name</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @param name name</span>
+    <span class="c"># @return Chromosome</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosome&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">Chromosome</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]),(</span><span class="nb">str</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Chromosome</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.chromosome"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.chromosome">[docs]</a>    <span class="k">def</span> <span class="nf">chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns Chromosome for given site or with matching name</span>
+<span class="sd">        (first to match will be returned)</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Chromosome chromosome(int site)</span>
+<span class="sd">        Chromosome chromosome(String name)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        Chromosome chromosome(int site):</span>
+<span class="sd">           site -- site</span>
+<span class="sd">        Chromosome chromosome(String name):</span>
+<span class="sd">           name -- name</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Chromosome</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return all chromosomes</span>
+    <span class="c"># @return chromosomes</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomes&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Chromosome</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.chromosomes"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.chromosomes">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all chromosomes</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Chromosome[] chromosomes()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        chromosomes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns number of chromosomes</span>
+    <span class="c"># @return Number of chromosomes</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;numChromosomes&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.numChromosomes"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.numChromosomes">[docs]</a>    <span class="k">def</span> <span class="nf">numChromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return number of chromosomes</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int numChromosomes()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of chromosomes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns starting site for each chromosome</span>
+    <span class="c"># @return starting site for each chromosome</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomesOffsets&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.chromosomesOffsets"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.chromosomesOffsets">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomesOffsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns starting site for each chromosome</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] chromosomesOffsets()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Starting site for each chromosome</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the site score of the given taxon and site</span>
+    <span class="c"># @param taxon taxon index</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return site score</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;siteScore&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;float&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.siteScore"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.siteScore">[docs]</a>    <span class="k">def</span> <span class="nf">siteScore</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the site score of the given taxon and site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        float siteScore(int taxon, int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon index</span>
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        site score</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the site scores</span>
+    <span class="c"># @return site scores</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;siteScores&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;float[][]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;float&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.siteScores"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.siteScores">[docs]</a>    <span class="k">def</span> <span class="nf">siteScores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the site scores</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        float[][] siteScores()</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        site scores</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this genotype table has sequencing depth</span>
+    <span class="c"># @return True if this genotype table has sequencing depth</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;hasDepth&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.hasDepth"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.hasDepth">[docs]</a>    <span class="k">def</span> <span class="nf">hasDepth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this genotype table has sequencing depth</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean hasDepth()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        True if this genotype table has sequencing depth</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this genotype table has site scores</span>
+    <span class="c"># @return True if this genotype table has site scores</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;hasSiteScores&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.hasSiteScores"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.hasSiteScores">[docs]</a>    <span class="k">def</span> <span class="nf">hasSiteScores</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this genotype table has site scores</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean hasSiteScores()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        True if this genotype table has site scores</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return what type of site scores this genotype table has</span>
+    <span class="c"># @return Site score type</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;siteScoreType&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$SITE_SCORE_TYPE&#39;</span><span class="p">),</span>
+                   <span class="p">(),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Enum</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.siteScoreType"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.siteScoreType">[docs]</a>    <span class="k">def</span> <span class="nf">siteScoreType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return what type of site scores this genotype table has</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        GenotypeTable.SITE_SCORE_TYPE siteScoreType()</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Site score type</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns size of indel at given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return indel size</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;indelSize&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.indelSize"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.indelSize">[docs]</a>    <span class="k">def</span> <span class="nf">indelSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns size of indel at given site.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int indelSize(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        indel size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether given site is an indel</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return true if indel</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isIndel&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.isIndel"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.isIndel">[docs]</a>    <span class="k">def</span> <span class="nf">isIndel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether given site is an indel</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isIndel(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if indel</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether all sites are polymorphic</span>
+    <span class="c"># @return true if all sites polymorphic</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isAllPolymorphic&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.isAllPolymorphic"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.isAllPolymorphic">[docs]</a>    <span class="k">def</span> <span class="nf">isAllPolymorphic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether all sites are polymorphic</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isAllPolymorphic()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if all sites are polymorphic</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether given site is polymorphic</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return true if given site is polymorphic</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isPolymorphic&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.isPolymorphic"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.isPolymorphic">[docs]</a>    <span class="k">def</span> <span class="nf">isPolymorphic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether given site is polymorphic</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isPolymorphic(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if given site is polymorphic</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns most common allele at given site. Gap is included as state.</span>
+    <span class="c"># Heterozygous count one for each allele value. Homozygous counts two for</span>
+    <span class="c"># the allele value</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return most common allele</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;majorAllele&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.majorAllele"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.majorAllele">[docs]</a>    <span class="k">def</span> <span class="nf">majorAllele</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns most common allele at given site. Gap is included as state.</span>
+<span class="sd">        Heterozygous count one for each allele value. Homozygous counts two for</span>
+<span class="sd">        the allele value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte majorAllele(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        most common allele</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns most common allele at given site. Gap is included as state.</span>
+    <span class="c"># Heterozygous count one for each allele value. Homozygous counts two for</span>
+    <span class="c"># the allele value</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return most common allele as String</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;majorAlleleAsString&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.majorAlleleAsString"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.majorAlleleAsString">[docs]</a>    <span class="k">def</span> <span class="nf">majorAlleleAsString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns most common allele at given site. Gap is included as state.</span>
+<span class="sd">        Heterozygous count one for each allele value. Homozygous counts two for</span>
+<span class="sd">        allele value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String majorAlleleAsString(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        most common allele as String</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns most common minor allele at given site. Gap is included as state.</span>
+    <span class="c"># Heterozygous count one for each allele value. Homozygous counts two for</span>
+    <span class="c"># the allele value</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return most common minor allele</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;minorAllele&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.minorAllele"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.minorAllele">[docs]</a>    <span class="k">def</span> <span class="nf">minorAllele</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns most common minor allele at given site. Gap is included as state.</span>
+<span class="sd">        Heterozygous count one for each allele value. Homozygous counts two for</span>
+<span class="sd">        the allele value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte minorAllele(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        most common minor allele</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns most common minor allele at given site. Gap is included as state.</span>
+    <span class="c"># Heterozygous count one for each allele value. Homozygous counts two for</span>
+    <span class="c"># the allele value</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return most common minor allele as String</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;minorAlleleAsString&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.minorAlleleAsString"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.minorAlleleAsString">[docs]</a>    <span class="k">def</span> <span class="nf">minorAlleleAsString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns most common minor allele at given site. Gap is included as state.</span>
+<span class="sd">        Heterozygous count one for each allele value. Homozygous counts two for</span>
+<span class="sd">        allele value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String minorAlleleAsString(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        most common minor allele as String</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all minor alleles at given site. Gap is included as state.</span>
+    <span class="c"># Heterozygous count one for each allele value. Homozygous counts two</span>
+    <span class="c"># for the allele value</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return All minor alleles</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;minorAlleles&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.minorAlleles"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.minorAlleles">[docs]</a>    <span class="k">def</span> <span class="nf">minorAlleles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all minor alleles at given site. Gap is included as state</span>
+<span class="sd">        Heterozygous count one for each allele value. Homozygous counts two</span>
+<span class="sd">        for the allele value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] minorAlleles(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns: All minor alleles</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all alleles at given site in order of frequency. Gap</span>
+    <span class="c"># is included as state. Heterozygous count one for each allele value.</span>
+    <span class="c"># Homozygous counts two for the allele value</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return All alleles</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;alleles&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.alleles"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.alleles">[docs]</a>    <span class="k">def</span> <span class="nf">alleles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all alleles at given site in order of frequency. Gap</span>
+<span class="sd">        is included as state. Heterozygous count one for each allele value.</span>
+<span class="sd">        Homozygous counts two for the allele value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] alleles(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        All alleles</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns frequency for most common minor allele at given site.</span>
+    <span class="c"># Gap is included as state. Heterozygous count one for each allele value.</span>
+    <span class="c"># Homozygous counts two for the allele value</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return frequency</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;minorAlleleFrequency&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.minorAlleleFrequency"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.minorAlleleFrequency">[docs]</a>    <span class="k">def</span> <span class="nf">minorAlleleFrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns frequency for most common minor allele at given site.</span>
+<span class="sd">        Gap is included as state. Heterozygous count one for each allele value.</span>
+<span class="sd">        Homozygous counts two for the allele value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double minorAlleleFrequency(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        frequency</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns frequency for major allele at given site. Gap is included as state</span>
+    <span class="c"># Heterozygous count one for each allele value. Homozygous counts two for the</span>
+    <span class="c"># allele value</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return frequency</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;majorAlleleFrequency&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.majorAlleleFrequency"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.majorAlleleFrequency">[docs]</a>    <span class="k">def</span> <span class="nf">majorAlleleFrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns frequency for major allele at given site. Gap is included as</span>
+<span class="sd">        state. Heterozygous count one for each allele value. Homozygous counts</span>
+<span class="sd">        two for the allele value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double majorAlleleFrequency(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        frequency</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns taxa list of this genotype table</span>
+    <span class="c"># @return taxa list</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;taxa&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaList&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TaxaList</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.taxa"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.taxa">[docs]</a>    <span class="k">def</span> <span class="nf">taxa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return taxa list of this genotype table</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        TaxaList taxa()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        taxa list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns taxa name at given index</span>
+    <span class="c"># @param index index</span>
+    <span class="c"># @return taxa name</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;taxaName&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.taxaName"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.taxaName">[docs]</a>    <span class="k">def</span> <span class="nf">taxaName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns taxa name at given index</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String taxaName(int index)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        taxa name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the genome assembly</span>
+    <span class="c"># @return the genome assembly</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genomeVersion&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.genomeVersion"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genomeVersion">[docs]</a>    <span class="k">def</span> <span class="nf">genomeVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the Genome Assembly</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String genomeVersion()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The genome assembly</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether is positive strand at given site</span>
+    <span class="c"># @return whether is positive strand</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isPositiveStrand&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.isPositiveStrand"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.isPositiveStrand">[docs]</a>    <span class="k">def</span> <span class="nf">isPositiveStrand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether is positive strand at given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isPositiveStrand(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        whether is positive strand</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns individual genotype tables within this genotype table</span>
+    <span class="c"># @return list of genotype tables</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;compositeAlignments&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">GenotypeTable</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.compositeAlignments"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.compositeAlignments">[docs]</a>    <span class="k">def</span> <span class="nf">compositeAlignments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns individual genotype tables within this genotype table</span>
+<span class="sd">    </span>
+<span class="sd">        Signatures:</span>
+<span class="sd">    </span>
+<span class="sd">        GenotypeTable[] compositeAlignments()</span>
+<span class="sd">    </span>
+<span class="sd">        Returns:</span>
+<span class="sd">    </span>
+<span class="sd">        list of genotype tables</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sorted list of allels from highest frequency to lowest</span>
+    <span class="c"># at given site in genotype table. Resulting double dimension array</span>
+    <span class="c"># holds alleles (bytes) in result[0]. And the counts are in result[1].</span>
+    <span class="c"># Counts haploid values twice and diploid values once. Higher ploids</span>
+    <span class="c"># are not supported</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return sorted list of alleles and counts</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;allelesSortedByFrequency&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int[][]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;int&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.allelesSortedByFrequency"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.allelesSortedByFrequency">[docs]</a>    <span class="k">def</span> <span class="nf">allelesSortedByFrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return sorted list of alleles from highest frequency to lowest</span>
+<span class="sd">        at given site in genotype table. Resulting double dimension array</span>
+<span class="sd">        holds alleles (bytes) in result[0]. And the counts are in result[1].</span>
+<span class="sd">        Counts haploid values twice and diploid values once. Higher ploids</span>
+<span class="sd">        are not supported</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[][] allelesSortedByFrequency(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        sorted list of alleles and counts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sorted list of diploid values from highest frequency to</span>
+    <span class="c"># lowest at given site in genotype table. Resulting double dimension array</span>
+    <span class="c"># holds diploids (Strings) in result[0]. And the counts are in result[1]</span>
+    <span class="c"># (Integers)</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Sorted list of diploids and counts</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genosSortedByFrequency&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[][]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="s">&quot;toString&quot;</span><span class="p">,</span><span class="s">&quot;()Ljava/lang/String;&quot;</span><span class="p">),</span>
+                                  <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span>\
+                            <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))),</span>
+                            <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="s">&quot;intValue&quot;</span><span class="p">,</span><span class="s">&quot;()I&quot;</span><span class="p">),</span>
+                                <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span>\
+                                <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">])))]))</span>
+<div class="viewcode-block" id="GenotypeTable.genosSortedByFrequency"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genosSortedByFrequency">[docs]</a>    <span class="k">def</span> <span class="nf">genosSortedByFrequency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sorted list of diploid values from highest frequency to</span>
+<span class="sd">        lowest at given site in genotype table. Resulting double dimension array</span>
+<span class="sd">        holds diploids (Strings) in result[0]. And the counts are in result[1]</span>
+<span class="sd">        (Integers).</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Object[][] genosSortedByFrequency(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Sorted list of diploids and counts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether this genotype table is phased</span>
+    <span class="c"># @return true if phased</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isPhased&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.isPhased"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.isPhased">[docs]</a>    <span class="k">def</span> <span class="nf">isPhased</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether this genotype table is phased</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isPhased()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if phased</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this genotype table retains rare alleles. If false, rare</span>
+    <span class="c"># alleles are recorded as unknown</span>
+    <span class="c"># @return whether rare alleles are retained</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;retainsRareAlleles&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.retainsRareAlleles"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.retainsRareAlleles">[docs]</a>    <span class="k">def</span> <span class="nf">retainsRareAlleles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this genotype table retains rare alleles.</span>
+<span class="sd">        If false, rare alleles are recorded as unknown</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean retainsRareAlleles()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Whether rare alleles are retained</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns allele values as strings for all sites (first signature) or for</span>
+    <span class="c"># a specific site (second signature)</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Eiether the allele values for all sites or for a given site</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;alleleDefinitions&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[][]&#39;</span><span class="p">),(),</span> <span class="c"># First signature</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">String</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.alleleDefinitions"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.alleleDefinitions">[docs]</a>    <span class="k">def</span> <span class="nf">alleleDefinitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        For the first signature:</span>
+<span class="sd">           Returns allele values as strings for all sites. The first dimension</span>
+<span class="sd">           of this array indexes the sites. The second dimension indexes the allele</span>
+<span class="sd">           values for the given site. The indices for the allele values are used as</span>
+<span class="sd">           the codes to store data. These codes (indices) are returned by the genotype()</span>
+<span class="sd">           methods. If only one array of allele values is returned, that is the</span>
+<span class="sd">           encoding for all sites</span>
+<span class="sd">        For the second signature:</span>
+<span class="sd">           Same as alleleDefinitions() for only one site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String[][] alleleDefinitions()</span>
+<span class="sd">        String[] alleleDefinitions(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        String[] alleleDefinitions(int site)</span>
+<span class="sd">           site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        String[][] alleleDefinitions()</span>
+<span class="sd">           allele values for all sites</span>
+<span class="sd">        String[] alleleDefinitions(int site)</span>
+<span class="sd">           allele values for given site</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns String representation of diploid allele value at site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @param value diploid allele value (byte)</span>
+    <span class="c"># @return String representation</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;diploidAsString&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;byte&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaByte</span><span class="p">),</span>
+                   <span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.diploidAsString"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.diploidAsString">[docs]</a>    <span class="k">def</span> <span class="nf">diploidAsString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns String representation of diploid allele value at site.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String diploidAsString(int site, byte value)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+<span class="sd">        value -- diploid allele value</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        String representation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns max number of alleles defined for any given site</span>
+    <span class="c"># @return max number of alleles</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;maxNumAlleles&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.maxNumAlleles"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.maxNumAlleles">[docs]</a>    <span class="k">def</span> <span class="nf">maxNumAlleles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns max number of alleles defined for any given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int maxNumAlleles()</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        max number of alleles</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns total number of non-missing allele values for given site. This can</span>
+    <span class="c"># be twice the number of taxa, as diploid values are supported</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Number of non-missing allele values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;totalGametesNonMissingForSite&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.totalGametesNonMissingForSite"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.totalGametesNonMissingForSite">[docs]</a>    <span class="k">def</span> <span class="nf">totalGametesNonMissingForSite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total number of non-missing allele values for given site. This can</span>
+<span class="sd">        be twice the number of taxa, as diploid values are supported</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int totalGametesNonMissingForSite(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of non-missing allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;totalNonMissingForSite&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.totalNonMissingForSite"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.totalNonMissingForSite">[docs]</a>    <span class="k">def</span> <span class="nf">totalNonMissingForSite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total number of non-missing taxa for given site. Taxa are</span>
+<span class="sd">        considered missing only if both allele values are Unknown (N).</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int totalNonMissingForSite(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of non-missing taxa</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the minor allele count for given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return minor allele count</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;minorAlleleCount&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.minorAlleleCount"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.minorAlleleCount">[docs]</a>    <span class="k">def</span> <span class="nf">minorAlleleCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the minor allele count for given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int minorAlleleCount(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        minor allele count</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the major allele count for given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return major allele count</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;majorAlleleCount&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.majorAlleleCount"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.majorAlleleCount">[docs]</a>    <span class="k">def</span> <span class="nf">majorAlleleCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the major allele count for given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int majorAlleleCount(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        major allele count</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns counts of all diploid combinations from highest frequency</span>
+    <span class="c"># to lowest for whole genotype table. Resulting double dimension array</span>
+    <span class="c"># holds diploids (Strings) in result[0]. And the counts are in result[1] (Longs)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genoCounts&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[][]&#39;</span><span class="p">),(),</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">String</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">toString</span><span class="p">(),</span>
+                      <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span>\
+                <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">Long</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">longValue</span><span class="p">(),</span>
+                <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span>\
+                <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">])))]))</span>
+<div class="viewcode-block" id="GenotypeTable.genoCounts"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.genoCounts">[docs]</a>    <span class="k">def</span> <span class="nf">genoCounts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns counts of all diploid combinations from highest frequency</span>
+<span class="sd">        to lowest for whole genotype table. Resulting double dimension array</span>
+<span class="sd">        holds diploids (Strings) in result[0]. And the counts are in result[1] (Longs)</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Object[][] genoCounts()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        diploid counts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns counts of all major/minor allele combinations from highest</span>
+    <span class="c"># frequency to lowest for whole genotype table. Resulting double dimension</span>
+    <span class="c"># array holds major/minor allele (Strings) in result[0]. And the counts are</span>
+    <span class="c"># in result[1] (Longs)</span>
+    <span class="c"># @return diploid counts</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;majorMinorCounts&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[][]&#39;</span><span class="p">),(),</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">String</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">toString</span><span class="p">(),</span>
+                      <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span>\
+                <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">Long</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">longValue</span><span class="p">(),</span>
+                <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span>\
+                <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">1</span><span class="p">])))]))</span>
+<div class="viewcode-block" id="GenotypeTable.majorMinorCounts"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.majorMinorCounts">[docs]</a>    <span class="k">def</span> <span class="nf">majorMinorCounts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns counts of all major/minor allele combinations from highest</span>
+<span class="sd">        frequency to lowest for whole genotype table. Resulting double dimension</span>
+<span class="sd">        array holds major/minor allele (Strings) in result[0]. And the counts are</span>
+<span class="sd">        in result[1] (Longs)</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Object[][] majorMinorCounts()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        diploid counts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Retursn total number of non-missing allele values for given taxon. This</span>
+    <span class="c"># can be twice the number of sites, as diploid values are supported</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @return Number of non-missing allele values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;totalGametesNonMissingForTaxon&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.totalGametesNonMissingForTaxon"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.totalGametesNonMissingForTaxon">[docs]</a>    <span class="k">def</span> <span class="nf">totalGametesNonMissingForTaxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total number of non-missing allele values for given taxon. This</span>
+<span class="sd">        can be twice the number of sites, as diploid values are supported</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int totalGametesNonMissingForTaxon(int taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of non-missing allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns number of heterozygous sites at given taxon</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @return number of heterozygous sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;heterozygousCountForTaxon&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.heterozygousCountForTaxon"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.heterozygousCountForTaxon">[docs]</a>    <span class="k">def</span> <span class="nf">heterozygousCountForTaxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns number of heterozygous sites at given taxon</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int heterozygousCountForTaxon(int taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        number of heterozygous sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns total number of non-missing sites for given taxon. Sites</span>
+    <span class="c"># are considered missing only if both allele values are Unknown (N).</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @return number of non-missing sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;totalNonMissingForTaxon&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.totalNonMissingForTaxon"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.totalNonMissingForTaxon">[docs]</a>    <span class="k">def</span> <span class="nf">totalNonMissingForTaxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total number of non-missing sites for given taxon. Sites</span>
+<span class="sd">        are considered missing only if both allele values are Unknown (N).</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int totalNonMissingForTaxon(int taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        number of non-missing sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns allele depth object (null if not present)</span>
+    <span class="c"># @return allele depth associated with genotypeTable</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depth&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;AlleleDepth&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">AlleleDepth</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">x</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.depth"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.depth">[docs]</a>    <span class="k">def</span> <span class="nf">depth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns allele depth object (null if not present)</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        AlleleDepth depth()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        allele depth associated with genotypeTable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns depth count for each diploid allele at the given taxon and site</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return two counts</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depthForAlleles&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">primativeArray</span><span class="o">.</span><span class="n">make_object_array</span><span class="p">(</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.depthForAlleles"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.depthForAlleles">[docs]</a>    <span class="k">def</span> <span class="nf">depthForAlleles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns depth count for each diploid allele at the given taxon and site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] depthForAlleles(int taxon, int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        two counts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all alleles at given site in order defined by scope</span>
+    <span class="c"># @param scope scope</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return alleles</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;allelesBySortType&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$ALLELE_SORT_TYPE&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span>
+                            <span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">ALLELE_SORT_TYPE</span><span class="o">.</span><span class="n">subclass</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.allelesBySortType"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.allelesBySortType">[docs]</a>    <span class="k">def</span> <span class="nf">allelesBySortType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all alleles at given site in order defined by scope</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] allelesBySortType(GenotypeTable.ALLELE_SORT_TYPE scope, int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        scope -- scope</span>
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        alleles</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sequence of true/false values indicating whether site at each</span>
+    <span class="c"># taxon matches a specific allele</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @param allele allele</span>
+    <span class="c"># @return sequence of true/false values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;allelePresenceForAllTaxa&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;WHICH_ALLELE&#39;</span><span class="p">]],</span>
+                            <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">WHICH_ALLELE</span><span class="o">.</span><span class="n">subclass</span><span class="p">),</span>
+                            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">OpenBitSet</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GenotypeTable.allelePresenceForAllTaxa"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.allelePresenceForAllTaxa">[docs]</a>    <span class="k">def</span> <span class="nf">allelePresenceForAllTaxa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sequence of true/false values indicating whether site at</span>
+<span class="sd">        each taxon matches a specific allele</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        BitSet allelePresenceForAllTaxa(int site, WHICH_ALLELE allele)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+<span class="sd">        allele -- allele</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        sequence of true/false values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns BitStorage for this Genotype</span>
+    <span class="c"># @param allele allele</span>
+    <span class="c"># @return BitStorage</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;bitStorage&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;WHICH_ALLELE&#39;</span><span class="p">]],</span>
+                            <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitStorage&#39;</span><span class="p">]),(</span><span class="n">WHICH_ALLELE</span><span class="o">.</span><span class="n">subclass</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GenotypeTable.bitStorage"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.GenotypeTable.GenotypeTable.bitStorage">[docs]</a>    <span class="k">def</span> <span class="nf">bitStorage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns BitStorage for this Genotype</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        BitStorage bitStorage(GenotypeTable.WHICH_ALLELE allele)</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">        </span>
+<span class="sd">        allele -- allele</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        BitStorage</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.util.GeneralAnnotation &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.util.GeneralAnnotation</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">String</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Map&#39;</span><span class="p">:</span><span class="s">&#39;java/util/Map&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GeneralAnnotation&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/util/GeneralAnnotation&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">,</span>
+                <span class="s">&#39;SetMultimap&#39;</span><span class="p">:</span><span class="s">&#39;com/google/common/collect/SetMultimap&#39;</span><span class="p">,</span>
+                <span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">}</span>
+
+<span class="c">## Provide generalized annotations (descriptors) for taxon or site</span>
+<div class="viewcode-block" id="GeneralAnnotation"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation">[docs]</a><span class="k">class</span> <span class="nc">GeneralAnnotation</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provide generalized annotations (descriptors) for taxon or site</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GeneralAnnotation&#39;</span><span class="p">]</span>
+    <span class="c">## Returns all annotation values for a given annotation key</span>
+    <span class="c"># @param annoName annotation key</span>
+    <span class="c"># @return array of annotation values (if not present new String[0])</span>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getAnnotation&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="nb">str</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GeneralAnnotation.getAnnotation"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotation">[docs]</a>    <span class="k">def</span> <span class="nf">getAnnotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all annotation value for a given annotation key</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Object[] getAnnotation(String annoName)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        annoName -- annotation key</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        array of annotation values (if not present new String[0])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all annotation values for a given annotation key</span>
+    <span class="c"># @param annoName annotation key</span>
+    <span class="c"># @return array of annotation values (if not present new String[0])</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getTextAnnotation&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(</span><span class="nb">str</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">String</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">toString</span><span class="p">(),</span>
+                                 <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+<div class="viewcode-block" id="GeneralAnnotation.getTextAnnotation"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getTextAnnotation">[docs]</a>    <span class="k">def</span> <span class="nf">getTextAnnotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all annotation values for a given annotation key</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String[] getTextAnnotation(String annoName)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        annoName -- annotation key</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        array of annotation values (if not present new String[0])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns consensus value for given annotation key</span>
+    <span class="c"># @param annoName annotation key</span>
+    <span class="c"># @return Consensus value (if not present new String[0])</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getConsensusAnnotation&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="nb">str</span><span class="p">,),</span>
+                   <span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GeneralAnnotation.getConsensusAnnotation"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getConsensusAnnotation">[docs]</a>    <span class="k">def</span> <span class="nf">getConsensusAnnotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns consensus value for given annotation key</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String getConsensusAnnotation(String annoName)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        annoName -- annotation key</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Consensus value (if not present new String[0])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all annotation value for given annotation key</span>
+    <span class="c"># @param annoName annotation key</span>
+    <span class="c"># @return array of annotation values (if not present new double[0])</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getQuantAnnotation&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;double[]&#39;</span><span class="p">),(</span><span class="nb">str</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_double_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GeneralAnnotation.getQuantAnnotation"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getQuantAnnotation">[docs]</a>    <span class="k">def</span> <span class="nf">getQuantAnnotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all annotation value for given annotation key</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double[] getQuantAnnotation(String annoName)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        annoName -- annotation key</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        array of annotation values (if not present new double[0])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns average annotation for a given annotation key</span>
+    <span class="c"># @param annoName annotation key</span>
+    <span class="c"># @return average value (if not present - return Double.NaN)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getAverageAnnotation&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="nb">str</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GeneralAnnotation.getAverageAnnotation"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAverageAnnotation">[docs]</a>    <span class="k">def</span> <span class="nf">getAverageAnnotation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns average annotation for a given annotation key</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double getAverageAnnotation(String annoName)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        annoName -- annotation key</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        average value (if not present - return Double.NaN)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all annotation Map.Entries</span>
+    <span class="c"># @return Array of Map.Entry</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getAllAnnotationEntries&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Map&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Entry[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="GeneralAnnotation.getAllAnnotationEntries"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAllAnnotationEntries">[docs]</a>    <span class="k">def</span> <span class="nf">getAllAnnotationEntries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all annotation Map.Entries</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Map.Entry&lt;String, String&gt;[] getAllAnnotationEntries()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Array of Map.Entry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all annotations in TreeMap</span>
+    <span class="c"># @return Map of annotations</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getAnnotationAsMap&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;SetMultimap&#39;</span><span class="p">]),(),</span>
+                   <span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="GeneralAnnotation.getAnnotationAsMap"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotationAsMap">[docs]</a>    <span class="k">def</span> <span class="nf">getAnnotationAsMap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all annotations in TreeMap</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        SetMultimap&lt;String,String&gt; getAnnotationAsMap()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Map of annotations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

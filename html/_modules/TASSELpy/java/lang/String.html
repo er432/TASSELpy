@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.lang.String &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.java.lang.String</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">javaObj</span><span class="p">,</span> <span class="n">javaArray</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="metaString"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.String.metaString">[docs]</a><span class="k">class</span> <span class="nc">metaString</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">string_</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="nb">unicode</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">elif</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">String</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+<span class="c">## Wrapper class for java.lang.String</span></div>
+<div class="viewcode-block" id="String"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.String.String">[docs]</a><span class="k">class</span> <span class="nc">String</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrapper class for java.lang.String</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">],</span>
+        <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;void&#39;</span><span class="p">),()),</span>
+        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaString</span><span class="p">,)))</span>
+<div class="viewcode-block" id="String.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.String.String.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Instantiates a new String</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String()</span>
+<span class="sd">        String(String original)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        String(String original)</span>
+<span class="sd">           original -- The string to copy over</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;String(&#39;</span><span class="si">%s</span><span class="s">&#39;)&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">javaObj</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">metaString</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span> <span class="o">==</span> <span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+    <span class="c">## Gets an empty wrapped java array that can accept the type of the wrapped</span>
+    <span class="c"># java object</span>
+    <span class="c"># @param size The size of the array</span>
+    <span class="c"># @return An instance of the array of the given size</span>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="String.getArray"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.String.String.getArray">[docs]</a>    <span class="k">def</span> <span class="nf">getArray</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets an empty wrapped java array that can accept the type of the wrapped</span>
+<span class="sd">        java object</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        size -- the size of the array</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An instance of the array of the given size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="n">make_array</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">pyType</span><span class="o">=</span><span class="n">metaString</span><span class="p">)</span>
+    <span class="c">## Gets an empty wrapped java array that can accept the type of other wrapped java String arrays</span>
+    <span class="c"># i.e. String[][]</span>
+    <span class="c"># @param rows The number of rows that should be in the array (the first dimension</span>
+    <span class="c"># @param cols The number of columns that should be in the array (if not specified, the</span>
+    <span class="c"># array objects will not be instantiated at these locations</span>
+    <span class="c"># @return An instance of an array of arrays</span></div>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="String.getDblArray"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.String.String.getDblArray">[docs]</a>    <span class="k">def</span> <span class="nf">getDblArray</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets an empty wrapped java array that can accept the type of other wrapped java String arrays:</span>
+<span class="sd">        i.e. String[][]</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        rows -- The number of rows that should be in the array (the first dimension)</span>
+<span class="sd">        cols -- The number of columns that should be in the array (if not specified, the</span>
+<span class="sd">                array objects will not be instantiated at these locations</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An instance of an array of arrays</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">array_array</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">make_array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pyType</span><span class="o">=</span><span class="n">metaString</span><span class="p">)</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cols</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+                <span class="n">array_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">make_array</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span> <span class="n">pyType</span><span class="o">=</span><span class="n">metaString</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">array_array</span>
+    <span class="c">## Wraps a java array of this class&#39;s type</span>
+    <span class="c"># @param arr_instance The java array</span>
+    <span class="c"># @return The wrapped java array</span></div>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="String.wrap_existing_array"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.String.String.wrap_existing_array">[docs]</a>    <span class="k">def</span> <span class="nf">wrap_existing_array</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">arr_instance</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wraps a java array of this class&#39;s type</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        arr_instance -- The java array</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The wrapped java array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Value not an instance of </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">String</span><span class="p">):</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pyArr</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">key</span>
+            <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">set_object_array_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">o</span><span class="p">,</span>
+                            <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="o">.</span><span class="n">o</span><span class="p">)</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">javaArray</span><span class="o">.</span><span class="n">to_wrapped_array</span><span class="p">(</span><span class="n">arr_instance</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">setter</span><span class="o">=</span><span class="n">setter</span><span class="p">)</span>
+        <span class="n">arr</span><span class="o">.</span><span class="n">baseClass</span> <span class="o">=</span> <span class="n">metaString</span>
+        <span class="k">return</span> <span class="n">arr</span>
+    <span class="c">## Makes a wrapped java array for the string class</span>
+    <span class="c"># @param length The length of the array to make</span>
+    <span class="c"># @param pyType The type of the javaObj. This must be passed unless using a javaObj instance to</span>
+    <span class="c"># make the array</span>
+    <span class="c"># @return The wrapped java array</span></div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="String.make_array"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.String.String.make_array">[docs]</a>    <span class="k">def</span> <span class="nf">make_array</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">pyType</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes a wrapped java array for some java class</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        length -- The length of the array to make</span>
+<span class="sd">        pyType -- The type of the javaObj. This must be passed unless using a javaObj instance to make</span>
+<span class="sd">                  the array</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The wrapped java array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">java_class</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">find_class</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">])</span>
+        <span class="n">pyClass_base</span> <span class="o">=</span> <span class="s">&#39;metaString&#39;</span>
+        <span class="c">## Instantiate java array</span>
+        <span class="n">java_arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_object_array</span><span class="p">(</span><span class="n">length</span><span class="p">,</span><span class="n">java_class</span><span class="p">)</span>
+        <span class="c">## Create the array type</span>
+        <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Value not an instance of </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">baseClass</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">String</span><span class="p">):</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">String</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pyArr</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">key</span>
+            <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">set_object_array_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">o</span><span class="p">,</span>
+                            <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="o">.</span><span class="n">o</span><span class="p">)</span>
+        <span class="n">arr_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">pyClass_base</span><span class="p">,(</span><span class="n">javaArray</span><span class="p">,),{</span><span class="s">&#39;baseClass&#39;</span><span class="p">:</span><span class="n">pyType</span><span class="p">,</span> <span class="s">&#39;__setitem__&#39;</span><span class="p">:</span><span class="n">setter</span><span class="p">})</span>
+        <span class="c">## Create the array python object</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">arr_type</span><span class="o">.</span><span class="n">baseClass</span><span class="p">,</span><span class="n">javaArray</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">pyType</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Python type must be specified if making array of arrays&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">pyType</span><span class="p">,</span> <span class="n">ref_type</span><span class="p">):</span>
+                    <span class="n">arr_type</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">=</span> <span class="n">pyType</span><span class="o">.</span><span class="n">baseClass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">arr_type</span><span class="o">.</span><span class="n">ref_type</span> <span class="o">=</span> <span class="n">pyType</span><span class="o">.</span><span class="n">ref_type</span>
+            <span class="n">arr_type</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">pyType</span><span class="o">.</span><span class="n">dim</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">arr_type</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">py_arr_obj</span> <span class="o">=</span> <span class="n">arr_type</span><span class="p">()</span>
+        <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">o</span> <span class="o">=</span> <span class="n">java_arr</span>
+        <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">_java_name</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_class</span><span class="p">(</span><span class="n">java_arr</span><span class="p">)</span>
+        <span class="n">py_arr_obj</span><span class="o">.</span><span class="n">pyArr</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">length</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">py_arr_obj</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

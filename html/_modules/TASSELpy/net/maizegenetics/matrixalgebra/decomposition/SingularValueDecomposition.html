@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">import</span> <span class="nn">TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">javaPrimativeArray</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Boolean</span> <span class="kn">import</span> <span class="n">metaBoolean</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">:</span> <span class="s">&#39;net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix&#39;</span><span class="p">,</span>
+                <span class="s">&#39;SingularValueDecomposition&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="SingularValueDecomposition"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition">[docs]</a><span class="k">class</span> <span class="nc">SingularValueDecomposition</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;SingularValueDecomposition&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;SingularValueDecomposition&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="SingularValueDecomposition.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets U for the decomposition of A, where A = USV&#39;</span>
+    <span class="c"># @param transpose Whether to transpose U</span>
+    <span class="c"># @return U (orthogonal)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getU&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;boolean&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaBoolean</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TASSELpy</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">maizegenetics</span><span class="o">.</span><span class="n">matrixalgebra</span><span class="o">.</span>\
+                                            <span class="n">Matrix</span><span class="o">.</span><span class="n">DoubleMatrix</span><span class="o">.</span><span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="SingularValueDecomposition.getU"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getU">[docs]</a>    <span class="k">def</span> <span class="nf">getU</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets U for the decomopsition of A, where A = USV&#39;</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix getU(boolean transpose)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        transpose -- Whether to transpose U</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        U (orthogonal)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets V for the decomposition of A, where A = USV&#39;</span>
+    <span class="c"># @param transpose Whether to transpose V</span>
+    <span class="c"># @return V (orthogonal)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getV&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;boolean&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaBoolean</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TASSELpy</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">maizegenetics</span><span class="o">.</span><span class="n">matrixalgebra</span><span class="o">.</span>\
+                                            <span class="n">Matrix</span><span class="o">.</span><span class="n">DoubleMatrix</span><span class="o">.</span><span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="SingularValueDecomposition.getV"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getV">[docs]</a>    <span class="k">def</span> <span class="nf">getV</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets V for the decomopsition of A, where A = VSV&#39;</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix getV(boolean transpose)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        transpose -- Whether to transpose V</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        V (orthogonal)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets S for the decomposition of A, where A = USV&#39;</span>
+    <span class="c"># @return S, the diagonal matrix of signular values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getS&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TASSELpy</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">maizegenetics</span><span class="o">.</span><span class="n">matrixalgebra</span><span class="o">.</span>\
+                                            <span class="n">Matrix</span><span class="o">.</span><span class="n">DoubleMatrix</span><span class="o">.</span><span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="SingularValueDecomposition.getS"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getS">[docs]</a>    <span class="k">def</span> <span class="nf">getS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets S for the decomopsition of A, where A = VSV&#39;</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix getV(boolean transpose)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        S, the diagonal matrix of singular values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the singular values for the SVD of A, A = USV&#39;</span>
+    <span class="c"># @return The singular values equal to the diagonal of S</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getSingularValues&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;double[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="SingularValueDecomposition.getSingularValues"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getSingularValues">[docs]</a>    <span class="k">def</span> <span class="nf">getSingularValues</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the singular values for the SVD of A, A = USV&#39;</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double[] getSingularValues()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The singular values equal to the diagonal of S</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the rank of the matrix that was decomposed</span>
+    <span class="c"># @return The rnak of the matrix that was decomposed</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getRank&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="SingularValueDecomposition.getRank"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getRank">[docs]</a>    <span class="k">def</span> <span class="nf">getRank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the rank of the matrix that was decomposed</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getRank()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The rank of the matrix that was decomposed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

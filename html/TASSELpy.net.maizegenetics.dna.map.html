@@ -1,0 +1,1243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.dna.map package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.net.maizegenetics.dna package" href="TASSELpy.net.maizegenetics.dna.html" />
+    <link rel="prev" title="TASSELpy.net.maizegenetics.dna package" href="TASSELpy.net.maizegenetics.dna.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.net.maizegenetics.dna.html" title="TASSELpy.net.maizegenetics.dna package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.dna.html" accesskey="U">TASSELpy.net.maizegenetics.dna package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-net-maizegenetics-dna-map-package">
+<h1>TASSELpy.net.maizegenetics.dna.map package<a class="headerlink" href="#tasselpy-net-maizegenetics-dna-map-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.dna.map.Chromosome">
+<span id="tasselpy-net-maizegenetics-dna-map-chromosome-module"></span><h2>TASSELpy.net.maizegenetics.dna.map.Chromosome module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.dna.map.Chromosome" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.dna.map.Chromosome.</tt><tt class="descname">Chromosome</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Chromosome.html#Chromosome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.MetaChromosome" title="TASSELpy.net.maizegenetics.dna.map.Chromosome.MetaChromosome"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.dna.map.Chromosome.MetaChromosome</span></tt></a></p>
+<p>Defines the chromosome structure and length. The name and length
+recorded for each chromosome</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">compareTo</span></tt>(*args)</td>
+<td>Compares this object with the specified object for order.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAllAnnotationEntries</span></tt>(*args)</td>
+<td>Returns all annotation Map.Entries</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation value for a given annotation key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAnnotationAsMap</span></tt>(*args)</td>
+<td>Returns all annotations in TreeMap</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAverageAnnotation</span></tt>(*args)</td>
+<td>Returns average annotation for a given annotation key</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getCanonicalChromosome" title="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getCanonicalChromosome"><tt class="xref py py-obj docutils literal"><span class="pre">getCanonicalChromosome</span></tt></a>(*args)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">signature:</th><td class="field-body"><em>getCanonicalChromosome</em> (Chromosome <strong>chr</strong>)</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getChromosomeNumber" title="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getChromosomeNumber"><tt class="xref py py-obj docutils literal"><span class="pre">getChromosomeNumber</span></tt></a>(*args)</td>
+<td>Returns the integer value of the chromosome (if name is not a number</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getConsensusAnnotation</span></tt>(*args)</td>
+<td>Returns consensus value for given annotation key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getLength" title="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getLength"><tt class="xref py py-obj docutils literal"><span class="pre">getLength</span></tt></a>(*args)</td>
+<td>Gets the length of the chromosome in base pairs</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getName" title="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getName"><tt class="xref py py-obj docutils literal"><span class="pre">getName</span></tt></a>(*args)</td>
+<td>Gets the name of the chromosome</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getQuantAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation value for given annotation key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTextAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation values for a given annotation key</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Chromosome.html#Chromosome.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a Chromosome object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>Chromosome</em> (String <strong>name</strong>, int <strong>length</strong>, GeneralAnnotation <strong>features</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>Chromosome</em> (String <strong>name</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>String</em>) &#8211; Name of the chromosome</li>
+<li><strong>length</strong> (<em>int</em>) &#8211; Length of chromosome in base pairs</li>
+<li><strong>features</strong> (<em>GeneralAnnotation</em>) &#8211; Map of features about the chromosome</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getCanonicalChromosome">
+<em class="property">static </em><tt class="descname">getCanonicalChromosome</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Chromosome.html#Chromosome.getCanonicalChromosome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getCanonicalChromosome" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getCanonicalChromosome</em> (Chromosome <strong>chr</strong>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getChromosomeNumber">
+<tt class="descname">getChromosomeNumber</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Chromosome.html#Chromosome.getChromosomeNumber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getChromosomeNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the integer value of the chromosome (if name is not a number
+then Integer.MAX_VALUE is returned</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getChromosomeNumber</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The integer value of the chromosome</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getLength">
+<tt class="descname">getLength</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Chromosome.html#Chromosome.getLength"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getLength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the length of the chromosome in base pairs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getLength</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The length of the chromosome in base pairs</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getName">
+<tt class="descname">getName</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Chromosome.html#Chromosome.getName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.Chromosome.getName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name of the chromosome</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getName</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The name of the chromosome</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Chromosome.MetaChromosome">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.dna.map.Chromosome.</tt><tt class="descname">MetaChromosome</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Chromosome.html#MetaChromosome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Chromosome.MetaChromosome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Comparable.Comparable" title="TASSELpy.java.lang.Comparable.Comparable"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Comparable.Comparable</span></tt></a>, <a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">compareTo</span></tt>(*args)</td>
+<td>Compares this object with the specified object for order.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAllAnnotationEntries</span></tt>(*args)</td>
+<td>Returns all annotation Map.Entries</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation value for a given annotation key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAnnotationAsMap</span></tt>(*args)</td>
+<td>Returns all annotations in TreeMap</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAverageAnnotation</span></tt>(*args)</td>
+<td>Returns average annotation for a given annotation key</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getConsensusAnnotation</span></tt>(*args)</td>
+<td>Returns consensus value for given annotation key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getQuantAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation value for given annotation key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTextAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation values for a given annotation key</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.dna.map.Position">
+<span id="tasselpy-net-maizegenetics-dna-map-position-module"></span><h2>TASSELpy.net.maizegenetics.dna.map.Position module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.dna.map.Position" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.dna.map.Position.</tt><tt class="descname">Position</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Comparable.Comparable" title="TASSELpy.java.lang.Comparable.Comparable"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Comparable.Comparable</span></tt></a>, <a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation</span></tt></a></p>
+<p>Defines a genomic position and its known variants. Includes attributes
+of chromosome, position, strand, centiMorgans, name (or SNP ID), whether this
+position is a nucleotide, or includes an indel</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">compareTo</span></tt>(*args)</td>
+<td>Compares this object with the specified object for order.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAllAnnotationEntries</span></tt>(*args)</td>
+<td>Returns all annotation Map.Entries</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getAllele" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getAllele"><tt class="xref py py-obj docutils literal"><span class="pre">getAllele</span></tt></a>(*args)</td>
+<td>Returns the allele specified by alleleType, if unkonwn Alignment.Unknown is returned</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation value for a given annotation key</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAnnotationAsMap</span></tt>(*args)</td>
+<td>Returns all annotations in TreeMap</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAverageAnnotation</span></tt>(*args)</td>
+<td>Returns average annotation for a given annotation key</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getCM" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getCM"><tt class="xref py py-obj docutils literal"><span class="pre">getCM</span></tt></a>(*args)</td>
+<td>Return the genetic position for a site definition</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getChromosome" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getChromosome"><tt class="xref py py-obj docutils literal"><span class="pre">getChromosome</span></tt></a>(*args)</td>
+<td>Return the locus (generally a chromosome) of a site</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getConsensusAnnotation</span></tt>(*args)</td>
+<td>Returns consensus value for given annotation key</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getGlobalMAF" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getGlobalMAF"><tt class="xref py py-obj docutils literal"><span class="pre">getGlobalMAF</span></tt></a>(*args)</td>
+<td>Return the minor allele frequency in a global scope</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getGlobalSiteCoverage" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getGlobalSiteCoverage"><tt class="xref py py-obj docutils literal"><span class="pre">getGlobalSiteCoverage</span></tt></a>(*args)</td>
+<td>Returns the proportion of genotypes scored at a given site</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getKnownVariants" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getKnownVariants"><tt class="xref py py-obj docutils literal"><span class="pre">getKnownVariants</span></tt></a>(*args)</td>
+<td>Returns the nature of the polymorphism (&#8220;ACTAT&#8221;, &#8220;-&#8220;} or {&#8220;A&#8221;,&#8221;C&#8221;,&#8221;G&#8221;} or {&#8220;100&#8221;,&#8221;103&#8221;,&#8221;106&#8221;}</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getPosition" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getPosition"><tt class="xref py py-obj docutils literal"><span class="pre">getPosition</span></tt></a>(*args)</td>
+<td>Return the physical position of a site</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getQuantAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation value for given annotation key</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getSNPID" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getSNPID"><tt class="xref py py-obj docutils literal"><span class="pre">getSNPID</span></tt></a>(*args)</td>
+<td>Return the ID (name) for a site</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getStrand" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.getStrand"><tt class="xref py py-obj docutils literal"><span class="pre">getStrand</span></tt></a>(*args)</td>
+<td>Return the strand for a site definition</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTextAnnotation</span></tt>(*args)</td>
+<td>Returns all annotation values for a given annotation key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.isIndel" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.isIndel"><tt class="xref py py-obj docutils literal"><span class="pre">isIndel</span></tt></a>(*args)</td>
+<td>Whether the position includes indels, which would be defined in the variants</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.isNucleotide" title="TASSELpy.net.maizegenetics.dna.map.Position.Position.isNucleotide"><tt class="xref py py-obj docutils literal"><span class="pre">isNucleotide</span></tt></a>(*args)</td>
+<td>Whether the position is a nucleotide position or another marker type (SSR, AFLP, RAPD,</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getAllele">
+<tt class="descname">getAllele</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getAllele"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getAllele" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the allele specified by alleleType, if unkonwn Alignment.Unknown is returned</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getAllele</em> (Allele <strong>alleleType</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>alleleType</strong> (<em>Allele</em>) &#8211; An alleleType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The allele specified by alleleType</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">byte</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getCM">
+<tt class="descname">getCM</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getCM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getCM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the genetic position for a site definition</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getCM</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The genetic position for a site definition</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getChromosome">
+<tt class="descname">getChromosome</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getChromosome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getChromosome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the locus (generally a chromosome) of a site</p>
+<p>Signatures:</p>
+<p>Chromosome getChromosome</p>
+<p>Returns:</p>
+<p>The locus of a site</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getGlobalMAF">
+<tt class="descname">getGlobalMAF</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getGlobalMAF"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getGlobalMAF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the minor allele frequency in a global scope</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getGlobalMAF</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the minor allele frequency in a global scope</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getGlobalSiteCoverage">
+<tt class="descname">getGlobalSiteCoverage</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getGlobalSiteCoverage"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getGlobalSiteCoverage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the proportion of genotypes scored at a given site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getGlobalSiteCoverage</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The proportion of genotypes scored at a given site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getKnownVariants">
+<tt class="descname">getKnownVariants</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getKnownVariants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getKnownVariants" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the nature of the polymorphism (&#8220;ACTAT&#8221;, &#8220;-&#8220;} or {&#8220;A&#8221;,&#8221;C&#8221;,&#8221;G&#8221;} or {&#8220;100&#8221;,&#8221;103&#8221;,&#8221;106&#8221;}</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getKnownVariants</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The nature of the polymorphism</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getPosition">
+<tt class="descname">getPosition</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getPosition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the physical position of a site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getPosition</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The physical position of a site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getSNPID">
+<tt class="descname">getSNPID</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getSNPID"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getSNPID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ID (name) for a site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getSNPID</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The ID (name) for a site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.getStrand">
+<tt class="descname">getStrand</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.getStrand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.getStrand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the strand for a site definition</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getStrand</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The strand for a site definition</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">byte</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.isIndel">
+<tt class="descname">isIndel</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.isIndel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.isIndel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the position includes indels, which would be defined in the variants</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>isIndel</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Whether the position includes indels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.Position.Position.isNucleotide">
+<tt class="descname">isNucleotide</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/Position.html#Position.isNucleotide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.Position.Position.isNucleotide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the position is a nucleotide position or another marker type (SSR, AFLP, RAPD,
+CNV, which are recorded with text states)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>isNucleotide</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Whether the position is a nucleotide position</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.dna.map.PositionList">
+<span id="tasselpy-net-maizegenetics-dna-map-positionlist-module"></span><h2>TASSELpy.net.maizegenetics.dna.map.PositionList module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.dna.map.PositionList" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.dna.map.PositionList.</tt><tt class="descname">PositionList</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.util.html#TASSELpy.java.util.FilterList.FilterList" title="TASSELpy.java.util.FilterList.FilterList"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.util.FilterList.FilterList</span></tt></a></p>
+<p>List of Positions in the genome. This type is used by every GenotypeTable,
+but it can also be used as list of GWAS results and other genomic annotations</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">add</span></tt>(*args)</td>
+<td>Ensures that this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addAll</span></tt>(*args)</td>
+<td>Adds all of the elements in the specified collection to this collection.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomalPosition" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomalPosition"><tt class="xref py py-obj docutils literal"><span class="pre">chromosomalPosition</span></tt></a>(*args)</td>
+<td>Returns the physical position at given site</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosome" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosome"><tt class="xref py py-obj docutils literal"><span class="pre">chromosome</span></tt></a>(*args)</td>
+<td>Returns Chromosome for given site or with matching name</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeName" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeName"><tt class="xref py py-obj docutils literal"><span class="pre">chromosomeName</span></tt></a>(*args)</td>
+<td>Return chromosome name for given site</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeSiteCount" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeSiteCount"><tt class="xref py py-obj docutils literal"><span class="pre">chromosomeSiteCount</span></tt></a>(*args)</td>
+<td>Return number of sites for given chromosome</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomes" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomes"><tt class="xref py py-obj docutils literal"><span class="pre">chromosomes</span></tt></a>(*args)</td>
+<td>Return all chromosomes</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomesOffsets" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomesOffsets"><tt class="xref py py-obj docutils literal"><span class="pre">chromosomesOffsets</span></tt></a>(*args)</td>
+<td>Returns starting site for each chromosome</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Removes all of the elements from this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">contains</span></tt>(*args)</td>
+<td>Returns true if this collection contains the specified element.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">containsAll</span></tt>(*args)</td>
+<td>Returns true if this collection contains all of the elements in the specified collection</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">filterEnumerator</span></tt>(filterFunc)</td>
+<td>Enumerates the list, returning index and items for which a function</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">filterIterator</span></tt>(filterFunc)</td>
+<td>Iterates through the list, but only returns items for which a function evaluates True.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.genomeVersion" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.genomeVersion"><tt class="xref py py-obj docutils literal"><span class="pre">genomeVersion</span></tt></a>(*args)</td>
+<td>Gets the Genome Assembly</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>(*args)</td>
+<td>Returns the element at the specified position in this list</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.hasReference" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.hasReference"><tt class="xref py py-obj docutils literal"><span class="pre">hasReference</span></tt></a>(*args)</td>
+<td>Returns whether this alignment has defined reference sequence.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.indelSize" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.indelSize"><tt class="xref py py-obj docutils literal"><span class="pre">indelSize</span></tt></a>(*args)</td>
+<td>Returns size of indel at given site.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if this collection contains no elements</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isIndel" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isIndel"><tt class="xref py py-obj docutils literal"><span class="pre">isIndel</span></tt></a>(*args)</td>
+<td>Returns whether given site is an indel</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isPositiveStrand" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isPositiveStrand"><tt class="xref py py-obj docutils literal"><span class="pre">isPositiveStrand</span></tt></a>(*args)</td>
+<td>Returns whether is positive strand at given site</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">iterator</span></tt>(*args)</td>
+<td>Returns an iterator over a set of elements of type T</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">listIterator</span></tt>(*args)</td>
+<td>Returns a list iterator over the elements in this list</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numChromosomes" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numChromosomes"><tt class="xref py py-obj docutils literal"><span class="pre">numChromosomes</span></tt></a>(*args)</td>
+<td>Return number of chromosomes</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numberOfSites" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numberOfSites"><tt class="xref py py-obj docutils literal"><span class="pre">numberOfSites</span></tt></a>(*args)</td>
+<td>Returns total number of sites of this genotype table</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.physicalPositions" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.physicalPositions"><tt class="xref py py-obj docutils literal"><span class="pre">physicalPositions</span></tt></a>(*args)</td>
+<td>Returns all physical positions</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotype" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotype"><tt class="xref py py-obj docutils literal"><span class="pre">referenceGenotype</span></tt></a>(*args)</td>
+<td>Return the reference diploid allele values at given site</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypeForAllSites" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypeForAllSites"><tt class="xref py py-obj docutils literal"><span class="pre">referenceGenotypeForAllSites</span></tt></a>(*args)</td>
+<td>Returns reference sequence of diploid allele values.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypes" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypes"><tt class="xref py py-obj docutils literal"><span class="pre">referenceGenotypes</span></tt></a>(*args)</td>
+<td>Returns reference sequence of diploid allele values for given taxon in specified range (end site not included).</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Removes a single instance of the specified element from this collection, if it is present.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">removeAll</span></tt>(*args)</td>
+<td>Removes all of this collection&#8217;s elements that are also contained in the specified collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">retainAll</span></tt>(*args)</td>
+<td>Retains only the elements in this collection that are contained in the specified collection.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt>(*args)</td>
+<td>Replaces the element at the specified position in this list with</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteName" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteName"><tt class="xref py py-obj docutils literal"><span class="pre">siteName</span></tt></a>(*args)</td>
+<td>Get SNP ID for specified site</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteOfPhysicalPosition" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteOfPhysicalPosition"><tt class="xref py py-obj docutils literal"><span class="pre">siteOfPhysicalPosition</span></tt></a>(*args)</td>
+<td>Returns sites of given physical position/SNP ID in chromosome.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the number of elements in this collection.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.startAndEndOfChromosome" title="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.startAndEndOfChromosome"><tt class="xref py py-obj docutils literal"><span class="pre">startAndEndOfChromosome</span></tt></a>(*args)</td>
+<td>Get the first (inclusive) and last (exclusive) site of the specified</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">subList</span></tt>(*args)</td>
+<td>REturns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toArray</span></tt>(*args)</td>
+<td>Returns an array containing all of the elements in this collection.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomalPosition">
+<tt class="descname">chromosomalPosition</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.chromosomalPosition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomalPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the physical position at given site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>chromosomalPosition</em> (int <strong>site</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>site</strong> (<em>int</em>) &#8211; site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">physical position</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosome">
+<tt class="descname">chromosome</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.chromosome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Chromosome for given site or with matching name
+(first to match will be returned)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>chromosome</em> (int <strong>site</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>chromosome</em> (String <strong>name</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>site</strong> (<em>int</em>) &#8211; site Chromosome chromosome(String name):</li>
+<li><strong>name</strong> (<em>String</em>) &#8211; name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Chromosome</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Chromosome</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeName">
+<tt class="descname">chromosomeName</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.chromosomeName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return chromosome name for given site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>chromosomeName</em> (int <strong>site</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>site</strong> (<em>int</em>) &#8211; site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Chromosome name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeSiteCount">
+<tt class="descname">chromosomeSiteCount</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.chromosomeSiteCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeSiteCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of sites for given chromosome</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>chromosomeSiteCount</em> (Chromosome <strong>chromosome</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>chromosome</strong> (<em>Chromosome</em>) &#8211; chromosome</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Number of sites</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomes">
+<tt class="descname">chromosomes</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.chromosomes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all chromosomes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>chromosomes</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">chromosomes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Chromosome[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomesOffsets">
+<tt class="descname">chromosomesOffsets</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.chromosomesOffsets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomesOffsets" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns starting site for each chromosome</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>chromosomesOffsets</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Starting site for each chromosome</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.genomeVersion">
+<tt class="descname">genomeVersion</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.genomeVersion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.genomeVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the Genome Assembly</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>genomeVersion</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The genome assembly</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.hasReference">
+<tt class="descname">hasReference</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.hasReference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.hasReference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether this alignment has defined reference sequence.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>hasReference</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if this alignment has reference sequence</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.indelSize">
+<tt class="descname">indelSize</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.indelSize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.indelSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns size of indel at given site.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>indelSize</em> (int <strong>site</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>site</strong> (<em>int</em>) &#8211; site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">indel size</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isIndel">
+<tt class="descname">isIndel</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.isIndel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isIndel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether given site is an indel</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>isIndel</em> (int <strong>site</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>site</strong> (<em>int</em>) &#8211; site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">true if indel</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isPositiveStrand">
+<tt class="descname">isPositiveStrand</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.isPositiveStrand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isPositiveStrand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether is positive strand at given site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>isPositiveStrand</em> (int <strong>site</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>site</strong> (<em>int</em>) &#8211; site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">whether is positive strand</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numChromosomes">
+<tt class="descname">numChromosomes</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.numChromosomes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numChromosomes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of chromosomes</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>numChromosomes</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of chromosomes</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numberOfSites">
+<tt class="descname">numberOfSites</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.numberOfSites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numberOfSites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns total number of sites of this genotype table</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>numberOfSites</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of sites</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.physicalPositions">
+<tt class="descname">physicalPositions</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.physicalPositions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.physicalPositions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all physical positions</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>physicalPositions</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">physical positions</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotype">
+<tt class="descname">referenceGenotype</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.referenceGenotype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the reference diploid allele values at given site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>referenceGenotype</em> (int <strong>site</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>site</strong> (<em>int</em>) &#8211; site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">First 4 bits are the first allele value and second four bits are the second allele value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">byte</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypeForAllSites">
+<tt class="descname">referenceGenotypeForAllSites</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.referenceGenotypeForAllSites"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypeForAllSites" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns reference sequence of diploid allele values. Each value
+in array contains both diploid values. First 4 bits holds the first allele,
+and the second 4 bits holds the second allele</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>referenceGenotypeForAllSites</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Reference sequence of diploid allele values</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">byte[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypes">
+<tt class="descname">referenceGenotypes</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.referenceGenotypes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns reference sequence of diploid allele values for given taxon in specified
+range (end site not included). Each value in array contains both diploid values. First 4
+bits holds the first allele, and the second 4 bits holds the second allele</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>referenceGenotypes</em> (int <strong>startSite</strong>, int <strong>endSite</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>startSite</strong> (<em>int</em>) &#8211; start site</li>
+<li><strong>endSite</strong> (<em>int</em>) &#8211; end site</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Reference sequence of diploid allele values</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">byte[]</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteName">
+<tt class="descname">siteName</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.siteName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get SNP ID for specified site</p>
+<p>Signature:</p>
+<p>String siteName(int site)</p>
+<p>Arguments:</p>
+<p>site &#8211; site</p>
+<p>Returns:</p>
+<p>Site name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteOfPhysicalPosition">
+<tt class="descname">siteOfPhysicalPosition</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.siteOfPhysicalPosition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteOfPhysicalPosition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns sites of given physical position/SNP ID in chromosome. If the
+physical position doesn&#8217;t exist, (-(insertion point) -1) is returned. If chromosome
+is not found, an exception is thrown. This can support multiple sites with the same
+physical position but different SNP IDs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>siteOfPhysicalPosition</em> (int <strong>physicalPosition</strong>, Chromosome <strong>chromosome</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>siteOfPhysicalPosition</em> (int <strong>physicalPosition</strong>, Chromosome <strong>chromosome</strong>, String <strong>snpName</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>physicalPosition</strong> (<em>int</em>) &#8211; physical position</li>
+<li><strong>chromosome</strong> (<em>Chromosome</em>) &#8211; chromosome. If null, the first chromosome is used</li>
+<li><strong>snpName</strong> (<em>String</em>) &#8211; SNP ID</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Index</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.startAndEndOfChromosome">
+<tt class="descname">startAndEndOfChromosome</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/dna/map/PositionList.html#PositionList.startAndEndOfChromosome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.startAndEndOfChromosome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the first (inclusive) and last (exclusive) site of the specified
+chromosome in this genotype table</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>startAndEndOfChromosome</em> (Chromosome <strong>chromosome</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>chromosome</strong> (<em>Chromosome</em>) &#8211; chromosome</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">first and last site</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.dna.map">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.dna.map" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.net.maizegenetics.dna.map package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.dna.map.Chromosome">TASSELpy.net.maizegenetics.dna.map.Chromosome module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.dna.map.Position">TASSELpy.net.maizegenetics.dna.map.Position module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.dna.map.PositionList">TASSELpy.net.maizegenetics.dna.map.PositionList module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.dna.map">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="TASSELpy.net.maizegenetics.dna.html"
+                        title="previous chapter">TASSELpy.net.maizegenetics.dna package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.net.maizegenetics.dna.map.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.net.maizegenetics.dna.html" title="TASSELpy.net.maizegenetics.dna package"
+             >previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.dna.html" >TASSELpy.net.maizegenetics.dna package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

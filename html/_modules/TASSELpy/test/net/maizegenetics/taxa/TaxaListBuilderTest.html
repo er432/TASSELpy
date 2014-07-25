@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest</h1><div class="highlight"><pre>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">&#39;Administrator&#39;</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.TASSELbridge</span> <span class="kn">import</span> <span class="n">TASSELbridge</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;AttributeError: start bridge&quot;</span><span class="p">)</span>
+        <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;AssertionError: start bridge&quot;</span><span class="p">)</span>
+        <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&quot;Could not start JVM&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.TaxaListBuilder</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.snp.ImportUtils</span> <span class="kn">import</span> <span class="n">ImportUtils</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.data</span> <span class="kn">import</span> <span class="n">data_constants</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.ArrayList</span> <span class="kn">import</span> <span class="n">ArrayList</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;String&#39;</span><span class="p">:</span> <span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Taxon&#39;</span><span class="p">:</span> <span class="s">&#39;net/maizegenetics/taxa/Taxon&#39;</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="TaxaListBuilderTest"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.taxa.html#TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest.TaxaListBuilderTest">[docs]</a><span class="k">class</span> <span class="nc">TaxaListBuilderTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="TaxaListBuilderTest.setUpClass"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.taxa.html#TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest.TaxaListBuilderTest.setUpClass">[docs]</a>    <span class="k">def</span> <span class="nf">setUpClass</span><span class="p">(</span><span class="n">cls</span><span class="p">):</span>
+        <span class="c"># Load data</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">cls</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">ImportUtils</span><span class="o">.</span><span class="n">readGuessFormat</span><span class="p">(</span><span class="n">data_constants</span><span class="o">.</span><span class="n">SHORT_HMP_FILE</span><span class="p">)</span>
+            <span class="n">cls</span><span class="o">.</span><span class="n">test</span> <span class="o">=</span> <span class="n">TaxaListBuilder</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">cls</span><span class="o">.</span><span class="n">test</span><span class="p">)</span> <span class="ow">is</span> <span class="n">TaxaListBuilder</span><span class="p">,</span> <span class="s">&quot;TaxaListBuilder constructure error&quot;</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Could not load test data&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TaxaListBuilderTest.test_add"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.taxa.html#TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest.TaxaListBuilderTest.test_add">[docs]</a>    <span class="k">def</span> <span class="nf">test_add</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Taxon</span><span class="p">(</span><span class="s">&quot;Test Bokan&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">TaxaListBuilder</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TaxaListBuilderTest.test_addAll"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.taxa.html#TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest.TaxaListBuilderTest.test_addAll">[docs]</a>    <span class="k">def</span> <span class="nf">test_addAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">arr1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">addAll</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span> <span class="n">TaxaListBuilder</span><span class="p">)</span>
+        <span class="n">string_arr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">string_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;aaa&quot;</span>
+        <span class="n">string_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;bbb&quot;</span>
+        <span class="n">arr2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">string_arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arr2</span><span class="p">,</span> <span class="n">TaxaListBuilder</span><span class="p">)</span>
+        <span class="n">Taxon_arr</span> <span class="o">=</span> <span class="n">Object</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">Taxon_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="s">&quot;BokanTest1&quot;</span><span class="p">)</span>
+        <span class="n">Taxon_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Taxon</span><span class="p">(</span><span class="s">&quot;BokanTest2&quot;</span><span class="p">)</span>
+        <span class="n">arr3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">Taxon_arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arr3</span><span class="p">,</span> <span class="n">TaxaListBuilder</span><span class="p">)</span>
+        <span class="n">collection_arr</span> <span class="o">=</span> <span class="n">ArrayList</span><span class="p">(</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Taxon</span><span class="p">,))</span>
+        <span class="n">collection_arr</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Taxon</span><span class="p">(</span><span class="s">&quot;BokanTest4&quot;</span><span class="p">))</span>
+        <span class="n">collection_arr</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Taxon</span><span class="p">(</span><span class="s">&quot;BokanTest3&quot;</span><span class="p">))</span>
+        <span class="n">arr4</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">collection_arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arr4</span><span class="p">,</span> <span class="n">TaxaListBuilder</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="TaxaListBuilderTest.test_duild"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.taxa.html#TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest.TaxaListBuilderTest.test_duild">[docs]</a>    <span class="k">def</span> <span class="nf">test_duild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">arr1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span> <span class="n">TaxaList</span><span class="p">)</span>
+
+</div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="nb">exit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

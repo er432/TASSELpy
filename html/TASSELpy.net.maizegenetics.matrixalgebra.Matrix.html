@@ -1,0 +1,1230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.matrixalgebra.Matrix package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.net.maizegenetics.matrixalgebra package" href="TASSELpy.net.maizegenetics.matrixalgebra.html" />
+    <link rel="prev" title="TASSELpy.net.maizegenetics.matrixalgebra package" href="TASSELpy.net.maizegenetics.matrixalgebra.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.net.maizegenetics.matrixalgebra.html" title="TASSELpy.net.maizegenetics.matrixalgebra package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.matrixalgebra.html" accesskey="U">TASSELpy.net.maizegenetics.matrixalgebra package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-net-maizegenetics-matrixalgebra-matrix-package">
+<h1>TASSELpy.net.maizegenetics.matrixalgebra.Matrix package<a class="headerlink" href="#tasselpy-net-maizegenetics-matrixalgebra-matrix-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix">
+<span id="tasselpy-net-maizegenetics-matrixalgebra-matrix-doublematrix-module"></span><h2>TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.</tt><tt class="descname">DoubleMatrix</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p>Wrapper for the DoubleMatrix interface, which is implemented by several classes
+that call native methods</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.column" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.column"><tt class="xref py py-obj docutils literal"><span class="pre">column</span></tt></a>(*args)</td>
+<td>Gets the column of the matrix as a column vector</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnRank" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnRank"><tt class="xref py py-obj docutils literal"><span class="pre">columnRank</span></tt></a>(*args)</td>
+<td>Gets the column rank of this matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnSum" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnSum"><tt class="xref py py-obj docutils literal"><span class="pre">columnSum</span></tt></a>(*args)</td>
+<td>Sums a column</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.concatenate" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.concatenate"><tt class="xref py py-obj docutils literal"><span class="pre">concatenate</span></tt></a>(*args)</td>
+<td>Puts two matrices together</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.copy" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.copy"><tt class="xref py py-obj docutils literal"><span class="pre">copy</span></tt></a>(*args)</td>
+<td>Gets a copy of the matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.crossproduct" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.crossproduct"><tt class="xref py py-obj docutils literal"><span class="pre">crossproduct</span></tt></a>(*args)</td>
+<td>Get X&#8217;X or X&#8217;dm, where X is this matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverse" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverse"><tt class="xref py py-obj docutils literal"><span class="pre">generalizedInverse</span></tt></a>(*args)</td>
+<td>Gets the generalized inverse of a square matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverseWithRank" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverseWithRank"><tt class="xref py py-obj docutils literal"><span class="pre">generalizedInverseWithRank</span></tt></a>(*args)</td>
+<td>Inverts the matrix and returns the rank as the first element in rank[].</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.get" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.get"><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt></a>(*args)</td>
+<td>Gets data and doesn&#8217;t check to make sure they are in the matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getChecked" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getChecked"><tt class="xref py py-obj docutils literal"><span class="pre">getChecked</span></tt></a>(*args)</td>
+<td>Gets data and checks to make sure they are in the matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getEigenvalueDecomposition" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getEigenvalueDecomposition"><tt class="xref py py-obj docutils literal"><span class="pre">getEigenvalueDecomposition</span></tt></a>(*args)</td>
+<td>Gets the Eigenvalue decomposition of this matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSelection" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSelection"><tt class="xref py py-obj docutils literal"><span class="pre">getSelection</span></tt></a>(*args)</td>
+<td>Creates a new matrix consisting of the rows and columns of this matrix in the order specified.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSingularValueDecomposition" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSingularValueDecomposition"><tt class="xref py py-obj docutils literal"><span class="pre">getSingularValueDecomposition</span></tt></a>(*args)</td>
+<td>Gets the Singular Value decomposition of this matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getXtXGM" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getXtXGM"><tt class="xref py py-obj docutils literal"><span class="pre">getXtXGM</span></tt></a>(*args)</td>
+<td>Gets an array of three DoubleMatrices.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.inverse" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.inverse"><tt class="xref py py-obj docutils literal"><span class="pre">inverse</span></tt></a>(*args)</td>
+<td>Returns the inverse of a square matrix, without modifying the original matrix.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.invert" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.invert"><tt class="xref py py-obj docutils literal"><span class="pre">invert</span></tt></a>(*args)</td>
+<td>This inverts a square matrix, replacing the original with the inverse</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minus" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minus"><tt class="xref py py-obj docutils literal"><span class="pre">minus</span></tt></a>(*args)</td>
+<td>Subtracts a matrix from this matrix, X, without modifying X</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minusEquals" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minusEquals"><tt class="xref py py-obj docutils literal"><span class="pre">minusEquals</span></tt></a>(*args)</td>
+<td>This function subtracts dm, modifying the original matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.mult" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.mult"><tt class="xref py py-obj docutils literal"><span class="pre">mult</span></tt></a>(*args)</td>
+<td>Multiply this matrix times another</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.multadd" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.multadd"><tt class="xref py py-obj docutils literal"><span class="pre">multadd</span></tt></a>(*args)</td>
+<td>Using this function for combining multiplication and addition allows the</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfColumns" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfColumns"><tt class="xref py py-obj docutils literal"><span class="pre">numberOfColumns</span></tt></a>(*args)</td>
+<td>Gets the number of columns in this matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfRows" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfRows"><tt class="xref py py-obj docutils literal"><span class="pre">numberOfRows</span></tt></a>(*args)</td>
+<td>Gets the number of rows in this matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plus" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plus"><tt class="xref py py-obj docutils literal"><span class="pre">plus</span></tt></a>(*args)</td>
+<td>Adds a matrix from this matrix, X, without modifying X</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plusEquals" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plusEquals"><tt class="xref py py-obj docutils literal"><span class="pre">plusEquals</span></tt></a>(*args)</td>
+<td>This function adds dm, modifying the original matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.row" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.row"><tt class="xref py py-obj docutils literal"><span class="pre">row</span></tt></a>(*args)</td>
+<td>Gets the row of the matrix as a row vector</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.rowSum" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.rowSum"><tt class="xref py py-obj docutils literal"><span class="pre">rowSum</span></tt></a>(*args)</td>
+<td>Sums a row</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAdd" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAdd"><tt class="xref py py-obj docutils literal"><span class="pre">scalarAdd</span></tt></a>(*args)</td>
+<td>Adds a scalar to this matrix and returns a new matrix.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAddEquals" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAddEquals"><tt class="xref py py-obj docutils literal"><span class="pre">scalarAddEquals</span></tt></a>(*args)</td>
+<td>Adds a scalar s to this matrix, replacing the original matrix with the result</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMult" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMult"><tt class="xref py py-obj docutils literal"><span class="pre">scalarMult</span></tt></a>(*args)</td>
+<td>Multiplies a scalar to this matrix and returns a new matrix.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMultEquals" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMultEquals"><tt class="xref py py-obj docutils literal"><span class="pre">scalarMultEquals</span></tt></a>(*args)</td>
+<td>Multiplies a scalar s to this matrix, replacing the original matrix with the result</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.set" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.set"><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt></a>(*args)</td>
+<td>Sets the matrix value at row, col.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.setChecked" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.setChecked"><tt class="xref py py-obj docutils literal"><span class="pre">setChecked</span></tt></a>(*args)</td>
+<td>Sets the matrix value at row, col.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.solve" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.solve"><tt class="xref py py-obj docutils literal"><span class="pre">solve</span></tt></a>(*args)</td>
+<td>Solves the matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.tcrossproduct" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.tcrossproduct"><tt class="xref py py-obj docutils literal"><span class="pre">tcrossproduct</span></tt></a>(*args)</td>
+<td>Gets XX&#8217; or Xdm&#8217;, where X is this matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.transpose" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.transpose"><tt class="xref py py-obj docutils literal"><span class="pre">transpose</span></tt></a>(*args)</td>
+<td>Gets the tranpose of this matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.column">
+<tt class="descname">column</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.column"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.column" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the column of the matrix as a column vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>column</em> (int <strong>j</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>j</strong> (<em>int</em>) &#8211; A column index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The jth row of this matrix as a column vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnRank">
+<tt class="descname">columnRank</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.columnRank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnRank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the column rank of this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>columnRank</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The column rank of this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnSum">
+<tt class="descname">columnSum</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.columnSum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnSum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sums a column</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>columnSum</em> (int <strong>column</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>column</strong> (<em>int</em>) &#8211; The column index to sum</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The sum of the elements in this column</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">double</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.concatenate">
+<tt class="descname">concatenate</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.concatenate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.concatenate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts two matrices together</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>concatenate</em> (DoubleMatrix <strong>dm</strong>, boolean <strong>rows</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dm</strong> (<em>DoubleMatrix</em>) &#8211; a DoubleMatrix</li>
+<li><strong>rows</strong> (<em>boolean</em>) &#8211; true if rows are to be concatenated, false if columns are to be concatenated</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Returns X with dm appended, where X is this matrix</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">DoubleMatrix</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.copy">
+<tt class="descname">copy</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.copy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a copy of the matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>copy</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A copy of the matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.crossproduct">
+<tt class="descname">crossproduct</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.crossproduct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.crossproduct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get X&#8217;X or X&#8217;dm, where X is this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>crossproduct</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>crossproduct</em> (DoubleMatrix <strong>dm</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dm</strong> (<em>DoubleMatrix</em>) &#8211; The second matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The cross product</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverse">
+<tt class="descname">generalizedInverse</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.generalizedInverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the generalized inverse of a square matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>generalizedInverse</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The generalized inverse of a square matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverseWithRank">
+<tt class="descname">generalizedInverseWithRank</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.generalizedInverseWithRank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverseWithRank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inverts the matrix and returns the rank as the first element in rank[]. The
+original matrix is not modified</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>generalizedInverseWithRank</em> (int[] <strong>rank</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rank</strong> (<em>int[]</em>) &#8211; Array to hold element where rank will be stored</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A generalized inverse of this matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.get">
+<tt class="descname">get</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets data and doesn&#8217;t check to make sure they are in the matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>get</em> (int <strong>row</strong>, int <strong>col</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> (<em>int</em>) &#8211; The zero-based row index</li>
+<li><strong>col</strong> (<em>int</em>) &#8211; The zero-based column index</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The value at row, col</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getChecked">
+<tt class="descname">getChecked</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.getChecked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getChecked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets data and checks to make sure they are in the matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getChecked</em> (int <strong>row</strong>, int <strong>col</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> (<em>int</em>) &#8211; The zero-based row index</li>
+<li><strong>col</strong> (<em>int</em>) &#8211; The zero-based column index</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The value at row, col</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getEigenvalueDecomposition">
+<tt class="descname">getEigenvalueDecomposition</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.getEigenvalueDecomposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getEigenvalueDecomposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the Eigenvalue decomposition of this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getEigenvalueDecomposition</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An Eigenvalue Decomposition of this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">EigenvalueDecomposition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSelection">
+<tt class="descname">getSelection</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.getSelection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSelection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new matrix consisting of the rows and columns of this matrix in the
+order specified. If rows or columns is null, then all rows or columns, respectively,
+will be included</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getSelection</em> (int[] <strong>rows</strong>, int[] <strong>columns</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rows</strong> (<em>int[]</em>) &#8211; The rows to be included in the new matrix</li>
+<li><strong>columns</strong> (<em>int[]</em>) &#8211; The columns to be included in the new matrix</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A new matrix consisting of the specified rows and columns</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">DoubleMatrix</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSingularValueDecomposition">
+<tt class="descname">getSingularValueDecomposition</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.getSingularValueDecomposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSingularValueDecomposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the Singular Value decomposition of this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getSingularValueDecomposition</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An Singular Value Decomposition of this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">SingularValueDecomposition</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getXtXGM">
+<tt class="descname">getXtXGM</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.getXtXGM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getXtXGM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets an array of three DoubleMatrices. Where X is this matrix, the first is
+X&#8217;X, the second is the inverse of X&#8217;X, and the third is I-XGX&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getXtXGM</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">An array of three DoubleMatrices. Where X is this matrix, the first is X&#8217;X, the second is the inverse of X&#8217;X, and the third is I-XGX&#8217;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.inverse">
+<tt class="descname">inverse</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.inverse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.inverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the inverse of a square matrix, without modifying the original matrix.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>inverse</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The inverse of a square matrix if it is non-singular, null otherwise</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.invert">
+<tt class="descname">invert</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>This inverts a square matrix, replacing the original with the inverse</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>invert</em> ()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minus">
+<tt class="descname">minus</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.minus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts a matrix from this matrix, X, without modifying X</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>minus</em> (DoubleMatrix <strong>dm</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dm</strong> (<em>DoubleMatrix</em>) &#8211; A DoubleMatrix to subtract</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A new DoubleMatrix created by subtracting dm from this matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minusEquals">
+<tt class="descname">minusEquals</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.minusEquals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minusEquals" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function subtracts dm, modifying the original matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>minusEquals</em> (DoubleMatrix <strong>dm</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dm</strong> (<em>DoubleMatrix</em>) &#8211; A DoubleMatrix to subtract</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.mult">
+<tt class="descname">mult</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.mult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.mult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiply this matrix times another</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>mult</em> (DoubleMatrix <strong>dm</strong>, boolean <strong>transpose</strong>, boolean <strong>transposedm</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>mult</em> (DoubleMatrix <strong>dm</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dm</strong> (<em>DoubleMatrix</em>) &#8211; A double matrix</li>
+<li><strong>transpose</strong> (<em>boolean</em>) &#8211; If true, this matrix will be transposed before multiplying</li>
+<li><strong>transposedm</strong> (<em>boolean</em>) &#8211; If true, dm will be transposed before multiplying</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The multiplied matrix</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">DoubleMatrix</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.multadd">
+<tt class="descname">multadd</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.multadd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.multadd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using this function for combining multiplication and addition allows the
+implementing library to optimize the operations</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>multadd</em> (DoubleMatrix <strong>A</strong>, DoubleMatrix <strong>B</strong>, double <strong>alpha</strong>, double <strong>beta</strong>, boolean <strong>transpose</strong>, boolean <strong>transposeA</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>A</strong> (<em>DoubleMatrix</em>) &#8211; The matrix to be multiplied</li>
+<li><strong>B</strong> (<em>DoubleMatrix</em>) &#8211; The matrix to be added, can be null</li>
+<li><strong>alpha</strong> (<em>double</em>) &#8211; scalar multiplier for A</li>
+<li><strong>beta</strong> (<em>double</em>) &#8211; scalar multiplier for B</li>
+<li><strong>transpose</strong> (<em>boolean</em>) &#8211; If true, X is transposed</li>
+<li><strong>transposeA</strong> (<em>boolean</em>) &#8211; If true, A is transposed</li>
+<li><strong>transposeB</strong> &#8211; If true, B is transposed</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">alpha*XA+beta*B where X is this matrix</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">DoubleMatrix</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfColumns">
+<tt class="descname">numberOfColumns</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.numberOfColumns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfColumns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of columns in this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>numberOfColumns</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of columns in this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfRows">
+<tt class="descname">numberOfRows</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.numberOfRows"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfRows" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of rows in this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>numberOfRows</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of rows in this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plus">
+<tt class="descname">plus</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.plus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a matrix from this matrix, X, without modifying X</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>plus</em> (DoubleMatrix <strong>dm</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dm</strong> (<em>DoubleMatrix</em>) &#8211; A DoubleMatrix to add</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A new DoubleMatrix created by adding dm from this matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plusEquals">
+<tt class="descname">plusEquals</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.plusEquals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plusEquals" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function adds dm, modifying the original matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>plusEquals</em> (DoubleMatrix <strong>dm</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dm</strong> (<em>DoubleMatrix</em>) &#8211; A DoubleMatrix to add</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.row">
+<tt class="descname">row</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.row"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.row" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the row of the matrix as a row vector</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>row</em> (int <strong>i</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>i</strong> (<em>int</em>) &#8211; a row index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The ith row of this matrix as a column vector</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.rowSum">
+<tt class="descname">rowSum</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.rowSum"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.rowSum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sums a row</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>rowSum</em> (int <strong>row</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>row</strong> (<em>int</em>) &#8211; The row index to sum</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The sum of the elements in this row</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">double</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAdd">
+<tt class="descname">scalarAdd</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.scalarAdd"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAdd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a scalar to this matrix and returns a new matrix. The original is
+not modified</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>scalarAdd</em> (double <strong>s</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<em>double</em>) &#8211; a scalar</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The sum of this matrix and a scalar s</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAddEquals">
+<tt class="descname">scalarAddEquals</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.scalarAddEquals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAddEquals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a scalar s to this matrix, replacing the original matrix with the result</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>scalarAddEquals</em> (double <strong>s</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<em>double</em>) &#8211; a scalar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMult">
+<tt class="descname">scalarMult</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.scalarMult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplies a scalar to this matrix and returns a new matrix. The original is
+not modified</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>scalarMult</em> (double <strong>s</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<em>double</em>) &#8211; a scalar</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The sum of this matrix and a scalar s</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMultEquals">
+<tt class="descname">scalarMultEquals</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.scalarMultEquals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMultEquals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiplies a scalar s to this matrix, replacing the original matrix with the result</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>scalarMultEquals</em> (double <strong>s</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>s</strong> (<em>double</em>) &#8211; a scalar</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.set">
+<tt class="descname">set</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the matrix value at row, col. The coordinates are not checked to make
+sure they fall in the matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>set</em> (int <strong>row</strong>, int <strong>col</strong>, double <strong>value</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>row</strong> (<em>int</em>) &#8211; The zero-based row index</li>
+<li><strong>col</strong> (<em>int</em>) &#8211; The zero-based column index</li>
+<li><strong>value</strong> (<em>double</em>) &#8211; The value to be set at row, col</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.setChecked">
+<tt class="descname">setChecked</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.setChecked"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.setChecked" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the matrix value at row, col. The coordinates are checked to make
+sure they fall in the matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>setChecked</em> (int <strong>row</strong>, int <strong>col</strong>, double <strong>value</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>row</strong> (<em>int</em>) &#8211; The zero-based row index</li>
+<li><strong>col</strong> (<em>int</em>) &#8211; The zero-based column index</li>
+<li><strong>value</strong> (<em>double</em>) &#8211; The value to be set at row, col</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.solve">
+<tt class="descname">solve</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.solve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solves the matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>solve</em> (DoubleMatrix <strong>Y</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>Y</strong> (<em>DoubleMatrix</em>) &#8211; a DoubleMatrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The least squares solutions for B, where XB = Y and X is this matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.tcrossproduct">
+<tt class="descname">tcrossproduct</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.tcrossproduct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.tcrossproduct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets XX&#8217; or Xdm&#8217;, where X is this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>tcrossproduct</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>tcrossproduct</em> (DoubleMatrix <strong>dm</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dm</strong> (<em>DoubleMatrix</em>) &#8211; The second matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The tcrossproduct</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.transpose">
+<tt class="descname">transpose</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#DoubleMatrix.transpose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the tranpose of this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>transpose</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The transpose of this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.metaDoubleMatrix">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.</tt><tt class="descname">metaDoubleMatrix</tt><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix.html#metaDoubleMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.metaDoubleMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory">
+<span id="tasselpy-net-maizegenetics-matrixalgebra-matrix-doublematrixfactory-module"></span><h2>TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.</tt><tt class="descname">DoubleMatrixFactory</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrixFactory.html#DoubleMatrixFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p>Builder for creating DoubleMatrix objects</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.compose" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.compose"><tt class="xref py py-obj docutils literal"><span class="pre">compose</span></tt></a>(*args)</td>
+<td>Puts together a DoubleMatrix out of multiple matrices</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.diagonal" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.diagonal"><tt class="xref py py-obj docutils literal"><span class="pre">diagonal</span></tt></a>(*args)</td>
+<td>Makes a diagonal matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.getType" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.getType"><tt class="xref py py-obj docutils literal"><span class="pre">getType</span></tt></a>(*args)</td>
+<td>Gets the FactoryType</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.identity" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.identity"><tt class="xref py py-obj docutils literal"><span class="pre">identity</span></tt></a>(*args)</td>
+<td>Makes an identity matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.make" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.make"><tt class="xref py py-obj docutils literal"><span class="pre">make</span></tt></a>(*args)</td>
+<td>Produces a DoubleMatrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.setDefault" title="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.setDefault"><tt class="xref py py-obj docutils literal"><span class="pre">setDefault</span></tt></a>(*args)</td>
+<td>Sets the default DoubleMatrix type</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.FactoryType">
+<tt class="descname">FactoryType</tt><em class="property"> = &lt;ejml: 0, jblas: 1, colt: 2, blas: 3&gt;</em><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.FactoryType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrixFactory.html#DoubleMatrixFactory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for DoubleMatrixFactory</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>DoubleMatrixFactory</em> (FactoryType <strong>type</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>type</strong> (<em>FactoryType</em>) &#8211; One of the DoubleMatrixFactory.FactoryType types (ejml,jblas,colt,blas)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.compose">
+<tt class="descname">compose</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrixFactory.html#DoubleMatrixFactory.compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.compose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts together a DoubleMatrix out of multiple matrices</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>compose</em> (DoubleMatrix[][] <strong>components</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>components</strong> (<em>DoubleMatrix[][]</em>) &#8211; 2D array of submatrices to form the matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A DoubleMatrix composed of the submatrices</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.diagonal">
+<tt class="descname">diagonal</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrixFactory.html#DoubleMatrixFactory.diagonal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.diagonal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a diagonal matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>diagonal</em> (double[] <strong>diag</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>diag</strong> (<em>double[]</em>) &#8211; The elements for the diagonal of the matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A DoubleMatrix with the specified elements along the diagonal</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.getType">
+<tt class="descname">getType</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrixFactory.html#DoubleMatrixFactory.getType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.getType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the FactoryType</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getType</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The FactoryType</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">FactoryType</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.identity">
+<tt class="descname">identity</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrixFactory.html#DoubleMatrixFactory.identity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes an identity matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>identity</em> (int <strong>n</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> (<em>int</em>) &#8211; The size of the identity matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A DoubleMatrix representing an identity matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.make">
+<tt class="descname">make</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrixFactory.html#DoubleMatrixFactory.make"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.make" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces a DoubleMatrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>make</em> (int <strong>row</strong>, int <strong>col</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>make</em> (int <strong>row</strong>, int <strong>col</strong>, double[] <strong>values</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>make</em> (int <strong>row</strong>, int <strong>col</strong>, double[] <strong>values</strong>, boolean <strong>columnMajor</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>make</em> (double[][] <strong>values</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>make</em> (int <strong>row</strong>, int <strong>col</strong>, double <strong>val</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> (<em>int</em>) &#8211; The number of rows in this matrix</li>
+<li><strong>col</strong> (<em>int</em>) &#8211; The number of columns in this matrix</li>
+<li><strong>values</strong> (<em>double[][]</em>) &#8211; The values for the matrix, listed row-wise</li>
+<li><strong>columnMajor</strong> (<em>boolean</em>) &#8211; Flag the values as listed column-wise</li>
+<li><strong>val</strong> (<em>double</em>) &#8211; A value to fill the matrix with</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A DoubleMatrix</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">DoubleMatrix</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.setDefault">
+<em class="property">static </em><tt class="descname">setDefault</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/Matrix/DoubleMatrixFactory.html#DoubleMatrixFactory.setDefault"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory.DoubleMatrixFactory.setDefault" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the default DoubleMatrix type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>setDefault</em> (FactoryType <strong>type</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>type</strong> (<em>FactoryType</em>) &#8211; One of the DoubleMatrixFactory.FactoryType types</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.net.maizegenetics.matrixalgebra.Matrix package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix">TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory">TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="TASSELpy.net.maizegenetics.matrixalgebra.html"
+                        title="previous chapter">TASSELpy.net.maizegenetics.matrixalgebra package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.net.maizegenetics.matrixalgebra.Matrix.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.net.maizegenetics.matrixalgebra.html" title="TASSELpy.net.maizegenetics.matrixalgebra package"
+             >previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.matrixalgebra.html" >TASSELpy.net.maizegenetics.matrixalgebra package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

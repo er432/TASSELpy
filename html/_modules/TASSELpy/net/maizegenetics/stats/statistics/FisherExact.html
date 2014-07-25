@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.stats.statistics.FisherExact &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.stats.statistics.FisherExact</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Boolean</span> <span class="kn">import</span> <span class="n">metaBoolean</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Double</span> <span class="kn">import</span> <span class="n">metaDouble</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;FisherExact&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/stats/statistics/FisherExact&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="FisherExact"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.stats.statistics.html#TASSELpy.net.maizegenetics.stats.statistics.FisherExact.FisherExact">[docs]</a><span class="k">class</span> <span class="nc">FisherExact</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FisherExact&#39;</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This does a Fisher Exact test.  The Fisher&#39;s Exact test procedure</span>
+<span class="sd">    calculates an exact probability value for the relationship between</span>
+<span class="sd">    two dichotomous variables, as found in a two by two crosstable. The</span>
+<span class="sd">    program calculates the difference between the data observed and the</span>
+<span class="sd">    data expected, considering the given marginal and the assumptions</span>
+<span class="sd">    of the model of independence. It works in exactly the same way as</span>
+<span class="sd">    the Chi-square test for independence; however, the Chi-square gives</span>
+<span class="sd">    only an estimate of the true probability value, an estimate which</span>
+<span class="sd">    might not be very accurate if the marginal is very uneven or if</span>
+<span class="sd">    there is a small value (less than five) in one of the cells.</span>
+
+<span class="sd">    It uses an array of factorials initialized at the beginning to</span>
+<span class="sd">    provide speed.  There could be better ways to do this.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c">## Constructor for FisherExact table</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FisherExact&#39;</span><span class="p">],</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">)))</span>
+<div class="viewcode-block" id="FisherExact.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.stats.statistics.html#TASSELpy.net.maizegenetics.stats.statistics.FisherExact.FisherExact.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor for FisherExact table</span>
+
+<span class="sd">        FisherExact(int maxSize)</span>
+<span class="sd">        FisherExact(int maxSize, boolean useLookup)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        FisherExact(int maxSize)</span>
+<span class="sd">            maxSize -- the maximum sum that will be encountered by the table (a+b+c+d)</span>
+<span class="sd">        FisherExact(int maxSize, boolean useLookup)</span>
+<span class="sd">            maxSize -- the maximum sum that will be encountered by the table (a+b+c+d)</span>
+<span class="sd">            useLookup -- doesn&#39;t appear to actually be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Calculates the P-value for this specific state</span>
+    <span class="c"># a,b,c, and d are the 4 cells in a 2x2 table</span>
+    <span class="c"># @return The p-value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getP&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="FisherExact.getP"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.stats.statistics.html#TASSELpy.net.maizegenetics.stats.statistics.FisherExact.FisherExact.getP">[docs]</a>    <span class="k">def</span> <span class="nf">getP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the P-value for this specific state</span>
+
+<span class="sd">        final double getP(int a, int b, int c, int d)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        a, b, c, and d are the 4 cells in a 2x2 table</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The p-value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Calculates the one-tail P-value for the Fisher Exact test. Deterimes whether to</span>
+    <span class="c"># calculate the right or left-tial, thereby always returning the smallest p-value</span>
+    <span class="c"># @return one-tailed P-value (right or left, whichever is smallest)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getCumlativeP&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="FisherExact.getCumulativeP"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.stats.statistics.html#TASSELpy.net.maizegenetics.stats.statistics.FisherExact.FisherExact.getCumulativeP">[docs]</a>    <span class="k">def</span> <span class="nf">getCumulativeP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the one-tail P-value for the Fisher Exact test. Determines whether to</span>
+<span class="sd">        calculate the right- or left- tail, thereby always returning the smallest p-value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        final double getCumlativeP(int a, int b, int c, int d)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        a, b, c, and d are the 4 cells in a 2x2 table</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        one-tailed P-value (right or left, whichever is smallest)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Calculates the right-tail P-value for the Fisher Exact test.</span>
+    <span class="c"># a,b,c, and d are the 4 cells in a 2x2 table</span>
+    <span class="c"># @return right-tailed P-value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getRightTailedP&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="FisherExact.getRightTailedP"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.stats.statistics.html#TASSELpy.net.maizegenetics.stats.statistics.FisherExact.FisherExact.getRightTailedP">[docs]</a>    <span class="k">def</span> <span class="nf">getRightTailedP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the right-tail P-value for the Fisher Exact test.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        final double getRightTailedP(int a, int b, int c, int d)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        a, b, c, and d are the 4 cells in a 2x2 table</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        right-tailed P-value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Calculates the right-tail P-value for the Fisher Exact test.</span>
+    <span class="c"># a,b,c, and d are the 4 cells in a 2x2 table</span>
+    <span class="c"># @param maxP maximum p-value allowed</span>
+    <span class="c"># @return right-tailed P-value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getRightTailedPQuick&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;double&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaDouble</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="FisherExact.getRightTailedPQuick"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.stats.statistics.html#TASSELpy.net.maizegenetics.stats.statistics.FisherExact.FisherExact.getRightTailedPQuick">[docs]</a>    <span class="k">def</span> <span class="nf">getRightTailedPQuick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the right-tail P-value for the Fisher Exact test.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        final double getRightTailedPQuick(int a, int b, int c, int d, double maxP)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        a, b, c, and d are the 4 cells in a 2x2 table</span>
+<span class="sd">        maxP -- maximum p-value possible</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        right-tailed P-value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Calculates the left-tail P-value for the Fisher Exact test.</span>
+    <span class="c"># a,b,c, and d are the 4 cells in a 2x2 table</span>
+    <span class="c"># @return left-tailed P-value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getLeftTailedP&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="FisherExact.getLeftTailedP"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.stats.statistics.html#TASSELpy.net.maizegenetics.stats.statistics.FisherExact.FisherExact.getLeftTailedP">[docs]</a>    <span class="k">def</span> <span class="nf">getLeftTailedP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the left-tail P-value for the Fisher Exact test.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        final double getLeftTailedP(int a, int b, int c, int d)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        a, b, c, and d are the 4 cells in a 2x2 table</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        left-tailed P-value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Calculates the two-tail P-value for the Fisher Exact test.</span>
+    <span class="c"># a,b,c, and d are the 4 cells in a 2x2 table</span>
+    <span class="c"># @return two-tailed P-value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getTwoTailedP&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="FisherExact.getTwoTailedP"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.stats.statistics.html#TASSELpy.net.maizegenetics.stats.statistics.FisherExact.FisherExact.getTwoTailedP">[docs]</a>    <span class="k">def</span> <span class="nf">getTwoTailedP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the two-tail P-value for the Fisher Exact test.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        final double getTwoTailedP(int a, int b, int c, int d)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        a, b, c, and d are the 4 cells in a 2x2 table</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        two-tailed P-value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

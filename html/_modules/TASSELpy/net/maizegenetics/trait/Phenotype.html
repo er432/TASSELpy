@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.trait.Phenotype &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.trait.Phenotype</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.List</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Double</span> <span class="kn">import</span> <span class="n">metaDouble</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.Taxon</span> <span class="kn">import</span> <span class="n">Taxon</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.TaxaList</span> <span class="kn">import</span> <span class="n">TaxaList</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.trait.Trait</span> <span class="kn">import</span> <span class="n">Trait</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaConstructorOverload</span><span class="p">,</span> <span class="n">javaOverload</span><span class="p">,</span> <span class="n">javaGenericOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">javaPrimativeArray</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.util.TableReport</span> <span class="kn">import</span> <span class="n">TableReport</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;List&#39;</span><span class="p">:</span><span class="s">&#39;java/util/List&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Phenotype&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/trait/Phenotype&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Taxon&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/Taxon&#39;</span><span class="p">,</span>
+                <span class="s">&#39;TaxaList&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/TaxaList&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Trait&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/trait/Trait&#39;</span><span class="p">}</span>
+<div class="viewcode-block" id="Phenotype"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype">[docs]</a><span class="k">class</span> <span class="nc">Phenotype</span><span class="p">(</span><span class="n">TableReport</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A collection of data for a set of Taxa. Each taxon is expected to appear only</span>
+<span class="sd">    once in the data. </span>
+<span class="sd">    Data is represented as a two dimensional table of doubles, with taxa as rows</span>
+<span class="sd">    and traits as columns. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Phenotype&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Phenotype&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="Phenotype.__init__"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets data from the phenotype</span>
+    <span class="c"># @param taxon Either the integer or an instance of a taxon</span>
+    <span class="c"># @param trait Either the integer or the instance of a trait</span>
+    <span class="c"># @return The data stored for the given trait and taxon</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getData&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Taxon&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Trait&#39;</span><span class="p">]],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="n">Taxon</span><span class="p">,</span><span class="n">Trait</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span>
+             <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;double[][]&#39;</span><span class="p">),(),</span>
+              <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="Phenotype.getData"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getData">[docs]</a>    <span class="k">def</span> <span class="nf">getData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets data from the phenotype</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double getData(int taxon, int trait)</span>
+<span class="sd">        double getData(Taxon taxon, Trait trait)</span>
+<span class="sd">        double[][] getData()</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        double getData(int taxon, int trait)</span>
+<span class="sd">            taxon -- an integer i, representing the ith row in the data set</span>
+<span class="sd">            trait -- an integer j, representing the jth column in the data set</span>
+<span class="sd">        double getData(Taxon taxon, Trait trait)</span>
+<span class="sd">            taxon -- A taxon in the data set</span>
+<span class="sd">            trait -- A trait in the data set</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The data stored for the given trait and taxon</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sets the double value for this trait and taxon</span>
+    <span class="c"># @param taxon An integer i, representing the ith row in the data set</span>
+    <span class="c"># @param trait An integer j, representing the jth column in the data set</span>
+    <span class="c"># @param value The data to be stored in the ith taxon, jth trait</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;setData&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;double&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaDouble</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Phenotype.setData"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.setData">[docs]</a>    <span class="k">def</span> <span class="nf">setData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the double value for this trait and taxon</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void setData(int taxon, int trait, double value)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- An integer i, representing the ith row in the data set</span>
+<span class="sd">        trait -- An ineger j, representing the jth column in the data set</span>
+<span class="sd">        value -- The data to be stored for the ith taxon, jth trait</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the index of a trait</span>
+    <span class="c"># @param trait trait</span>
+    <span class="c"># @return The index of the trait, representing the column in which the data for this trait is stored</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;whichTrait&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Trait&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">Trait</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Phenotype.whichTrait"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTrait">[docs]</a>    <span class="k">def</span> <span class="nf">whichTrait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the index of a trait</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int whichTrait(Trait trait)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        trait -- trait</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The index of the trait, representing the column in which the data for this trait is stored</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the index of a taxon</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @return The index of the taxon, representing the row in which the data for this taxon is stored</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;whichTaxon&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Taxon&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">Taxon</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Phenotype.whichTaxon"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTaxon">[docs]</a>    <span class="k">def</span> <span class="nf">whichTaxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the index of a taxon</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int whichTaxon(Taxon taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The index of the taxon, representing the row in which the data for this taxon is stored</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets a trait</span>
+    <span class="c"># @param trait an integer j, representing the jth column in the data set</span>
+    <span class="c"># @return The Trait for this column</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getTrait&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Trait&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Trait</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="Phenotype.getTrait"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTrait">[docs]</a>    <span class="k">def</span> <span class="nf">getTrait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a trait</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Trait getTrait(int trait)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        trait -- An integer j, representing the jth column in the data set</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The Trait for this column</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets a taxon</span>
+    <span class="c"># @param taxon An integer j, representing the jth row in the data set</span>
+    <span class="c"># @return The Taxon for this row</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getTaxon&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Taxon&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Taxon</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="Phenotype.getTaxon"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxon">[docs]</a>    <span class="k">def</span> <span class="nf">getTaxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a taxon</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Taxon getTaxon(int taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- An integer j, representing the jth row in the data set</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The Taxon for this row</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the number of taxa or rows in this data set</span>
+    <span class="c"># @return The number of taxa or rows in this data set</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getNumberOfTaxa&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Phenotype.getNumberOfTaxa"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTaxa">[docs]</a>    <span class="k">def</span> <span class="nf">getNumberOfTaxa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the number of taxa or rows in this data set</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getNumberOfTaxa()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The number of taxa or rows in this data set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the number of traits or columns in this data set</span>
+    <span class="c"># @return The number of traits or columns in this data set</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getNumberOfTraits&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Phenotype.getNumberOfTraits"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTraits">[docs]</a>    <span class="k">def</span> <span class="nf">getNumberOfTraits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the number of traits or columns in this data set</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getNumberOfTraits()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The number of traits or columns in this data set</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the traits or columns of this dataset, in order by column number</span>
+    <span class="c"># @return traits or columns of this dataset, in order by column number</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getTraits&quot;</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;List&#39;</span><span class="p">]),(),</span>
+                         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Trait</span><span class="p">,))))</span>
+<div class="viewcode-block" id="Phenotype.getTraits"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTraits">[docs]</a>    <span class="k">def</span> <span class="nf">getTraits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the traits or columns of this dataset, in order by column number</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        List&lt;Trait&gt; getTraits()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The traits or columns of this dataset, in order by column number</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Get the taxa in this data set in order by row number</span>
+    <span class="c"># @return The taxa in this data set in order by row number</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getTaxa&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaList&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TaxaList</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="Phenotype.getTaxa"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxa">[docs]</a>    <span class="k">def</span> <span class="nf">getTaxa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the taxa in this data set in order by row number</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        TaxaList getTaxa()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The taxa in this data set in order by row number</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

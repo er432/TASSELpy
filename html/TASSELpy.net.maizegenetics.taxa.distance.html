@@ -1,0 +1,666 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.taxa.distance package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.net.maizegenetics.taxa package" href="TASSELpy.net.maizegenetics.taxa.html" />
+    <link rel="prev" title="TASSELpy.net.maizegenetics.taxa package" href="TASSELpy.net.maizegenetics.taxa.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.net.maizegenetics.taxa.html" title="TASSELpy.net.maizegenetics.taxa package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.taxa.html" accesskey="U">TASSELpy.net.maizegenetics.taxa package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-net-maizegenetics-taxa-distance-package">
+<h1>TASSELpy.net.maizegenetics.taxa.distance package<a class="headerlink" href="#tasselpy-net-maizegenetics-taxa-distance-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix">
+<span id="tasselpy-net-maizegenetics-taxa-distance-distancematrix-module"></span><h2>TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.</tt><tt class="descname">DistanceMatrix</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix" title="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix</span></tt></a>, <a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.TableReport.TableReport" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.TableReport.TableReport</span></tt></a></p>
+<p>Storage for pairwise distance matrices</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.absoluteDistance" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.absoluteDistance"><tt class="xref py py-obj docutils literal"><span class="pre">absoluteDistance</span></tt></a>(*args)</td>
+<td>Compute absolute distance to second distance matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getClonedDistances</span></tt>(*args)</td>
+<td>Returns the distances as a 2-dimensional array of doubles.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getClosestIndex" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getClosestIndex"><tt class="xref py py-obj docutils literal"><span class="pre">getClosestIndex</span></tt></a>(*args)</td>
+<td>Gets the index of the taxon closest to a given taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getColumnName" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getColumnName"><tt class="xref py py-obj docutils literal"><span class="pre">getColumnName</span></tt></a>(*args)</td>
+<td>Gets a column name</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDistance</span></tt>(*args)</td>
+<td>Returns the distance calculated for two taxa with the indices</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getDistances" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getDistances"><tt class="xref py py-obj docutils literal"><span class="pre">getDistances</span></tt></a>(*args)</td>
+<td>Returns the distances as a 2-dimensional array of doubles (in the actual array used</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getSize</span></tt>(*args)</td>
+<td>Returns the number of rows and columns that the distance matrix has</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxaList</span></tt>(*args)</td>
+<td>Return TaxaList of this matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getTaxon" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getTaxon"><tt class="xref py py-obj docutils literal"><span class="pre">getTaxon</span></tt></a>(*args)</td>
+<td>Gets a Taxon</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isSymmetric</span></tt>(*args)</td>
+<td>Test whether this matrix is a symmetrix distance matrix</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">meanDistance</span></tt>(*args)</td>
+<td>Returns the mean pairwise distnace of this matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.numberOfTaxa" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.numberOfTaxa"><tt class="xref py py-obj docutils literal"><span class="pre">numberOfTaxa</span></tt></a>(*args)</td>
+<td>Gets the number of taxa</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.squaredDistance" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.squaredDistance"><tt class="xref py py-obj docutils literal"><span class="pre">squaredDistance</span></tt></a>(*args)</td>
+<td>Compute squared distance to second distance matrix</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Get string representation of alignment as a string</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.whichIdNumber" title="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.whichIdNumber"><tt class="xref py py-obj docutils literal"><span class="pre">whichIdNumber</span></tt></a>(*args)</td>
+<td>Gets the id number of a taxon</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs DistanceMatrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>DistanceMatrix</em> ()</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>DistanceMatrix</em> (double[][] <strong>distance</strong>, TaxaList <strong>taxaList</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>DistanceMatrix</em> (DistanceMatrix <strong>dm</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>DistanceMatrix</em> (DistanceMatrix <strong>dm</strong>, TaxaList <strong>subset</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>distance</strong> (<em>double[][]</em>) &#8211; distances between taxa</li>
+<li><strong>taxaList</strong> (<em>TaxaList</em>) &#8211; The taxa in the matrix</li>
+<li><strong>dm</strong> (<em>DistanceMatrix</em>) &#8211; DistanceMatrix to clone</li>
+<li><strong>subset</strong> (<em>TaxaList</em>) &#8211; The taxa that you want in the resulting matrix</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.absoluteDistance">
+<tt class="descname">absoluteDistance</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.absoluteDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.absoluteDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute absolute distance to second distance matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>absoluteDistance</em> (DistanceMatrix <strong>mat</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mat</strong> (<em>DistanceMatrix</em>) &#8211; Second DistanceMatrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Absolute distance to second distance matrix</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">double</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getClosestIndex">
+<tt class="descname">getClosestIndex</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.getClosestIndex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getClosestIndex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the index of the taxon closest to a given taxon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getClosestIndex</em> (int <strong>fromIndex</strong>, int[] <strong>exclusion</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fromIndex</strong> (<em>int</em>) &#8211; the index of the thing (taxa, sequence) from which we want to find the closest (excluding self)</li>
+<li><strong>exclusion</strong> (<em>int[]</em>) &#8211; Indexes of things that should not be considered, may be null</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The index of the member closest to the specified</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getColumnName">
+<tt class="descname">getColumnName</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.getColumnName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getColumnName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a column name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getColumnName</em> (int <strong>col</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>col</strong> (<em>int</em>) &#8211; Index of the column</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Name of the column</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getDistances">
+<tt class="descname">getDistances</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.getDistances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getDistances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the distances as a 2-dimensional array of doubles (in the actual array used
+to store the distances)</p>
+<p>Signatures:</p>
+<p>final double[][] getDistances()</p>
+<p>Returns:</p>
+<p>A clone of the array used to store distances</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getTaxon">
+<tt class="descname">getTaxon</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.getTaxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.getTaxon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a Taxon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getTaxon</em> (int <strong>i</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>i</strong> (<em>int</em>) &#8211; The index of the taxon</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The taxon at index i</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Taxon</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.numberOfTaxa">
+<tt class="descname">numberOfTaxa</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.numberOfTaxa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.numberOfTaxa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of taxa</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>numberOfTaxa</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of taxa</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.squaredDistance">
+<tt class="descname">squaredDistance</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.squaredDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.squaredDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute squared distance to second distance matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>squaredDistance</em> (DistanceMatrix <strong>mat</strong>, boolean <strong>weighted</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mat</strong> (<em>DistanceMatrix</em>) &#8211; Second DistanceMatrix</li>
+<li><strong>weighted</strong> (<em>boolean</em>) &#8211; Whether to weight with Fitch margoliash weights</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Squared distance to second distance matrix</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.whichIdNumber">
+<tt class="descname">whichIdNumber</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#DistanceMatrix.whichIdNumber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.DistanceMatrix.whichIdNumber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the id number of a taxon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>whichIdNumber</em> (String <strong>name</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>whichIdNumber</em> (Taxon <strong>id</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>name</strong> (<em>String</em>) &#8211; The name of the taxon as a string</li>
+<li><strong>id</strong> (<em>Taxon</em>) &#8211; The taxon as a Taxon</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The id number of the taxon</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.metaDistanceMatrix">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.</tt><tt class="descname">metaDistanceMatrix</tt><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/DistanceMatrix.html#metaDistanceMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix.metaDistanceMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix">
+<span id="tasselpy-net-maizegenetics-taxa-distance-taxalistmatrix-module"></span><h2>TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.</tt><tt class="descname">TaxaListMatrix</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.TableReport.TableReport" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.TableReport.TableReport</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getClonedDistances" title="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getClonedDistances"><tt class="xref py py-obj docutils literal"><span class="pre">getClonedDistances</span></tt></a>(*args)</td>
+<td>Returns the distances as a 2-dimensional array of doubles.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getDistance" title="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getDistance"><tt class="xref py py-obj docutils literal"><span class="pre">getDistance</span></tt></a>(*args)</td>
+<td>Returns the distance calculated for two taxa with the indices</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getSize" title="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getSize"><tt class="xref py py-obj docutils literal"><span class="pre">getSize</span></tt></a>(*args)</td>
+<td>Returns the number of rows and columns that the distance matrix has</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getTaxaList" title="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getTaxaList"><tt class="xref py py-obj docutils literal"><span class="pre">getTaxaList</span></tt></a>(*args)</td>
+<td>Return TaxaList of this matrix</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.isSymmetric" title="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.isSymmetric"><tt class="xref py py-obj docutils literal"><span class="pre">isSymmetric</span></tt></a>(*args)</td>
+<td>Test whether this matrix is a symmetrix distance matrix</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.meanDistance" title="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.meanDistance"><tt class="xref py py-obj docutils literal"><span class="pre">meanDistance</span></tt></a>(*args)</td>
+<td>Returns the mean pairwise distnace of this matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.toString" title="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.toString"><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt></a>(*args)</td>
+<td>Get string representation of alignment as a string</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getClonedDistances">
+<tt class="descname">getClonedDistances</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix.getClonedDistances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getClonedDistances" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the distances as a 2-dimensional array of doubles.
+Matrix is cloned first so it can be altered freely</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getClonedDistances</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">matrix as 2-d array of doubles</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">double[][]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getDistance">
+<tt class="descname">getDistance</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix.getDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the distance calculated for two taxa with the indices
+row and col</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getDistance</em> (int <strong>row</strong>, int <strong>col</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> (<em>int</em>) &#8211; row</li>
+<li><strong>col</strong> (<em>int</em>) &#8211; col</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Distance for the two taxa at the specified indices</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getSize">
+<tt class="descname">getSize</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix.getSize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of rows and columns that the distance matrix has</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getSize</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of rows and columns in the distance matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getTaxaList">
+<tt class="descname">getTaxaList</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix.getTaxaList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getTaxaList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return TaxaList of this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getTaxaList</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">TaxaList of this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">TaxaList</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.isSymmetric">
+<tt class="descname">isSymmetric</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix.isSymmetric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.isSymmetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether this matrix is a symmetrix distance matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>isSymmetric</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Whether this matrix is a symmetric distance matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.meanDistance">
+<tt class="descname">meanDistance</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix.meanDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.meanDistance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the mean pairwise distnace of this matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>meanDistance</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Mean pairwise distance of this matrix</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">double</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.toString">
+<tt class="descname">toString</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/taxa/distance/TaxaListMatrix.html#TaxaListMatrix.toString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.toString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get string representation of alignment as a string</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>toString</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Representation of alignment as a string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.taxa.distance">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.taxa.distance" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.net.maizegenetics.taxa.distance package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix">TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix">TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.taxa.distance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="TASSELpy.net.maizegenetics.taxa.html"
+                        title="previous chapter">TASSELpy.net.maizegenetics.taxa package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.net.maizegenetics.taxa.distance.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.net.maizegenetics.taxa.html" title="TASSELpy.net.maizegenetics.taxa package"
+             >previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.taxa.html" >TASSELpy.net.maizegenetics.taxa package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

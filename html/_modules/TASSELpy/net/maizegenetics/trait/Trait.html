@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.trait.Trait &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.trait.Trait</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Comparable</span> <span class="kn">import</span> <span class="n">Comparable</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">String</span><span class="p">,</span> <span class="n">metaString</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Boolean</span> <span class="kn">import</span> <span class="n">metaBoolean</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.ArrayList</span> <span class="kn">import</span> <span class="n">ArrayList</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.Map</span> <span class="kn">import</span> <span class="n">Map</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.Set</span> <span class="kn">import</span> <span class="n">Set</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">javaArray</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span><span class="p">,</span> <span class="n">send_to_java</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span> <span class="n">javaConstructorOverload</span><span class="p">,</span> <span class="n">javaStaticOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaGenericOverload</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;ArrayList&#39;</span><span class="p">:</span><span class="s">&#39;java/util/ArrayList&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Map&#39;</span><span class="p">:</span><span class="s">&#39;java/util/Map&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Set&#39;</span><span class="p">:</span><span class="s">&#39;java/util/Set&#39;</span><span class="p">,</span>
+                <span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Trait&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/trait/Trait&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="metaTrait"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.metaTrait">[docs]</a><span class="k">class</span> <span class="nc">metaTrait</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">Trait</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="Trait"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait">[docs]</a><span class="k">class</span> <span class="nc">Trait</span><span class="p">(</span><span class="n">Comparable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Data descriptor that contains information about a trait, factor, covariate, </span>
+<span class="sd">    or other item for which data may be stored. It may contain information </span>
+<span class="sd">    about the experimental unit on which data was collected (factors). It may contain information </span>
+<span class="sd">    about how the data is to be used in an analysis. Data values will be stored as doubles. </span>
+<span class="sd">    In the case of discrete variables, the value stored will be 0, 1, ... indicating the variable level. </span>
+<span class="sd">    For discrete variables, labels or names corresponding to each variable level would be stored as well. </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Trait&#39;</span><span class="p">]</span>
+    <span class="c">## Constructor for trait</span>
+    <span class="c"># @param name this trait</span>
+    <span class="c"># @param isDiscrete true if this trait is discrete, false if it is continuous</span>
+    <span class="c"># @param type the trait type; data, covariate, factor, marker, or exclude</span>
+    <span class="c"># @param properties a property map, which can be null</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Trait&#39;</span><span class="p">],</span>
+                <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">],</span>
+                           <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Map&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+                           <span class="p">(</span><span class="n">metaString</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">,</span><span class="n">metaString</span><span class="p">,</span><span class="n">Map</span><span class="p">)),</span>
+                <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+                 <span class="p">(</span><span class="n">metaString</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">,</span><span class="n">metaString</span><span class="p">)))</span>
+<div class="viewcode-block" id="Trait.__init__"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor for Trait</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Trait(String name, boolean isDiscrete, String type, Map&lt;String, Object&gt; properties)</span>
+<span class="sd">        Trait(String name, boolean isDiscrete, String type)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        Trait(String name, boolean isDiscrete, String type, Map&lt;String, Object&gt; properties)</span>
+<span class="sd">            name -- this trait</span>
+<span class="sd">            isDicrete -- true if this trait is discrete, false if it is continuous</span>
+<span class="sd">            type -- the trait type; data, covariate, factor, marker, or exclude</span>
+<span class="sd">            properties -- a property map, which can be null</span>
+<span class="sd">        Trait(String name, boolean isDiscrete, String type)</span>
+<span class="sd">            name -- this trait</span>
+<span class="sd">            isDicrete -- true if this trait is discrete, false if it is continuous</span>
+<span class="sd">            type -- the trait type; data, covariate, factor, marker, or exclude</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Trait</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Trait</span><span class="p">,),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c">## Gets a copy of an existing trait</span>
+    <span class="c"># @param trait the trait to be copied</span>
+    <span class="c"># @return A copy of the trait</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Trait&#39;</span><span class="p">],</span><span class="s">&quot;getInstance&quot;</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Trait&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Trait&#39;</span><span class="p">]),</span>
+                         <span class="p">(</span><span class="n">metaTrait</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Trait</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="Trait.getInstance"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getInstance">[docs]</a>    <span class="k">def</span> <span class="nf">getInstance</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a copy of an existing trait</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static Trait getInstance(Trait trait)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        trait -- the trait to be copied</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        A copy of the trait</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the name by which the trait is identified</span>
+    <span class="c"># @return Name by which the trait is identified</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getName&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.getName"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getName">[docs]</a>    <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the name by which the trait is identified</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String getName()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Name by which the trait is identified</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets whether this trait is discrete</span>
+    <span class="c"># @return true if this trait is discrete, false if it is continuous</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isDiscrete&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.isDiscrete"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.isDiscrete">[docs]</a>    <span class="k">def</span> <span class="nf">isDiscrete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets whether this trait is discrete</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isDiscrete()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if this trait is discrete, false if it is continuous</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sets the level labels</span>
+    <span class="c"># @param levelLabels for a discrete trait, the names of the levels or values this</span>
+    <span class="c"># trait can take</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;setLevelLabels&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">javaArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="n">String</span><span class="p">),),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.setLevelLabels"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.setLevelLabels">[docs]</a>    <span class="k">def</span> <span class="nf">setLevelLabels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the level labels</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void setLevelLabels(String[] levelLabels)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        levelLabels -- for a discrete trait, the names of the levels or values this trait</span>
+<span class="sd">                       can take</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the level labels</span>
+    <span class="c"># @return For a discrete trait, the names of the levels or values this trait can take</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getLevelLabels&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(),</span>
+                   <span class="n">String</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.getLevelLabels"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabels">[docs]</a>    <span class="k">def</span> <span class="nf">getLevelLabels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the level labels</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String[] getLevelLabels()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        For a discrete trait, the names of the levels or values this trait can take</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the name of a level</span>
+    <span class="c"># @param level The level number (0,1,...)</span>
+    <span class="c"># @return The name of this level</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getLevelLabel&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.getLevelLabel"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabel">[docs]</a>    <span class="k">def</span> <span class="nf">getLevelLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the name of a level</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String getLevelLabel(int level)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        level -- the level number (0,1,...)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The name of this level</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the number of levels</span>
+    <span class="c"># @return The number of levels</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getNumberOfLevels&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.getNumberOfLevels"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfLevels">[docs]</a>    <span class="k">def</span> <span class="nf">getNumberOfLevels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the number of levels</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getNumberOfLevels()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The number of levels</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the number of entries in the property map</span>
+    <span class="c"># @return The number of entries in the property map</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getNumberOfProperties&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.getNumberOfProperties"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfProperties">[docs]</a>    <span class="k">def</span> <span class="nf">getNumberOfProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the number of entries in the property map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getNumberOfProperties()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The number of entries in the property map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;getProperties&quot;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Set&#39;</span><span class="p">]),(),</span>
+                 <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Map</span><span class="o">.</span><span class="n">Entry</span><span class="p">,))))</span>
+    <span class="k">def</span> <span class="nf">_getProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c">## The entry set for this trait&#39;s property map</span>
+    <span class="c"># @return The entry Set for this trait&#39;s property map</span>
+<div class="viewcode-block" id="Trait.getProperties"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperties">[docs]</a>    <span class="k">def</span> <span class="nf">getProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The entry set for this trait&#39;s property map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Set&lt;Entry&lt;String, Object&gt;&gt; getProperties()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The entry Set for this trait&#39;s property map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">props</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getProperties</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">props</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="s">&#39;/@1/&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;/@1/&#39;</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="s">&#39;/@2/&#39;</span><span class="p">:</span><span class="n">Object</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">props</span>
+    <span class="c">## Gets the value of this property null if property does not exist</span>
+    <span class="c"># @param The name of a property for this trait</span>
+    <span class="c"># @return The value of this property, null if the property does not exist</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getProperty&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaString</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Object</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">send_to_java</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+<div class="viewcode-block" id="Trait.getProperty"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperty">[docs]</a>    <span class="k">def</span> <span class="nf">getProperty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the value of this property, null if property does not exist</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Object getProperty(String propertyName)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        propertyName -- The name of a property for this trait</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The value of this property null if the property does not exist</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets all the property names for this trait</span>
+    <span class="c"># @return All the property names for this trait</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;getPropertyNames&quot;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Set&#39;</span><span class="p">]),(),</span>
+                 <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">Set</span><span class="p">,</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">String</span><span class="p">,))))</span>
+<div class="viewcode-block" id="Trait.getPropertyNames"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getPropertyNames">[docs]</a>    <span class="k">def</span> <span class="nf">getPropertyNames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets all the property names for this trait</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Set&lt;String&gt; getPropertyNames()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        All the property names for this trait</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Adds a property or sets a new value for an existing property</span>
+    <span class="c"># @param propertyName a name</span>
+    <span class="c"># @param value The value for this property</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;setProperty&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaString</span><span class="p">,</span><span class="n">Object</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.setProperty"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.setProperty">[docs]</a>    <span class="k">def</span> <span class="nf">setProperty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a property or sets a new value for an existing property</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void setProperty(String propertyName, Object value)</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">        </span>
+<span class="sd">        propertyName -- a name</span>
+<span class="sd">        value -- The value for this property</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Adds a new factor and its value or changes the value of an existing factor.</span>
+    <span class="c"># A factor might be an environment or a rep number</span>
+    <span class="c"># @param name This factor&#39;s name</span>
+    <span class="c"># @param value The factor&#39;s value for this trait</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;addFactor&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="n">metaString</span><span class="p">,</span><span class="n">metaString</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.addFactor"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.addFactor">[docs]</a>    <span class="k">def</span> <span class="nf">addFactor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a new factor and its value or changes the value of an existing factor.</span>
+<span class="sd">        A factor might be an environment or a rep number</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void addFactor(String name, String value)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        name -- this factor&#39;s name</span>
+<span class="sd">        value -- the factor&#39;s value for this trait</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the number of factors for this trait</span>
+    <span class="c"># @return The number of factors for this trait</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getNumberOfFactors&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.getNumberOfFactors"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfFactors">[docs]</a>    <span class="k">def</span> <span class="nf">getNumberOfFactors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the number of factors for this trait</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getNumberOfFactors()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The number of factors for this trait</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the names for the factors for this trait. Returns null if</span>
+    <span class="c"># there are no factors</span>
+    <span class="c"># @return Names for the factors for this trait or null if there are no factors</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;getFactorNames&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ArrayList&#39;</span><span class="p">]),(),</span>
+                   <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">ArrayList</span><span class="p">,</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">String</span><span class="p">,))))</span>
+<div class="viewcode-block" id="Trait.getFactorNames"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorNames">[docs]</a>    <span class="k">def</span> <span class="nf">getFactorNames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the names for the factors for this trait. Returns null if</span>
+<span class="sd">        there are no factors</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        ArrayList&lt;String&gt; getFactorNames()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Names for the factors for this trait. Returns null if there</span>
+<span class="sd">        are no factors</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets a factor value</span>
+    <span class="c"># @return The value of this factor, or null if the factor does not exist</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getFactorValue&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaString</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.getFactorValue"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorValue">[docs]</a>    <span class="k">def</span> <span class="nf">getFactorValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a factor value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String getFactorValue(String factorName)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The value of this factor or null if the factor does not exist</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the type of this trait</span>
+    <span class="c"># @return The type of this trait: data, covariate, factor, marker, or exclude</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getType&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.getType"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.getType">[docs]</a>    <span class="k">def</span> <span class="nf">getType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the type of this trait</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String getType()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The type of this trait: data, covariate, factor, marker, or exclude</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sets the type of this trait</span>
+    <span class="c"># @return The type of this trait: data, covariate, factor, marker, or exclude</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;setType&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaString</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.setType"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.setType">[docs]</a>    <span class="k">def</span> <span class="nf">setType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the type of this trait</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void setType(String type)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        type -- The type of this trait: data covariate, factor, marker, or exclude</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether the trait has level</span>
+    <span class="c"># @return true if the trait has levels</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;hasLevels&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Trait.hasLevels"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.trait.html#TASSELpy.net.maizegenetics.trait.Trait.Trait.hasLevels">[docs]</a>    <span class="k">def</span> <span class="nf">hasLevels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether the trait has levels</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean hasLevels()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if the trait has levels</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

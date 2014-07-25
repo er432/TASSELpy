@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.util.TableReport</span> <span class="kn">import</span> <span class="n">TableReport</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.TaxaList</span> <span class="kn">import</span> <span class="n">TaxaList</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span> <span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">javaPrimativeArray</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                <span class="s">&#39;TaxaList&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/TaxaList&#39;</span><span class="p">,</span>
+                <span class="s">&#39;TaxaListMatrix&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/distance/TaxaListMatrix&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="TaxaListMatrix"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix">[docs]</a><span class="k">class</span> <span class="nc">TaxaListMatrix</span><span class="p">(</span><span class="n">TableReport</span><span class="p">):</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaListMatrix&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaListMatrix&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="TaxaListMatrix.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inds</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inds</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Must supply row and column indices&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDistance</span><span class="p">(</span><span class="o">*</span><span class="n">inds</span><span class="p">)</span>
+    <span class="c">## Return TaxaList of this matrix</span>
+    <span class="c"># @return TaxaList of this matrix</span>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getTaxaList&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaList&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TaxaList</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="TaxaListMatrix.getTaxaList"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getTaxaList">[docs]</a>    <span class="k">def</span> <span class="nf">getTaxaList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return TaxaList of this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        TaxaList getTaxaList()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        TaxaList of this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Get string representation of alignment as a string</span>
+    <span class="c"># @return Representation of alignment as a string</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;toString&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="TaxaListMatrix.toString"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.toString">[docs]</a>    <span class="k">def</span> <span class="nf">toString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get string representation of alignment as a string</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String toString()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Representation of alignment as a string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the number of rows and columns that the distance matrix has</span>
+    <span class="c"># @return Number of rows and columns in the distance matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getSize&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="TaxaListMatrix.getSize"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getSize">[docs]</a>    <span class="k">def</span> <span class="nf">getSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the number of rows and columns that the distance matrix has</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getSize()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of rows and columns in the distance matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the distances as a 2-dimensional array of doubles.</span>
+    <span class="c"># Matrix is cloned first so it can be altered freely</span>
+    <span class="c"># @return matrix as 2-d array of doubles</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getClonedDistances&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&quot;double[][]&quot;</span><span class="p">),(),</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="TaxaListMatrix.getClonedDistances"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getClonedDistances">[docs]</a>    <span class="k">def</span> <span class="nf">getClonedDistances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the distances as a 2-dimensional array of doubles.</span>
+<span class="sd">        Matrix is cloned first so it can be altered freely</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double[][] getClonedDistances()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        matrix as 2-d array of doubles</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the distance calculated for two taxa with the indices row</span>
+    <span class="c"># and col</span>
+    <span class="c"># @param row row</span>
+    <span class="c"># @param col col</span>
+    <span class="c"># @return The distance for the taxa at the specified row and col</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getDistance&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="TaxaListMatrix.getDistance"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.getDistance">[docs]</a>    <span class="k">def</span> <span class="nf">getDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the distance calculated for two taxa with the indices</span>
+<span class="sd">        row and col</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double getDistance(int row, int col)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        row -- row</span>
+<span class="sd">        col -- col</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Distance for the two taxa at the specified indices</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the mean pairwise distance of this matrix</span>
+    <span class="c"># @return Mean pairwise distance of this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;meanDistance&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;double&#39;</span><span class="p">),(),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="TaxaListMatrix.meanDistance"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.meanDistance">[docs]</a>    <span class="k">def</span> <span class="nf">meanDistance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the mean pairwise distnace of this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double meanDistance()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Mean pairwise distance of this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Test whether this matrix is a symmetric distance matrix</span>
+    <span class="c"># @return Whether this matrix is a symmetric distance matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isSymmetric&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="TaxaListMatrix.isSymmetric"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.taxa.distance.html#TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix.TaxaListMatrix.isSymmetric">[docs]</a>    <span class="k">def</span> <span class="nf">isSymmetric</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Test whether this matrix is a symmetrix distance matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isSymmetric()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Whether this matrix is a symmetric distance matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

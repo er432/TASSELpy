@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.utils.Overloading &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.utils.Overloading</h1><div class="highlight"><pre>
+<span class="c">#from TASSELpy.javaObj import javaObj,genericJavaObj</span>
+<span class="kn">import</span> <span class="nn">TASSELpy.javaObj</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.OrderedSet</span> <span class="kn">import</span> <span class="n">lruOrderedSet</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span><span class="p">,</span><span class="n">update_wrapper</span><span class="p">,</span><span class="n">partial</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">}</span>
+<span class="n">str_class</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">find_class</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">])</span>
+<span class="c">## Define numpy types that need to be converted to java arrays</span>
+<div class="viewcode-block" id="make_string_array"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.make_string_array">[docs]</a><span class="k">def</span> <span class="nf">make_string_array</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="n">java_arr</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_object_array</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">),</span><span class="n">str_class</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+        <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">set_object_array_element</span><span class="p">(</span><span class="n">java_arr</span><span class="p">,</span>
+                    <span class="n">i</span><span class="p">,</span><span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">new_string_utf</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">java_arr</span>
+</div>
+<span class="n">array_conversion_func_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_byte_array</span><span class="p">,</span>
+                              <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_int_array</span><span class="p">,</span>
+                              <span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">make_long_array</span><span class="p">,</span>
+                              <span class="n">np</span><span class="o">.</span><span class="n">string_</span><span class="p">:</span> <span class="n">make_string_array</span><span class="p">}</span>
+
+<span class="c">## Dictionary that automatically inserts both k-&gt;v and v-&gt;k under set</span>
+<div class="viewcode-block" id="bidirectional_dict"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.bidirectional_dict">[docs]</a><span class="k">class</span> <span class="nc">bidirectional_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="c">## Instantiates bidirectionary dictionary</span>
+    <span class="c"># @param args A bunch of pairs to be (key,values)</span>
+<div class="viewcode-block" id="bidirectional_dict.__init__"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.bidirectional_dict.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">bidirectional_dict</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span></div>
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">bidirectional_dict</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__setitem__</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">bidirectional_dict</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__setitem__</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+
+<span class="c">## Define a set of equivalent python types in signatures</span></div>
+<span class="n">eq_types</span> <span class="o">=</span> <span class="n">bidirectional_dict</span><span class="p">((</span><span class="nb">int</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),(</span><span class="nb">long</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span>
+                              <span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="nb">unicode</span><span class="p">))</span>
+<span class="c">## Define a set of types that, while actually equivalent in python,</span>
+<span class="c"># should not be considered equivalent for signatures</span>
+<span class="n">segregate_types</span> <span class="o">=</span> <span class="n">bidirectional_dict</span><span class="p">((</span><span class="nb">int</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+
+<span class="c">## Default-dict type dictionary to work with signatures</span>
+<div class="viewcode-block" id="signature_dict"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.signature_dict">[docs]</a><span class="k">class</span> <span class="nc">signature_dict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__missing__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="c">## Find the right key</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">):</span> <span class="k">continue</span>
+            <span class="n">use</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="c">## Check all arguments in key to see if everything</span>
+            <span class="c"># subclass instance of existing key</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">arg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+                <span class="c"># Skip if NoneType</span>
+                <span class="k">if</span> <span class="n">arg</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="bp">None</span><span class="p">):</span> <span class="k">continue</span>
+                <span class="c"># Check if the arg type should be segregated from the k[i] type</span>
+                <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">segregate_types</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">arg</span> <span class="o">==</span> <span class="n">segregate_types</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]]:</span>
+                        <span class="n">use</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="k">break</span>
+                <span class="c"># Check if k[i] a subclass of this type in key</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span><span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                    <span class="k">if</span> <span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">eq_types</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">arg</span> <span class="o">==</span> <span class="n">eq_types</span><span class="p">[</span><span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]]):</span>
+                            <span class="n">use</span> <span class="o">=</span> <span class="bp">False</span>
+                            <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">use</span> <span class="o">=</span> <span class="bp">False</span>
+                        <span class="k">break</span>
+            <span class="c"># Set the value if appropriate</span>
+            <span class="k">if</span> <span class="n">use</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&quot;Arguments do not fit any signature&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    
+
+<span class="c">## Decorator class used to overload java wrapper functions</span>
+<span class="c"># that are non-constructor members of an instantiated class</span></div>
+<div class="viewcode-block" id="javaOverload"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.javaOverload">[docs]</a><span class="k">class</span> <span class="nc">javaOverload</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a function decorator for a javabridge function that</span>
+<span class="sd">    is the member of a class</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    func_name -- The name of the java function</span>
+<span class="sd">    args -- tuples of form (java_signature, (python arg types),post_process_func)</span>
+<span class="sd">            e.g. (&quot;(I)I&quot;,(int,),None)</span>
+<span class="sd">            or (&quot;(I)[L&quot;,(int,),lambda x: javabridge.get_env().get_long_array_elements(x))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="javaOverload.__init__"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.javaOverload.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a function decorator for a javabridge function that</span>
+<span class="sd">        is the member of a class</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        func_name -- The name of the java function</span>
+<span class="sd">        args -- tuples of form (java_signature, (python arg types),post_process_func)</span>
+<span class="sd">                e.g. (&quot;(I)I&quot;,(int,),None)</span>
+<span class="sd">                or (&quot;(I)[L&quot;,(int,),lambda x: javabridge.get_env().get_long_array_elements(x))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span> <span class="o">=</span> <span class="n">func_name</span>
+        <span class="c">## Create signature dictionary of {(python args) -&gt; function}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span> <span class="o">=</span> <span class="n">signature_dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span> <span class="o">=</span> <span class="n">signature_dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">sig</span><span class="p">,</span> <span class="n">pyargs</span><span class="p">,</span> <span class="n">py_return</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_method</span><span class="p">(</span><span class="n">func_name</span><span class="p">,</span>
+                                                    <span class="n">sig</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">py_return</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">py_return</span></div>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapped_f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c"># Get the right function based on argument types</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+                <span class="c"># Convert any wrapped java items to their java objects</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">o</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">TASSELpy</span><span class="o">.</span><span class="n">javaObj</span><span class="o">.</span><span class="n">javaObj</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">),</span>
+                                   <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+                <span class="n">return_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="n">return_val</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">return_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[()](</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[()](</span><span class="n">return_val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapped_f</span>
+
+<span class="c">## Decorator class used to overload constructors</span></div>
+<div class="viewcode-block" id="javaConstructorOverload"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.javaConstructorOverload">[docs]</a><span class="k">class</span> <span class="nc">javaConstructorOverload</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a function decorator for a javabridge function that is</span>
+<span class="sd">    a constructor for an instantiated class</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    class_name -- The name of the java class, as in path/to/class</span>
+<span class="sd">    args -- tuples of form (java signature,(python arg types))</span>
+<span class="sd">            e.g. (&quot;(I)V&quot;,(int,))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="javaConstructorOverload.__init__"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.javaConstructorOverload.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a function decorator for a javabridge function that is</span>
+<span class="sd">        a constructor for an instantiated class</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        class_name -- The name of the java class, as in path/to/class</span>
+<span class="sd">        args -- tuples of form (java signature,(python arg types))</span>
+<span class="sd">                e.g. (&quot;(I)V&quot;,(int,))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span> <span class="o">=</span> <span class="n">class_name</span>
+        <span class="c">## Create signature dictionary of {(python args) -&gt; function}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span> <span class="o">=</span> <span class="n">signature_dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">sig</span><span class="p">,</span> <span class="n">pyargs</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_new</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span><span class="n">sig</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapped_f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s">&#39;obj&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="c">## If wrapping existing java object, put in</span>
+                <span class="c"># raw Java object as attribute so that methods can</span>
+                <span class="c"># find it</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">o</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;obj&#39;</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c">## Skip if there are no actual java functions being wrapped</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="c"># Get the right function based on argument types</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+                    <span class="c"># Convert any wrapped java items to their java objects</span>
+                    <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                    <span class="c">#args[1:] = map(lambda x: (x.o if not hasattr(x,&#39;toPrimative&#39;) else x.toPrimative()) \</span>
+                    <span class="c">#                    if isinstance(x,TASSELpy.javaObj.javaObj) else x,</span>
+                    <span class="c">#                   args[1:])</span>
+                    <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">o</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">TASSELpy</span><span class="o">.</span><span class="n">javaObj</span><span class="o">.</span><span class="n">javaObj</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">),</span>
+                                       <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[()](</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s">&#39;generic&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="c">## Put in the generic type dictionary if necessary</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&#39;/@</span><span class="si">%d</span><span class="s">/&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">,</span>
+                                                <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;generic&#39;</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">)),</span>
+                                            <span class="n">kwargs</span><span class="p">[</span><span class="s">&#39;generic&#39;</span><span class="p">]))</span>
+            <span class="c"># Make the call from the function body</span>
+            <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapped_f</span>
+
+</div>
+<div class="viewcode-block" id="javaStaticOverload"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.javaStaticOverload">[docs]</a><span class="k">class</span> <span class="nc">javaStaticOverload</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a function decorator for a javabridge static function</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    class_name -- The name of the java class containing the method, as in path/to/class</span>
+<span class="sd">    func_name -- The name of the java function</span>
+<span class="sd">    args -- tuples of form (java signature, (python arg types), post process function)</span>
+<span class="sd">            e.g. (&quot;(I)I&quot;,(int,),None)</span>
+<span class="sd">            or (&quot;(I)[L&quot;,(int,),lambda x: javabridge.get_env().get_long_array_elements(x))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="javaStaticOverload.__init__"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.javaStaticOverload.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a function decorator for a javabridge static function</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        class_name -- The name of the java class containing the method, as in path/to/class</span>
+<span class="sd">        func_name -- The name of the java function</span>
+<span class="sd">        args -- tuples of form (java signature, (python arg types), post process function)</span>
+<span class="sd">                e.g. (&quot;(I)I&quot;,(int,),None)</span>
+<span class="sd">                or (&quot;(I)[L&quot;,(int,),lambda x: javabridge.get_env().get_long_array_elements(x))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span> <span class="o">=</span> <span class="n">func_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_name</span> <span class="o">=</span> <span class="n">class_name</span>
+        <span class="c">## Create signature dictionary of {(python args) -&gt; function}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span> <span class="o">=</span> <span class="n">signature_dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span> <span class="o">=</span> <span class="n">signature_dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">sig</span><span class="p">,</span> <span class="n">pyargs</span><span class="p">,</span> <span class="n">py_return</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_static_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_name</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">,</span><span class="n">sig</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">py_return</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">py_return</span></div>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">wrapped_f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="c"># Get the right function based on argument types</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span><span class="n">args</span><span class="p">))</span>
+            <span class="c"># Convert any wrapped java items to their java objects</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">o</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">TASSELpy</span><span class="o">.</span><span class="n">javaObj</span><span class="o">.</span><span class="n">javaObj</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">),</span>
+                               <span class="n">args</span><span class="p">)</span>
+            <span class="c"># Convert any numpy arrays to their java arrays</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">array_conversion_func_dict</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="p">](</span><span class="n">x</span><span class="p">)</span> \
+                           <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="k">else</span> <span class="n">x</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+            <span class="n">return_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="n">return_val</span><span class="p">)</span>
+        <span class="n">wrapped_f</span> <span class="o">=</span> <span class="n">update_wrapper</span><span class="p">(</span><span class="n">wrapped_f</span><span class="p">,</span><span class="n">f</span><span class="p">,</span>
+                                <span class="n">assigned</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;__doc__&#39;</span><span class="p">,</span><span class="s">&#39;__name__&#39;</span><span class="p">,</span><span class="s">&#39;__module__&#39;</span><span class="p">))</span>
+        <span class="n">wrapped_f</span> <span class="o">=</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">wrapped_f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapped_f</span>
+
+<span class="c">## Decorator class used to overload java wrapper functions</span>
+<span class="c"># that are non-constructor members of an instantiated class</span>
+<span class="c"># and return and/or accept a generic type</span></div>
+<div class="viewcode-block" id="javaGenericOverload"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.javaGenericOverload">[docs]</a><span class="k">class</span> <span class="nc">javaGenericOverload</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a function decorator for a javabridge function that</span>
+<span class="sd">    is the member of a class and returns and/or accepts a generic type</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    func_name -- The name of the java function</span>
+<span class="sd">    args -- tuples of form (java_signature, (python arg types),post_process_func)</span>
+<span class="sd">            Java signatures should have java/lang/Object where generic types go.</span>
+<span class="sd">            </span>
+<span class="sd">            In the Python arg types, a generic types specified as, say (type1,type2)</span>
+<span class="sd">            in the generic argument of the constructor should be specified as a string</span>
+<span class="sd">            &quot;/@1/&quot; or &quot;/@2/&quot;, corresponding to type1 and type2 respectively.</span>
+
+<span class="sd">            In the post_process_func, you can specify None or a function as usual in</span>
+<span class="sd">            order to deal with pre-specified types. Alternatively, you can put in</span>
+<span class="sd">            the string &quot;/@1/&quot; or whatever the corresponding string is for a given type</span>
+<span class="sd">            in order to send the return object through the constructor of that type</span>
+<span class="sd">            (e.g. type1(obj=x)). In the case of types that should receive generic arguments,</span>
+<span class="sd">            you can specify a dictionary with &#39;type&#39; and &#39;generic&#39; keys. For instance,</span>
+<span class="sd">            to send the return object to a wrapper class named MyClass that should receive</span>
+<span class="sd">            type1 as its one and only generic type argument, you can put in the following</span>
+<span class="sd">            dictionary:</span>
+
+<span class="sd">            dict(type=MyClass, generic=(&quot;/@1/&quot;,))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="javaGenericOverload.__init__"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.Overloading.javaGenericOverload.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a function decorator for a javabridge function that</span>
+<span class="sd">        is the member of a class</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        func_name -- The name of the java function</span>
+<span class="sd">        args -- tuples of form (java_signature, (python arg types or None),post_process_func)</span>
+<span class="sd">                For java signature, put /@/ sign where the actual type of the generic should be placed.</span>
+<span class="sd">                For python args/return type put None where it should be</span>
+<span class="sd">                Note that if the returned type is the generic, the post-process function will</span>
+<span class="sd">                cast to the specified type unless otherwise specified</span>
+<span class="sd">                e.g. (&quot;(/@/)I&quot;,(None,),None)</span>
+<span class="sd">                or (&quot;(/@/)[L&quot;,(None,),lambda x: javabridge.get_env().get_long_array_elements(x))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span> <span class="o">=</span> <span class="n">func_name</span>
+        <span class="c"># Store function parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_params</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="c"># Set the sig_set dictionary</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sig_set</span> <span class="o">=</span> <span class="n">lruOrderedSet</span><span class="p">()</span></div>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapped_f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="c">## If the signature is not set, do it</span>
+            <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sig_set</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span> <span class="o">=</span> <span class="n">signature_dict</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span> <span class="o">=</span> <span class="n">signature_dict</span><span class="p">()</span>
+                <span class="c">## Set up signature dictionary ##</span>
+                <span class="k">for</span> <span class="n">sig</span><span class="p">,</span> <span class="n">pyargs</span><span class="p">,</span> <span class="n">py_return</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_params</span><span class="p">:</span>
+                    <span class="c">## Replace any instances of strings in the pyargs with the python type</span>
+                    <span class="n">pyargs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">if</span> \
+                                        <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span> <span class="k">else</span> <span class="n">TASSELpy</span><span class="o">.</span><span class="n">javaObj</span><span class="o">.</span><span class="n">javaObj</span><span class="p">)</span> <span class="k">if</span> \
+                                       <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span> <span class="k">else</span> <span class="n">x</span><span class="p">,</span><span class="n">pyargs</span><span class="p">))</span>
+                    <span class="c"># Set func_dict entries</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_method</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">,</span><span class="n">sig</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">py_return</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+                        <span class="c">## If return function is replaced with string, meaning</span>
+                        <span class="c"># to instantiate generic type</span>
+                        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">py_return</span><span class="p">],</span><span class="s">&#39;generic_dict&#39;</span><span class="p">):</span>
+                            <span class="n">generic_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                                    <span class="nb">sorted</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">py_return</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> \
+                              <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">py_return</span><span class="p">](</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">generic</span><span class="o">=</span><span class="n">generic_tuple</span><span class="p">)</span> <span class="k">if</span> \
+                              <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">javabridge</span><span class="o">.</span><span class="n">JB_Object</span><span class="p">)</span> <span class="k">else</span> \
+                              <span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">py_return</span><span class="p">](</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">def</span> <span class="nf">da_return_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+                                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">JB_Object</span><span class="p">):</span>
+                                    <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">py_return</span><span class="p">](</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+                                <span class="k">elif</span> <span class="n">x</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                                    <span class="k">return</span> <span class="bp">None</span>
+                                <span class="k">else</span><span class="p">:</span>
+                                    <span class="k">try</span><span class="p">:</span>
+                                        <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">py_return</span><span class="p">](</span><span class="n">x</span><span class="p">)</span>
+                                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                                        <span class="n">obj</span> <span class="o">=</span> <span class="bp">None</span>
+                                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">unicode</span><span class="p">):</span>
+                                            <span class="n">obj</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_instance</span><span class="p">(</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                                                            <span class="s">&#39;(Ljava/lang/String;)V&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+                                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                                            <span class="n">obj</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_instance</span><span class="p">(</span><span class="s">&#39;java/lang/Integer&#39;</span><span class="p">,</span>
+                                                            <span class="s">&#39;(Ljava/lang/Integer;)V&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+                                        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+                                            <span class="n">obj</span> <span class="o">=</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_instance</span><span class="p">(</span><span class="s">&#39;java/lang/Double&#39;</span><span class="p">,</span>
+                                                            <span class="s">&#39;(Ljava/lang/Double;)V&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+                                        <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span> <span class="k">return</span> <span class="n">obj</span>
+                                        <span class="k">else</span><span class="p">:</span>
+                                            <span class="k">return</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">py_return</span><span class="p">](</span><span class="n">obj</span><span class="o">=</span><span class="n">obj</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">da_return_func</span>
+                    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">py_return</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                        <span class="c">## If this is a dictionary, specify the generic type</span>
+                        <span class="c"># and make constructor call method</span>
+                        <span class="k">if</span> <span class="s">&#39;type&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">py_return</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Return type of object not given&quot;</span><span class="p">)</span>
+                        <span class="k">elif</span> <span class="s">&#39;generic&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">py_return</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Generic type(s) for return object not given&quot;</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> \
+                              <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">py_return</span><span class="p">[</span><span class="s">&#39;type&#39;</span><span class="p">](</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+                                <span class="n">generic</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="k">if</span> \
+                                                  <span class="nb">isinstance</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">y</span><span class="p">,</span>
+                                                  <span class="n">py_return</span><span class="p">[</span><span class="s">&#39;generic&#39;</span><span class="p">])))</span> <span class="k">if</span> \
+                                        <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">javabridge</span><span class="o">.</span><span class="n">JB_Object</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span>
+                    <span class="k">elif</span> <span class="n">py_return</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="c">## If no return function specified, return raw output</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="c">## If function specified, use that</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">pyargs</span><span class="p">]</span> <span class="o">=</span> <span class="n">py_return</span>
+                <span class="c"># Set sig_set variable to true</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sig_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="c">## Run the function ##</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c"># Get the right function based on argument types</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+                <span class="c"># Convert any wrapped java items to their java objects</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                <span class="c">#args[1:] = map(lambda x: (x.o if not hasattr(x,&#39;toPrimative&#39;) else x.toPrimative()) \</span>
+                <span class="c">#                    if isinstance(x,TASSELpy.javaObj.javaObj) else x,</span>
+                <span class="c">#                   args[1:])</span>
+                <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">o</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">TASSELpy</span><span class="o">.</span><span class="n">javaObj</span><span class="o">.</span><span class="n">javaObj</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">),</span>
+                                   <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+                <span class="n">return_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[</span><span class="n">key</span><span class="p">](</span><span class="n">return_val</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">return_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func_dict</span><span class="p">[()](</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_func_dict</span><span class="p">[()](</span><span class="n">return_val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapped_f</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

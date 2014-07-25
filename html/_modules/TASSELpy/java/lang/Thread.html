@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.lang.Thread &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.java.lang.Thread</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Runnable</span> <span class="kn">import</span> <span class="n">Runnable</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">metaString</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Long</span> <span class="kn">import</span> <span class="n">metaLong</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Runnable&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Runnable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Thread&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Thread&#39;</span><span class="p">,</span>
+                <span class="s">&#39;ThreadGroup&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/ThreadGroup&#39;</span><span class="p">}</span>
+<div class="viewcode-block" id="Thread"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.Thread.Thread">[docs]</a><span class="k">class</span> <span class="nc">Thread</span><span class="p">(</span><span class="n">Object</span><span class="p">,</span> <span class="n">Runnable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    public class Thread</span>
+<span class="sd">    extends Object</span>
+<span class="sd">    implements Runnable</span>
+
+<span class="sd">    A thread is a thread of execution in a program. The Java Virtual Machine</span>
+<span class="sd">    allows an application to have multiple threads of execution running concurrently.</span>
+
+<span class="sd">    Every thread has a priority. Threads with higher priority are executed in</span>
+<span class="sd">    preference to threads with lower priority. Each thread may or may not also be</span>
+<span class="sd">    marked as a daemon. When code running in some thread creates a new Thread object,</span>
+<span class="sd">    the new thread has its priority initially set equal to the priority of the creating</span>
+<span class="sd">    thread, and is a daemon thread if and only if the creating thread is a daemon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Thread&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Thread&#39;</span><span class="p">],</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;void&#39;</span><span class="p">),()),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Runnable&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">Runnable</span><span class="p">,)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Runnable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">Runnable</span><span class="p">,</span><span class="n">metaString</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaString</span><span class="p">,)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ThreadGroup&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Runnable&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">Object</span><span class="p">,</span><span class="n">Runnable</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ThreadGroup&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Runnable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+                      <span class="p">(</span><span class="n">Object</span><span class="p">,</span><span class="n">Runnable</span><span class="p">,</span><span class="n">metaString</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ThreadGroup&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Runnable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">],</span>
+                       <span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">Object</span><span class="p">,</span><span class="n">Runnable</span><span class="p">,</span><span class="n">metaString</span><span class="p">,</span><span class="n">metaLong</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ThreadGroup&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">Object</span><span class="p">,</span><span class="n">metaString</span><span class="p">)))</span>
+<div class="viewcode-block" id="Thread.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.lang.html#TASSELpy.java.lang.Thread.Thread.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructs a new Thread</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Thread()</span>
+<span class="sd">        Thread(Runnable target)</span>
+<span class="sd">        Thread(Runnable target, String name)</span>
+<span class="sd">        Thread(String name)</span>
+<span class="sd">        Thread(ThreadGroup group, Runnable target)</span>
+<span class="sd">        Thread(ThreadGroup group, Runnable target, String name)</span>
+<span class="sd">        Thread(ThreadGroup group, Runnable target, String name, long stackSize)</span>
+<span class="sd">        Thread(ThreadGroup group, String name)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        Thread(Runnable target)</span>
+<span class="sd">            target -- the object whose run method is invoked when this thread is started</span>
+<span class="sd">        Thread(Runnable target, String name)</span>
+<span class="sd">            target -- the object whose run method is invoked when this thread is started</span>
+<span class="sd">            name -- the name of the new thread</span>
+<span class="sd">        Thread(String name)</span>
+<span class="sd">            name -- the name of the new thread</span>
+<span class="sd">        Thread(ThreadGroup group, Runnable target)</span>
+<span class="sd">            group -- The thread group</span>
+<span class="sd">            target --the object whose run method is invoked when this thread is started</span>
+<span class="sd">        Thread(ThreadGroup group, Runnable target, String name)</span>
+<span class="sd">            group -- The thread group</span>
+<span class="sd">            target --the object whose run method is invoked when this thread is started</span>
+<span class="sd">            name -- the name of the new thread</span>
+<span class="sd">        Thread(ThreadGroup group, Runnable target, String name, long stackSize)</span>
+<span class="sd">            group -- The thread group</span>
+<span class="sd">            target --the object whose run method is invoked when this thread is started</span>
+<span class="sd">            name -- the name of the new thread</span>
+<span class="sd">            stackSize -- the desired stack size for the new thread, or zero to indicate this parameter</span>
+<span class="sd">                         is to be ignored</span>
+<span class="sd">        Thread(ThreadGroup group, String name)</span>
+<span class="sd">            group -- The thread group</span>
+<span class="sd">            name -- the name of the new thread</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.release &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.release</h1><div class="highlight"><pre>
+<span class="sd">&quot;&quot;&quot; Release data for Ranger (based on release.py from Networkx library).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="n">basedir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">__file__</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+<div class="viewcode-block" id="write_versionfile"><a class="viewcode-back" href="../../TASSELpy.html#TASSELpy.release.write_versionfile">[docs]</a><span class="k">def</span> <span class="nf">write_versionfile</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Creates a static file containing version information.&quot;&quot;&quot;</span>
+    <span class="n">versionfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span> <span class="s">&#39;version.py&#39;</span><span class="p">)</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="s">&#39;&#39;&#39;&quot;&quot;&quot;</span>
+<span class="s">Version information for Ranger, created during installation.</span>
+
+<span class="s">Do not add this file to the repository.</span>
+
+<span class="s">&quot;&quot;&quot;</span>
+
+<span class="s">import datetime</span>
+
+<span class="s">version = </span><span class="si">%(version)r</span><span class="s"></span>
+<span class="s">date = </span><span class="si">%(date)r</span><span class="s"></span>
+
+<span class="s"># Was Ranger built from a development version? If so, remember that the major</span>
+<span class="s"># and minor versions reference the &quot;target&quot; (rather than &quot;current&quot;) release.</span>
+<span class="s">dev = </span><span class="si">%(dev)r</span><span class="s"></span>
+
+<span class="s"># Format: (name, major, min, revision)</span>
+<span class="s">version_info = </span><span class="si">%(version_info)r</span><span class="s"></span>
+
+<span class="s"># Format: a &#39;datetime.datetime&#39; instance</span>
+<span class="s">date_info = </span><span class="si">%(date_info)r</span><span class="s"></span>
+
+<span class="s"># Format: (vcs, vcs_tuple)</span>
+<span class="s">vcs_info = </span><span class="si">%(vcs_info)r</span><span class="s"></span>
+
+<span class="s">&#39;&#39;&#39;</span>
+
+    <span class="c"># Try to update all information</span>
+    <span class="n">date</span><span class="p">,</span> <span class="n">date_info</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">version_info</span><span class="p">,</span> <span class="n">vcs_info</span> <span class="o">=</span> <span class="n">get_info</span><span class="p">(</span><span class="n">dynamic</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">writefile</span><span class="p">():</span>
+        <span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">versionfile</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">subs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;dev&#39;</span> <span class="p">:</span> <span class="n">dev</span><span class="p">,</span>
+            <span class="s">&#39;version&#39;</span><span class="p">:</span> <span class="n">version</span><span class="p">,</span>
+            <span class="s">&#39;version_info&#39;</span><span class="p">:</span> <span class="n">version_info</span><span class="p">,</span>
+            <span class="s">&#39;date&#39;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span>
+            <span class="s">&#39;date_info&#39;</span><span class="p">:</span> <span class="n">date_info</span><span class="p">,</span>
+            <span class="s">&#39;vcs_info&#39;</span><span class="p">:</span> <span class="n">vcs_info</span>
+        <span class="p">}</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">text</span> <span class="o">%</span> <span class="n">subs</span><span class="p">)</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">vcs_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;mercurial&#39;</span><span class="p">:</span>
+        <span class="c"># Then, we want to update version.py.</span>
+        <span class="n">writefile</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">versionfile</span><span class="p">):</span>
+            <span class="c"># This is *good*, and the most likely place users will be when</span>
+            <span class="c"># running setup.py. We do not want to overwrite version.py.</span>
+            <span class="c"># Grab the version so that setup can use it.</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">basedir</span><span class="p">)</span>
+            <span class="kn">from</span> <span class="nn">version</span> <span class="kn">import</span> <span class="n">version</span>
+            <span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># This is *bad*.  It means the user might have a tarball that</span>
+            <span class="c"># does not include version.py.  Let this error raise so we can</span>
+            <span class="c"># fix the tarball.</span>
+            <span class="c">##raise Exception(&#39;version.py not found!&#39;)</span>
+
+            <span class="c"># We no longer require that prepared tarballs include a version.py</span>
+            <span class="c"># So we use the possibly trunctated value from get_info()</span>
+            <span class="c"># Then we write a new file.</span>
+            <span class="n">writefile</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">version</span>
+</div>
+<div class="viewcode-block" id="get_revision"><a class="viewcode-back" href="../../TASSELpy.html#TASSELpy.release.get_revision">[docs]</a><span class="k">def</span> <span class="nf">get_revision</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Returns revision and vcs information, dynamically obtained.&quot;&quot;&quot;</span>
+    <span class="n">vcs</span><span class="p">,</span> <span class="n">revision</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+
+    <span class="n">hgdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span> <span class="s">&#39;..&#39;</span><span class="p">,</span> <span class="s">&#39;.hg&#39;</span><span class="p">)</span>
+    <span class="n">gitdir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span> <span class="s">&#39;..&#39;</span><span class="p">,</span> <span class="s">&#39;.git&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">gitdir</span><span class="p">):</span>
+        <span class="n">vcs</span> <span class="o">=</span> <span class="s">&#39;git&#39;</span>
+        <span class="c"># For now, we are not bothering with revision and tag.</span>
+
+    <span class="n">vcs_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">vcs</span><span class="p">,</span> <span class="p">(</span><span class="n">revision</span><span class="p">,</span> <span class="n">tag</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">revision</span><span class="p">,</span> <span class="n">vcs_info</span>
+</div>
+<div class="viewcode-block" id="get_info"><a class="viewcode-back" href="../../TASSELpy.html#TASSELpy.release.get_info">[docs]</a><span class="k">def</span> <span class="nf">get_info</span><span class="p">(</span><span class="n">dynamic</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="c">## Date information</span>
+    <span class="n">date_info</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">asctime</span><span class="p">(</span><span class="n">date_info</span><span class="o">.</span><span class="n">timetuple</span><span class="p">())</span>
+
+    <span class="n">revision</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">version_info</span><span class="p">,</span> <span class="n">vcs_info</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+
+    <span class="n">import_failed</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">dynamic_failed</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">if</span> <span class="n">dynamic</span><span class="p">:</span>
+        <span class="n">revision</span><span class="p">,</span> <span class="n">vcs_info</span> <span class="o">=</span> <span class="n">get_revision</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">revision</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">dynamic_failed</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">if</span> <span class="n">dynamic_failed</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">dynamic</span><span class="p">:</span>
+        <span class="c"># This is where most final releases of NetworkX will be.</span>
+        <span class="c"># All info should come from version.py. If it does not exist, then</span>
+        <span class="c"># no vcs information will be provided.</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">basedir</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">version</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">date_info</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">version_info</span><span class="p">,</span> <span class="n">vcs_info</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="n">import_failed</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">vcs_info</span> <span class="o">=</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">revision</span> <span class="o">=</span> <span class="n">vcs_info</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">import_failed</span> <span class="ow">or</span> <span class="p">(</span><span class="n">dynamic</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">dynamic_failed</span><span class="p">):</span>
+        <span class="c"># We are here if:</span>
+        <span class="c">#   we failed to determine static versioning info, or</span>
+        <span class="c">#   we successfully obtained dynamic revision info</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">major</span><span class="p">),</span> <span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">minor</span><span class="p">)])</span>
+        <span class="k">if</span> <span class="n">dev</span><span class="p">:</span>
+            <span class="n">version</span> <span class="o">+=</span> <span class="s">&#39;.dev_&#39;</span> <span class="o">+</span> <span class="n">date_info</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%Y%m</span><span class="si">%d</span><span class="s">%H%M%S&quot;</span><span class="p">)</span>
+        <span class="n">version_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">revision</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">date</span><span class="p">,</span> <span class="n">date_info</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">version_info</span><span class="p">,</span> <span class="n">vcs_info</span>
+
+<span class="c">## Version information</span></div>
+<span class="n">name</span> <span class="o">=</span> <span class="s">&#39;TASSELpy&#39;</span>
+<span class="n">major</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span>
+<span class="n">minor</span> <span class="o">=</span> <span class="s">&quot;1&quot;</span>
+
+
+<span class="c">## Declare current release as a development release.</span>
+<span class="c">## Change to False before tagging a release; then change back.</span>
+<span class="n">dev</span> <span class="o">=</span> <span class="bp">True</span>
+
+
+<span class="n">description</span> <span class="o">=</span> <span class="s">&quot;A Python API for TASSEL&quot;</span>
+
+<span class="n">long_description</span> <span class="o">=</span> \
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A Python API for TASSEL</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">license</span> <span class="o">=</span> <span class="s">&#39;BSD&#39;</span>
+<span class="n">authors</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Rodgers-Melnick&#39;</span> <span class="p">:</span> <span class="p">(</span><span class="s">&#39;Eli Rodgers-Melnick&#39;</span><span class="p">,</span><span class="s">&#39;er432@cornell.edu&#39;</span><span class="p">),</span>
+           <span class="p">}</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://github.com/er432/TASSELpy&#39;</span>
+<span class="n">platforms</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Linux&#39;</span><span class="p">,</span><span class="s">&#39;Mac OSX&#39;</span><span class="p">,</span><span class="s">&#39;Windows&#39;</span><span class="p">,</span><span class="s">&#39;Unix&#39;</span><span class="p">]</span>
+<span class="n">keywords</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Genomics&#39;</span><span class="p">,</span><span class="s">&#39;Quantitative genetics&#39;</span><span class="p">,</span> <span class="s">&#39;java&#39;</span><span class="p">]</span>
+<span class="n">classifiers</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s">&#39;Development Status :: 3 - Alpha&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Intended Audience :: Developers&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Intended Audience :: Science/Research&#39;</span><span class="p">,</span>
+        <span class="s">&#39;License :: OSI Approved :: BSD License&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Operating System :: OS Independent&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Programming Language :: Python :: 2&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Programming Language :: Python :: 2.7&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Topic :: Software Development :: Libraries :: Python Modules&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Topic :: Scientific/Engineering :: Bio-Informatics&#39;</span><span class="p">,</span>
+        <span class="s">&#39;Topic :: Scientific/Engineering :: Information Analysis&#39;</span>
+    <span class="p">]</span>
+
+<span class="n">date</span><span class="p">,</span> <span class="n">date_info</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">version_info</span><span class="p">,</span> <span class="n">vcs_info</span> <span class="o">=</span> <span class="n">get_info</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c"># Write versionfile for nightly snapshots.</span>
+    <span class="n">write_versionfile</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.matrixalgebra.decomposition package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.net.maizegenetics.matrixalgebra package" href="TASSELpy.net.maizegenetics.matrixalgebra.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.matrixalgebra.html" accesskey="U">TASSELpy.net.maizegenetics.matrixalgebra package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-net-maizegenetics-matrixalgebra-decomposition-package">
+<h1>TASSELpy.net.maizegenetics.matrixalgebra.decomposition package<a class="headerlink" href="#tasselpy-net-maizegenetics-matrixalgebra-decomposition-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition">
+<span id="tasselpy-net-maizegenetics-matrixalgebra-decomposition-eigenvaluedecomposition-module"></span><h2>TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.</tt><tt class="descname">EigenvalueDecomposition</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/EigenvalueDecomposition.html#EigenvalueDecomposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalue" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalue"><tt class="xref py py-obj docutils literal"><span class="pre">getEigenvalue</span></tt></a>(*args)</td>
+<td>Gets a single eigenvalue for the decomposition</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalueMatrix" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalueMatrix"><tt class="xref py py-obj docutils literal"><span class="pre">getEigenvalueMatrix</span></tt></a>(*args)</td>
+<td>Gets the eigenvalue matrix</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalues" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalues"><tt class="xref py py-obj docutils literal"><span class="pre">getEigenvalues</span></tt></a>(*args)</td>
+<td>Gets the eigenvalues for the decomposition</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvectors" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvectors"><tt class="xref py py-obj docutils literal"><span class="pre">getEigenvectors</span></tt></a>(*args)</td>
+<td>Gets the eigenvectors as a matrix</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/EigenvalueDecomposition.html#EigenvalueDecomposition.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalue">
+<tt class="descname">getEigenvalue</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/EigenvalueDecomposition.html#EigenvalueDecomposition.getEigenvalue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a single eigenvalue for the decomposition</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getEigenvalue</em> (int <strong>i</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>i</strong> (<em>int</em>) &#8211; index of the eigenvalue you want</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">An eigenvalue</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">double</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalueMatrix">
+<tt class="descname">getEigenvalueMatrix</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/EigenvalueDecomposition.html#EigenvalueDecomposition.getEigenvalueMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalueMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the eigenvalue matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getEigenvalueMatrix</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The matrix containing the eigenvalues</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalues">
+<tt class="descname">getEigenvalues</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/EigenvalueDecomposition.html#EigenvalueDecomposition.getEigenvalues"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvalues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the eigenvalues for the decomposition</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getEigenvalues</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Array of eigenvalues</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">double[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvectors">
+<tt class="descname">getEigenvectors</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/EigenvalueDecomposition.html#EigenvalueDecomposition.getEigenvectors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition.EigenvalueDecomposition.getEigenvectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the eigenvectors as a matrix</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getEigenvectors</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A DoubleMatrix containing the eigenvectors</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition">
+<span id="tasselpy-net-maizegenetics-matrixalgebra-decomposition-singularvaluedecomposition-module"></span><h2>TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.</tt><tt class="descname">SingularValueDecomposition</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition.html#SingularValueDecomposition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getRank" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getRank"><tt class="xref py py-obj docutils literal"><span class="pre">getRank</span></tt></a>(*args)</td>
+<td>Gets the rank of the matrix that was decomposed</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getS" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getS"><tt class="xref py py-obj docutils literal"><span class="pre">getS</span></tt></a>(*args)</td>
+<td>Gets S for the decomopsition of A, where A = VSV&#8217;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getSingularValues" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getSingularValues"><tt class="xref py py-obj docutils literal"><span class="pre">getSingularValues</span></tt></a>(*args)</td>
+<td>Gets the singular values for the SVD of A, A = USV&#8217;</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getU" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getU"><tt class="xref py py-obj docutils literal"><span class="pre">getU</span></tt></a>(*args)</td>
+<td>Gets U for the decomopsition of A, where A = USV&#8217;</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getV" title="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getV"><tt class="xref py py-obj docutils literal"><span class="pre">getV</span></tt></a>(*args)</td>
+<td>Gets V for the decomopsition of A, where A = VSV&#8217;</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition.html#SingularValueDecomposition.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getRank">
+<tt class="descname">getRank</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition.html#SingularValueDecomposition.getRank"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getRank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the rank of the matrix that was decomposed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getRank</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The rank of the matrix that was decomposed</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getS">
+<tt class="descname">getS</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition.html#SingularValueDecomposition.getS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets S for the decomopsition of A, where A = VSV&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getV</em> (boolean <strong>transpose</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">S, the diagonal matrix of singular values</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getSingularValues">
+<tt class="descname">getSingularValues</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition.html#SingularValueDecomposition.getSingularValues"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getSingularValues" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the singular values for the SVD of A, A = USV&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getSingularValues</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The singular values equal to the diagonal of S</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">double[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getU">
+<tt class="descname">getU</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition.html#SingularValueDecomposition.getU"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getU" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets U for the decomopsition of A, where A = USV&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getU</em> (boolean <strong>transpose</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>transpose</strong> (<em>boolean</em>) &#8211; Whether to transpose U</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">U (orthogonal)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getV">
+<tt class="descname">getV</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition.html#SingularValueDecomposition.getV"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition.SingularValueDecomposition.getV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets V for the decomopsition of A, where A = VSV&#8217;</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getV</em> (boolean <strong>transpose</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>transpose</strong> (<em>boolean</em>) &#8211; Whether to transpose V</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">V (orthogonal)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">DoubleMatrix</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.net.maizegenetics.matrixalgebra.decomposition package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition">TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition">TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.net.maizegenetics.matrixalgebra.decomposition.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.matrixalgebra.html" >TASSELpy.net.maizegenetics.matrixalgebra package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

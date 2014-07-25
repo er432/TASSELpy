@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Loading and Manipulating GenotypeTables &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../index.html" />
+    <link rel="up" title="TASSELpy Tutorial" href="index.html" />
+    <link rel="next" title="TASSELpy package" href="../TASSELpy.html" />
+    <link rel="prev" title="Starting and stopping TASSELpy" href="start_stop.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../TASSELpy.html" title="TASSELpy package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="start_stop.html" title="Starting and stopping TASSELpy"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">TASSELpy Tutorial</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="loading-and-manipulating-genotypetables">
+<span id="genotype-tables"></span><h1>Loading and Manipulating GenotypeTables<a class="headerlink" href="#loading-and-manipulating-genotypetables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="loading-genetic-polymorphism-data">
+<h2>Loading genetic polymorphism data<a class="headerlink" href="#loading-genetic-polymorphism-data" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to load polymorphism data is to use the <tt class="docutils literal"><span class="pre">readGuessFormat</span></tt> function in the
+<a class="reference internal" href="../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.ImportUtils.ImportUtils" title="TASSELpy.net.maizegenetics.dna.snp.ImportUtils.ImportUtils"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.dna.snp.ImportUtils.ImportUtils</span></tt></a> class. This class also has
+several other methods to load specific file flormats. Here, I use the <tt class="docutils literal"><span class="pre">readGuessFormat</span></tt> function
+to load in the top few lines of the TASSEL tutorial data, which is stored in
+<a class="reference internal" href="../TASSELpy.data.html#module-TASSELpy.data" title="TASSELpy.data"><tt class="xref py py-mod docutils literal"><span class="pre">TASSELpy.data</span></tt></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">TASSELpy</span> <span class="kn">import</span> <span class="n">TASSELbridge</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">TASSELpy.data</span> <span class="kn">import</span> <span class="n">data_constants</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.snp.ImportUtils</span> <span class="kn">import</span> <span class="n">ImportUtils</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">ImportUtils</span><span class="o">.</span><span class="n">readGuessFormat</span><span class="p">(</span><span class="n">data_constants</span><span class="o">.</span><span class="n">SHORT_HMP_FILE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-the-genotypetable">
+<h2>Using the GenotypeTable<a class="headerlink" href="#using-the-genotypetable" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">ImportUtils</span></tt> loads the polymorphism data into a
+<a class="reference internal" href="../TASSELpy.net.maizegenetics.dna.snp.html#module-TASSELpy.net.maizegenetics.dna.snp.CoreGenotypeTable" title="TASSELpy.net.maizegenetics.dna.snp.CoreGenotypeTable"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.dna.snp.CoreGenotypeTable</span></tt></a> object. Like all wrapped TASSEL
+classes, this carries all the functions available in the Java API. It carries a large number
+of functions that can be used to summarize the data.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">numberOfSites</span><span class="p">()</span>
+<span class="go">9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">numChromosomes</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">genotypeAsStringRow</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">u&#39;C;C;G;T;G;T;G;T;C&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">genotypeAsStringRow</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">u&#39;C;G;G;T;G;T;C;T;C&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="filtering-the-genotypetable">
+<h2>Filtering the GenotypeTable<a class="headerlink" href="#filtering-the-genotypetable" title="Permalink to this headline">¶</a></h2>
+<p>Filtering of the GenotypeTable can be done using the
+<a class="reference internal" href="../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable" title="TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable</span></tt></a> class. While this class
+does provide the basic methods available in the Java API, it also adds some functional
+programming aspects that could not be implemented in Java (at least prior to version 8).
+Below, I use functional programming - provided by the
+<tt class="xref py py-meth docutils literal"><span class="pre">TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.fuctionalFilters()</span></tt>
+function - to filter the data to taxa with the first character &#8216;3&#8217; and that are on chromosome
+1. The <tt class="docutils literal"><span class="pre">functionalFilters</span></tt> function takes callable arguments in either the <tt class="docutils literal"><span class="pre">sitesFilter</span></tt> keyword, the
+<tt class="docutils literal"><span class="pre">taxaFilter</span></tt> keyword, or both. Callables passed into the <tt class="docutils literal"><span class="pre">sitesFilter</span></tt> function receive a
+<a class="reference internal" href="../TASSELpy.net.maizegenetics.dna.map.html#module-TASSELpy.net.maizegenetics.dna.map.Position" title="TASSELpy.net.maizegenetics.dna.map.Position"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.dna.map.Position</span></tt></a> object, while callables passed into the
+<tt class="docutils literal"><span class="pre">taxaFilter</span></tt> function receive a
+<a class="reference internal" href="../TASSELpy.net.maizegenetics.taxa.html#TASSELpy.net.maizegenetics.taxa.Taxon.Taxon" title="TASSELpy.net.maizegenetics.taxa.Taxon.Taxon"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.taxa.Taxon.Taxon</span></tt></a> object. A given Taxon/Postion is retained
+if the function returns <cite>True</cite> for that object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">taxa</span><span class="p">()][:</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">[Taxon(33-16), Taxon(38-11), Taxon(4226), Taxon(4722), Taxon(A188), Taxon(A214N),</span>
+<span class="go">Taxon(A239), Taxon(A272), Taxon(A441-5), Taxon(A554)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable</span> <span class="kn">import</span> <span class="n">FilterGenotypeTable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filtered</span> <span class="o">=</span> <span class="n">FilterGenotypeTable</span><span class="o">.</span><span class="n">functionalFilters</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+<span class="gp">... </span><span class="n">sitesFilter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">getChromosome</span><span class="p">()</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">==</span> <span class="s">&#39;1&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="n">taxaFilter</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;3&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">filtered</span><span class="o">.</span><span class="n">taxa</span><span class="p">()]</span>
+<span class="go">[Taxon(33-16), Taxon(38-11)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filtered</span><span class="o">.</span><span class="n">numberOfSites</span><span class="p">()</span>
+<span class="go">9</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Loading and Manipulating GenotypeTables</a><ul>
+<li><a class="reference internal" href="#loading-genetic-polymorphism-data">Loading genetic polymorphism data</a></li>
+<li><a class="reference internal" href="#using-the-genotypetable">Using the GenotypeTable</a></li>
+<li><a class="reference internal" href="#filtering-the-genotypetable">Filtering the GenotypeTable</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="start_stop.html"
+                        title="previous chapter">Starting and stopping TASSELpy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../TASSELpy.html"
+                        title="next chapter">TASSELpy package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorial/genotype_tables.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../TASSELpy.html" title="TASSELpy package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="start_stop.html" title="Starting and stopping TASSELpy"
+             >previous</a> |</li>
+        <li><a href="../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="index.html" >TASSELpy Tutorial</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

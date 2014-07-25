@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.util.ListIterator &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.java.util.ListIterator</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.Iterator</span> <span class="kn">import</span> <span class="n">Iterator</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaGenericOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;ListIterator&#39;</span><span class="p">:</span><span class="s">&#39;java/util/ListIterator&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="ListIterator"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.ListIterator.ListIterator">[docs]</a><span class="k">class</span> <span class="nc">ListIterator</span><span class="p">(</span><span class="n">Iterator</span><span class="p">):</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ListIterator&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ListIterator&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="ListIterator.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.ListIterator.ListIterator.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ListIterator</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c">## Inserts the specified element into the list</span>
+    <span class="c"># @param e the element you want to add to the list</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;add&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="s">&#39;/@1/&#39;</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="ListIterator.add"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.ListIterator.ListIterator.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inserts the specified element into the list</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void add(E e)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        e -- the element you want to add to the list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this list iterator has more elements when traversing the list</span>
+    <span class="c"># in the reverse direction</span>
+    <span class="c"># @return true if the list iterator has more elements in the reverse direction</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;hasPrevious&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="ListIterator.hasPrevious"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.ListIterator.ListIterator.hasPrevious">[docs]</a>    <span class="k">def</span> <span class="nf">hasPrevious</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this list iterator has more elements when traversing the list</span>
+<span class="sd">        in the reverse direction</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean hasPrevious()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if the list iterator has more elements in the reverse direction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the index of the element that would be returned by a subsequent call to</span>
+    <span class="c"># next()</span>
+    <span class="c"># @return the element that would be returned by a subsequent call to next()</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;nextIndex&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="ListIterator.nextIndex"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.ListIterator.ListIterator.nextIndex">[docs]</a>    <span class="k">def</span> <span class="nf">nextIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the index of the element that would be returned by a subsequent call to</span>
+<span class="sd">        next()</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int nextIndex()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        the index of the element that would be returned by a subsequent call to next()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the previous element in the list and moves the cursor position backwards</span>
+    <span class="c"># @return the previous element in the list</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;previous&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),(</span><span class="s">&#39;/@1/&#39;</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="ListIterator.previous"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.ListIterator.ListIterator.previous">[docs]</a>    <span class="k">def</span> <span class="nf">previous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the previous element in the list and moves the cursor position backwards</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        E previous()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The previous element in the list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the index of the element that would be returned by a subsequent call</span>
+    <span class="c"># to previous()</span>
+    <span class="c"># @return the index of the element that would be returned by a subsequent call to</span>
+    <span class="c"># previous()</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;previousIndex&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="ListIterator.previousIndex"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.ListIterator.ListIterator.previousIndex">[docs]</a>    <span class="k">def</span> <span class="nf">previousIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the index of the element that would be returned by a subsequent call</span>
+<span class="sd">        to previous()</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int previousIndex()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The index of the element that would be returned by a subsequent call to previous()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Replaces the last element returned by next() or previous() with the specified element</span>
+    <span class="c"># @param e the element with which to replace the last element returned by next or previous</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;set&quot;</span><span class="p">,</span>
+                         <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="s">&#39;/@1/&#39;</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="ListIterator.set"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.ListIterator.ListIterator.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replaces the last element returned by next() or previous() with the specified</span>
+<span class="sd">        element</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void set(E e)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        e -- the element with which to replace the last element returned by next or previous</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

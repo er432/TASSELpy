@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.util.Collection &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.java.util.Collection</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Iterable</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaGenericOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">javaObj</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Collection&#39;</span><span class="p">:</span><span class="s">&#39;java/util/Collection&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="metaCollection"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.metaCollection">[docs]</a><span class="k">class</span> <span class="nc">metaCollection</span><span class="p">(</span><span class="n">Iterable</span><span class="p">):</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Collection&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="metaCollection.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.metaCollection.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">metaCollection</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">pass</span>
+
+<span class="c">## Wrapper for the root interface in the collection hierarchy</span></div>
+<div class="viewcode-block" id="Collection"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection">[docs]</a><span class="k">class</span> <span class="nc">Collection</span><span class="p">(</span><span class="n">metaCollection</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    From docs.oracle.com:</span>
+
+<span class="sd">    public interface Collection&lt;E&gt;</span>
+<span class="sd">    extends Iterable&lt;E&gt;</span>
+<span class="sd">    </span>
+<span class="sd">    The root interface in the collection hierarchy. A collection represents a group of objects, known as its elements. Some collections allow duplicate elements and others do not. Some are ordered and others unordered. The JDK does not provide any direct implementations of this interface: it provides implementations of more specific subinterfaces like Set and List. This interface is typically used to pass collections around and manipulate them where maximum generality is desired.</span>
+<span class="sd">    Bags or multisets (unordered collections that may contain duplicate elements) should implement this interface directly.</span>
+
+<span class="sd">    All general-purpose Collection implementation classes (which typically implement Collection indirectly through one of its subinterfaces) should provide two &quot;standard&quot; constructors: a void (no arguments) constructor, which creates an empty collection, and a constructor with a single argument of type Collection, which creates a new collection with the same elements as its argument. In effect, the latter constructor allows the user to copy any collection, producing an equivalent collection of the desired implementation type. There is no way to enforce this convention (as interfaces cannot contain constructors) but all of the general-purpose Collection implementations in the Java platform libraries comply.</span>
+
+<span class="sd">    The &quot;destructive&quot; methods contained in this interface, that is, the methods that modify the collection on which they operate, are specified to throw UnsupportedOperationException if this collection does not support the operation. If this is the case, these methods may, but are not required to, throw an UnsupportedOperationException if the invocation would have no effect on the collection. For example, invoking the addAll(Collection) method on an unmodifiable collection may, but is not required to, throw the exception if the collection to be added is empty.</span>
+
+<span class="sd">    Some collection implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null elements, and some have restrictions on the types of their elements. Attempting to add an ineligible element throws an unchecked exception, typically NullPointerException or ClassCastException. Attempting to query the presence of an ineligible element may throw an exception, or it may simply return false; some implementations will exhibit the former behavior and some will exhibit the latter. More generally, attempting an operation on an ineligible element whose completion would not result in the insertion of an ineligible element into the collection may throw an exception or it may succeed, at the option of the implementation. Such exceptions are marked as &quot;optional&quot; in the specification for this interface.</span>
+
+<span class="sd">    It is up to each collection to determine its own synchronization policy. In the absence of a stronger guarantee by the implementation, undefined behavior may result from the invocation of any method on a collection that is being mutated by another thread; this includes direct invocations, passing the collection to a method that might perform invocations, and using an existing iterator to examine the collection.</span>
+
+<span class="sd">    Many methods in Collections Framework interfaces are defined in terms of the equals method. For example, the specification for the contains(Object o) method says: &quot;returns true if and only if this collection contains at least one element e such that (o==null ? e==null : o.equals(e)).&quot; This specification should not be construed to imply that invoking Collection.contains with a non-null argument o will cause o.equals(e) to be invoked for any element e. Implementations are free to implement optimizations whereby the equals invocation is avoided, for example, by first comparing the hash codes of the two elements. (The Object.hashCode() specification guarantees that two objects with unequal hash codes cannot be equal.) More generally, implementations of the various Collections Framework interfaces are free to take advantage of the specified behavior of underlying Object methods wherever the implementor deems it appropriate.</span>
+
+<span class="sd">    This interface is a member of the Java Collections Framework.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Collection&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Collection&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="Collection.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Collection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="c">## Ensures that this collection contains the specified element.</span>
+    <span class="c"># @return true if this collection changed as a result of the call. False if this collection</span>
+    <span class="c"># does not permit duplicates and already contains the specified element.</span>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;add&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="s">&#39;/@1/&#39;</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.add"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ensures that this collection contains the specified element. Returns true if this collection</span>
+<span class="sd">        changed as a result of the call. Returns false if this collection does not permit duplicates</span>
+<span class="sd">        and already contains the specified element.</span>
+
+<span class="sd">        Collections that support this operation may place limitations on what elements may be added to</span>
+<span class="sd">        this collection. In particular, some collections will refuse to add null elements, and others</span>
+<span class="sd">        will impose restrictions on the type of elements that may be added. Collection classes should</span>
+<span class="sd">        clearly specify in their documentation any restrictions on what elements may be added.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean add(E e)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        e -- element whose presence in this collection is to be ensured</span>
+
+<span class="sd">        throws:</span>
+
+<span class="sd">        UnsupportedOperationException -- if the add operation is not supported by this collection</span>
+<span class="sd">        ClassCastException -- if the class of the specified element presents it from being added to this collection</span>
+<span class="sd">        NullPointerException -- if the specified element is null and this collection does not permit null elements</span>
+<span class="sd">        IllegalArgumentException -- if some property of the element prevents it from being added to this collection</span>
+<span class="sd">        IllegalStateException -- if the element cannot be added at this time due to insertion restrictions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Adds all of the elements to the specified collection to this collection.</span>
+    <span class="c"># @param c The collection you want to add</span>
+    <span class="c"># @return true if collection changed as a result of the call</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;addAll&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Collection&#39;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaCollection</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.addAll"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.addAll">[docs]</a>    <span class="k">def</span> <span class="nf">addAll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds all of the elements in the specified collection to this collection.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean addAll(Collection&lt;? extends E&gt; c</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        c -- The collection you want to add</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if collection changed as a result of the call</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Removes all of the elements from this collection. The collection will be empty after</span>
+    <span class="c"># this method Returns</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;clear&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;void&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.clear"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes all of the elements from this collection. The collection will be</span>
+<span class="sd">        empty after this method returns</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void clear()</span>
+
+<span class="sd">        Throws:</span>
+
+<span class="sd">        UnsupportedOperationException -- if clear operation not supported by this collection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this collection contains the specified element. More formally, returns true</span>
+    <span class="c"># if and only if this collection contains at least one element e such that</span>
+    <span class="c"># (o == null ? e == null : o.equals(e))</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;contains&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">javaObj</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.contains"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.contains">[docs]</a>    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this collection contains the specified element. More formally, returns true</span>
+<span class="sd">        if and only if this collection contains at least one element e such that</span>
+<span class="sd">        (o == null ? e == null: o.equals(e))</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean contains(Object o)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        o -- element whose presence in this collection is to be tested</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if this collection contains the specified element</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;containsAll&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Collection&#39;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaCollection</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="c">## Returns true if this collection contains all of the elements in the specified collection</span>
+    <span class="c"># @param c collection to be checked for containment in this collection</span>
+    <span class="c"># @return true if this collection contains all of the elemnts in the specified collection</span>
+<div class="viewcode-block" id="Collection.containsAll"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.containsAll">[docs]</a>    <span class="k">def</span> <span class="nf">containsAll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this collection contains all of the elements in the specified collection</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean constainsAll(Collection&lt;?&gt; c)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        c -- collection to be checked for containment in this collection</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if this collection contains all of the elements in the specified collection</span>
+
+<span class="sd">        Throws:</span>
+
+<span class="sd">        ClassCastException -- if the types of one or more elements in the specified collection are</span>
+<span class="sd">                              incompatible with this collection</span>
+<span class="sd">        NullPointerException -- If the specified collection contains one or more null elements and</span>
+<span class="sd">                                this colelction does not permit null elements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this collection contains no elements</span>
+    <span class="c"># @return true if this collection contains no elements</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isEmpty&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.isEmpty"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.isEmpty">[docs]</a>    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this collection contains no elements</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isEmpty()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if this collection contains no elements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="c">## Removes a single instance of the specified element from this collection</span>
+    <span class="c"># @param o the element to be removed from this collection</span>
+    <span class="c"># @return true if an element was removed as a result of this call</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;remove&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">javaObj</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.remove"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes a single instance of the specified element from this collection, if it is present.</span>
+<span class="sd">        More formally, removes an element e such that (o==null ? e==null : o.equals(e)), if this</span>
+<span class="sd">        collection contains one or more such elements. Returns true if this collection contained the</span>
+<span class="sd">        specified element (or equivalently, if this collection changed as a result of the call).</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        boolean remove(Object o)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        o -- element to be removed from this collection</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if an element was removed as a result of this call</span>
+
+<span class="sd">        Throws:</span>
+
+<span class="sd">        ClassCastException -- if the type of the specified element is incompatible with this collection</span>
+<span class="sd">        NullPointerException -- if the specified element is nujll and this collection does not permit null elements</span>
+<span class="sd">        UnsupportedOperationException -- if the remove operation is not supported by this collection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Removes all of this collection&#39;s elements that are also contained in the specified collection.</span>
+    <span class="c"># After this call returns, this collection will contain no elements in common with the specified</span>
+    <span class="c"># collection</span>
+    <span class="c"># @param c collection containing elements to be removed from this collection</span>
+    <span class="c"># @return true if this collection changed as a result of the call</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;removeAll&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Collection&#39;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaCollection</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.removeAll"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.removeAll">[docs]</a>    <span class="k">def</span> <span class="nf">removeAll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes all of this collection&#39;s elements that are also contained in the specified</span>
+<span class="sd">        collection. After this call returns, this collection will contain no elements in common</span>
+<span class="sd">        with the specified collection</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean removeAll(Collection&lt;?&gt; c)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        c -- collection containing elements to be removed from this collection</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if this collection changed as a result of the call</span>
+
+<span class="sd">        Throws:</span>
+
+<span class="sd">        UnsupportedOperationException -- if the removeAll method is not supported by this collection</span>
+<span class="sd">        ClassCastException -- if the types of one or more elements in this collection are incompatible</span>
+<span class="sd">                             with the specified collection</span>
+<span class="sd">        NullPointerException -- if this collection contains one or more null elements and the specified</span>
+<span class="sd">                               collection does not support null elements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Retains only the elements in this collection that are contained in the specified collection.</span>
+    <span class="c"># In other words, removes from thsi collection all of its elements that are not contained</span>
+    <span class="c"># in the specified collection</span>
+    <span class="c"># @param c collection containing elements to be retained in this collection</span>
+    <span class="c"># @return true if this collection changed as a result of the call</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;retainAll&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Collection&#39;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaCollection</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.retainAll"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.retainAll">[docs]</a>    <span class="k">def</span> <span class="nf">retainAll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retains only the elements in this collection that are contained in the specified collection.</span>
+<span class="sd">        In other words, removes from this collection all of its elements that are not contained</span>
+<span class="sd">        in the specified collection</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean retainAll(Collection&lt;?&gt; c)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        c -- collection containing elements to be retained in this collection</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if this collection changed as a result of the call</span>
+
+<span class="sd">        Throws:</span>
+
+<span class="sd">        UnsupportedOperationException -- if the retainAll operation is not supported by this collection</span>
+<span class="sd">        ClassCastException -- if the types of one or more of the elemtns in the collection are icompatible</span>
+<span class="sd">                             with the specified collection</span>
+<span class="sd">        NullPointerException -- if this collection contains one or more null elements and the specified</span>
+<span class="sd">                                collection does not permit null elements, or if the specified collection</span>
+<span class="sd">                                is null</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the number of elements in this collection. If the collection contains more than</span>
+    <span class="c"># Integer.MAX_VALUE elements, returns Integer.MAX_VALUE</span>
+    <span class="c"># @return the number of elements in this collection</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;size&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Collection.size"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.size">[docs]</a>    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the number of elements in this collection. If the collection contains more than</span>
+<span class="sd">        Integer.MAX_VALUE elements, returns Integer.MAX_VALUE</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int size()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        the number of elements in this collection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns an array containing all of the elements in this collection</span>
+    <span class="c"># @param a An optional array into which the elements of this collection are to be stored, if</span>
+    <span class="c"># it is big enough; otherwise, a new array of the same runtime type is allocated for this purpose</span>
+    <span class="c"># @return an array containing all of the elements in this collection</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;toArray&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(</span><span class="n">javaObj</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="Collection.toArray"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Collection.Collection.toArray">[docs]</a>    <span class="k">def</span> <span class="nf">toArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns an array containing all of the elements in this collection. If this collection</span>
+<span class="sd">        makes any guarantees as to what order its elements are returned by its iterator, this method</span>
+<span class="sd">        must return the elements in the same order. The returned array will be &quot;safe&quot; in that no</span>
+<span class="sd">        references to it are maintained in this collection. (In other words, this method must allocate</span>
+<span class="sd">        a new array even if this collection is backed by an array). The caller is thus free to modify the</span>
+<span class="sd">        returned array.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Object[] toArray()</span>
+<span class="sd">        &lt;T&gt; T[] toArray(T[] a)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        &lt;T&gt; T[] toArray(T[] a)</span>
+<span class="sd">           a -- the array into which the elements of this collection are to be stored, if it</span>
+<span class="sd">                is big enough; otherwise, a new array of the same runtime type is allocated for</span>
+<span class="sd">                this purpose</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An array containing all of the elements in this collection</span>
+
+<span class="sd">        Throws:</span>
+
+<span class="sd">        ArrayStoreException -- if the runtime type of the specified array is not a supertype of the</span>
+<span class="sd">                               runtime type of every element in this collection</span>
+<span class="sd">        NullPointerException -- if the specified array is null</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

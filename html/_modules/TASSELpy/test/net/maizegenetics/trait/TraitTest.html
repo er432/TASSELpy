@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.test.net.maizegenetics.trait.TraitTest &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.test.net.maizegenetics.trait.TraitTest</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.TASSELbridge</span> <span class="kn">import</span> <span class="n">TASSELbridge</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;AssertionError: start bridge&quot;</span><span class="p">)</span>
+        <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s">&quot;Could not start JVM&quot;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.trait.Trait</span> <span class="kn">import</span> <span class="n">Trait</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">String</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.Set</span> <span class="kn">import</span> <span class="n">Set</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.ArrayList</span> <span class="kn">import</span> <span class="n">ArrayList</span>
+<span class="n">debug</span> <span class="o">=</span> <span class="bp">False</span>
+
+<div class="viewcode-block" id="TraitTest"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest">[docs]</a><span class="k">class</span> <span class="nc">TraitTest</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Tests for Trait.py &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="TraitTest.setUp"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">trait</span> <span class="o">=</span> <span class="n">Trait</span><span class="p">(</span><span class="s">&quot;myTrait&quot;</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="s">&quot;factor&quot;</span><span class="p">,</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s">&quot;Constructor 1 fail on Trait&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">trait</span> <span class="o">=</span> <span class="n">Trait</span><span class="p">(</span><span class="s">&quot;myTrait&quot;</span><span class="p">,</span><span class="bp">True</span><span class="p">,</span><span class="s">&quot;factor&quot;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span><span class="s">&quot;Constructor 2 fail on Trait&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getInstance"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getInstance">[docs]</a>    <span class="k">def</span> <span class="nf">test_getInstance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getInstance&quot;</span>
+        <span class="n">copy</span> <span class="o">=</span> <span class="n">Trait</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">copy</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_isDiscrete"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_isDiscrete">[docs]</a>    <span class="k">def</span> <span class="nf">test_isDiscrete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing isDiscrete&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">isDiscrete</span><span class="p">())</span></div>
+<div class="viewcode-block" id="TraitTest.test_setLevelLabels"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_setLevelLabels">[docs]</a>    <span class="k">def</span> <span class="nf">test_setLevelLabels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing gen/setLevelLabels&quot;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;one&#39;</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;two&#39;</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;three&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">setLevelLabels</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+        <span class="n">levels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getLevelLabels</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">levels</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&#39;one&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">levels</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="s">&#39;three&#39;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getLevelLabel"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getLevelLabel">[docs]</a>    <span class="k">def</span> <span class="nf">test_getLevelLabel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getLevelLabel&quot;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;one&#39;</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;two&#39;</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;three&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">setLevelLabels</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getLevelLabel</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="s">&#39;two&#39;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getNumberOfLevels"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getNumberOfLevels">[docs]</a>    <span class="k">def</span> <span class="nf">test_getNumberOfLevels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getNumberOfLevels&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getNumberOfLevels</span><span class="p">(),</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;one&#39;</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;two&#39;</span>
+        <span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;three&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">setLevelLabels</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getNumberOfLevels</span><span class="p">(),</span><span class="mi">3</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getNumberOfProperties"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getNumberOfProperties">[docs]</a>    <span class="k">def</span> <span class="nf">test_getNumberOfProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getNumberOfProperties&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getNumberOfProperties</span><span class="p">(),</span><span class="mi">0</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_setProperty"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_setProperty">[docs]</a>    <span class="k">def</span> <span class="nf">test_setProperty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing setProperty&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">String</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getNumberOfProperties</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getProperties"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getProperties">[docs]</a>    <span class="k">def</span> <span class="nf">test_getProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getProperties&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">String</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">))</span>
+        <span class="n">prop_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getProperties</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">prop_set</span><span class="p">,</span><span class="n">Set</span><span class="p">)</span>
+        <span class="n">prop_set</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">prop_set</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">prop_set</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getKey</span><span class="p">(),</span><span class="s">&quot;foo&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">prop_set</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getValue</span><span class="p">(),</span><span class="n">Object</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">prop_set</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">o</span><span class="p">,</span><span class="n">javabridge</span><span class="o">.</span><span class="n">JB_Object</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">prop_set</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getValue</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(),</span><span class="s">&quot;bar&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getProperty"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getProperty">[docs]</a>    <span class="k">def</span> <span class="nf">test_getProperty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getProperty&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">String</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">))</span>
+        <span class="n">prop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">Object</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">prop</span><span class="o">.</span><span class="n">toString</span><span class="p">(),</span><span class="s">&quot;bar&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getPropertyNames"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getPropertyNames">[docs]</a>    <span class="k">def</span> <span class="nf">test_getPropertyNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getPropertyNames&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="n">String</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">))</span>
+        <span class="n">propnames</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getPropertyNames</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">propnames</span><span class="p">,</span><span class="n">Set</span><span class="p">)</span>
+        <span class="n">prop_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">propnames</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">prop_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">String</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">prop_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&quot;foo&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_addFactor"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_addFactor">[docs]</a>    <span class="k">def</span> <span class="nf">test_addFactor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing addFactor&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">addFactor</span><span class="p">(</span><span class="s">&quot;Foo&quot;</span><span class="p">,</span><span class="s">&quot;Bar&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getNumberOfFactors</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getFactorNames"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getFactorNames">[docs]</a>    <span class="k">def</span> <span class="nf">test_getFactorNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getFactorNames&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">addFactor</span><span class="p">(</span><span class="s">&quot;Foo&quot;</span><span class="p">,</span><span class="s">&quot;Bar&quot;</span><span class="p">)</span>
+        <span class="n">factor_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getFactorNames</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsInstance</span><span class="p">(</span><span class="n">factor_names</span><span class="p">,</span><span class="n">ArrayList</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">factor_names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">&quot;Foo&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getFactorValue"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getFactorValue">[docs]</a>    <span class="k">def</span> <span class="nf">test_getFactorValue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getFactorValue&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">addFactor</span><span class="p">(</span><span class="s">&quot;Foo&quot;</span><span class="p">,</span><span class="s">&quot;Bar&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getFactorValue</span><span class="p">(</span><span class="s">&quot;Foo&quot;</span><span class="p">),</span><span class="s">&quot;Bar&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_getType"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_getType">[docs]</a>    <span class="k">def</span> <span class="nf">test_getType</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing getType&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getType</span><span class="p">(),</span><span class="s">&quot;factor&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_setType"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_setType">[docs]</a>    <span class="k">def</span> <span class="nf">test_setType</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing setType&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">setType</span><span class="p">(</span><span class="s">&quot;covariate&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">getType</span><span class="p">(),</span><span class="s">&quot;covariate&quot;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="TraitTest.test_hasLevels"><a class="viewcode-back" href="../../../../../../TASSELpy.test.net.maizegenetics.trait.html#TASSELpy.test.net.maizegenetics.trait.TraitTest.TraitTest.test_hasLevels">[docs]</a>    <span class="k">def</span> <span class="nf">test_hasLevels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">debug</span><span class="p">:</span> <span class="k">print</span> <span class="s">&quot;Testing hasLevels&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trait</span><span class="o">.</span><span class="n">hasLevels</span><span class="p">())</span></div></div>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="nb">exit</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">TASSELbridge</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

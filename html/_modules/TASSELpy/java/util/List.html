@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.util.List &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.java.util.List</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.Collection</span> <span class="kn">import</span> <span class="n">Collection</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.ListIterator</span> <span class="kn">import</span> <span class="n">ListIterator</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span><span class="p">,</span><span class="n">javaGenericOverload</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;List&#39;</span><span class="p">:</span><span class="s">&#39;java/util/List&#39;</span><span class="p">,</span>
+                <span class="s">&#39;ListIterator&#39;</span><span class="p">:</span><span class="s">&#39;java/util/ListIterator&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">}</span>
+<div class="viewcode-block" id="metaList"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.List.metaList">[docs]</a><span class="k">class</span> <span class="nc">metaList</span><span class="p">(</span><span class="n">Collection</span><span class="p">):</span>
+<div class="viewcode-block" id="metaList.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.List.metaList.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">metaList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="List"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.List.List">[docs]</a><span class="k">class</span> <span class="nc">List</span><span class="p">(</span><span class="n">metaList</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    From docs.oracle.com:</span>
+
+<span class="sd">    public interface List&lt;E&gt;</span>
+<span class="sd">    extends Collection&lt;E&gt;</span>
+<span class="sd">    An ordered collection (also known as a sequence). The user of this interface has precise control over where in the list each element is inserted. The user can access elements by their integer index (position in the list), and search for elements in the list.</span>
+<span class="sd">    Unlike sets, lists typically allow duplicate elements. More formally, lists typically allow pairs of elements e1 and e2 such that e1.equals(e2), and they typically allow multiple null elements if they allow null elements at all. It is not inconceivable that someone might wish to implement a list that prohibits duplicates, by throwing runtime exceptions when the user attempts to insert them, but we expect this usage to be rare.</span>
+
+<span class="sd">    The List interface places additional stipulations, beyond those specified in the Collection interface, on the contracts of the iterator, add, remove, equals, and hashCode methods. Declarations for other inherited methods are also included here for convenience.</span>
+
+<span class="sd">    The List interface provides four methods for positional (indexed) access to list elements. Lists (like Java arrays) are zero based. Note that these operations may execute in time proportional to the index value for some implementations (the LinkedList class, for example). Thus, iterating over the elements in a list is typically preferable to indexing through it if the caller does not know the implementation.</span>
+
+<span class="sd">    The List interface provides a special iterator, called a ListIterator, that allows element insertion and replacement, and bidirectional access in addition to the normal operations that the Iterator interface provides. A method is provided to obtain a list iterator that starts at a specified position in the list.</span>
+
+<span class="sd">    The List interface provides two methods to search for a specified object. From a performance standpoint, these methods should be used with caution. In many implementations they will perform costly linear searches.</span>
+
+<span class="sd">    The List interface provides two methods to efficiently insert and remove multiple elements at an arbitrary point in the list.</span>
+
+<span class="sd">    Note: While it is permissible for lists to contain themselves as elements, extreme caution is advised: the equals and hashCode methods are no longer well defined on such a list.</span>
+
+<span class="sd">    Some list implementations have restrictions on the elements that they may contain. For example, some implementations prohibit null elements, and some have restrictions on the types of their elements. Attempting to add an ineligible element throws an unchecked exception, typically NullPointerException or ClassCastException. Attempting to query the presence of an ineligible element may throw an exception, or it may simply return false; some implementations will exhibit the former behavior and some will exhibit the latter. More generally, attempting an operation on an ineligible element whose completion would not result in the insertion of an ineligible element into the list may throw an exception or it may succeed, at the option of the implementation. Such exceptions are marked as &quot;optional&quot; in the specification for this interface.</span>
+
+<span class="sd">    This interface is a member of the Java Collections Framework.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;List&#39;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">previous</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;List&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="List.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.List.List.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">List</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c">## Returns a list iterator over the elements in this list</span>
+    <span class="c"># @param index optional index of the first element to be returned from the list</span>
+    <span class="c"># iterator (by a call to next)</span>
+    <span class="c"># @return a list iterator over the elements in this list (in proper sequence),</span>
+    <span class="c"># starting at the specified position in the list</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;listIterator&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ListIterator&#39;</span><span class="p">]),(),</span>
+             <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">ListIterator</span><span class="p">,</span> <span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;/@1/&#39;</span><span class="p">,))),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ListIterator&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span>
+             <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">ListIterator</span><span class="p">,</span> <span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;/@1/&#39;</span><span class="p">,))))</span>
+<div class="viewcode-block" id="List.listIterator"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.List.List.listIterator">[docs]</a>    <span class="k">def</span> <span class="nf">listIterator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a list iterator over the elements in this list</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        ListIterator&lt;E&gt; listIterator()</span>
+<span class="sd">        ListIterator&lt;E&gt; listIterator(int index)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        ListIterator&lt;E&gt; listIterator(int index)</span>
+<span class="sd">           index -- index of the first element to be returned from the list iterator</span>
+<span class="sd">                    (by a call to next)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        a list iterator over the elements in this list (in proper sequence),</span>
+<span class="sd">        starting at the specified position in the list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the element at the specified position in this list</span>
+    <span class="c"># @param index the index of the item you want</span>
+    <span class="c"># @return The element at the specified position in the list</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;get&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),</span> <span class="p">(</span><span class="n">metaInteger</span><span class="p">,),</span> <span class="s">&#39;/@1/&#39;</span><span class="p">))</span>
+<div class="viewcode-block" id="List.get"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.List.List.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the element at the specified position in this list</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        E get(int index)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- The index of the item you want</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The element at the specified position in the list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Replaces the element at the specified position in this list with the</span>
+    <span class="c"># specified element</span>
+    <span class="c"># @param index index of the element to replace</span>
+    <span class="c"># @param element element to be stored at the specified position</span>
+    <span class="c"># @return the element previously at the specified position</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;set&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),</span>
+             <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="s">&#39;/@1/&#39;</span><span class="p">),</span><span class="s">&#39;/@1/&#39;</span><span class="p">))</span>
+<div class="viewcode-block" id="List.set"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.List.List.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replaces the element at the specified position in this list with</span>
+<span class="sd">        the specified element</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        E set(int index, E element)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index of the element to replace</span>
+<span class="sd">        element -- element to be stored at the specified position</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        the element previously at the specified position</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;subList&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;List&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span>
+             <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">metaList</span><span class="p">,</span> <span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="s">&#39;/@1/&#39;</span><span class="p">,))))</span>
+<div class="viewcode-block" id="List.subList"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.List.List.subList">[docs]</a>    <span class="k">def</span> <span class="nf">subList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        REturns a view of the portion of this list between the specified fromIndex,</span>
+<span class="sd">        inclusive, and toIndex, exclusive. If they are equal, the returned list is empty).</span>
+<span class="sd">        The returned list is backed by this list, so non-structural changes in the returned list</span>
+<span class="sd">        are reflected in this list, and vice-versa. The returned list supports all of the</span>
+<span class="sd">        optional list operations supported by this list.</span>
+
+<span class="sd">        This method eliminates the need for explicit range operations. Any operation that</span>
+<span class="sd">        expects a list can be used as a range operations by passing a subList view instead</span>
+<span class="sd">        of a whole list. For example, the following idiom removes a range of elements from a list:</span>
+
+<span class="sd">        list.subList(from, to).clear();</span>
+
+<span class="sd">        Similar idioms may be constructed for indexOf and lastIndexOf, and all of the algorithms</span>
+<span class="sd">        in the Collections class can be applied to a subList.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        List&lt;E&gt; subList(int fromIndex, int toIndex)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        fromIndex -- low endpoint (inclusive) of the subList</span>
+<span class="sd">        toIndex -- high endpoint (exclusive) of the subList</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        a view of the specified range within this list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

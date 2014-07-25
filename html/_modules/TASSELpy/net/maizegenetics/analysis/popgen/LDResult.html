@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.analysis.popgen.LDResult &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.analysis.popgen.LDResult</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Float</span> <span class="kn">import</span> <span class="n">metaFloat</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span> <span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;LDResult&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/analysis/popgen/LDResult&#39;</span><span class="p">}</span>
+
+<span class="c">## LDResult Class</span>
+<div class="viewcode-block" id="LDResult"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult">[docs]</a><span class="k">class</span> <span class="nc">LDResult</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Container class for reporting LD results.  This class could still</span>
+<span class="sd">    be expanded to include the two sites with various sort approaches.</span>
+<span class="sd">    The reason for this functionality is so that classes can calculate</span>
+<span class="sd">    LD for billions of site pairs, but only retain the most</span>
+<span class="sd">    significant.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c">## Constructs an LDResult</span>
+    <span class="c"># @param site1</span>
+    <span class="c"># @param site2</span>
+    <span class="c"># @param r2</span>
+    <span class="c"># @param dprime</span>
+    <span class="c"># @param p</span>
+    <span class="c"># @param n</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">],</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;void&#39;</span><span class="p">),()),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;float&#39;</span><span class="p">,</span><span class="s">&#39;float&#39;</span><span class="p">,</span><span class="s">&#39;float&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+                      <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaFloat</span><span class="p">,</span><span class="n">metaFloat</span><span class="p">,</span><span class="n">metaFloat</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">)))</span>
+<div class="viewcode-block" id="LDResult.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructs an LDResult</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        LDResult() # Deprecated</span>
+<span class="sd">        LDResult(int site1, int site2, float r2, float dprime, float p, int n)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site1</span>
+<span class="sd">        site2</span>
+<span class="sd">        r2</span>
+<span class="sd">        dprime</span>
+<span class="sd">        p</span>
+<span class="sd">        n</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the r2 value</span>
+    <span class="c"># @return The r2 value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;r2&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;float&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">_r2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">pass</span>
+<div class="viewcode-block" id="LDResult.r2"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.r2">[docs]</a>    <span class="k">def</span> <span class="nf">r2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the r2 value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        float r2()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The r2 value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">r2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_r2</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">r2</span>
+        <span class="k">except</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">JavaException</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">o</span><span class="p">,</span> <span class="s">&quot;r2&quot;</span><span class="p">,</span><span class="s">&quot;F&quot;</span><span class="p">)</span>
+    <span class="c">## Gets the D&#39; value</span>
+    <span class="c"># @return The D&#39; value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;dPrime&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;float&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">_dPrime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">pass</span>
+<div class="viewcode-block" id="LDResult.dPrime"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.dPrime">[docs]</a>    <span class="k">def</span> <span class="nf">dPrime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the D&#39; value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        float dPrime()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The D&#39; value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dPrime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dPrime</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">dPrime</span>
+        <span class="k">except</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">JavaException</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">o</span><span class="p">,</span> <span class="s">&quot;dprime&quot;</span><span class="p">,</span><span class="s">&quot;F&quot;</span><span class="p">)</span>
+    <span class="c">## Gets the p-value for r2</span>
+    <span class="c"># @return The p-value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;float&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">_p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">pass</span>
+<div class="viewcode-block" id="LDResult.p"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.p">[docs]</a>    <span class="k">def</span> <span class="nf">p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the p-value for r2</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        float p()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The p value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_p</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">p</span>
+        <span class="k">except</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">JavaException</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">o</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">,</span><span class="s">&quot;F&quot;</span><span class="p">)</span>
+    <span class="c">## Gets the number of individuals used to calculate LD</span>
+    <span class="c"># @return The number of individuals used to calculate LD</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;n&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">_n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">pass</span>
+<div class="viewcode-block" id="LDResult.n"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.n">[docs]</a>    <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the number of individuals used to calculate LD</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int n()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The number of individuals used to calculate LD</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">n</span>
+        <span class="k">except</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">JavaException</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_field</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">o</span><span class="p">,</span> <span class="s">&quot;n&quot;</span><span class="p">,</span><span class="s">&quot;I&quot;</span><span class="p">)</span>
+    <span class="c">## Gets the first site</span>
+    <span class="c"># @return Index of the first site</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;site1&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="LDResult.site1"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site1">[docs]</a>    <span class="k">def</span> <span class="nf">site1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the first site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int site1()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Index of the first site</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the second site</span>
+    <span class="c"># @return Index of the second site</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;site2&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="LDResult.site2"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site2">[docs]</a>    <span class="k">def</span> <span class="nf">site2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the second site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int site2()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Index of the second site</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">### Create Builder ###</span></div>
+<div class="viewcode-block" id="LDResult.Builder"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder">[docs]</a>    <span class="k">class</span> <span class="nc">Builder</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+        <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Builder&#39;</span>
+        <span class="c">## Constructs an LDResult builder</span>
+        <span class="c"># @param site1 Index of the first site</span>
+        <span class="c"># @param site2 Index of the second site</span>
+        <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Builder&#39;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">)))</span>
+<div class="viewcode-block" id="LDResult.Builder.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.__init__">[docs]</a>        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Constructs an LDResult builder</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            Builder(int site1, int site2)</span>
+
+<span class="sd">            Arguments:</span>
+
+<span class="sd">            site1 -- Index of the first site</span>
+<span class="sd">            site2 -- Index of the second site</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span>
+        <span class="c">## Builds the LDResult</span>
+        <span class="c"># @return The LDResult</span></div>
+        <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;build&quot;</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]),(),</span>
+                       <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">LDResult</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="LDResult.Builder.build"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.build">[docs]</a>        <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Builds the LDResult</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            LDResult build()</span>
+
+<span class="sd">            Returns:</span>
+
+<span class="sd">            The LDResult</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span>
+        <span class="c">## Adds the r2 value</span>
+        <span class="c"># @param value The r2 vlaue</span>
+        <span class="c"># @return The builder with the r2 value included</span></div>
+        <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;r2&quot;</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;float&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Builder&#39;</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">metaFloat</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">LDResult</span><span class="o">.</span><span class="n">Builder</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="LDResult.Builder.r2"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.r2">[docs]</a>        <span class="k">def</span> <span class="nf">r2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Adds the r2 value</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            Builder r2(float value)</span>
+
+<span class="sd">            Arguments:</span>
+
+<span class="sd">            value -- The r2 value</span>
+
+<span class="sd">            Returns:</span>
+
+<span class="sd">            The builder with the r2 value included</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span>
+        <span class="c">## Adds the dprime value</span>
+        <span class="c"># @param value The dprime vlaue</span>
+        <span class="c"># @return The builder with the dprime value included</span></div>
+        <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;dprime&quot;</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;float&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Builder&#39;</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">metaFloat</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">LDResult</span><span class="o">.</span><span class="n">Builder</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="LDResult.Builder.dprime"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.dprime">[docs]</a>        <span class="k">def</span> <span class="nf">dprime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Adds the dprime value</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            Builder dprime(float value)</span>
+
+<span class="sd">            Arguments:</span>
+
+<span class="sd">            value -- The dprime value</span>
+
+<span class="sd">            Returns:</span>
+
+<span class="sd">            The builder with the dprime value included</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span>
+        <span class="c">## Adds the p value</span>
+        <span class="c"># @param value The p vlaue</span>
+        <span class="c"># @return The builder with the p value included</span></div>
+        <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;float&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Builder&#39;</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">metaFloat</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">LDResult</span><span class="o">.</span><span class="n">Builder</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="LDResult.Builder.p"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.p">[docs]</a>        <span class="k">def</span> <span class="nf">p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Adds the p value</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            Builder p(float value)</span>
+
+<span class="sd">            Arguments:</span>
+
+<span class="sd">            value -- The p value</span>
+
+<span class="sd">            Returns:</span>
+
+<span class="sd">            The builder with the p value included</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span>
+        <span class="c">## Adds the n value</span>
+        <span class="c"># @param value The n vlaue</span>
+        <span class="c"># @return The builder with the n value included</span></div>
+        <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;n&quot;</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Builder&#39;</span><span class="p">),</span>
+                       <span class="p">(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">LDResult</span><span class="o">.</span><span class="n">Builder</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="LDResult.Builder.n"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.n">[docs]</a>        <span class="k">def</span> <span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Adds the n value</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            Builder n(int value)</span>
+
+<span class="sd">            Arguments:</span>
+
+<span class="sd">            value -- The n value</span>
+
+<span class="sd">            Returns:</span>
+
+<span class="sd">            The builder with the n value included</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span></div></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

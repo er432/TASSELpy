@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.taxa.TaxaList &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.taxa.TaxaList</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.FilterList</span> <span class="kn">import</span> <span class="n">FilterList</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.Taxon</span> <span class="kn">import</span> <span class="n">Taxon</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">javaObj</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">metaString</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                <span class="s">&#39;TaxaList&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/TaxaList&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Taxon&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/Taxon&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="TaxaList"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.taxa.html#TASSELpy.net.maizegenetics.taxa.TaxaList.TaxaList">[docs]</a><span class="k">class</span> <span class="nc">TaxaList</span><span class="p">(</span><span class="n">FilterList</span><span class="p">):</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaList&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaList&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="TaxaList.__init__"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.taxa.html#TASSELpy.net.maizegenetics.taxa.TaxaList.TaxaList.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TaxaList</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Taxon</span><span class="p">,),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c">## Returns number of taxa</span>
+    <span class="c"># @return Number of taxa</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;numberOfTaxa&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="TaxaList.numberOfTaxa"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.taxa.html#TASSELpy.net.maizegenetics.taxa.TaxaList.TaxaList.numberOfTaxa">[docs]</a>    <span class="k">def</span> <span class="nf">numberOfTaxa</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns number of taxa</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int numberOfTaxa()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of taxa</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns taxa name at given index</span>
+    <span class="c"># @param index index</span>
+    <span class="c"># @return taxa name</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;taxaName&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="TaxaList.taxaName"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.taxa.html#TASSELpy.net.maizegenetics.taxa.TaxaList.TaxaList.taxaName">[docs]</a>    <span class="k">def</span> <span class="nf">taxaName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return taxa name at given index</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String taxaName(int index)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        taxa name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;indexOf&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaString</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Taxon&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">Taxon</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="TaxaList.indexOf"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.taxa.html#TASSELpy.net.maizegenetics.taxa.TaxaList.TaxaList.indexOf">[docs]</a>    <span class="k">def</span> <span class="nf">indexOf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return matching taxa index for given name</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int indexOf(String name)</span>
+<span class="sd">        int indexOf(Taxon taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        int indexOf(String name)</span>
+<span class="sd">           name -- name</span>
+<span class="sd">        int indexOf(Taxon taxon)</span>
+<span class="sd">           taxon --- taxon</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Index for matching taxon (-1 if no match)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

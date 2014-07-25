@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix</span> <span class="kn">import</span> <span class="n">DistanceMatrix</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.util.ProgressListener</span> <span class="kn">import</span> <span class="n">ProgressListener</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.util.BitSet</span> <span class="kn">import</span> <span class="n">BitSet</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Boolean</span> <span class="kn">import</span> <span class="n">metaBoolean</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.snp.GenotypeTable</span> <span class="kn">import</span> <span class="n">GenotypeTable</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span><span class="p">,</span><span class="n">javaStaticOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">javaPrimativeArray</span><span class="p">,</span> <span class="n">meta_long_array</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;BitSet&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/util/BitSet&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/GenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;IBSDistanceMatrix&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/analysis/distance/IBSDistanceMatrix&#39;</span><span class="p">,</span>
+                <span class="s">&#39;ProgressListener&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/util/ProgressListener&#39;</span><span class="p">,</span>
+                <span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">}</span>
+<div class="viewcode-block" id="IBSDistanceMatrix"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix">[docs]</a><span class="k">class</span> <span class="nc">IBSDistanceMatrix</span><span class="p">(</span><span class="n">DistanceMatrix</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class calculates an identity by state matrix. It is scaled so only</span>
+<span class="sd">    non-missing comparison are used.  It conducts bit level calculations of IBS for genotypes.</span>
+<span class="sd">    Only the two most common alleles are used in the distance calculations.</span>
+
+<span class="sd">    Please note that when heterozygous genotypes are used, Het to Het distance is 0.5 NOT 0.0. The default</span>
+<span class="sd">    along the identity diagonal is 0 (isTrueIBS = false), but changing isTrueIBS = true will calculate</span>
+<span class="sd">    the identity.</span>
+
+<span class="sd">    The distance estimates become wildly inaccurate when too few sites are used to calculate</span>
+<span class="sd">    distance.  The minSiteComp parameter can be used to control the minimum number of sites</span>
+<span class="sd">    used for a calculation.  If there are insufficient sites in the estimate, then Double.NaN</span>
+<span class="sd">    is returned.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;IBSDistanceMatrix&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;IBSDistanceMatrix&#39;</span><span class="p">],</span>
+                             <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">GenotypeTable</span><span class="p">,)),</span>
+                            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ProgressListener&#39;</span><span class="p">]],</span>
+                                      <span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">ProgressListener</span><span class="p">)),</span>
+                            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span>
+                                       <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ProgressListener&#39;</span><span class="p">]],</span>
+                                      <span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">ProgressListener</span><span class="p">)),</span>
+                            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span>
+                                       <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ProgressListener&#39;</span><span class="p">]],</span>
+                                      <span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">,</span><span class="n">ProgressListener</span><span class="p">)))</span>
+<div class="viewcode-block" id="IBSDistanceMatrix.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute observed distances for all taxa. Missing sites are ignored</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        IBSDistanceMatrix(GenotypeTable theAlignment)</span>
+<span class="sd">        IBSDistanceMatrix(GenotypeTable theAlignment, ProgressListener listener)</span>
+<span class="sd">        IBSDistanceMatrix(GenotypeTable theAlignment, int minSiteComp, ProgressListener listener)</span>
+<span class="sd">        IBSDistanceMatrix(GenotypeTable theAlignment, int minSiteComp, boolean trueIBS,</span>
+<span class="sd">                         ProgressListener listener)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        IBSDistanceMatrix(GenotypeTable theAlignment)</span>
+<span class="sd">            theAlignment -- Alignment used to compute distances</span>
+<span class="sd">        IBSDistanceMatrix(GenotypeTable theAlignment, ProgressListener listener)</span>
+<span class="sd">            theAlignment -- Alignment used to compute distances</span>
+<span class="sd">            listener -- Listener to track progress in calculations</span>
+<span class="sd">        IBSDistanceMatrix(GenotypeTable theAlignment, int minSiteComp, ProgressListener listener)</span>
+<span class="sd">            theAlignment -- Alignment used to compute distances</span>
+<span class="sd">            minSiteComp -- Minimum number of sites needed to estimate distance</span>
+<span class="sd">            listener -- Listener to track progress in calculations</span>
+<span class="sd">        IBSDistanceMatrix(GenotypeTable theAlignment, int minSiteComp, boolean trueIBS,</span>
+<span class="sd">                         ProgressListener listener)</span>
+<span class="sd">            theAlignment -- Alignment used to compute distances</span>
+<span class="sd">            minSiteComp -- Minimum number of sites needed to estimate distance</span>
+<span class="sd">            trueIBS -- Estimate diagonal distance based IBS (default = false, i=i=0.0)</span>
+<span class="sd">            listener -- Listener to track progress in calculations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Compute distance for a pair of taxa</span>
+    <span class="c"># @param theTBA input alignment</span>
+    <span class="c"># @param taxon1 index of taxon1</span>
+    <span class="c"># @param taxon2 index of taxon2</span>
+    <span class="c"># @return Array of {distance, number of sites used in comparison}</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;IBSDistanceMatrix&#39;</span><span class="p">],</span><span class="s">&quot;computeHetBitDistances&quot;</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double[]&#39;</span><span class="p">),</span> <span class="c"># First</span>
+                         <span class="p">(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)),</span>
+                         <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">],</span> <span class="c"># Second</span>
+                                   <span class="s">&#39;double[]&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">),</span>
+                         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)),</span>
+                         <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="c"># Third</span>
+                                    <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span> <span class="s">&#39;double[]&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span>
+                          <span class="n">BitSet</span><span class="p">),</span>
+                         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)),</span>
+                         <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long[]&#39;</span><span class="p">,</span><span class="s">&#39;long[]&#39;</span><span class="p">,</span><span class="s">&#39;long[]&#39;</span><span class="p">,</span><span class="s">&#39;long[]&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span> <span class="s">&#39;double[]&#39;</span><span class="p">),</span> <span class="c"># Fourth</span>
+                         <span class="p">(</span><span class="n">meta_long_array</span><span class="p">,</span>
+                          <span class="n">meta_long_array</span><span class="p">,</span>
+                          <span class="n">meta_long_array</span><span class="p">,</span>
+                          <span class="n">meta_long_array</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)),</span>
+                         <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long[]&#39;</span><span class="p">,</span><span class="s">&#39;long[]&#39;</span><span class="p">,</span><span class="s">&#39;long[]&#39;</span><span class="p">,</span><span class="s">&#39;long[]&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span> <span class="c"># Fifth</span>
+                                   <span class="s">&#39;double[]&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">meta_long_array</span><span class="p">,</span>
+                          <span class="n">meta_long_array</span><span class="p">,</span>
+                          <span class="n">meta_long_array</span><span class="p">,</span>
+                          <span class="n">meta_long_array</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span>
+                          <span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                         <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;double&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="IBSDistanceMatrix.computeHetBitDistances"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.computeHetBitDistances">[docs]</a>    <span class="k">def</span> <span class="nf">computeHetBitDistances</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute distance for a pair of taxa</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static double[] computeHetBitDistances(GenotypeTable theTBA, int taxon1, int taxon2)</span>
+<span class="sd">        static double[] computeHetBitDistances(GenotypeTable theTBA, int taxon1, int taxon2,</span>
+<span class="sd">                                                  int minSitesCompared, boolean isTrueIBS)</span>
+<span class="sd">        static double[] computeHetBitDistances(GenotypeTable theTBA, int taxon1, int taxon2, </span>
+<span class="sd">            int minSitesCompared, int firstWord, int lastWord, BitSet maskBadSet)</span>
+<span class="sd">        static double[] computeHetBitDistances(long[] iMj, long[] iMn, long[] jMj, long[] jMn, </span>
+<span class="sd">            int minSitesCompared)</span>
+<span class="sd">        static double[] computeHetBitDistances(long[] iMj, long[] iMn, long[] jMj, long[] jMn, </span>
+<span class="sd">            int minSitesCompared, int firstWord, int lastWord)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        static double[] computeHetBitDistances(GenotypeTable theTBA, int taxon1, int taxon2)</span>
+<span class="sd">            theTBA -- input alignment</span>
+<span class="sd">            taxon1 -- index of taxon 1</span>
+<span class="sd">            taxon2 -- index of taxon 2</span>
+<span class="sd">        static double[] computeHetBitDistances(GenotypeTable theTBA, int taxon1, int taxon2,</span>
+<span class="sd">                                                  int minSitesCompared, boolean isTrueIBS)</span>
+<span class="sd">            theTBA -- input alignment</span>
+<span class="sd">            taxon1 -- index of taxon 1</span>
+<span class="sd">            taxon2 -- index of taxon 2</span>
+<span class="sd">            minSitesCompared -- Minimum number of sites needed to estimate distance</span>
+<span class="sd">            isTrueIBS -- estimate diagonal distance based IBS (default = False, i=i=0.0)</span>
+<span class="sd">        static double[] computeHetBitDistances(GenotypeTable theTBA, int taxon1, int taxon2, </span>
+<span class="sd">            int minSitesCompared, int firstWord, int lastWord, BitSet maskBadSet)</span>
+<span class="sd">            theTBA -- input alignment</span>
+<span class="sd">            taxon1 -- index of taxon 1</span>
+<span class="sd">            taxon2 -- index of taxon 2</span>
+<span class="sd">            minSitesCompared -- Minimum number of sites needed to estimate distance</span>
+<span class="sd">            firstWord -- Starting word for calculating distance site=(firstWord*64)</span>
+<span class="sd">            lastWord -- Ending word for calculating distance inclusive site=(lastWord*64+63)</span>
+<span class="sd">            maskBadSet -- Optional mask for sites (those set to 1 are kept)</span>
+<span class="sd">        static double[] computeHetBitDistances(long[] iMj, long[] iMn, long[] jMj, long[] jMn, </span>
+<span class="sd">            int minSitesCompared)</span>
+<span class="sd">            iMj -- Vector of major alleles for taxon i</span>
+<span class="sd">            iMn -- Vector of minor alleles for taxon i</span>
+<span class="sd">            jMj -- Vector of major alleles for taxon j</span>
+<span class="sd">            jMn -- Vector of minor alleles for taxon j</span>
+<span class="sd">            minSitesCompared -- Minimum number of sites needed to estimate distance</span>
+<span class="sd">        static double[] computeHetBitDistances(long[] iMj, long[] iMn, long[] jMj, long[] jMn, </span>
+<span class="sd">            int minSitesCompared, int firstWord, int lastWord)</span>
+<span class="sd">            iMj -- Vector of major alleles for taxon i</span>
+<span class="sd">            iMn -- Vector of minor alleles for taxon i</span>
+<span class="sd">            jMj -- Vector of major alleles for taxon j</span>
+<span class="sd">            jMn -- Vector of minor alleles for taxon j</span>
+<span class="sd">            minSitesCompared -- Minimum number of sites needed to estimate distance</span>
+<span class="sd">            firstWord -- Starting word for calculating distance site=(firstWord*64)</span>
+<span class="sd">            lastWord -- Ending word for calculating distance inclusive site=(lastWord*64+63)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Array of {distance, number of sites used in comparison}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the average number of sites used in calculating the distance matrix</span>
+    <span class="c"># @return Average number of sites used in calculating the distance matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getAverageTotalSites&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;double&#39;</span><span class="p">),(),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="IBSDistanceMatrix.getAverageTotalSites"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.getAverageTotalSites">[docs]</a>    <span class="k">def</span> <span class="nf">getAverageTotalSites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets average number of sites used in calculating the distance matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double getAverageTotalSits()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Average number of sites used in calculating the distance matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets string representation of this matrix with &#39;d&#39; displayed digits</span>
+    <span class="c"># @param d The number of digits to display</span>
+    <span class="c"># @return String representation of this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;toString&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="IBSDistanceMatrix.toString"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.toString">[docs]</a>    <span class="k">def</span> <span class="nf">toString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets string representation of this matrix with &#39;d&#39; displayed digits</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String toString()</span>
+<span class="sd">        String toString(int d)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        String toString(int d)</span>
+<span class="sd">            d -- The number of digits to display</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        String representation of this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether true IBS is calculated for the diagonal</span>
+    <span class="c"># @return Whether true IBS is calculated for the diagonal</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isTrueIBS&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="IBSDistanceMatrix.isTrueIBS"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix.IBSDistanceMatrix.isTrueIBS">[docs]</a>    <span class="k">def</span> <span class="nf">isTrueIBS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether true IBS is calculated for the diagonal</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean IsTrueIBS()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Whether true IBS is calculated for the diagonal</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

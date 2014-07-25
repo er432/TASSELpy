@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.util.Map &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.java.util.Map</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.Collection</span> <span class="kn">import</span> <span class="n">Collection</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.Set</span> <span class="kn">import</span> <span class="n">Set</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span><span class="p">,</span><span class="n">javaGenericOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">genericJavaObj</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Collection&#39;</span><span class="p">:</span><span class="s">&#39;java/util/Collection&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Map&#39;</span><span class="p">:</span><span class="s">&#39;java/util/Map&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Set&#39;</span><span class="p">:</span><span class="s">&#39;java/util/Set&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="metaMap"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.metaMap">[docs]</a><span class="k">class</span> <span class="nc">metaMap</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">Map</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="Map"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map">[docs]</a><span class="k">class</span> <span class="nc">Map</span><span class="p">(</span><span class="n">genericJavaObj</span><span class="p">,</span> <span class="n">Object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.</span>
+<span class="sd">    This interface takes the place of the Dictionary class, which was a totally abstract class rather than an interface.</span>
+
+<span class="sd">    The Map interface provides three collection views, which allow a map&#39;s contents to be viewed as a set of keys, collection of values, or set of key-value mappings. The order of a map is defined as the order in which the iterators on the map&#39;s collection views return their elements. Some map implementations, like the TreeMap class, make specific guarantees as to their order; others, like the HashMap class, do not.</span>
+
+<span class="sd">    Note: great care must be exercised if mutable objects are used as map keys. The behavior of a map is not specified if the value of an object is changed in a manner that affects equals comparisons while the object is a key in the map. A special case of this prohibition is that it is not permissible for a map to contain itself as a key. While it is permissible for a map to contain itself as a value, extreme caution is advised: the equals and hashCode methods are no longer well defined on such a map.</span>
+
+<span class="sd">    All general-purpose map implementation classes should provide two &quot;standard&quot; constructors: a void (no arguments) constructor which creates an empty map, and a constructor with a single argument of type Map, which creates a new map with the same key-value mappings as its argument. In effect, the latter constructor allows the user to copy any map, producing an equivalent map of the desired class. There is no way to enforce this recommendation (as interfaces cannot contain constructors) but all of the general-purpose map implementations in the JDK comply.</span>
+
+<span class="sd">    The &quot;destructive&quot; methods contained in this interface, that is, the methods that modify the map on which they operate, are specified to throw UnsupportedOperationException if this map does not support the operation. If this is the case, these methods may, but are not required to, throw an UnsupportedOperationException if the invocation would have no effect on the map. For example, invoking the putAll(Map) method on an unmodifiable map may, but is not required to, throw the exception if the map whose mappings are to be &quot;superimposed&quot; is empty.</span>
+
+<span class="sd">    Some map implementations have restrictions on the keys and values they may contain. For example, some implementations prohibit null keys and values, and some have restrictions on the types of their keys. Attempting to insert an ineligible key or value throws an unchecked exception, typically NullPointerException or ClassCastException. Attempting to query the presence of an ineligible key or value may throw an exception, or it may simply return false; some implementations will exhibit the former behavior and some will exhibit the latter. More generally, attempting an operation on an ineligible key or value whose completion would not result in the insertion of an ineligible element into the map may throw an exception or it may succeed, at the option of the implementation. Such exceptions are marked as &quot;optional&quot; in the specification for this interface.</span>
+
+<span class="sd">    This interface is a member of the Java Collections Framework.</span>
+
+<span class="sd">    Many methods in Collections Framework interfaces are defined in terms of the equals method. For example, the specification for the containsKey(Object key) method says: &quot;returns true if and only if this map contains a mapping for a key k such that (key==null ? k==null : key.equals(k)).&quot; This specification should not be construed to imply that invoking Map.containsKey with a non-null argument key will cause key.equals(k) to be invoked for any key k. Implementations are free to implement optimizations whereby the equals invocation is avoided, for example, by first comparing the hash codes of the two keys. (The Object.hashCode() specification guarantees that two objects with unequal hash codes cannot be equal.) More generally, implementations of the various Collections Framework interfaces are free to take advantage of the specified behavior of underlying Object methods wherever the implementor deems it appropriate.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Map&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Map&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="Map.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Map</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;{</span><span class="si">%s</span><span class="s">}&quot;</span> <span class="o">%</span> <span class="s">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> =&gt; </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">getKey</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(),</span>
+                                <span class="n">x</span><span class="o">.</span><span class="n">getValue</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">()),</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrySet</span><span class="p">()))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;{</span><span class="si">%s</span><span class="s"> ... </span><span class="si">%s</span><span class="s">}&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> =&gt; </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">getKey</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(),</span>
+                                <span class="n">x</span><span class="o">.</span><span class="n">getValue</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">()),</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrySet</span><span class="p">()][:</span><span class="mi">3</span><span class="p">])),</span>
+                                <span class="s">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> =&gt; </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">getKey</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(),</span>
+                                <span class="n">x</span><span class="o">.</span><span class="n">getValue</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">()),</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">entrySet</span><span class="p">()][</span><span class="o">-</span><span class="mi">3</span><span class="p">:])))</span>
+    <span class="c">## Removes all of the mappings from this map</span>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;clear&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;void&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.clear"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes all of the mappings from this map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void clear()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this map contains a mapping for the specified key</span>
+    <span class="c"># @param key Key whose presence in map is to be tested</span>
+    <span class="c"># @return True if this map contains a mapping for the specified key</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;containsKey&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&quot;Object&quot;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">Object</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.containsKey"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.containsKey">[docs]</a>    <span class="k">def</span> <span class="nf">containsKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this map contains a mapping for the specified key</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean containsKey(Object key)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        key -- key whose presence in map is to be tested</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        True if this map contains a mapping for the specified key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this map contains a mapping for the specified value</span>
+    <span class="c"># @param value Value whose presence in map is to be tested</span>
+    <span class="c"># @return True if this map contains a mapping for the specified value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;containsValue&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&quot;Object&quot;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">Object</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.containsValue"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.containsValue">[docs]</a>    <span class="k">def</span> <span class="nf">containsValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this map contains a mapping for the specified value</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean containsValue(Object value)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        value -- value whose presence in map is to be tested</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        True if this map contains a mapping for the specified value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;entrySet&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Set&#39;</span><span class="p">]),(),</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Map</span><span class="o">.</span><span class="n">Entry</span><span class="p">,))))</span>
+    <span class="k">def</span> <span class="nf">_entrySet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns a Set view of the mapping contained in this map</span>
+    <span class="c"># @return Set view of the mappings contained in this map</span>
+<div class="viewcode-block" id="Map.entrySet"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.entrySet">[docs]</a>    <span class="k">def</span> <span class="nf">entrySet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a Set view of the mappings contained in this map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Set view of the mappings contained in this map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">entryset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entrySet</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">entryset</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">[</span><span class="s">&#39;/@1/&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">generic_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">generic_dict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">entryset</span>
+    <span class="c">## Associates the specified value with the specified key in this map</span>
+    <span class="c"># @param key key with which the specified value is to be associated</span>
+    <span class="c"># @param value value to be associated with the specified key</span>
+    <span class="c"># @return Previous value associated with key, or null if there was no mapping for key</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;put&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),</span>
+             <span class="p">(</span><span class="s">&#39;/@1/&#39;</span><span class="p">,</span><span class="s">&#39;/@2/&#39;</span><span class="p">),</span><span class="s">&#39;/@2/&#39;</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.put"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.put">[docs]</a>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Associates the specified value with the specified key in this map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        V put(K key, V value)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        key -- key with which the specified value is to be associated</span>
+<span class="sd">        value -- value to be associated with the specified key</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Previous value associated with key, or null if there was no mapping for key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the value to which the specified key is mapped, or null if this map contains no mapping</span>
+    <span class="c"># for this key</span>
+    <span class="c"># @param key The key whose associated value is to be returned</span>
+    <span class="c"># @return The value to which the specified key is mapped, or null if this map contains no mapping</span>
+    <span class="c"># for this key</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;get&quot;</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),(</span><span class="n">Object</span><span class="p">,),</span>
+                 <span class="s">&#39;/@2/&#39;</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.get"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the vlaue to which the specified key is mapped, or null if this map contains no</span>
+<span class="sd">        mapping for the key</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        V get(Object key)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        key -- the key whose associated value is to be returned</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The value to which the specified key is mapped, or null if htis map contains no mapping</span>
+<span class="sd">        for the key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if this map contains no key-value mappings</span>
+    <span class="c"># @return Whether this map contains any key-value mappings</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isEmpty&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.isEmpty"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.isEmpty">[docs]</a>    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if this map contains no key-value mappings</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isEmpty()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Whether this map contains any key-value mappings</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns a set view of the keys contained in this map</span>
+    <span class="c"># @return Set of the keys in the map</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;keySet&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Set&#39;</span><span class="p">]),(),</span>
+                   <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">Set</span><span class="p">,</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="s">&quot;/@1/&quot;</span><span class="p">,))))</span>
+<div class="viewcode-block" id="Map.keySet"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.keySet">[docs]</a>    <span class="k">def</span> <span class="nf">keySet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a Set view of the keys contained in this map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Set&lt;K&gt; keySet()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Set of the keys in the map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Copies all of the mappings from the specified map to this map</span>
+    <span class="c"># @param m Mappings to be stored in this map</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;putAll&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Map&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaMap</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.putAll"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.putAll">[docs]</a>    <span class="k">def</span> <span class="nf">putAll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copies all of the mappings from the specified map to this map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void putAll(Map&lt;? extends K, ? extends V&gt; m)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        m -- Mappings to be stored in this map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Removes the mapping for a key from this map if it is present</span>
+    <span class="c"># @param key Key for the key-value pair you want to remove</span>
+    <span class="c"># @return The previous value associated with key, or null if there was no mapping for key</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;remove&quot;</span><span class="p">,</span>
+                         <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),(</span><span class="n">Object</span><span class="p">,),</span>
+                          <span class="s">&#39;/@2/&#39;</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.remove"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes the mapping for a key from this map if it is present</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        V remove(Object key)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        key -- Key for the key-value pair you want to remove</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The previous value associated with key, or null if there was no mapping for key</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the number of key-value mappings in this map</span>
+    <span class="c"># @return The number of key-value mappings in this map</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;size&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.size"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.size">[docs]</a>    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the number of key-value mappings in this map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int size()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The number of key-value mappings in this map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns a Collection view of the values contained in this map</span>
+    <span class="c"># @return The Collection view of the values contained in this map</span></div>
+    <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;values&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Collection&#39;</span><span class="p">]),(),</span>
+             <span class="nb">dict</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">Collection</span><span class="p">,</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="s">&quot;/@2/&quot;</span><span class="p">,))))</span>
+<div class="viewcode-block" id="Map.values"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.values">[docs]</a>    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a Collection view of the values contained in this map</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Collection&lt;V&gt; values()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The Collection view of the values contained in this map</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+<div class="viewcode-block" id="Map.Entry"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.Entry">[docs]</a>    <span class="k">class</span> <span class="nc">Entry</span><span class="p">(</span><span class="n">genericJavaObj</span><span class="p">,</span> <span class="n">Object</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A map entry (key-value pair). The Map.entrySet method returns a collection-view of the map,</span>
+<span class="sd">        whose elements are of this class. The only way to obtain a reference to a map entry is from</span>
+<span class="sd">        the iterator of this collection-view. These Map.Entry objects are valid only for the duration</span>
+<span class="sd">        of the iteration; more formally, the behavior of a map entry is undefined if the backing map</span>
+<span class="sd">        has been modified after the entry was returned by the iterator, except through the setValue</span>
+<span class="sd">        operation on the map entry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Map&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Entry&#39;</span>
+        <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Map&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$Entry&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="Map.Entry.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.Entry.__init__">[docs]</a>        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">Map</span><span class="o">.</span><span class="n">Entry</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c">## Returns the key corresponding to this entry</span>
+        <span class="c"># @return Key corresponding to this entry</span></div>
+        <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;getKey&quot;</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),(),</span><span class="s">&quot;/@1/&quot;</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.Entry.getKey"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.Entry.getKey">[docs]</a>        <span class="k">def</span> <span class="nf">getKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the key corresponding to this entry</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            K getKey()</span>
+
+<span class="sd">            Returns:</span>
+
+<span class="sd">            Key corresponding to this entry</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span>
+        <span class="c">## Returns the value corresponding to this entry</span>
+        <span class="c"># @return Value corresponding to this entry</span></div>
+        <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;getValue&quot;</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),(),</span><span class="s">&quot;/@2/&quot;</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.Entry.getValue"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.Entry.getValue">[docs]</a>        <span class="k">def</span> <span class="nf">getValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Returns the value corresponding to this entry</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            K getValue()</span>
+
+<span class="sd">            Returns:</span>
+
+<span class="sd">            Value corresponding to this entry            </span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span>
+        <span class="c">## Replaces the value corresponding to this entry with the specified value</span>
+        <span class="c"># @param value ne vlaue to be stored in this entry</span>
+        <span class="c"># @return Old value corresponding to the entry</span></div>
+        <span class="nd">@javaGenericOverload</span><span class="p">(</span><span class="s">&quot;setValue&quot;</span><span class="p">,</span>
+                    <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Object&#39;</span><span class="p">]),(</span><span class="s">&#39;/@2/&#39;</span><span class="p">,),</span><span class="s">&#39;/@2/&#39;</span><span class="p">))</span>
+<div class="viewcode-block" id="Map.Entry.setValue"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.Map.Map.Entry.setValue">[docs]</a>        <span class="k">def</span> <span class="nf">setValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Replaces the value corresponding to this entry with the specified value</span>
+
+<span class="sd">            Signatures:</span>
+
+<span class="sd">            V setValue(V value)</span>
+
+<span class="sd">            Arguments:</span>
+
+<span class="sd">            value -- new value to be stored in this entry</span>
+
+<span class="sd">            Returns:</span>
+
+<span class="sd">            Old value corresponding to the entry</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">pass</span>
+        </div></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

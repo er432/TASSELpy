@@ -1,0 +1,948 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.analysis.popgen package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.net.maizegenetics.analysis package" href="TASSELpy.net.maizegenetics.analysis.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.analysis.html" accesskey="U">TASSELpy.net.maizegenetics.analysis package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-net-maizegenetics-analysis-popgen-package">
+<h1>TASSELpy.net.maizegenetics.analysis.popgen package<a class="headerlink" href="#tasselpy-net-maizegenetics-analysis-popgen-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.analysis.popgen.LDResult">
+<span id="tasselpy-net-maizegenetics-analysis-popgen-ldresult-module"></span><h2>TASSELpy.net.maizegenetics.analysis.popgen.LDResult module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.analysis.popgen.LDResult" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.analysis.popgen.LDResult.</tt><tt class="descname">LDResult</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder"><tt class="xref py py-obj docutils literal"><span class="pre">Builder</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.dPrime" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.dPrime"><tt class="xref py py-obj docutils literal"><span class="pre">dPrime</span></tt></a>(*args)</td>
+<td>Gets the D&#8217; value</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.n" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.n"><tt class="xref py py-obj docutils literal"><span class="pre">n</span></tt></a>(*args)</td>
+<td>Gets the number of individuals used to calculate LD</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.p" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.p"><tt class="xref py py-obj docutils literal"><span class="pre">p</span></tt></a>(*args)</td>
+<td>Gets the p-value for r2</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.r2" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.r2"><tt class="xref py py-obj docutils literal"><span class="pre">r2</span></tt></a>(*args)</td>
+<td>Gets the r2 value</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site1" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site1"><tt class="xref py py-obj docutils literal"><span class="pre">site1</span></tt></a>(*args)</td>
+<td>Gets the first site</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site2" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site2"><tt class="xref py py-obj docutils literal"><span class="pre">site2</span></tt></a>(*args)</td>
+<td>Gets the second site</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder">
+<em class="property">class </em><tt class="descname">Builder</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.Builder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.build" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.build"><tt class="xref py py-obj docutils literal"><span class="pre">build</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.dprime" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.dprime"><tt class="xref py py-obj docutils literal"><span class="pre">dprime</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.n" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.n"><tt class="xref py py-obj docutils literal"><span class="pre">n</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.p" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.p"><tt class="xref py py-obj docutils literal"><span class="pre">p</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.r2" title="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.r2"><tt class="xref py py-obj docutils literal"><span class="pre">r2</span></tt></a></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.Builder.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an LDResult builder</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>Builder</em> (int <strong>site1</strong>, int <strong>site2</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>site1</strong> (<em>int</em>) &#8211; Index of the first site</li>
+<li><strong>site2</strong> (<em>int</em>) &#8211; Index of the second site</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.build">
+<tt class="descname">build</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.Builder.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the LDResult</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>build</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The LDResult</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">LDResult</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.dprime">
+<tt class="descname">dprime</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.Builder.dprime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.dprime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the dprime value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>dprime</em> (float <strong>value</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>float</em>) &#8211; The dprime value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The builder with the dprime value included</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Builder</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.n">
+<tt class="descname">n</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.Builder.n"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the n value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>n</em> (int <strong>value</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>int</em>) &#8211; The n value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The builder with the n value included</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Builder</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.p">
+<tt class="descname">p</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.Builder.p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the p value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>p</em> (float <strong>value</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>float</em>) &#8211; The p value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The builder with the p value included</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Builder</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.r2">
+<tt class="descname">r2</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.Builder.r2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.Builder.r2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the r2 value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>r2</em> (float <strong>value</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>float</em>) &#8211; The r2 value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The builder with the r2 value included</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Builder</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.__init__">
+<tt class="descclassname">LDResult.</tt><tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs an LDResult</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>LDResult</em> (int <strong>site1</strong>, int <strong>site2</strong>, float <strong>r2</strong>, float <strong>dprime</strong>, float <strong>p</strong>, int <strong>n</strong>)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.dPrime">
+<tt class="descclassname">LDResult.</tt><tt class="descname">dPrime</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.dPrime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.dPrime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the D&#8217; value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>dPrime</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The D&#8217; value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.n">
+<tt class="descclassname">LDResult.</tt><tt class="descname">n</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.n"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of individuals used to calculate LD</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>n</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of individuals used to calculate LD</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.p">
+<tt class="descclassname">LDResult.</tt><tt class="descname">p</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.p"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the p-value for r2</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>p</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The p value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.r2">
+<tt class="descclassname">LDResult.</tt><tt class="descname">r2</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.r2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.r2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the r2 value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>r2</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The r2 value</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">float</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site1">
+<tt class="descclassname">LDResult.</tt><tt class="descname">site1</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.site1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the first site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>site1</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Index of the first site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site2">
+<tt class="descclassname">LDResult.</tt><tt class="descname">site2</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LDResult.html#LDResult.site2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LDResult.LDResult.site2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the second site</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>site2</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Index of the second site</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium">
+<span id="tasselpy-net-maizegenetics-analysis-popgen-linkagedisequilibrium-module"></span><h2>TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.</tt><tt class="descname">LinkageDisequilibrium</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Thread.Thread" title="TASSELpy.java.lang.Thread.Thread"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Thread.Thread</span></tt></a>, <a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.TableReport.TableReport" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.TableReport.TableReport</span></tt></a></p>
+<p>This class calculates D&#8217; and r^2 estimates of linkage disequilibrium. It also
+calculates the significance of the LD by either Fisher Exact or the
+multinomial permutation test. This class can work with either normal
+alignments of annotated alignments. The alignments should be stripped of
+invariable numSites.</p>
+<blockquote>
+<div><a class="reference external" href="mailto:{&#37;&#52;&#48;link">{<span>&#64;</span>link</a> testDesign} sets matrix design for LD calculation. Either all by</div></blockquote>
+<p>all, sliding window, site by all, or site list.</p>
+<p>There are multiple approaches for dealing with heterozygous sites.
+<a class="reference external" href="mailto:{&#37;&#52;&#48;link">{<span>&#64;</span>link</a> HetTreatment} sets the way these are treated. Haplotype assumes fully
+phased heterozygous sites (any hets are double counted). This is the best
+approach for speed when things are fully phased. Homozygous converted all
+hets to missing. Genotype does a 3x3 genotype analysis (to be implemented)</p>
+<p>2 state estimates of D&#8217; and r^2 can be found reviewed and discussed in Weir
+1996</p>
+<p>Multi-state loci (&gt;=3) require an averaging approach. In TASSEL 3 in 2010,
+Buckler removed these approach as the relative magnitudes and meaningfulness
+of these approaches has never been clear. Additionally with the moving away
+from SSR to SNPs these methods are less relevant. Researchers should convert
+to biallelic - either by ignoring rarer classes or collapsing rarer states.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateBitLDForHaplotype" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateBitLDForHaplotype"><tt class="xref py py-obj docutils literal"><span class="pre">calculateBitLDForHaplotype</span></tt></a>(*args)</td>
+<td>Calculates the Bit LD between two sites</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateDPrime" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateDPrime"><tt class="xref py py-obj docutils literal"><span class="pre">calculateDPrime</span></tt></a>(*args)</td>
+<td>Calculates the normalized D&#8217; from Weir Genetic Analysis II 1986 pg.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateRSqr" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateRSqr"><tt class="xref py py-obj docutils literal"><span class="pre">calculateRSqr</span></tt></a>(*args)</td>
+<td>Calculates the normalized r2 from Awadella Science 1999 286:2524</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getAlignment" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getAlignment"><tt class="xref py py-obj docutils literal"><span class="pre">getAlignment</span></tt></a>(*args)</td>
+<td>Returns an annotated alignment if one was used for this LD.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getDPrime" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getDPrime"><tt class="xref py py-obj docutils literal"><span class="pre">getDPrime</span></tt></a>(*args)</td>
+<td>Gets the D&#8217; estimate for a given pair of numSites</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getLDForSitePair" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getLDForSitePair"><tt class="xref py py-obj docutils literal"><span class="pre">getLDForSitePair</span></tt></a>(*args)</td>
+<td>Method for estimating LD between a pair of bit sets.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getPval" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getPval"><tt class="xref py py-obj docutils literal"><span class="pre">getPval</span></tt></a>(*args)</td>
+<td>Returns P-value estimate for a given pair of numPSites.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getRSqr" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getRSqr"><tt class="xref py py-obj docutils literal"><span class="pre">getRSqr</span></tt></a>(*args)</td>
+<td>Gets the r2 estimate for a given pair of numSites</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSampleSize" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSampleSize"><tt class="xref py py-obj docutils literal"><span class="pre">getSampleSize</span></tt></a>(*args)</td>
+<td>Get number of gametes included in LD calculations (after missing data</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSiteCount" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSiteCount"><tt class="xref py py-obj docutils literal"><span class="pre">getSiteCount</span></tt></a>(*args)</td>
+<td>Gets the counts of the numSites in the alignment</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getX" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getX"><tt class="xref py py-obj docutils literal"><span class="pre">getX</span></tt></a>(*args)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">signature:</th><td class="field-body"><em>getX</em> (int <strong>row</strong>)</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getY" title="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getY"><tt class="xref py py-obj docutils literal"><span class="pre">getY</span></tt></a>(*args)</td>
+<td><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">signature:</th><td class="field-body"><em>getY</em> (int <strong>row</strong>)</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">run</span></tt>(*args)</td>
+<td>When an object implementing interface Runnable is used to create a thread, starting the</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.HetTreatment">
+<tt class="descname">HetTreatment</tt><em class="property"> = &lt;Haplotype: 0, Homozygous: 1, Genotype: 2&gt;</em><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.HetTreatment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for doing LD analysis</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>LinkageDisequilibrium</em> (GenotypeTable <strong>alignment</strong>, int <strong>windowSize</strong>, testDesign <strong>LDType</strong>, int <strong>testSite</strong>, ProgressListener <strong>listener</strong>, boolean <strong>isAccumulativeReport</strong>, int <strong>numAccumulateIntervals</strong>, int[] <strong>sitesList</strong>, HetTreatment <strong>hetTreatment</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>alignment</strong> (<em>GenotypeTable</em>) &#8211; Input alignment with segregating sites</li>
+<li><strong>windowSize</strong> (<em>int</em>) &#8211; Size of sliding window</li>
+<li><strong>LDType</strong> (<em>testDesign</em>) &#8211; One of the testDesign enum types (All, SlidingWindow, SiteByAll, SiteList) testSite listener isAccumulativeReport numAccumulateIntervals sitesList hetTreatment</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateBitLDForHaplotype">
+<em class="property">static </em><tt class="descname">calculateBitLDForHaplotype</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.calculateBitLDForHaplotype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateBitLDForHaplotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the Bit LD between two sites</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>calculateBitLDForHaplotype</em> (boolean <strong>ignoreHets</strong>, int <strong>minTaxaForEstimate</strong>, GenotypeTable <strong>alignment</strong>, int <strong>site1</strong>, int <strong>site2</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ignoreHets</strong> (<em>boolean</em>) &#8211; Whether to ignore heterozygous sites</li>
+<li><strong>minTaxaForEstimate</strong> (<em>int</em>) &#8211; The minimum number of taxa required to estimate LD</li>
+<li><strong>alignment</strong> (<em>GenotypeTable</em>) &#8211; A GenotypeTable containing the sites</li>
+<li><strong>site1</strong> (<em>int</em>) &#8211; The index of the first site</li>
+<li><strong>site2</strong> (<em>int</em>) &#8211; The index of the second site</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">LDResult containing the LD info</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">LDResult</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateDPrime">
+<em class="property">static </em><tt class="descname">calculateDPrime</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.calculateDPrime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateDPrime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the normalized D&#8217; from Weir Genetic Analysis II 1986 pg. 120</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>calculateDPrime</em> (int <strong>countAB</strong>, int <strong>countAb</strong>, int <strong>countaB</strong>, int <strong>countab</strong>, int <strong>minTaxaForEstimate</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>countAB</strong> (<em>int</em>) &#8211; Count of AB alleles</li>
+<li><strong>countAb</strong> (<em>int</em>) &#8211; Count of Ab alleles</li>
+<li><strong>countaB</strong> (<em>int</em>) &#8211; Count of aB alleles</li>
+<li><strong>countab</strong> (<em>int</em>) &#8211; Count of ab alleles</li>
+<li><strong>minTaxaForEsimate</strong> &#8211; The minimum number of taxa required for the estimate</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value of D&#8217;</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateRSqr">
+<em class="property">static </em><tt class="descname">calculateRSqr</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.calculateRSqr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateRSqr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the normalized r2 from Awadella Science 1999 286:2524</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>calculateRSqr</em> (int <strong>countAB</strong>, int <strong>countAb</strong>, int <strong>countaB</strong>, int <strong>countab</strong>, int <strong>minTaxaForEstimate</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>countAB</strong> (<em>int</em>) &#8211; Count of AB alleles</li>
+<li><strong>countAb</strong> (<em>int</em>) &#8211; Count of Ab alleles</li>
+<li><strong>countaB</strong> (<em>int</em>) &#8211; Count of aB alleles</li>
+<li><strong>countab</strong> (<em>int</em>) &#8211; Count of ab alleles</li>
+<li><strong>minTaxaForEsimate</strong> &#8211; The minimum number of taxa required for the estimate</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Value of r2</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getAlignment">
+<tt class="descname">getAlignment</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getAlignment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getAlignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an annotated alignment if one was used for this LD. This could
+be used to access information of locus position</p>
+<p>Signatures:</p>
+<p>GenotypeTable getAlignment</p>
+<p>Returns:</p>
+<p>The GenotypeTable</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getDPrime">
+<tt class="descname">getDPrime</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getDPrime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getDPrime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the D&#8217; estimate for a given pair of numSites</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getDPrime</em> (int <strong>r</strong>, int <strong>c</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>r</strong> (<em>int</em>) &#8211; site 1</li>
+<li><strong>c</strong> (<em>int</em>) &#8211; site 2</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">D&#8217;</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getLDForSitePair">
+<em class="property">static </em><tt class="descname">getLDForSitePair</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getLDForSitePair"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getLDForSitePair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for estimating LD between a pair of bit sets. Since there can be tremendous missing
+data, minimum minor and minimum site counts ensure that meaningful results are estimated. Site
+indices are merely there for annotating the LDResult.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getLDForSitePair</em> (BitSet <strong>rMj</strong>, BitSet <strong>rMn</strong>, BitSet <strong>cMj</strong>, BitSet <strong>cMn</strong>, int <strong>minMinorCnt</strong>, int <strong>minCnt</strong>, float <strong>minR2</strong>, FisherExact <strong>myFisherExact</strong>, int <strong>site1Index</strong>, int <strong>site2Index</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rMj</strong> (<em>BitSet</em>) &#8211; site 1 major alleles</li>
+<li><strong>rMn</strong> (<em>BitSet</em>) &#8211; site 1 minor alleles</li>
+<li><strong>cMj</strong> (<em>BitSet</em>) &#8211; site 2 major alleles</li>
+<li><strong>cMn</strong> (<em>BitSet</em>) &#8211; site 2 minor alleles</li>
+<li><strong>minMinorCnt</strong> (<em>int</em>) &#8211; minimum minor allele count after intersection</li>
+<li><strong>minCnt</strong> (<em>int</em>) &#8211; minimum count after intersection</li>
+<li><strong>minR2</strong> (<em>float</em>) &#8211; results below this r2 are ignored for p-value calculation (save time)</li>
+<li><strong>myFisherExact</strong> (<em>FisherExact</em>) &#8211; Instance of FisherExact to do Fisher Exact test</li>
+<li><strong>site1Index</strong> (<em>int</em>) &#8211; Annotation of LDResult with site indices</li>
+<li><strong>site2Index</strong> (<em>int</em>) &#8211; Annotation of LDResult with site indices</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">An LDResult for the pair of sites</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">LDResult</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getPval">
+<tt class="descname">getPval</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getPval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getPval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns P-value estimate for a given pair of numPSites. If there were only
+2 alleles at each locus, then the Fisher Exact P-value (one-tail) is returned.
+If more states, then the permuted Monte Carlo test is used</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getPVal</em> (int <strong>r</strong>, int <strong>c</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>r</strong> (<em>int</em>) &#8211; site 1</li>
+<li><strong>c</strong> (<em>int</em>) &#8211; site 2</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">P-value</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getRSqr">
+<tt class="descname">getRSqr</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getRSqr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getRSqr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the r2 estimate for a given pair of numSites</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getRSqr</em> (int <strong>r</strong>, int <strong>c</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>r</strong> (<em>int</em>) &#8211; site 1</li>
+<li><strong>c</strong> (<em>int</em>) &#8211; site 2</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">r2</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">float</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSampleSize">
+<tt class="descname">getSampleSize</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getSampleSize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSampleSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get number of gametes included in LD calculations (after missing data
+was excluded)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getSampleSize</em> (int <strong>r</strong>, int <strong>c</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>r</strong> (<em>int</em>) &#8211; site 1</li>
+<li><strong>c</strong> (<em>int</em>) &#8211; site 2</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Number of gametes</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">int</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSiteCount">
+<tt class="descname">getSiteCount</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getSiteCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSiteCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the counts of the numSites in the alignment</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getSiteCount</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The counts of the numSites in the alignment</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getX">
+<tt class="descname">getX</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getX"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getX" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getX</em> (int <strong>row</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>row</strong> (<em>int</em>) &#8211; row</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">X</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getY">
+<tt class="descname">getY</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/analysis/popgen/LinkageDisequilibrium.html#LinkageDisequilibrium.getY"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getY" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getY</em> (int <strong>row</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>row</strong> (<em>int</em>) &#8211; row</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Y</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.testDesign">
+<tt class="descname">testDesign</tt><em class="property"> = &lt;All: 0, SlidingWindow: 1, SiteByAll: 2, SiteList: 3&gt;</em><a class="headerlink" href="#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.testDesign" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.analysis.popgen">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.analysis.popgen" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.net.maizegenetics.analysis.popgen package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.analysis.popgen.LDResult">TASSELpy.net.maizegenetics.analysis.popgen.LDResult module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium">TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.analysis.popgen">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.net.maizegenetics.analysis.popgen.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.analysis.html" >TASSELpy.net.maizegenetics.analysis package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

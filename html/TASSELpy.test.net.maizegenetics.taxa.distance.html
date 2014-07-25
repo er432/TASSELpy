@@ -1,0 +1,723 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.test.net.maizegenetics.taxa.distance package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.test.net.maizegenetics.taxa package" href="TASSELpy.test.net.maizegenetics.taxa.html" />
+    <link rel="prev" title="TASSELpy.test.net.maizegenetics.taxa package" href="TASSELpy.test.net.maizegenetics.taxa.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.test.net.maizegenetics.taxa.html" title="TASSELpy.test.net.maizegenetics.taxa package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.test.html" >TASSELpy.test package</a> &raquo;</li>
+          <li><a href="TASSELpy.test.net.html" >TASSELpy.test.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.test.net.maizegenetics.html" >TASSELpy.test.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.test.net.maizegenetics.taxa.html" accesskey="U">TASSELpy.test.net.maizegenetics.taxa package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-test-net-maizegenetics-taxa-distance-package">
+<h1>TASSELpy.test.net.maizegenetics.taxa.distance package<a class="headerlink" href="#tasselpy-test-net-maizegenetics-taxa-distance-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest">
+<span id="tasselpy-test-net-maizegenetics-taxa-distance-distancematrixtest-module"></span><h2>TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest module<a class="headerlink" href="#module-TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest">
+<em class="property">class </em><tt class="descclassname">TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.</tt><tt class="descname">DistanceMatrixTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt>(*args,&nbsp;**kwds)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addCleanup</span></tt>(function,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>Add a function, with arguments, to be called when the test is completed.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">addTypeEqualityFunc</span></tt>(typeobj,&nbsp;function)</td>
+<td>Add a type specific assertEqual style function to compare a type.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertAlmostEqual</span></tt>(first,&nbsp;second[,&nbsp;places,&nbsp;...])</td>
+<td>Fail if the two objects are unequal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the between the two objects is more than the given delta.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertAlmostEquals</span></tt>(first,&nbsp;second[,&nbsp;places,&nbsp;...])</td>
+<td>Fail if the two objects are unequal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the between the two objects is more than the given delta.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertDictContainsSubset</span></tt>(expected,&nbsp;actual[,&nbsp;msg])</td>
+<td>Checks whether actual is a superset of expected.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertDictEqual</span></tt>(d1,&nbsp;d2[,&nbsp;msg])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertEqual</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Fail if the two objects are unequal as determined by the &#8216;==&#8217; operator.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertEquals</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Fail if the two objects are unequal as determined by the &#8216;==&#8217; operator.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertFalse</span></tt>(expr[,&nbsp;msg])</td>
+<td>Check that the expression is false.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertGreater</span></tt>(a,&nbsp;b[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a &gt; b), but with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertGreaterEqual</span></tt>(a,&nbsp;b[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a &gt;= b), but with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIn</span></tt>(member,&nbsp;container[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a in b), but with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIs</span></tt>(expr1,&nbsp;expr2[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a is b), but with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIsInstance</span></tt>(obj,&nbsp;cls[,&nbsp;msg])</td>
+<td>Same as self.assertTrue(isinstance(obj, cls)), with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIsNone</span></tt>(obj[,&nbsp;msg])</td>
+<td>Same as self.assertTrue(obj is None), with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIsNot</span></tt>(expr1,&nbsp;expr2[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a is not b), but with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIsNotNone</span></tt>(obj[,&nbsp;msg])</td>
+<td>Included for symmetry with assertIsNone.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertItemsEqual</span></tt>(expected_seq,&nbsp;actual_seq[,&nbsp;msg])</td>
+<td>An unordered sequence specific comparison.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertLess</span></tt>(a,&nbsp;b[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a &lt; b), but with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertLessEqual</span></tt>(a,&nbsp;b[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a &lt;= b), but with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertListEqual</span></tt>(list1,&nbsp;list2[,&nbsp;msg])</td>
+<td>A list-specific equality assertion.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertMultiLineEqual</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Assert that two multi-line strings are equal.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotAlmostEqual</span></tt>(first,&nbsp;second[,&nbsp;...])</td>
+<td>Fail if the two objects are equal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the between the two objects is less than the given delta.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotAlmostEquals</span></tt>(first,&nbsp;second[,&nbsp;...])</td>
+<td>Fail if the two objects are equal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the between the two objects is less than the given delta.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotEqual</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Fail if the two objects are equal as determined by the &#8216;!=&#8217; operator.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotEquals</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Fail if the two objects are equal as determined by the &#8216;!=&#8217; operator.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotIn</span></tt>(member,&nbsp;container[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a not in b), but with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotIsInstance</span></tt>(obj,&nbsp;cls[,&nbsp;msg])</td>
+<td>Included for symmetry with assertIsInstance.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotRegexpMatches</span></tt>(text,&nbsp;unexpected_regexp)</td>
+<td>Fail the test if the text matches the regular expression.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertRaises</span></tt>(excClass[,&nbsp;callableObj])</td>
+<td>Fail unless an exception of class excClass is raised by callableObj when invoked with arguments args and keyword arguments kwargs.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertRaisesRegexp</span></tt>(expected_exception,&nbsp;...)</td>
+<td>Asserts that the message in a raised exception matches a regexp.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertRegexpMatches</span></tt>(text,&nbsp;expected_regexp[,&nbsp;msg])</td>
+<td>Fail the test unless the text matches the regular expression.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertSequenceEqual</span></tt>(seq1,&nbsp;seq2[,&nbsp;msg,&nbsp;seq_type])</td>
+<td>An equality assertion for ordered sequences (like lists and tuples).</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertSetEqual</span></tt>(set1,&nbsp;set2[,&nbsp;msg])</td>
+<td>A set-specific equality assertion.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertTrue</span></tt>(expr[,&nbsp;msg])</td>
+<td>Check that the expression is true.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertTupleEqual</span></tt>(tuple1,&nbsp;tuple2[,&nbsp;msg])</td>
+<td>A tuple-specific equality assertion.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assert_</span></tt>(expr[,&nbsp;msg])</td>
+<td>Check that the expression is true.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">countTestCases</span></tt>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">debug</span></tt>()</td>
+<td>Run the test without collecting errors in a TestResult</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">defaultTestResult</span></tt>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">doCleanups</span></tt>()</td>
+<td>Execute all cleanup functions.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fail</span></tt>([msg])</td>
+<td>Fail immediately, with the given message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">failIf</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">failIfAlmostEqual</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">failIfEqual</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">failUnless</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">failUnlessAlmostEqual</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">failUnlessEqual</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">failUnlessRaises</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">failureException</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">id</span></tt>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">run</span></tt>([result])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">setUp</span></tt>()</td>
+<td>Hook method for setting up the test fixture before exercising it.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">setUpClass</span></tt>()</td>
+<td>Hook method for setting up class fixture before running tests in the class.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">shortDescription</span></tt>()</td>
+<td>Returns a one-line description of the test, or None if no description has been provided.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">skipTest</span></tt>(reason)</td>
+<td>Skip this test.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">tearDown</span></tt>()</td>
+<td>Hook method for deconstructing the test fixture after testing it.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">tearDownClass</span></tt>()</td>
+<td>Hook method for deconstructing the class fixture after running all tests in the class.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_absoluteDistance" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_absoluteDistance"><tt class="xref py py-obj docutils literal"><span class="pre">test_absoluteDistance</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor1" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor1"><tt class="xref py py-obj docutils literal"><span class="pre">test_constructor1</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor2" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor2"><tt class="xref py py-obj docutils literal"><span class="pre">test_constructor2</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor3" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor3"><tt class="xref py py-obj docutils literal"><span class="pre">test_constructor3</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor4" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor4"><tt class="xref py py-obj docutils literal"><span class="pre">test_constructor4</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getClosestIndex" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getClosestIndex"><tt class="xref py py-obj docutils literal"><span class="pre">test_getClosestIndex</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getColumnName" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getColumnName"><tt class="xref py py-obj docutils literal"><span class="pre">test_getColumnName</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getDistances" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getDistances"><tt class="xref py py-obj docutils literal"><span class="pre">test_getDistances</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getTaxon" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getTaxon"><tt class="xref py py-obj docutils literal"><span class="pre">test_getTaxon</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_numberOfTaxa" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_numberOfTaxa"><tt class="xref py py-obj docutils literal"><span class="pre">test_numberOfTaxa</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_squaredDistance" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_squaredDistance"><tt class="xref py py-obj docutils literal"><span class="pre">test_squaredDistance</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_whichIdNumber" title="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_whichIdNumber"><tt class="xref py py-obj docutils literal"><span class="pre">test_whichIdNumber</span></tt></a>()</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_absoluteDistance">
+<tt class="descname">test_absoluteDistance</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_absoluteDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_absoluteDistance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor1">
+<tt class="descname">test_constructor1</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_constructor1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor2">
+<tt class="descname">test_constructor2</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_constructor2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor3">
+<tt class="descname">test_constructor3</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_constructor3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor4">
+<tt class="descname">test_constructor4</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_constructor4"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_constructor4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getClosestIndex">
+<tt class="descname">test_getClosestIndex</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_getClosestIndex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getClosestIndex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getColumnName">
+<tt class="descname">test_getColumnName</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_getColumnName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getColumnName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getDistances">
+<tt class="descname">test_getDistances</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_getDistances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getDistances" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getTaxon">
+<tt class="descname">test_getTaxon</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_getTaxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_getTaxon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_numberOfTaxa">
+<tt class="descname">test_numberOfTaxa</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_numberOfTaxa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_numberOfTaxa" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_squaredDistance">
+<tt class="descname">test_squaredDistance</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_squaredDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_squaredDistance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_whichIdNumber">
+<tt class="descname">test_whichIdNumber</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/DistanceMatrixTest.html#DistanceMatrixTest.test_whichIdNumber"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest.DistanceMatrixTest.test_whichIdNumber" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest">
+<span id="tasselpy-test-net-maizegenetics-taxa-distance-taxalistmatrixtest-module"></span><h2>TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest module<a class="headerlink" href="#module-TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest">
+<em class="property">class </em><tt class="descclassname">TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.</tt><tt class="descname">TaxaListMatrixTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt>(*args,&nbsp;**kwds)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addCleanup</span></tt>(function,&nbsp;*args,&nbsp;**kwargs)</td>
+<td>Add a function, with arguments, to be called when the test is completed.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">addTypeEqualityFunc</span></tt>(typeobj,&nbsp;function)</td>
+<td>Add a type specific assertEqual style function to compare a type.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertAlmostEqual</span></tt>(first,&nbsp;second[,&nbsp;places,&nbsp;...])</td>
+<td>Fail if the two objects are unequal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the between the two objects is more than the given delta.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertAlmostEquals</span></tt>(first,&nbsp;second[,&nbsp;places,&nbsp;...])</td>
+<td>Fail if the two objects are unequal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the between the two objects is more than the given delta.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertDictContainsSubset</span></tt>(expected,&nbsp;actual[,&nbsp;msg])</td>
+<td>Checks whether actual is a superset of expected.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertDictEqual</span></tt>(d1,&nbsp;d2[,&nbsp;msg])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertEqual</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Fail if the two objects are unequal as determined by the &#8216;==&#8217; operator.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertEquals</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Fail if the two objects are unequal as determined by the &#8216;==&#8217; operator.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertFalse</span></tt>(expr[,&nbsp;msg])</td>
+<td>Check that the expression is false.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertGreater</span></tt>(a,&nbsp;b[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a &gt; b), but with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertGreaterEqual</span></tt>(a,&nbsp;b[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a &gt;= b), but with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIn</span></tt>(member,&nbsp;container[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a in b), but with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIs</span></tt>(expr1,&nbsp;expr2[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a is b), but with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIsInstance</span></tt>(obj,&nbsp;cls[,&nbsp;msg])</td>
+<td>Same as self.assertTrue(isinstance(obj, cls)), with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIsNone</span></tt>(obj[,&nbsp;msg])</td>
+<td>Same as self.assertTrue(obj is None), with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIsNot</span></tt>(expr1,&nbsp;expr2[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a is not b), but with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertIsNotNone</span></tt>(obj[,&nbsp;msg])</td>
+<td>Included for symmetry with assertIsNone.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertItemsEqual</span></tt>(expected_seq,&nbsp;actual_seq[,&nbsp;msg])</td>
+<td>An unordered sequence specific comparison.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertLess</span></tt>(a,&nbsp;b[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a &lt; b), but with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertLessEqual</span></tt>(a,&nbsp;b[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a &lt;= b), but with a nicer default message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertListEqual</span></tt>(list1,&nbsp;list2[,&nbsp;msg])</td>
+<td>A list-specific equality assertion.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertMultiLineEqual</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Assert that two multi-line strings are equal.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotAlmostEqual</span></tt>(first,&nbsp;second[,&nbsp;...])</td>
+<td>Fail if the two objects are equal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the between the two objects is less than the given delta.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotAlmostEquals</span></tt>(first,&nbsp;second[,&nbsp;...])</td>
+<td>Fail if the two objects are equal as determined by their difference rounded to the given number of decimal places (default 7) and comparing to zero, or by comparing that the between the two objects is less than the given delta.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotEqual</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Fail if the two objects are equal as determined by the &#8216;!=&#8217; operator.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotEquals</span></tt>(first,&nbsp;second[,&nbsp;msg])</td>
+<td>Fail if the two objects are equal as determined by the &#8216;!=&#8217; operator.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotIn</span></tt>(member,&nbsp;container[,&nbsp;msg])</td>
+<td>Just like self.assertTrue(a not in b), but with a nicer default message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotIsInstance</span></tt>(obj,&nbsp;cls[,&nbsp;msg])</td>
+<td>Included for symmetry with assertIsInstance.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertNotRegexpMatches</span></tt>(text,&nbsp;unexpected_regexp)</td>
+<td>Fail the test if the text matches the regular expression.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertRaises</span></tt>(excClass[,&nbsp;callableObj])</td>
+<td>Fail unless an exception of class excClass is raised by callableObj when invoked with arguments args and keyword arguments kwargs.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertRaisesRegexp</span></tt>(expected_exception,&nbsp;...)</td>
+<td>Asserts that the message in a raised exception matches a regexp.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertRegexpMatches</span></tt>(text,&nbsp;expected_regexp[,&nbsp;msg])</td>
+<td>Fail the test unless the text matches the regular expression.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertSequenceEqual</span></tt>(seq1,&nbsp;seq2[,&nbsp;msg,&nbsp;seq_type])</td>
+<td>An equality assertion for ordered sequences (like lists and tuples).</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertSetEqual</span></tt>(set1,&nbsp;set2[,&nbsp;msg])</td>
+<td>A set-specific equality assertion.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertTrue</span></tt>(expr[,&nbsp;msg])</td>
+<td>Check that the expression is true.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">assertTupleEqual</span></tt>(tuple1,&nbsp;tuple2[,&nbsp;msg])</td>
+<td>A tuple-specific equality assertion.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">assert_</span></tt>(expr[,&nbsp;msg])</td>
+<td>Check that the expression is true.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">countTestCases</span></tt>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">debug</span></tt>()</td>
+<td>Run the test without collecting errors in a TestResult</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">defaultTestResult</span></tt>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">doCleanups</span></tt>()</td>
+<td>Execute all cleanup functions.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fail</span></tt>([msg])</td>
+<td>Fail immediately, with the given message.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">failIf</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">failIfAlmostEqual</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">failIfEqual</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">failUnless</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">failUnlessAlmostEqual</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">failUnlessEqual</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">failUnlessRaises</span></tt>(*args,&nbsp;**kwargs)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">failureException</span></tt></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">id</span></tt>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">run</span></tt>([result])</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">setUp</span></tt>()</td>
+<td>Hook method for setting up the test fixture before exercising it.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.setUpClass" title="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.setUpClass"><tt class="xref py py-obj docutils literal"><span class="pre">setUpClass</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">shortDescription</span></tt>()</td>
+<td>Returns a one-line description of the test, or None if no description has been provided.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">skipTest</span></tt>(reason)</td>
+<td>Skip this test.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">tearDown</span></tt>()</td>
+<td>Hook method for deconstructing the test fixture after testing it.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">tearDownClass</span></tt>()</td>
+<td>Hook method for deconstructing the class fixture after running all tests in the class.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getClonedDistances" title="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getClonedDistances"><tt class="xref py py-obj docutils literal"><span class="pre">test_getClonedDistances</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getDistance" title="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getDistance"><tt class="xref py py-obj docutils literal"><span class="pre">test_getDistance</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getSize" title="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getSize"><tt class="xref py py-obj docutils literal"><span class="pre">test_getSize</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getTaxaList" title="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getTaxaList"><tt class="xref py py-obj docutils literal"><span class="pre">test_getTaxaList</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_isSymmetric" title="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_isSymmetric"><tt class="xref py py-obj docutils literal"><span class="pre">test_isSymmetric</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_meanDistance" title="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_meanDistance"><tt class="xref py py-obj docutils literal"><span class="pre">test_meanDistance</span></tt></a>()</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_toString" title="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_toString"><tt class="xref py py-obj docutils literal"><span class="pre">test_toString</span></tt></a>()</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="classmethod">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.setUpClass">
+<em class="property">classmethod </em><tt class="descname">setUpClass</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest.setUpClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.setUpClass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getClonedDistances">
+<tt class="descname">test_getClonedDistances</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest.test_getClonedDistances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getClonedDistances" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getDistance">
+<tt class="descname">test_getDistance</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest.test_getDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getDistance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getSize">
+<tt class="descname">test_getSize</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest.test_getSize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getSize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getTaxaList">
+<tt class="descname">test_getTaxaList</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest.test_getTaxaList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_getTaxaList" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_isSymmetric">
+<tt class="descname">test_isSymmetric</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest.test_isSymmetric"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_isSymmetric" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_meanDistance">
+<tt class="descname">test_meanDistance</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest.test_meanDistance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_meanDistance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_toString">
+<tt class="descname">test_toString</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/TaxaListMatrixTest.html#TaxaListMatrixTest.test_toString"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest.TaxaListMatrixTest.test_toString" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite">
+<span id="tasselpy-test-net-maizegenetics-taxa-distance-distancetestsuite-module"></span><h2>TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite module<a class="headerlink" href="#module-TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite.distanceTestSuite">
+<em class="property">class </em><tt class="descclassname">TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite.</tt><tt class="descname">distanceTestSuite</tt><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/distanceTestSuite.html#distanceTestSuite"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite.distanceTestSuite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.suite.TestSuite</span></tt></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">__call__</span></tt>(*args,&nbsp;**kwds)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">addTest</span></tt>(test)</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">addTests</span></tt>(tests)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">countTestCases</span></tt>()</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">debug</span></tt>()</td>
+<td>Run the tests without collecting errors in a TestResult</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">run</span></tt>(result[,&nbsp;debug])</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite.distanceTestSuite.__init__">
+<tt class="descname">__init__</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/test/net/maizegenetics/taxa/distance/distanceTestSuite.html#distanceTestSuite.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite.distanceTestSuite.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.test.net.maizegenetics.taxa.distance">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.test.net.maizegenetics.taxa.distance" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.test.net.maizegenetics.taxa.distance package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest">TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest">TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite">TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.test.net.maizegenetics.taxa.distance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="TASSELpy.test.net.maizegenetics.taxa.html"
+                        title="previous chapter">TASSELpy.test.net.maizegenetics.taxa package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.test.net.maizegenetics.taxa.distance.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.test.net.maizegenetics.taxa.html" title="TASSELpy.test.net.maizegenetics.taxa package"
+             >previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.test.html" >TASSELpy.test package</a> &raquo;</li>
+          <li><a href="TASSELpy.test.net.html" >TASSELpy.test.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.test.net.maizegenetics.html" >TASSELpy.test.net.maizegenetics package</a> &raquo;</li>
+          <li><a href="TASSELpy.test.net.maizegenetics.taxa.html" >TASSELpy.test.net.maizegenetics.taxa package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

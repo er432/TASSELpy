@@ -1,0 +1,1615 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.util package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.net.maizegenetics package" href="TASSELpy.net.maizegenetics.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" accesskey="U">TASSELpy.net.maizegenetics package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-net-maizegenetics-util-package">
+<h1>TASSELpy.net.maizegenetics.util package<a class="headerlink" href="#tasselpy-net-maizegenetics-util-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.util.BitSet">
+<span id="tasselpy-net-maizegenetics-util-bitset-module"></span><h2>TASSELpy.net.maizegenetics.util.BitSet module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.util.BitSet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.util.BitSet.</tt><tt class="descname">BitSet</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.MetaBitSet" title="TASSELpy.net.maizegenetics.util.BitSet.MetaBitSet"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.BitSet.MetaBitSet</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.andNot" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.andNot"><tt class="xref py py-obj docutils literal"><span class="pre">andNot</span></tt></a>(*args)</td>
+<td>this = this ANDNOT other</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.capacity" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.capacity"><tt class="xref py py-obj docutils literal"><span class="pre">capacity</span></tt></a>(*args)</td>
+<td>Returns capacity</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.cardinality" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.cardinality"><tt class="xref py py-obj docutils literal"><span class="pre">cardinality</span></tt></a>(*args)</td>
+<td>Returns number of set bits</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.clear" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.clear"><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt></a>(*args)</td>
+<td>Clears a bit or range of bits, allowing access beyond the current set</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacity" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacity"><tt class="xref py py-obj docutils literal"><span class="pre">ensureCapacity</span></tt></a>(*args)</td>
+<td>Ensure that the long[] is big enough to hold numBits, expanding it if necessary.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacityWords" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacityWords"><tt class="xref py py-obj docutils literal"><span class="pre">ensureCapacityWords</span></tt></a>(*args)</td>
+<td>Expand the long[] with the size given as a number of words (64 bit longs).</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastClear" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastClear"><tt class="xref py py-obj docutils literal"><span class="pre">fastClear</span></tt></a>(*args)</td>
+<td>Clears a bit</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastFlip" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastFlip"><tt class="xref py py-obj docutils literal"><span class="pre">fastFlip</span></tt></a>(*args)</td>
+<td>Flips a bit.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastGet" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastGet"><tt class="xref py py-obj docutils literal"><span class="pre">fastGet</span></tt></a>(*args)</td>
+<td>Returns true or false for the specified bit index</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastSet" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastSet"><tt class="xref py py-obj docutils literal"><span class="pre">fastSet</span></tt></a>(*args)</td>
+<td>Sets the bit at the specified index.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.flip" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.flip"><tt class="xref py py-obj docutils literal"><span class="pre">flip</span></tt></a>(*args)</td>
+<td>Flips a bit, expanding the set size if necessary</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.flipAndGet" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.flipAndGet"><tt class="xref py py-obj docutils literal"><span class="pre">flipAndGet</span></tt></a>(*args)</td>
+<td>Flips a bit and returns the resulting bit value.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.get" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.get"><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt></a>(*args)</td>
+<td>Returns true or false for the specified bit index</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getAndSet" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getAndSet"><tt class="xref py py-obj docutils literal"><span class="pre">getAndSet</span></tt></a>(*args)</td>
+<td>Sets a bit and returns the previous value.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBit" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBit"><tt class="xref py py-obj docutils literal"><span class="pre">getBit</span></tt></a>(*args)</td>
+<td>Returns 1 if the bit is set, 0 if not</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBits" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBits"><tt class="xref py py-obj docutils literal"><span class="pre">getBits</span></tt></a>(*args)</td>
+<td>Expert: returns the long[] storing the bits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getIndicesOfSetBits" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getIndicesOfSetBits"><tt class="xref py py-obj docutils literal"><span class="pre">getIndicesOfSetBits</span></tt></a>(*args)</td>
+<td>Returns the indices of set bits</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getNumWords" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getNumWords"><tt class="xref py py-obj docutils literal"><span class="pre">getNumWords</span></tt></a>(*args)</td>
+<td>Expert: gets the number of longs in the array that</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.indexOfNthSetBit" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.indexOfNthSetBit"><tt class="xref py py-obj docutils literal"><span class="pre">indexOfNthSetBit</span></tt></a>(*args)</td>
+<td>Returns index of the nth set bit</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersect" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersect"><tt class="xref py py-obj docutils literal"><span class="pre">intersect</span></tt></a>(*args)</td>
+<td>this = this AND other</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersects" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersects"><tt class="xref py py-obj docutils literal"><span class="pre">intersects</span></tt></a>(*args)</td>
+<td>Returns true if the sets have any elements in common</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.isEmpty" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.isEmpty"><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt></a>(*args)</td>
+<td>Returns true if there are no set bits</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.nextSetBit" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.nextSetBit"><tt class="xref py py-obj docutils literal"><span class="pre">nextSetBit</span></tt></a>(*args)</td>
+<td>Returns the index of the first set bit starting at the index specified.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.previousSetBit" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.previousSetBit"><tt class="xref py py-obj docutils literal"><span class="pre">previousSetBit</span></tt></a>(*args)</td>
+<td>Returns the index of the previous set bit starting at the index specified.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.remove" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.remove"><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt></a>(*args)</td>
+<td>Remove all elements set in other.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.set" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.set"><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt></a>(*args)</td>
+<td>Sets a bit, expanding the set size if necessary</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setBits" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.setBits"><tt class="xref py py-obj docutils literal"><span class="pre">setBits</span></tt></a>(*args)</td>
+<td>Expert: sets a new long[] to use as the bit storage</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setLong" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.setLong"><tt class="xref py py-obj docutils literal"><span class="pre">setLong</span></tt></a>(*args)</td>
+<td>Expert: sets the specified word with given bits</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setNumWords" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.setNumWords"><tt class="xref py py-obj docutils literal"><span class="pre">setNumWords</span></tt></a>(*args)</td>
+<td>Expert: sets the number of longs in the array that are in use</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.size" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.size"><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt></a>(*args)</td>
+<td>Returns the current capacity of this set.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.trimTrailingZeros" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.trimTrailingZeros"><tt class="xref py py-obj docutils literal"><span class="pre">trimTrailingZeros</span></tt></a>(*args)</td>
+<td>Lowers numWords, the number of words in use, by checking for trailing</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.union" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.union"><tt class="xref py py-obj docutils literal"><span class="pre">union</span></tt></a>(*args)</td>
+<td>this = this OR other</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.xor" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet.xor"><tt class="xref py py-obj docutils literal"><span class="pre">xor</span></tt></a>(*args)</td>
+<td>this = this XOR other</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.andNot">
+<tt class="descname">andNot</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.andNot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.andNot" title="Permalink to this definition">¶</a></dt>
+<dd><p>this = this ANDNOT other</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>xor</em> (BitSet <strong>other</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>other</strong> (<em>BitSet</em>) &#8211; Another BitSet instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.capacity">
+<tt class="descname">capacity</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.capacity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.capacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns capacity</p>
+<p>Returns:</p>
+<p>Capacity</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.cardinality">
+<tt class="descname">cardinality</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.cardinality"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.cardinality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns number of set bits</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>cardinality</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>cardinality</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>int</em>) &#8211; index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of set bits</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">long</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.clear">
+<tt class="descname">clear</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears a bit or range of bits, allowing access beyond the current set
+size without changing the size</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>clear</em> (long <strong>index</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>clear</em> (int <strong>startIndex</strong>, int <strong>endIndex</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>clear</em> (long <strong>startIndex</strong>, long <strong>endIndex</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<em>long</em>) &#8211; The index to clear</li>
+<li><strong>startIndex</strong> (<em>long</em>) &#8211; lower index</li>
+<li><strong>endIndex</strong> (<em>long</em>) &#8211; one-past the last bit to clear</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacity">
+<tt class="descname">ensureCapacity</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.ensureCapacity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ensure that the long[] is big enough to hold numBits, expanding it
+if necessary. getNumWords() is unchanged by this call</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>ensureCapacity</em> (long <strong>numBits</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>numBits</strong> (<em>long</em>) &#8211; The number of bits the BitSet should be able to hold</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacityWords">
+<tt class="descname">ensureCapacityWords</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.ensureCapacityWords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacityWords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expand the long[] with the size given as a number of words (64 bit longs).
+getNumWords() is unchanged by this call</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>ensureCapacityWords</em> (int <strong>numWords</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>numWords</strong> (<em>int</em>) &#8211; The number of words to expand the long[] by</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastClear">
+<tt class="descname">fastClear</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.fastClear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastClear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears a bit
+The index should be less than the BitSet size</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>fastClear</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>fastClear</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>long</em>) &#8211; index (long or int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastFlip">
+<tt class="descname">fastFlip</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.fastFlip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastFlip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flips a bit.
+The index should be less than the BitSet size</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>fastFlip</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>fastFlip</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>long</em>) &#8211; The index of the bit to flip (long or int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastGet">
+<tt class="descname">fastGet</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.fastGet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastGet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true or false for the specified bit index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>fastGet</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>fastGet</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>long</em>) &#8211; index (long or int), should be less than the BitSet size</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastSet">
+<tt class="descname">fastSet</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.fastSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the bit at the specified index. The
+index should be less than the BitSet size</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>fastSet</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>fastSet</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>long</em>) &#8211; index (long or int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.flip">
+<tt class="descname">flip</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.flip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.flip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flips a bit, expanding the set size if necessary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>flip</em> (long <strong>index</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>flip</em> (long <strong>startIndex</strong>, long <strong>endIndex</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<em>long</em>) &#8211; The index to flip</li>
+<li><strong>startIndex</strong> (<em>long</em>) &#8211; lower index</li>
+<li><strong>endIndex</strong> (<em>long</em>) &#8211; one-past the last bit to flip</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.flipAndGet">
+<tt class="descname">flipAndGet</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.flipAndGet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.flipAndGet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flips a bit and returns the resulting bit value.
+The index should be less than the BitSet size</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>flipAndGet</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>flipAndGet</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>long</em>) &#8211; The index to flip and get</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.get">
+<tt class="descname">get</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true or false for the specified bit index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>get</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>get</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>long</em>) &#8211; index (long or int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getAndSet">
+<tt class="descname">getAndSet</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.getAndSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getAndSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a bit and returns the previous value.
+The index should be less than the BitSet size</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getAndSet</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>getAndSet</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>long</em>) &#8211; The index to clear and view (long or int)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBit">
+<tt class="descname">getBit</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.getBit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns 1 if the bit is set, 0 if not</p>
+<p>Arguments:</p>
+<p>index &#8211; index, should be less than the BitSet size</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBits">
+<tt class="descname">getBits</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.getBits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expert: returns the long[] storing the bits</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getBits</em> ()</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getBits</em> (int <strong>startWord</strong>, int <strong>endWord</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getBits</em> (int <strong>index</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>startWord</strong> (<em>int</em>) &#8211; integer for first word</li>
+<li><strong>endWord</strong> (<em>int</em>) &#8211; integer for last word Third method:</li>
+<li><strong>index</strong> (<em>int</em>) &#8211; index</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getIndicesOfSetBits">
+<tt class="descname">getIndicesOfSetBits</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.getIndicesOfSetBits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getIndicesOfSetBits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the indices of set bits</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.getNumWords">
+<tt class="descname">getNumWords</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.getNumWords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getNumWords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expert: gets the number of longs in the array that
+are in use</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.indexOfNthSetBit">
+<tt class="descname">indexOfNthSetBit</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.indexOfNthSetBit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.indexOfNthSetBit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns index of the nth set bit</p>
+<p>Arguments:</p>
+<p>n &#8211; nth set bit</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersect">
+<tt class="descname">intersect</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.intersect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersect" title="Permalink to this definition">¶</a></dt>
+<dd><p>this = this AND other</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>intersect</em> (BitSet <strong>other</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>other</strong> (<em>BitSet</em>) &#8211; Another BitSet instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersects">
+<tt class="descname">intersects</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.intersects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the sets have any elements in common</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>intersects</em> (BitSet <strong>other</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>other</strong> (<em>BitSet</em>) &#8211; Another BitSet instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.isEmpty">
+<tt class="descname">isEmpty</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.isEmpty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.isEmpty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if there are no set bits</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.nextSetBit">
+<tt class="descname">nextSetBit</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.nextSetBit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.nextSetBit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index of the first set bit starting at the
+index specified. -1 is returned if there are no more set
+bits</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>nextSetBit</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>nextSetBit</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>int</em>) &#8211; index (long or int)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The next set bit</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">long</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.previousSetBit">
+<tt class="descname">previousSetBit</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.previousSetBit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.previousSetBit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the index of the previous set bit starting at
+the index specified. If the bit at the index is set, index
+is returned, otherwise the next lower numbered set bit
+is retuned. -1 is returned if there are no more set bits</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>previousSetBit</em> (long <strong>index</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><em>previousSetBit</em> (int <strong>index</strong>)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>index</strong> (<em>int</em>) &#8211; index</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The previous set bit</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">long</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.remove">
+<tt class="descname">remove</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all elements set in other. this = this AND_NOT other</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>remove</em> (BitSet <strong>other</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>other</strong> (<em>BitSet</em>) &#8211; Another BitSEt instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.set">
+<tt class="descname">set</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a bit, expanding the set size if necessary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>set</em> (long <strong>index</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>set</em> (long <strong>startIndex</strong>, long <strong>endIndex</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>index</strong> (<em>long</em>) &#8211; index (long)</li>
+<li><strong>startIndex</strong> (<em>long</em>) &#8211; lower index (long)</li>
+<li><strong>endIndex</strong> (<em>long</em>) &#8211; one-past the last bit to set (long)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.setBits">
+<tt class="descname">setBits</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.setBits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setBits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expert: sets a new long[] to use as the bit storage</p>
+<p>Arguments:</p>
+<p>bits &#8211; long[] to use as the bit storage</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.setLong">
+<tt class="descname">setLong</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.setLong"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setLong" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expert: sets the specified word with given bits</p>
+<p>Arguments:</p>
+<p>wordNum &#8211; word index
+bits &#8211; bits</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.setNumWords">
+<tt class="descname">setNumWords</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.setNumWords"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setNumWords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Expert: sets the number of longs in the array that are in use</p>
+<p>Arguments:</p>
+<p>nWords &#8211; The number of longs in the array that should be in use</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.size">
+<tt class="descname">size</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current capacity of this set. Included for
+compatibility. This is not equal to cardinality</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.trimTrailingZeros">
+<tt class="descname">trimTrailingZeros</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.trimTrailingZeros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.trimTrailingZeros" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lowers numWords, the number of words in use, by checking for trailing
+zero words</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>trimTrailingZeros</em> ()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.union">
+<tt class="descname">union</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.union" title="Permalink to this definition">¶</a></dt>
+<dd><p>this = this OR other</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>union</em> (BitSet <strong>other</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>other</strong> (<em>BitSet</em>) &#8211; Another BitSet instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.BitSet.xor">
+<tt class="descname">xor</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#BitSet.xor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet.xor" title="Permalink to this definition">¶</a></dt>
+<dd><p>this = this XOR other</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>xor</em> (BitSet <strong>other</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>other</strong> (<em>BitSet</em>) &#8211; Another BitSet instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.util.BitSet.MetaBitSet">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.util.BitSet.</tt><tt class="descname">MetaBitSet</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/BitSet.html#MetaBitSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.BitSet.MetaBitSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.util.GeneralAnnotation">
+<span id="tasselpy-net-maizegenetics-util-generalannotation-module"></span><h2>TASSELpy.net.maizegenetics.util.GeneralAnnotation module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.util.GeneralAnnotation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.util.GeneralAnnotation.</tt><tt class="descname">GeneralAnnotation</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/GeneralAnnotation.html#GeneralAnnotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p>Provide generalized annotations (descriptors) for taxon or site</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAllAnnotationEntries" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAllAnnotationEntries"><tt class="xref py py-obj docutils literal"><span class="pre">getAllAnnotationEntries</span></tt></a>(*args)</td>
+<td>Returns all annotation Map.Entries</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotation" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotation"><tt class="xref py py-obj docutils literal"><span class="pre">getAnnotation</span></tt></a>(*args)</td>
+<td>Returns all annotation value for a given annotation key</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotationAsMap" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotationAsMap"><tt class="xref py py-obj docutils literal"><span class="pre">getAnnotationAsMap</span></tt></a>(*args)</td>
+<td>Returns all annotations in TreeMap</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAverageAnnotation" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAverageAnnotation"><tt class="xref py py-obj docutils literal"><span class="pre">getAverageAnnotation</span></tt></a>(*args)</td>
+<td>Returns average annotation for a given annotation key</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getConsensusAnnotation" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getConsensusAnnotation"><tt class="xref py py-obj docutils literal"><span class="pre">getConsensusAnnotation</span></tt></a>(*args)</td>
+<td>Returns consensus value for given annotation key</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getQuantAnnotation" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getQuantAnnotation"><tt class="xref py py-obj docutils literal"><span class="pre">getQuantAnnotation</span></tt></a>(*args)</td>
+<td>Returns all annotation value for given annotation key</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getTextAnnotation" title="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getTextAnnotation"><tt class="xref py py-obj docutils literal"><span class="pre">getTextAnnotation</span></tt></a>(*args)</td>
+<td>Returns all annotation values for a given annotation key</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAllAnnotationEntries">
+<tt class="descname">getAllAnnotationEntries</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/GeneralAnnotation.html#GeneralAnnotation.getAllAnnotationEntries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAllAnnotationEntries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all annotation Map.Entries</p>
+<p>Signatures:</p>
+<p>Map.Entry&lt;String, String&gt;[] getAllAnnotationEntries()</p>
+<p>Returns:</p>
+<p>Array of Map.Entry</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotation">
+<tt class="descname">getAnnotation</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/GeneralAnnotation.html#GeneralAnnotation.getAnnotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all annotation value for a given annotation key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getAnnotation</em> (String <strong>annoName</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>annoName</strong> (<em>String</em>) &#8211; annotation key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">array of annotation values (if not present new String[0])</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Object[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotationAsMap">
+<tt class="descname">getAnnotationAsMap</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/GeneralAnnotation.html#GeneralAnnotation.getAnnotationAsMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAnnotationAsMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all annotations in TreeMap</p>
+<p>Signatures:</p>
+<p>SetMultimap&lt;String,String&gt; getAnnotationAsMap()</p>
+<p>Returns:</p>
+<p>Map of annotations</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAverageAnnotation">
+<tt class="descname">getAverageAnnotation</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/GeneralAnnotation.html#GeneralAnnotation.getAverageAnnotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getAverageAnnotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns average annotation for a given annotation key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getAverageAnnotation</em> (String <strong>annoName</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>annoName</strong> (<em>String</em>) &#8211; annotation key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">average value (if not present - return Double.NaN)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">double</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getConsensusAnnotation">
+<tt class="descname">getConsensusAnnotation</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/GeneralAnnotation.html#GeneralAnnotation.getConsensusAnnotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getConsensusAnnotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns consensus value for given annotation key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getConsensusAnnotation</em> (String <strong>annoName</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>annoName</strong> (<em>String</em>) &#8211; annotation key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Consensus value (if not present new String[0])</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getQuantAnnotation">
+<tt class="descname">getQuantAnnotation</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/GeneralAnnotation.html#GeneralAnnotation.getQuantAnnotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getQuantAnnotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all annotation value for given annotation key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getQuantAnnotation</em> (String <strong>annoName</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>annoName</strong> (<em>String</em>) &#8211; annotation key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">array of annotation values (if not present new double[0])</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">double[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getTextAnnotation">
+<tt class="descname">getTextAnnotation</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/GeneralAnnotation.html#GeneralAnnotation.getTextAnnotation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.GeneralAnnotation.GeneralAnnotation.getTextAnnotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all annotation values for a given annotation key</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getTextAnnotation</em> (String <strong>annoName</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>annoName</strong> (<em>String</em>) &#8211; annotation key</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">array of annotation values (if not present new String[0])</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">String[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.util.OpenBitSet">
+<span id="tasselpy-net-maizegenetics-util-openbitset-module"></span><h2>TASSELpy.net.maizegenetics.util.OpenBitSet module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.util.OpenBitSet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.util.OpenBitSet.OpenBitSet">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.util.OpenBitSet.</tt><tt class="descname">OpenBitSet</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/OpenBitSet.html#OpenBitSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.OpenBitSet.OpenBitSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.BitSet.BitSet</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">andNot</span></tt>(*args)</td>
+<td>this = this ANDNOT other</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">capacity</span></tt>(*args)</td>
+<td>Returns capacity</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">cardinality</span></tt>(*args)</td>
+<td>Returns number of set bits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Clears a bit or range of bits, allowing access beyond the current set</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">ensureCapacity</span></tt>(*args)</td>
+<td>Ensure that the long[] is big enough to hold numBits, expanding it if necessary.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">ensureCapacityWords</span></tt>(*args)</td>
+<td>Expand the long[] with the size given as a number of words (64 bit longs).</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fastClear</span></tt>(*args)</td>
+<td>Clears a bit</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">fastFlip</span></tt>(*args)</td>
+<td>Flips a bit.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fastGet</span></tt>(*args)</td>
+<td>Returns true or false for the specified bit index</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">fastSet</span></tt>(*args)</td>
+<td>Sets the bit at the specified index.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">flip</span></tt>(*args)</td>
+<td>Flips a bit, expanding the set size if necessary</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">flipAndGet</span></tt>(*args)</td>
+<td>Flips a bit and returns the resulting bit value.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>(*args)</td>
+<td>Returns true or false for the specified bit index</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAndSet</span></tt>(*args)</td>
+<td>Sets a bit and returns the previous value.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getBit</span></tt>(*args)</td>
+<td>Returns 1 if the bit is set, 0 if not</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getBits</span></tt>(*args)</td>
+<td>Expert: returns the long[] storing the bits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getIndicesOfSetBits</span></tt>(*args)</td>
+<td>Returns the indices of set bits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getNumWords</span></tt>(*args)</td>
+<td>Expert: gets the number of longs in the array that</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">indexOfNthSetBit</span></tt>(*args)</td>
+<td>Returns index of the nth set bit</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">intersect</span></tt>(*args)</td>
+<td>this = this AND other</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">intersects</span></tt>(*args)</td>
+<td>Returns true if the sets have any elements in common</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if there are no set bits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">nextSetBit</span></tt>(*args)</td>
+<td>Returns the index of the first set bit starting at the index specified.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">previousSetBit</span></tt>(*args)</td>
+<td>Returns the index of the previous set bit starting at the index specified.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Remove all elements set in other.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt>(*args)</td>
+<td>Sets a bit, expanding the set size if necessary</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">setBits</span></tt>(*args)</td>
+<td>Expert: sets a new long[] to use as the bit storage</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">setLong</span></tt>(*args)</td>
+<td>Expert: sets the specified word with given bits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">setNumWords</span></tt>(*args)</td>
+<td>Expert: sets the number of longs in the array that are in use</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the current capacity of this set.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">trimTrailingZeros</span></tt>(*args)</td>
+<td>Lowers numWords, the number of words in use, by checking for trailing</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">union</span></tt>(*args)</td>
+<td>this = this OR other</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">xor</span></tt>(*args)</td>
+<td>this = this XOR other</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.OpenBitSet.OpenBitSet.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/OpenBitSet.html#OpenBitSet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.OpenBitSet.OpenBitSet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>An &#8220;open&#8221; BitSet implementation that allows direct access to the array of words
+storing the bits</p>
+<p>Unlike java.util.bitset, the fact that bits are packed into an array of longs
+is part of the interface. This allows efficient implementation of other
+algorithms by someone other than the author. It also allows one to
+efficiently implement alternate serialization or interchange formats.</p>
+<p>OpenBitSet is faster than java.util.BitSet in most operations and <em>much</em> faster at
+calculating cardinality of sets and results of set operations. It can also handle
+sets of larger cardinality (up to 64*2**32-1</p>
+<p>The goals of OpenBitSet are the fastest implementation possible, and maximum code reuse.
+Extra safety and encapsulation may always be built on top, but if that&#8217;s built in, the cost
+can never be removed (and hence people re-implement their own version in order to get better
+performance). If you want a &#8220;safe&#8221;, totally encapsulated (and slower and limited) BitSet
+class (coward), use java.util.BitSet</p>
+<p>Signatures:</p>
+<p>OpenBitSet(BitSet cloneOBS)
+OpenBitSet(long[] bits)
+OpenBitSet(long[] bits, int numWords)
+OpenBitSet()
+OpenBitSet(long numBits)</p>
+<p>Arguments:</p>
+<p>numBits &#8211; Specifies the OpenBitSet to be large enough to hold numBits
+bits &#8211; The first 64 bits are in long[0], with bit index 0 at the least significant bit,</p>
+<blockquote>
+<div>and bit index 63 as the most significant. Given a bit index, the word containing it is
+long[index/64], and it is at bit number index index%64 within that word.</div></blockquote>
+<dl class="docutils">
+<dt>numWords &#8211; Should be less than bits.length, and any existing words in the array at postion</dt>
+<dd>greater than numWords should be zero</dd>
+</dl>
+<p>cloneOBS &#8211; An instance of a class that implements the BitSet interface</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.util.ProgressListener">
+<span id="tasselpy-net-maizegenetics-util-progresslistener-module"></span><h2>TASSELpy.net.maizegenetics.util.ProgressListener module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.util.ProgressListener" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.util.ProgressListener.ProgressListener">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.util.ProgressListener.</tt><tt class="descname">ProgressListener</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/ProgressListener.html#ProgressListener"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.ProgressListener.ProgressListener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.ProgressListener.ProgressListener.progress" title="TASSELpy.net.maizegenetics.util.ProgressListener.ProgressListener.progress"><tt class="xref py py-obj docutils literal"><span class="pre">progress</span></tt></a>(*args)</td>
+<td>Returns the progress of execution</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.ProgressListener.ProgressListener.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/ProgressListener.html#ProgressListener.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.ProgressListener.ProgressListener.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.ProgressListener.ProgressListener.progress">
+<tt class="descname">progress</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/ProgressListener.html#ProgressListener.progress"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.ProgressListener.ProgressListener.progress" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the progress of execution</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>progress</em> (int <strong>percent</strong>, Object <strong>meta</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>percent</strong> (<em>int</em>) &#8211; percent complete</li>
+<li><strong>meta</strong> (<em>Object</em>) &#8211; meta data</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.util.TableReport">
+<span id="tasselpy-net-maizegenetics-util-tablereport-module"></span><h2>TASSELpy.net.maizegenetics.util.TableReport module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.util.TableReport" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.util.TableReport.</tt><tt class="descname">TableReport</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Object.Object" title="TASSELpy.java.lang.Object.Object"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Object.Object</span></tt></a></p>
+<p>Interface for classes with data that can be presented in tables</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getColumnCount" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getColumnCount"><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt></a>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getElementCount" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getElementCount"><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt></a>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getRow" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getRow"><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt></a>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getRowCount" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getRowCount"><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt></a>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getTableColumnNames" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getTableColumnNames"><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt></a>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getTableTitle" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getTableTitle"><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt></a>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getValueAt" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getValueAt"><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt></a>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getColumnCount">
+<tt class="descname">getColumnCount</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport.getColumnCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getColumnCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of columns</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getColumnCount</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of columns</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getElementCount">
+<tt class="descname">getElementCount</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport.getElementCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getElementCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the total number of elements in the dataset
+Elements = rowCount*columnCount</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getElementCount</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Total number of elements</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getRow">
+<tt class="descname">getRow</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport.getRow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getRow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns specified row</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getRow</em> (int <strong>row</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>row</strong> (<em>int</em>) &#8211; row number</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">row</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Object[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getRowCount">
+<tt class="descname">getRowCount</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport.getRowCount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getRowCount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of rows</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getRowCount</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Number of rows</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getTableColumnNames">
+<tt class="descname">getTableColumnNames</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport.getTableColumnNames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getTableColumnNames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the names of the columns</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getTableColumnNames</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Column names</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">Object[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getTableTitle">
+<tt class="descname">getTableTitle</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport.getTableTitle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getTableTitle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the title of the table</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getTableTitle</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A string title</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.TableReport.TableReport.getValueAt">
+<tt class="descname">getValueAt</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/TableReport.html#TableReport.getValueAt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.TableReport.TableReport.getValueAt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns value at given row and column</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getValueAt</em> (int <strong>row</strong>, int <strong>col</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>row</strong> (<em>int</em>) &#8211; row number</li>
+<li><strong>col</strong> (<em>int</em>) &#8211; column number</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.util.UnmodifiableBitSet">
+<span id="tasselpy-net-maizegenetics-util-unmodifiablebitset-module"></span><h2>TASSELpy.net.maizegenetics.util.UnmodifiableBitSet module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.util.UnmodifiableBitSet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.UnmodifiableBitSet">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.</tt><tt class="descname">UnmodifiableBitSet</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/UnmodifiableBitSet.html#UnmodifiableBitSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.UnmodifiableBitSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.net.maizegenetics.util.BitSet.BitSet" title="TASSELpy.net.maizegenetics.util.BitSet.BitSet"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.BitSet.BitSet</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">andNot</span></tt>(*args)</td>
+<td>this = this ANDNOT other</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">capacity</span></tt>(*args)</td>
+<td>Returns capacity</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">cardinality</span></tt>(*args)</td>
+<td>Returns number of set bits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clear</span></tt>(*args)</td>
+<td>Clears a bit or range of bits, allowing access beyond the current set</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">ensureCapacity</span></tt>(*args)</td>
+<td>Ensure that the long[] is big enough to hold numBits, expanding it if necessary.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">ensureCapacityWords</span></tt>(*args)</td>
+<td>Expand the long[] with the size given as a number of words (64 bit longs).</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fastClear</span></tt>(*args)</td>
+<td>Clears a bit</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">fastFlip</span></tt>(*args)</td>
+<td>Flips a bit.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">fastGet</span></tt>(*args)</td>
+<td>Returns true or false for the specified bit index</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">fastSet</span></tt>(*args)</td>
+<td>Sets the bit at the specified index.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">flip</span></tt>(*args)</td>
+<td>Flips a bit, expanding the set size if necessary</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">flipAndGet</span></tt>(*args)</td>
+<td>Flips a bit and returns the resulting bit value.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">get</span></tt>(*args)</td>
+<td>Returns true or false for the specified bit index</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getAndSet</span></tt>(*args)</td>
+<td>Sets a bit and returns the previous value.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getBit</span></tt>(*args)</td>
+<td>Returns 1 if the bit is set, 0 if not</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getBits</span></tt>(*args)</td>
+<td>Expert: returns the long[] storing the bits</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getIndicesOfSetBits</span></tt>(*args)</td>
+<td>Returns the indices of set bits</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.UnmodifiableBitSet.getInstance" title="TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.UnmodifiableBitSet.getInstance"><tt class="xref py py-obj docutils literal"><span class="pre">getInstance</span></tt></a>(*args)</td>
+<td>Get instance of UnmodifiableBitSet from a BitSet</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getNumWords</span></tt>(*args)</td>
+<td>Expert: gets the number of longs in the array that</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">indexOfNthSetBit</span></tt>(*args)</td>
+<td>Returns index of the nth set bit</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">intersect</span></tt>(*args)</td>
+<td>this = this AND other</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">intersects</span></tt>(*args)</td>
+<td>Returns true if the sets have any elements in common</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">isEmpty</span></tt>(*args)</td>
+<td>Returns true if there are no set bits</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">nextSetBit</span></tt>(*args)</td>
+<td>Returns the index of the first set bit starting at the index specified.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">previousSetBit</span></tt>(*args)</td>
+<td>Returns the index of the previous set bit starting at the index specified.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">remove</span></tt>(*args)</td>
+<td>Remove all elements set in other.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">set</span></tt>(*args)</td>
+<td>Sets a bit, expanding the set size if necessary</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">setBits</span></tt>(*args)</td>
+<td>Expert: sets a new long[] to use as the bit storage</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">setLong</span></tt>(*args)</td>
+<td>Expert: sets the specified word with given bits</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">setNumWords</span></tt>(*args)</td>
+<td>Expert: sets the number of longs in the array that are in use</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">size</span></tt>(*args)</td>
+<td>Returns the current capacity of this set.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">trimTrailingZeros</span></tt>(*args)</td>
+<td>Lowers numWords, the number of words in use, by checking for trailing</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">union</span></tt>(*args)</td>
+<td>this = this OR other</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">xor</span></tt>(*args)</td>
+<td>this = this XOR other</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.UnmodifiableBitSet.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/UnmodifiableBitSet.html#UnmodifiableBitSet.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.UnmodifiableBitSet.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates UnmodifiableBitSet</p>
+<p>Arguments:</p>
+<p>obj &#8211; A Java instance implementing BitSet interface</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.UnmodifiableBitSet.getInstance">
+<em class="property">static </em><tt class="descname">getInstance</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/util/UnmodifiableBitSet.html#UnmodifiableBitSet.getInstance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.util.UnmodifiableBitSet.UnmodifiableBitSet.getInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get instance of UnmodifiableBitSet from a BitSet</p>
+<p>Arguments:</p>
+<p>bitSet &#8211; An instance of a BitSet</p>
+<p>Returns:</p>
+<p>An UnmodifiableBitSet</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.util">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.util" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.net.maizegenetics.util package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.util.BitSet">TASSELpy.net.maizegenetics.util.BitSet module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.util.GeneralAnnotation">TASSELpy.net.maizegenetics.util.GeneralAnnotation module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.util.OpenBitSet">TASSELpy.net.maizegenetics.util.OpenBitSet module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.util.ProgressListener">TASSELpy.net.maizegenetics.util.ProgressListener module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.util.TableReport">TASSELpy.net.maizegenetics.util.TableReport module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.util.UnmodifiableBitSet">TASSELpy.net.maizegenetics.util.UnmodifiableBitSet module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.net.maizegenetics.util.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

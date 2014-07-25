@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.stats.statistics.FisherExact</span> <span class="kn">import</span> <span class="n">FisherExact</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.util.BitSet</span> <span class="kn">import</span> <span class="n">BitSet</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.snp.GenotypeTable</span> <span class="kn">import</span> <span class="n">GenotypeTable</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.analysis.popgen.LDResult</span> <span class="kn">import</span> <span class="n">LDResult</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.util.ProgressListener</span> <span class="kn">import</span> <span class="n">ProgressListener</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Boolean</span> <span class="kn">import</span> <span class="n">metaBoolean</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Float</span> <span class="kn">import</span> <span class="n">metaFloat</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Enum</span> <span class="kn">import</span> <span class="n">enum</span> <span class="k">as</span> <span class="n">java_enum</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Thread</span> <span class="kn">import</span> <span class="n">Thread</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.util.TableReport</span> <span class="kn">import</span> <span class="n">TableReport</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span><span class="p">,</span><span class="n">javaStaticOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">javaPrimativeArray</span><span class="p">,</span> <span class="n">meta_int_array</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;BitSet&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/util/BitSet&#39;</span><span class="p">,</span>
+                <span class="s">&#39;FisherExact&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/stats/statistics/FisherExact&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/GenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;LDResult&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/analysis/popgen/LDResult&#39;</span><span class="p">,</span>
+                <span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/analysis/popgen/LinkageDisequilibrium&#39;</span><span class="p">,</span>
+                <span class="s">&#39;ProgressListener&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/util/ProgressListener&#39;</span><span class="p">}</span>
+<div class="viewcode-block" id="LinkageDisequilibrium"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium">[docs]</a><span class="k">class</span> <span class="nc">LinkageDisequilibrium</span><span class="p">(</span><span class="n">Thread</span><span class="p">,</span> <span class="n">TableReport</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class calculates D&#39; and r^2 estimates of linkage disequilibrium. It also</span>
+<span class="sd">    calculates the significance of the LD by either Fisher Exact or the</span>
+<span class="sd">    multinomial permutation test. This class can work with either normal</span>
+<span class="sd">    alignments of annotated alignments. The alignments should be stripped of</span>
+<span class="sd">    invariable numSites.</span>
+<span class="sd">        {@link testDesign} sets matrix design for LD calculation. Either all by</span>
+<span class="sd">    all, sliding window, site by all, or site list.</span>
+<span class="sd">       </span>
+<span class="sd">    There are multiple approaches for dealing with heterozygous sites.</span>
+<span class="sd">    {@link HetTreatment} sets the way these are treated. Haplotype assumes fully</span>
+<span class="sd">    phased heterozygous sites (any hets are double counted). This is the best</span>
+<span class="sd">    approach for speed when things are fully phased. Homozygous converted all</span>
+<span class="sd">    hets to missing. Genotype does a 3x3 genotype analysis (to be implemented)</span>
+<span class="sd">       </span>
+<span class="sd">    2 state estimates of D&#39; and r^2 can be found reviewed and discussed in Weir</span>
+<span class="sd">    1996</span>
+<span class="sd">       </span>
+<span class="sd">    Multi-state loci (&gt;=3) require an averaging approach. In TASSEL 3 in 2010,</span>
+<span class="sd">    Buckler removed these approach as the relative magnitudes and meaningfulness</span>
+<span class="sd">    of these approaches has never been clear. Additionally with the moving away</span>
+<span class="sd">    from SSR to SNPs these methods are less relevant. Researchers should convert</span>
+<span class="sd">    to biallelic - either by ignoring rarer classes or collapsing rarer states.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">]</span>
+    <span class="c">## testDesign enum</span>
+    <span class="n">testDesign</span> <span class="o">=</span> <span class="n">java_enum</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$testDesign&#39;</span><span class="p">,</span>
+                           <span class="s">&#39;All&#39;</span><span class="p">,</span><span class="s">&#39;SlidingWindow&#39;</span><span class="p">,</span><span class="s">&#39;SiteByAll&#39;</span><span class="p">,</span><span class="s">&#39;SiteList&#39;</span><span class="p">,</span>
+                           <span class="n">subclass</span><span class="o">=</span><span class="s">&#39;testDesign&#39;</span><span class="p">)</span>
+    <span class="c">## HetTreatment enum</span>
+    <span class="n">HetTreatment</span> <span class="o">=</span> <span class="n">java_enum</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$HetTreatment&#39;</span><span class="p">,</span>
+                             <span class="s">&#39;Haplotype&#39;</span><span class="p">,</span><span class="s">&#39;Homozygous&#39;</span><span class="p">,</span><span class="s">&#39;Genotype&#39;</span><span class="p">,</span>
+                             <span class="n">subclass</span><span class="o">=</span><span class="s">&#39;HetTreatment&#39;</span><span class="p">)</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">],</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span>
+                       <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$testDesign&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span>
+                       <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;ProgressListener&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int[]&#39;</span><span class="p">,</span>
+                       <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;$HetTreatment&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">testDesign</span><span class="o">.</span><span class="n">subclass</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">ProgressListener</span><span class="p">,</span>
+                <span class="n">metaBoolean</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">meta_int_array</span><span class="p">,</span>
+            <span class="n">HetTreatment</span><span class="o">.</span><span class="n">subclass</span><span class="p">)))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor for doing LD analysis</span>
+
+<span class="sd">        Signatures:</span>
+<span class="sd">        </span>
+<span class="sd">        LinkageDisequilibrium(GenotypeTable alignment, int windowSize, testDesign LDType,</span>
+<span class="sd">                                 int testSite, ProgressListener listener, boolean isAccumulativeReport,</span>
+<span class="sd">                                 int numAccumulateIntervals, int[] sitesList, HetTreatment hetTreatment)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        alignment -- Input alignment with segregating sites</span>
+<span class="sd">        windowSize -- Size of sliding window</span>
+<span class="sd">        LDType --One of the testDesign enum types (All, SlidingWindow, SiteByAll, SiteList)</span>
+<span class="sd">        testSite</span>
+<span class="sd">        listener</span>
+<span class="sd">        isAccumulativeReport</span>
+<span class="sd">        numAccumulateIntervals</span>
+<span class="sd">        sitesList</span>
+<span class="sd">        hetTreatment</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">],</span><span class="s">&quot;calculateBitLDForHaplotype&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]),(</span><span class="n">metaBoolean</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">GenotypeTable</span><span class="p">,</span>
+                                                 <span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                                                 <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">LDResult</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.calculateBitLDForHaplotype"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateBitLDForHaplotype">[docs]</a>    <span class="k">def</span> <span class="nf">calculateBitLDForHaplotype</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the Bit LD between two sites</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static LDResult calculateBitLDForHaplotype(boolean ignoreHets,</span>
+<span class="sd">                                int minTaxaForEstimate, GenotypeTable alignment,</span>
+<span class="sd">                                int site1, int site2)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        ignoreHets -- Whether to ignore heterozygous sites</span>
+<span class="sd">        minTaxaForEstimate -- The minimum number of taxa required to estimate LD</span>
+<span class="sd">        alignment -- A GenotypeTable containing the sites</span>
+<span class="sd">        site1 -- The index of the first site</span>
+<span class="sd">        site2 -- The index of the second site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        LDResult containing the LD info</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Calculates the normalized D&#39; from Weir Genetic Analysis II 1986 pg. 120</span>
+    <span class="c"># @param countAB Count of AB alleles</span>
+    <span class="c"># @param countAb Count of Ab alleles</span>
+    <span class="c"># @param countaB Count of aB alleles</span>
+    <span class="c"># @param countab Count of ab alleles</span>
+    <span class="c"># @return Value of D&#39;</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">],</span><span class="s">&quot;calculateDPrime&quot;</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.calculateDPrime"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateDPrime">[docs]</a>    <span class="k">def</span> <span class="nf">calculateDPrime</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the normalized D&#39; from Weir Genetic Analysis II 1986 pg. 120</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static double calculateDPrime(int countAB, int countAb, int countaB, int countab, int minTaxaForEstimate)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        countAB -- Count of AB alleles</span>
+<span class="sd">        countAb -- Count of Ab alleles</span>
+<span class="sd">        countaB -- Count of aB alleles</span>
+<span class="sd">        countab -- Count of ab alleles</span>
+<span class="sd">        minTaxaForEsimate -- The minimum number of taxa required for the estimate</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Value of D&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Calculates the normalized r2 from Awadella Science 1999 286:2524</span>
+    <span class="c"># @param countAB Count of AB alleles</span>
+    <span class="c"># @param countAb Count of Ab alleles</span>
+    <span class="c"># @param countaB Count of aB alleles</span>
+    <span class="c"># @param countab Count of ab alleles</span>
+    <span class="c"># @return Value of r2</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LinkageDisequilibrium&#39;</span><span class="p">],</span><span class="s">&quot;calculateRSqr&quot;</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),</span>
+                         <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                         <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.calculateRSqr"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.calculateRSqr">[docs]</a>    <span class="k">def</span> <span class="nf">calculateRSqr</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates the normalized r2 from Awadella Science 1999 286:2524</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static double calculateRSqr(int countAB, int countAb, int countaB, int countab, int minTaxaForEstimate)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        countAB -- Count of AB alleles</span>
+<span class="sd">        countAb -- Count of Ab alleles</span>
+<span class="sd">        countaB -- Count of aB alleles</span>
+<span class="sd">        countab -- Count of ab alleles</span>
+<span class="sd">        minTaxaForEsimate -- The minimum number of taxa required for the estimate</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Value of r2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Method for estimating LD between a pair of bit sets. Since there can be tremendous</span>
+    <span class="c"># missing data, minimum minor and minimum site counts ensure that meaningful results</span>
+    <span class="c"># are estimated. Site indices are merely there for annotating the LDresult</span>
+    <span class="c"># @param rMj site 1 major alleles</span>
+    <span class="c"># @param rMn site 1 minor alleles</span>
+    <span class="c"># @param cMj site 2 major alleles</span>
+    <span class="c"># @param cMn site 2 minor alleles</span>
+    <span class="c"># @param minMinorCnt minimum minor allele count after intersection</span>
+    <span class="c"># @param minCnt minimum count after intersection</span>
+    <span class="c"># @param minR2 results below this r2 are ignored for p-value calculation (save time)</span>
+    <span class="c"># @param myFisherExact Instance of FisherExact to do Fisher Exact test</span>
+    <span class="c"># @param site1Index Annotation of LDResult with site indices</span>
+    <span class="c"># @param site2Index Annotation of LDResult with site indices</span>
+    <span class="c"># @return An LDResult for the pair of sites</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&quot;LinkageDisequilibrium&quot;</span><span class="p">],</span><span class="s">&quot;getLDForSitePair&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">],</span>
+                   <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;float&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FisherExact&#39;</span><span class="p">],</span>
+                   <span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;LDResult&#39;</span><span class="p">]),</span>
+        <span class="p">(</span><span class="n">BitSet</span><span class="p">,</span><span class="n">BitSet</span><span class="p">,</span><span class="n">BitSet</span><span class="p">,</span><span class="n">BitSet</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaFloat</span><span class="p">,</span><span class="n">FisherExact</span><span class="p">,</span>
+         <span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">LDResult</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getLDForSitePair"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getLDForSitePair">[docs]</a>    <span class="k">def</span> <span class="nf">getLDForSitePair</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Method for estimating LD between a pair of bit sets. Since there can be tremendous missing</span>
+<span class="sd">        data, minimum minor and minimum site counts ensure that meaningful results are estimated. Site</span>
+<span class="sd">        indices are merely there for annotating the LDResult.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static LDResult getLDForSitePair(BitSet rMj, BitSet rMn,</span>
+<span class="sd">                                         BitSet cMj, BitSet cMn,</span>
+<span class="sd">                                        int minMinorCnt, int minCnt,</span>
+<span class="sd">                                        float minR2, FisherExact myFisherExact,</span>
+<span class="sd">                                        int site1Index, int site2Index)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        rMj -- site 1 major alleles</span>
+<span class="sd">        rMn -- site 1 minor alleles</span>
+<span class="sd">        cMj -- site 2 major alleles</span>
+<span class="sd">        cMn -- site 2 minor alleles</span>
+<span class="sd">        minMinorCnt -- minimum minor allele count after intersection</span>
+<span class="sd">        minCnt -- minimum count after intersection</span>
+<span class="sd">        minR2 -- results below this r2 are ignored for p-value calculation (save time)</span>
+<span class="sd">        myFisherExact -- Instance of FisherExact to do Fisher Exact test</span>
+<span class="sd">        site1Index -- Annotation of LDResult with site indices</span>
+<span class="sd">        site2Index -- Annotation of LDResult with site indices</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An LDResult for the pair of sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns P-value estimate for a given pair of numPSites. If there were only 2 alleles</span>
+    <span class="c"># at each locus, then the Fisher Exact P-value (one-tail) is returned. If more states, then</span>
+    <span class="c"># the permuted Monte Carlo test is used</span>
+    <span class="c"># @param r site 1</span>
+    <span class="c"># @param c site 2</span>
+    <span class="c"># @return p-value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getPVal&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getPval"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getPval">[docs]</a>    <span class="k">def</span> <span class="nf">getPval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns P-value estimate for a given pair of numPSites. If there were only</span>
+<span class="sd">        2 alleles at each locus, then the Fisher Exact P-value (one-tail) is returned.</span>
+<span class="sd">        If more states, then the permuted Monte Carlo test is used</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double getPVal(int r, int c)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        r -- site 1</span>
+<span class="sd">        c -- site 2</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        P-value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets number of gametes included in LD calculations (after missing data was excluded)</span>
+    <span class="c"># @param r site 1</span>
+    <span class="c"># @param c site 2</span>
+    <span class="c"># @return p-value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getSampleSize&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getSampleSize"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSampleSize">[docs]</a>    <span class="k">def</span> <span class="nf">getSampleSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get number of gametes included in LD calculations (after missing data</span>
+<span class="sd">        was excluded)</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getSampleSize(int r, int c)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        r -- site 1</span>
+<span class="sd">        c -- site 2</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of gametes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the D&#39; estimate for a given pair of numSites</span>
+    <span class="c"># @param r site 1</span>
+    <span class="c"># @param c site 2</span>
+    <span class="c"># @return D&#39; </span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getDPrime&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;float&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getDPrime"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getDPrime">[docs]</a>    <span class="k">def</span> <span class="nf">getDPrime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the D&#39; estimate for a given pair of numSites</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        float getDPrime(int r, int c)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        r -- site 1</span>
+<span class="sd">        c -- site 2</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        D&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the r2 estimate for a given pair of numSites</span>
+    <span class="c"># @param r site 1</span>
+    <span class="c"># @param c site 2</span>
+    <span class="c"># @return r2</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getRSqr&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;float&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getRSqr"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getRSqr">[docs]</a>    <span class="k">def</span> <span class="nf">getRSqr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the r2 estimate for a given pair of numSites</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        float getRSqr(int r, int c)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        r -- site 1</span>
+<span class="sd">        c -- site 2</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        r2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getX&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getX"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getX">[docs]</a>    <span class="k">def</span> <span class="nf">getX</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getX(int row)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        row -- row</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        X</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getY&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getY"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getY">[docs]</a>    <span class="k">def</span> <span class="nf">getY</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getY(int row)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        row -- row</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Y</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the counts of the numSites in the alignment</span>
+    <span class="c"># @return The counts of the numSites in the alignment</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getSiteCount&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getSiteCount"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getSiteCount">[docs]</a>    <span class="k">def</span> <span class="nf">getSiteCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the counts of the numSites in the alignment</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int getSiteCount()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The counts of the numSites in the alignment</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns an annotated alignment if one was used for this LD. This could</span>
+    <span class="c"># be used to access information of locus position</span>
+    <span class="c"># @return The GenotypeTable</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getAlignment&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">GenotypeTable</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="LinkageDisequilibrium.getAlignment"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.popgen.html#TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium.LinkageDisequilibrium.getAlignment">[docs]</a>    <span class="k">def</span> <span class="nf">getAlignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns an annotated alignment if one was used for this LD. This could</span>
+<span class="sd">        be used to access information of locus position</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        GenotypeTable getAlignment</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The GenotypeTable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

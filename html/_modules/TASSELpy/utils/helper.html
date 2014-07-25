@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.utils.helper &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../index.html" />
+    <link rel="up" title="Module code" href="../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.utils.helper</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+<span class="c">## Dictionary holding the symbols for primatives in javabridge signatures</span>
+<span class="n">primative_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;boolean&#39;</span><span class="p">:</span><span class="s">&#39;Z&#39;</span><span class="p">,</span><span class="s">&#39;byte&#39;</span><span class="p">:</span><span class="s">&#39;B&#39;</span><span class="p">,</span><span class="s">&#39;char&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span><span class="s">&#39;short&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;int&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span><span class="s">&#39;long&#39;</span><span class="p">:</span><span class="s">&#39;J&#39;</span><span class="p">,</span><span class="s">&#39;float&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span><span class="s">&#39;double&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;void&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">}</span>
+
+<span class="c">## Constructs the signature needed by javabridge for a function</span>
+<span class="c"># @param args A list of argument types for the function. If an array is specified, the</span>
+<span class="c"># class name should end with []. The begninning L and ; will be added</span>
+<span class="c"># if not already present. Otherwise, just put in the primative name (i.e. int, char, etc)</span>
+<span class="c"># @param return_type The return type for the function, specified in the same way as the arguments </span>
+<span class="c"># @return The signature for the java method</span>
+<div class="viewcode-block" id="make_sig"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.helper.make_sig">[docs]</a><span class="k">def</span> <span class="nf">make_sig</span><span class="p">(</span><span class="n">args</span><span class="p">,</span><span class="n">return_type</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs the signature needed by javabridge for a function</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    args -- A list of argument types for the function. If an array is specified, the class name</span>
+<span class="sd">            should end with []. The beginning L and end ; will be added if not already present.</span>
+<span class="sd">            Otherwise, just put in the primative name (i.e. int char, etc)</span>
+<span class="sd">    return_type -- The return type of the function, specified in the same way as the arguments</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    The signature for the java method</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Run arguments through</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">arg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">n_array</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">primative_dict</span> <span class="ow">or</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r&#39;[a-z]+(?=\[)&#39;</span><span class="p">,</span><span class="n">arg</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r&#39;[a-z]+(?=\[)&#39;</span><span class="p">,</span><span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="ow">in</span> <span class="n">primative_dict</span><span class="p">):</span>
+            <span class="c"># If this is a primative</span>
+            <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+                <span class="c"># If this should be an array</span>
+                <span class="n">array</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">while</span> <span class="n">arg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+                    <span class="n">arg</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                    <span class="n">n_array</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c"># Turn into signature form</span>
+            <span class="k">if</span> <span class="n">array</span><span class="p">:</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;[&#39;</span><span class="o">*</span><span class="n">n_array</span><span class="p">,</span><span class="n">primative_dict</span><span class="p">[</span><span class="n">arg</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">primative_dict</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span>
+            <span class="c"># If this is a class name</span>
+            <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+                <span class="c"># If this should be an array</span>
+                <span class="n">array</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="k">while</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+                    <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                    <span class="n">n_array</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;L&#39;</span><span class="p">):</span>
+                <span class="c"># Check that it begins with L</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;L</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;;&#39;</span><span class="p">):</span>
+                <span class="c"># Check that it ends with a semicolon</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">;&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">array</span><span class="p">:</span>
+                <span class="c"># Put in array if necessary</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;[&#39;</span><span class="o">*</span><span class="n">n_array</span><span class="p">,</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> is not a valid type!&quot;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
+    <span class="c"># Run return type through</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">n_array</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">return_type</span> <span class="ow">in</span> <span class="n">primative_dict</span> <span class="ow">or</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r&#39;[a-z]+(?=\[)&#39;</span><span class="p">,</span><span class="n">return_type</span><span class="p">)</span> <span class="ow">and</span> \
+                <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s">r&#39;[a-z]+(?=\[)&#39;</span><span class="p">,</span><span class="n">return_type</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">()</span> <span class="ow">in</span> <span class="n">primative_dict</span><span class="p">):</span>
+        <span class="c"># If this is a primative</span>
+        <span class="k">if</span> <span class="n">return_type</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+            <span class="c"># If this should be an array</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">while</span> <span class="n">return_type</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+                <span class="n">return_type</span> <span class="o">=</span> <span class="n">return_type</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">n_array</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c"># Turn into signature form</span>
+        <span class="k">if</span> <span class="n">array</span><span class="p">:</span>
+            <span class="n">return_type</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;[&#39;</span><span class="o">*</span><span class="n">n_array</span><span class="p">,</span><span class="n">primative_dict</span><span class="p">[</span><span class="n">return_type</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">return_type</span> <span class="o">=</span> <span class="n">primative_dict</span><span class="p">[</span><span class="n">return_type</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="s">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">return_type</span><span class="p">:</span>
+        <span class="c"># If this is a class name</span>
+        <span class="k">if</span> <span class="n">return_type</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+            <span class="c"># If this should be an array</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">while</span> <span class="n">return_type</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+                <span class="n">return_type</span> <span class="o">=</span> <span class="n">return_type</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">n_array</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;L&#39;</span><span class="p">):</span>
+            <span class="c"># Check that it begins with L</span>
+            <span class="n">return_type</span> <span class="o">=</span> <span class="s">&quot;L</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">return_type</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_type</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;;&#39;</span><span class="p">):</span>
+            <span class="c"># Check that it ends with a semicolon</span>
+            <span class="n">return_type</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">;&quot;</span> <span class="o">%</span> <span class="n">return_type</span>
+        <span class="k">if</span> <span class="n">array</span><span class="p">:</span>
+            <span class="c"># Put in array if necessary</span>
+            <span class="n">return_type</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;[&#39;</span><span class="o">*</span><span class="n">n_array</span><span class="p">,</span><span class="n">return_type</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> is not a valid type!&quot;</span> <span class="o">%</span> <span class="n">return_type</span><span class="p">)</span>
+    <span class="c">## Return the signature</span>
+    <span class="k">return</span> <span class="s">&quot;(</span><span class="si">%s</span><span class="s">)</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">),</span><span class="n">return_type</span><span class="p">)</span>
+
+<span class="c">## Constructs the signature needed by javabridge for a constructor function</span>
+<span class="c"># @param args A list of argument types for the function. If an array is specified, the</span>
+<span class="c"># class name should end with []. The begninning L and ; will be added</span>
+<span class="c"># if not already present. Otherwise, just put in the primative name (i.e. int, char, etc)</span>
+<span class="c"># @return The signature for the java constructor</span></div>
+<div class="viewcode-block" id="make_constructor_sig"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.helper.make_constructor_sig">[docs]</a><span class="k">def</span> <span class="nf">make_constructor_sig</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs the signature needed by javabridge for a function</span>
+
+<span class="sd">    Arguments:</span>
+
+<span class="sd">    args -- A list of argument types for the function. If an array is specified, the class name</span>
+<span class="sd">            should end with []. The beginning L and end ; will be added if not already present.</span>
+<span class="sd">            Otherwise, just put in the primative name (i.e. int char, etc)</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    The signature for the java constructor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Run arguments through</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">arg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">primative_dict</span> <span class="ow">or</span> <span class="n">arg</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="n">primative_dict</span><span class="p">:</span>
+            <span class="c"># If this is a primative</span>
+            <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+                <span class="c"># If this should be an array</span>
+                <span class="n">arg</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">array</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="c"># Turn into signature form</span>
+            <span class="k">if</span> <span class="n">array</span><span class="p">:</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;[</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">primative_dict</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">primative_dict</span><span class="p">[</span><span class="n">arg</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="s">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">arg</span><span class="p">:</span>
+            <span class="c"># If this is a class name</span>
+            <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;[]&#39;</span><span class="p">):</span>
+                <span class="c"># If this should be an array</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">array</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;L&#39;</span><span class="p">):</span>
+                <span class="c"># Check that it begins with L</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;L</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;;&#39;</span><span class="p">):</span>
+                <span class="c"># Check that it ends with a semicolon</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">;&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">array</span><span class="p">:</span>
+                <span class="c"># Put in array if necessary</span>
+                <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;[</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> is not a valid type!&quot;</span> <span class="o">%</span> <span class="n">arg</span><span class="p">)</span>
+    <span class="c">## Return the signature</span>
+    <span class="k">return</span> <span class="s">&quot;(</span><span class="si">%s</span><span class="s">)V&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+
+<span class="c">## Function to use in case a value returned from javabridge is a python</span>
+<span class="c"># primative that needs to be sent back to a java object before further processing</span>
+<span class="c"># @param prim_val The python primative value</span>
+<span class="c"># @return A wrapped java object of the appropriate type (String, Integer, or Double)</span></div>
+<div class="viewcode-block" id="send_to_java"><a class="viewcode-back" href="../../../TASSELpy.utils.html#TASSELpy.utils.helper.send_to_java">[docs]</a><span class="k">def</span> <span class="nf">send_to_java</span><span class="p">(</span><span class="n">prim_val</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prim_val</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prim_val</span><span class="p">,</span><span class="nb">unicode</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_instance</span><span class="p">(</span><span class="s">&quot;java/lang/String&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;(Ljava/lang/String;)V&quot;</span><span class="p">,</span><span class="n">prim_val</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prim_val</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_instance</span><span class="p">(</span><span class="s">&quot;java/lang/Integer&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;(Ljava/lang/Integer;)V&quot;</span><span class="p">,</span><span class="n">prim_val</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prim_val</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">make_instance</span><span class="p">(</span><span class="s">&quot;java/lang/Double&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;(Ljava/lang/Double;)V&quot;</span><span class="p">,</span><span class="n">prim_val</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">prim_val</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

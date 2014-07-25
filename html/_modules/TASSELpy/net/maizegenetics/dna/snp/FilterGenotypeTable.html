@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.snp.GenotypeTable</span> <span class="kn">import</span> <span class="n">GenotypeTable</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Boolean</span> <span class="kn">import</span> <span class="n">metaBoolean</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.map.Chromosome</span> <span class="kn">import</span> <span class="n">Chromosome</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.TaxaList</span> <span class="kn">import</span> <span class="n">TaxaList</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.Taxon</span> <span class="kn">import</span> <span class="n">Taxon</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.TaxaListBuilder</span> <span class="kn">import</span> <span class="n">TaxaListBuilder</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.String</span> <span class="kn">import</span> <span class="n">String</span><span class="p">,</span> <span class="n">metaString</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span><span class="p">,</span><span class="n">javaStaticOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.javaObj</span> <span class="kn">import</span> <span class="n">javaArray</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">meta_int_array</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Chromosome&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/map/Chromosome&#39;</span><span class="p">,</span>
+                <span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/FilterGenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/GenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                <span class="s">&#39;TaxaList&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/TaxaList&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="FilterGenotypeTable"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable">[docs]</a><span class="k">class</span> <span class="nc">FilterGenotypeTable</span><span class="p">(</span><span class="n">GenotypeTable</span><span class="p">):</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="FilterGenotypeTable.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c">## This returns filterGenotypeTable with only specified subTaxaList. Defaults</span>
+    <span class="c"># to retain unknown taxa. If retainUnknownTaxa is true then Alignment will return</span>
+    <span class="c"># unknown values for missing taxa</span>
+    <span class="c"># @param a alignment</span>
+    <span class="c"># @param subTaxaList subset id group</span>
+    <span class="c"># @param retainUnknownTaxa whether to retain unknown taxa</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">],</span><span class="s">&quot;getInstance&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaList&#39;</span><span class="p">]],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]),(</span><span class="n">GenotypeTable</span><span class="p">,</span> <span class="n">TaxaList</span><span class="p">),</span>
+                      <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">GenotypeTable</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaList&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]),(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">TaxaList</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">),</span>
+                      <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">GenotypeTable</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int[]&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">]),</span>
+                <span class="p">(</span><span class="n">GenotypeTable</span><span class="p">,</span> <span class="n">meta_int_array</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">FilterGenotypeTable</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">]),</span>
+            <span class="p">(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">javaArray</span><span class="o">.</span><span class="n">get_array_type</span><span class="p">(</span><span class="n">String</span><span class="p">)),</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">FilterGenotypeTable</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">]),(</span><span class="n">GenotypeTable</span><span class="p">,</span> <span class="n">metaString</span><span class="p">,</span>
+                      <span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span>
+                      <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">FilterGenotypeTable</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">]),(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">Chromosome</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                      <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">FilterGenotypeTable</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">]),(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">Chromosome</span><span class="p">),</span>
+                      <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">FilterGenotypeTable</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">]),</span>
+                      <span class="p">(</span><span class="n">GenotypeTable</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">FilterGenotypeTable</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">))</span>
+            <span class="p">)</span>
+<div class="viewcode-block" id="FilterGenotypeTable.getInstance"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.getInstance">[docs]</a>    <span class="k">def</span> <span class="nf">getInstance</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This returns FilterGenotypeTable with only specified subTaxaList. Defaults</span>
+<span class="sd">        to retain unknown taxa. If retainUnkownTaxa is true then Alignment will return</span>
+<span class="sd">        unknown values for missing taxa</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static GenotypeTable getInstance(GenotypeTable a, TaxaList subTaxaList)</span>
+<span class="sd">        static GenotypeTable getInstance(GenotypeTable a, TaxaList subTaxaList, boolean retainUnknownTaxa)</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, int[] subSites)</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, String[] siteNamesToKeep)</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, String chromosome,</span>
+<span class="sd">                                                int startPhysicalPos, int endPhysicalPos)</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, Chromosome chromosome,</span>
+<span class="sd">                                                int startPhysicalPos, int endPhysicalPos)</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, Chromosome chromosome)</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, int startSite, int endSite)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        GenotypeTable getInstance(GenotypeTable a, TaxaList subTaxaList)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           subTaxaList -- subset id group</span>
+<span class="sd">        GenotypeTable getInstance(GenotypeTable a, TaxaList subTaxaList, boolean retainUnknownTaxa)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           subTaxaList -- subset id group</span>
+<span class="sd">           retainUnknownTaxa -- whether to retain unknown taxa</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, int[] subSites)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           subSites -- subset of sites you want</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, String[] siteNamesToKeep)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           siteNamesToKeep -- names of the sites to keep</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, String chromosome,</span>
+<span class="sd">                                                int startPhysicalPos, int endPhysicalPos)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           chromosome -- name of chromosome</span>
+<span class="sd">           startPhysicalPos -- starting physical position</span>
+<span class="sd">           endPhysicalPos -- ending physical position</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, Chromosome chromosome,</span>
+<span class="sd">                                                int startPhysicalPos, int endPhysicalPos)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           chromosome -- instance of a chromosome to keep</span>
+<span class="sd">           startPhysicalPos -- starting physical position</span>
+<span class="sd">           endPhysicalPos -- ending physical position</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, Chromosome chromosome)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           chromosome -- instance of a chromosome to keep</span>
+<span class="sd">        static FilterGenotypeTable getInstance(GenotypeTable a, int startSite, int endSite)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           startSite -- start site (inclusive)</span>
+<span class="sd">           endSite -- end site (inclusive)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        filter alignment</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Removes specific IDs</span>
+    <span class="c"># @param a alignment to filer</span>
+    <span class="c"># @param subTaxaList specified IDs</span>
+    <span class="c"># @return Filtered Alignment</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">],</span><span class="s">&quot;getInstanceRemoveIDs&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;TaxaList&#39;</span><span class="p">]],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]),(</span><span class="n">GenotypeTable</span><span class="p">,</span> <span class="n">TaxaList</span><span class="p">),</span>
+                      <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">GenotypeTable</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.getInstanceRemoveIDs"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.getInstanceRemoveIDs">[docs]</a>    <span class="k">def</span> <span class="nf">getInstanceRemoveIDs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes specific IDs</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static GenotypeTable getInstanceRemoveIDs(GenotypeTable a, TaxaList subTaxaList)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        a -- alignment to filter</span>
+<span class="sd">        subTaxaList -- specified IDs</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Filtered Alignment</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Removes specific named sites</span>
+    <span class="c"># @param a alignment</span>
+    <span class="c"># @param siteNamesToRemove names of the sites to remove</span>
+    <span class="c"># @return Filtered alignment</span></div>
+    <span class="nd">@javaStaticOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">],</span><span class="s">&quot;getInstanceRemoveSiteNames&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">],</span>
+                      <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;FilterGenotypeTable&#39;</span><span class="p">]),(</span><span class="n">GenotypeTable</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">),</span>
+                      <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">FilterGenotypeTable</span><span class="p">(</span><span class="n">obj</span> <span class="o">=</span> <span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.getInstanceRemoveSiteNames"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.getInstanceRemoveSiteNames">[docs]</a>    <span class="k">def</span> <span class="nf">getInstanceRemoveSiteNames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Removes specific named sites</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        static FilterGenotypeTable getInstanceRemoveSiteNames(GenotypeTable a, String[] siteNamesToRemove)</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">        </span>
+<span class="sd">        static FilterGenotypeTable getInstanceRemoveSiteNames(GenotypeTable a, String[] siteNamesToRemove)</span>
+<span class="sd">           a -- alignment</span>
+<span class="sd">           siteNamesToRemove -- names of the sites to remove</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Filtered Alignment</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;translateSite&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.translateSite"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.translateSite">[docs]</a>    <span class="k">def</span> <span class="nf">translateSite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int translateSite(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns site of this FilterGenotypeTable based on given site from</span>
+    <span class="c"># embedded alignment</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;reverseTranslateSite&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.reverseTranslateSite"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.reverseTranslateSite">[docs]</a>    <span class="k">def</span> <span class="nf">reverseTranslateSite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns site of this FilterGenotypeTable based on given site from</span>
+<span class="sd">        embedded Alignment</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int reverseTranslateSite(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        site of this FilterGenotypeTable based on given site from</span>
+<span class="sd">        embedded Alignment</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sites from original alignment that are viewable (not filtered) by</span>
+    <span class="c"># this filter alignment</span>
+    <span class="c"># @return list of sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getBaseSitesShown&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_int_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.getBaseSitesShown"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.getBaseSitesShown">[docs]</a>    <span class="k">def</span> <span class="nf">getBaseSitesShown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sites from original alignment that are viewable (not filtered) by</span>
+<span class="sd">        this filter alignment</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] getBaseSitesShown()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        list of sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;translateTaxon&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.translateTaxon"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.translateTaxon">[docs]</a>    <span class="k">def</span> <span class="nf">translateTaxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int translateTaxon(int taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getBaseAlignment&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">GenotypeTable</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.getBaseAlignment"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.getBaseAlignment">[docs]</a>    <span class="k">def</span> <span class="nf">getBaseAlignment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        GenotypeTable getBaseAlignment()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isTaxaFilter&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.isTaxaFilter"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.isTaxaFilter">[docs]</a>    <span class="k">def</span> <span class="nf">isTaxaFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isTaxaFilter()</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isSiteFilter&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.isSiteFilter"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.isSiteFilter">[docs]</a>    <span class="k">def</span> <span class="nf">isSiteFilter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isSiteFilter()</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isSiteFilterByRange&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="FilterGenotypeTable.isSiteFilterByRange"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.isSiteFilterByRange">[docs]</a>    <span class="k">def</span> <span class="nf">isSiteFilterByRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isSiteFilterByRange()</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="FilterGenotypeTable.functionalFilters"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.snp.html#TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable.FilterGenotypeTable.functionalFilters">[docs]</a>    <span class="k">def</span> <span class="nf">functionalFilters</span><span class="p">(</span><span class="n">genoTable</span><span class="p">,</span> <span class="n">sitesFilter</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                          <span class="n">taxaFilter</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">sitesFilter</span><span class="p">:</span>
+            <span class="c"># Filter the sites</span>
+            <span class="n">subSites</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">genoTable</span><span class="o">.</span><span class="n">positions</span><span class="p">()</span><span class="o">.</span><span class="n">filterEnumerator</span><span class="p">(</span><span class="n">sitesFilter</span><span class="p">))</span>
+            <span class="n">subSites</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">subSites</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+            <span class="n">genoTable</span> <span class="o">=</span> <span class="n">FilterGenotypeTable</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">genoTable</span><span class="p">,</span> <span class="n">subSites</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">taxaFilter</span><span class="p">:</span>
+            <span class="c"># Filter the taxa into a python list as taxa objects</span>
+            <span class="n">keeper_taxa</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">genoTable</span><span class="o">.</span><span class="n">taxa</span><span class="p">()</span><span class="o">.</span><span class="n">filterIterator</span><span class="p">(</span><span class="n">taxaFilter</span><span class="p">))</span>
+            <span class="c"># Turn the python list into a wrapped java array of taxa objects</span>
+            <span class="n">taxon_arr</span> <span class="o">=</span> <span class="n">Taxon</span><span class="o">.</span><span class="n">getArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keeper_taxa</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">taxon</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keeper_taxa</span><span class="p">):</span>
+                <span class="n">taxon_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">taxon</span>
+            <span class="c"># Create the taxaList builder</span>
+            <span class="n">builder</span> <span class="o">=</span> <span class="n">TaxaListBuilder</span><span class="p">()</span>
+            <span class="c"># Add all taxa to builder</span>
+            <span class="n">builder</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">taxon_arr</span><span class="p">)</span>
+            <span class="c"># Create the new taxaList</span>
+            <span class="n">subTaxaList</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+            <span class="c"># Return the new GenotypeTable</span>
+            <span class="n">genoTable</span> <span class="o">=</span> <span class="n">FilterGenotypeTable</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">genoTable</span><span class="p">,</span> <span class="n">subTaxaList</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">genoTable</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.dna.map.PositionList &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.dna.map.PositionList</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.FilterList</span> <span class="kn">import</span> <span class="n">FilterList</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Byte</span> <span class="kn">import</span> <span class="n">Byte</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.map.Position</span> <span class="kn">import</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.map.Chromosome</span> <span class="kn">import</span> <span class="n">Chromosome</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+<span class="c">## Dictionary to hold java imports</span>
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;AlleleDepth&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/depth/AlleleDepth&#39;</span><span class="p">,</span>
+                <span class="s">&#39;BitSet&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/util/BitSet&#39;</span><span class="p">,</span>
+                <span class="s">&#39;BitStorage&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/bit/BitStorage&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Chromosome&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/map/Chromosome&#39;</span><span class="p">,</span>
+                <span class="s">&#39;CoreGenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/CoreGenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/GenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GenotypeCallTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/genotypecall/GenotypeCallTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Object&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/Object&#39;</span><span class="p">,</span>
+                <span class="s">&#39;PositionList&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/map/PositionList&#39;</span><span class="p">,</span>
+                <span class="s">&#39;SiteScore&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/score/SiteScore&#39;</span><span class="p">,</span>
+                <span class="s">&#39;String&#39;</span><span class="p">:</span><span class="s">&#39;java/lang/String&#39;</span><span class="p">,</span>
+                <span class="s">&#39;TaxaList&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/TaxaList&#39;</span><span class="p">}</span>
+
+<span class="c">## List of positions in the genome</span>
+<div class="viewcode-block" id="PositionList"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList">[docs]</a><span class="k">class</span> <span class="nc">PositionList</span><span class="p">(</span><span class="n">FilterList</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List of Positions in the genome. This type is used by every GenotypeTable,</span>
+<span class="sd">    but it can also be used as list of GWAS results and other genomic annotations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;PositionList&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;PositionList&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="PositionList.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PositionList</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="n">generic</span><span class="o">=</span><span class="p">(</span><span class="n">Position</span><span class="p">,),</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c">## Return the reference diploid allele values at given site</span>
+    <span class="c"># @return First 4 bits are the first allele value and second four bits are</span>
+    <span class="c"># the second allele value</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;referenceGenotype&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Byte</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="PositionList.referenceGenotype"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotype">[docs]</a>    <span class="k">def</span> <span class="nf">referenceGenotype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the reference diploid allele values at given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte referenceGenotype(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        First 4 bits are the first allele value and second four bits are the</span>
+<span class="sd">        second allele value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns reference sequence of diploid allele values for given taxon in specified range</span>
+    <span class="c"># (end site not included). Each value in array contains both diploid values. First 4 bits</span>
+    <span class="c"># holds the first allele, and the second 4 bits holds the second allele</span>
+    <span class="c"># @param startSite start site</span>
+    <span class="c"># @param endSite end site</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;referenceGenotypes&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.referenceGenotypes"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypes">[docs]</a>    <span class="k">def</span> <span class="nf">referenceGenotypes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns reference sequence of diploid allele values for given taxon in specified</span>
+<span class="sd">        range (end site not included). Each value in array contains both diploid values. First 4</span>
+<span class="sd">        bits holds the first allele, and the second 4 bits holds the second allele</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] referenceGenotypes(int startSite, int endSite)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        startSite -- start site</span>
+<span class="sd">        endSite -- end site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Reference sequence of diploid allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns reference sequence of diploid allele values. Each value</span>
+    <span class="c"># in array contains both diploid values. First 4 bits holds the first allele</span>
+    <span class="c"># and second 4 bits holds the second allele</span>
+    <span class="c"># @return Reference sequence of diploid allele values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;referenceGenotypeForAllSites&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;byte[]&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.referenceGenotypeForAllSites"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.referenceGenotypeForAllSites">[docs]</a>    <span class="k">def</span> <span class="nf">referenceGenotypeForAllSites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns reference sequence of diploid allele values. Each value</span>
+<span class="sd">        in array contains both diploid values. First 4 bits holds the first allele,</span>
+<span class="sd">        and the second 4 bits holds the second allele</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[] referenceGenotypeForAllSites()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Reference sequence of diploid allele values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether this alignment has defined reference sequence</span>
+    <span class="c"># @return True if this alignment has reference sequence</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;hasReference&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.hasReference"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.hasReference">[docs]</a>    <span class="k">def</span> <span class="nf">hasReference</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether this alignment has defined reference sequence.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean hasReference()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        True if this alignment has reference sequence</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Get SNP ID for specified site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Site name</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;siteName&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.siteName"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteName">[docs]</a>    <span class="k">def</span> <span class="nf">siteName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get SNP ID for specified site</span>
+
+<span class="sd">        Signature:</span>
+
+<span class="sd">        String siteName(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Site name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns total number of sites in this genotype table</span>
+    <span class="c"># @return number of sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;numberOfSites&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.numberOfSites"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numberOfSites">[docs]</a>    <span class="k">def</span> <span class="nf">numberOfSites</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total number of sites of this genotype table</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int numberOfSites()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return number of sites for given chromosome</span>
+    <span class="c"># @param chromosome chromosome</span>
+    <span class="c"># @return Number of sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomeSiteCount&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">Chromosome</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.chromosomeSiteCount"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeSiteCount">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomeSiteCount</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return number of sites for given chromosome</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int chromosomeSiteCount(Chromosome chromosome)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        chromosome -- chromosome</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Get the first (inclusive) and last (exclusive) site of the specified</span>
+    <span class="c"># chromosome in this genotype table</span>
+    <span class="c"># @param chromosome chromosome</span>
+    <span class="c"># @return first and last site</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;startAndEndOfChromosome&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(</span><span class="n">Chromosome</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_int_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="PositionList.startAndEndOfChromosome"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.startAndEndOfChromosome">[docs]</a>    <span class="k">def</span> <span class="nf">startAndEndOfChromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the first (inclusive) and last (exclusive) site of the specified</span>
+<span class="sd">        chromosome in this genotype table</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] startAndEndOfChromosome(Chromosome chromosome)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        chromosome -- chromosome</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        first and last site</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+        
+    <span class="c">## Returns the physical position at given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return physical position</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomalPosition&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.chromosomalPosition"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomalPosition">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomalPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the physical position at given site</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+<span class="sd">        </span>
+<span class="sd">        int chromosomalPosition(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        physical position</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns sites of given physical position/SNP ID in chromosome. If the physical</span>
+    <span class="c"># position doesn&#39;t exist (-(insertion point) -1) is returned. If chromosome is not found,</span>
+    <span class="c"># an exception is thrown. This can support multiple sites with the same physical position</span>
+    <span class="c"># but different SNP IDs</span>
+    <span class="c"># @param physicalPosition physical position</span>
+    <span class="c"># @param chromosome chromsoome. If null, the first chromosome is used</span>
+    <span class="c"># @param snpName SNP ID</span>
+    <span class="c"># @return index</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;siteOfPhysicalPosition&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">Chromosome</span><span class="p">),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="s">&#39;int&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">Chromosome</span><span class="p">,</span><span class="nb">str</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.siteOfPhysicalPosition"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.siteOfPhysicalPosition">[docs]</a>    <span class="k">def</span> <span class="nf">siteOfPhysicalPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns sites of given physical position/SNP ID in chromosome. If the</span>
+<span class="sd">        physical position doesn&#39;t exist, (-(insertion point) -1) is returned. If chromosome</span>
+<span class="sd">        is not found, an exception is thrown. This can support multiple sites with the same</span>
+<span class="sd">        physical position but different SNP IDs</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int siteOfPhysicalPosition(int physicalPosition, Chromosome chromosome)</span>
+<span class="sd">        int siteOfPhysicalPosition(int physicalPosition, Chromosome chromosome, String snpName)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        physicalPosition -- physical position</span>
+<span class="sd">        chromosome -- chromosome. If null, the first chromosome is used</span>
+<span class="sd">        snpName -- SNP ID</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Index</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns all physical positions.</span>
+    <span class="c"># @return physical positions</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;physicalPositions&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_int_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="PositionList.physicalPositions"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.physicalPositions">[docs]</a>    <span class="k">def</span> <span class="nf">physicalPositions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns all physical positions</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] physicalPositions()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        physical positions</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return chromosome name for given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Chromosome name</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomeName&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.chromosomeName"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomeName">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomeName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return chromosome name for given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String chromosomeName(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Chromosome name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns chromosome for given site or with matching name</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @param name name</span>
+    <span class="c"># @return Chromosome</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosome&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">Chromosome</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]),(</span><span class="nb">str</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">Chromosome</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="PositionList.chromosome"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosome">[docs]</a>    <span class="k">def</span> <span class="nf">chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns Chromosome for given site or with matching name</span>
+<span class="sd">        (first to match will be returned)</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Chromosome chromosome(int site)</span>
+<span class="sd">        Chromosome chromosome(String name)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        Chromosome chromosome(int site):</span>
+<span class="sd">           site -- site</span>
+<span class="sd">        Chromosome chromosome(String name):</span>
+<span class="sd">           name -- name</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Chromosome</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Return all chromosomes</span>
+    <span class="c"># @return chromosomes</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomes&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Chromosome&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">Chromosome</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">y</span><span class="p">),</span>
+                                 <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span>
+<div class="viewcode-block" id="PositionList.chromosomes"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomes">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return all chromosomes</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Chromosome[] chromosomes()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        chromosomes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns number of chromosomes</span>
+    <span class="c"># @return Number of chromosomes</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;numChromosomes&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.numChromosomes"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.numChromosomes">[docs]</a>    <span class="k">def</span> <span class="nf">numChromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return number of chromosomes</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int numChromosomes()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of chromosomes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns starting site for each chromosome</span>
+    <span class="c"># @return starting site for each chromosome</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;chromosomesOffsets&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_int_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="PositionList.chromosomesOffsets"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.chromosomesOffsets">[docs]</a>    <span class="k">def</span> <span class="nf">chromosomesOffsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns starting site for each chromosome</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] chromosomesOffsets()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Starting site for each chromosome</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns size of indel at given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return indel size</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;indelSize&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.indelSize"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.indelSize">[docs]</a>    <span class="k">def</span> <span class="nf">indelSize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns size of indel at given site.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int indelSize(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        indel size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether given site is an indel</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return true if indel</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isIndel&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.isIndel"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isIndel">[docs]</a>    <span class="k">def</span> <span class="nf">isIndel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether given site is an indel</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isIndel(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        true if indel</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the genome assembly</span>
+    <span class="c"># @return the genome assembly</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;genomeVersion&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;String&#39;</span><span class="p">]),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.genomeVersion"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.genomeVersion">[docs]</a>    <span class="k">def</span> <span class="nf">genomeVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the Genome Assembly</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        String genomeVersion()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The genome assembly</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns whether is positive strand at given site</span>
+    <span class="c"># @return whether is positive strand</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isPositiveStrand&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="PositionList.isPositiveStrand"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.dna.map.html#TASSELpy.net.maizegenetics.dna.map.PositionList.PositionList.isPositiveStrand">[docs]</a>    <span class="k">def</span> <span class="nf">isPositiveStrand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns whether is positive strand at given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean isPositiveStrand(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        whether is positive strand</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

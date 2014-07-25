@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+<span class="n">java_imports</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;AlleleDepth&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/depth/AlleleDepth&#39;</span><span class="p">}</span>
+
+<span class="c">## Provides DNA read depth data for a genotype table.</span>
+<div class="viewcode-block" id="AlleleDepth"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth">[docs]</a><span class="k">class</span> <span class="nc">AlleleDepth</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provides DNA read depth data for a genotype data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;AlleleDepth&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="AlleleDepth.__init__"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns depth count for each diploid allele at the given taxon and site</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return Array of counts</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depthForAlleles&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_int_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="AlleleDepth.depthForAlleles"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth.depthForAlleles">[docs]</a>    <span class="k">def</span> <span class="nf">depthForAlleles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns depth count for each diploid allele at the given taxon and site</span>
+<span class="sd">        The array of depths is sizes as determined by NUMBER_NUCLEOTIDE_ALLELES (6)</span>
+<span class="sd">        and it is ordered as in NUCLEOTIDE_ALLELES (A, C, G, T, +(insertion),</span>
+<span class="sd">        - (deletion))</span>
+
+<span class="sd">        The depths from 0 to 127 are recorded exactly. Depths above 127 are stored as</span>
+<span class="sd">        approximate logs (equation), and they are represented by negative numbers</span>
+<span class="sd">        </span>
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int[] depthForAlleles(int taxon, int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Array of counts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns depth count for given allele at given taxon and site</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @param allele allele</span>
+    <span class="c"># @return Count</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depthForAllele&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="AlleleDepth.depthForAllele"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth.depthForAllele">[docs]</a>    <span class="k">def</span> <span class="nf">depthForAllele</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns depth count for given allele at given taxon and site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int depthForAllele(int taxon, int site, int allele)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        site -- site</span>
+<span class="sd">        allele -- allele</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Count</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns depth count as byte for given allele at given taxon and site</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @param allele allele</span>
+    <span class="c"># @return Count as byte</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depthForAlleleByte&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="AlleleDepth.depthForAlleleByte"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth.depthForAlleleByte">[docs]</a>    <span class="k">def</span> <span class="nf">depthForAlleleByte</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns depth count as byte for given allele at given taxon and site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte depthForAlleleByte(int taxon, int site, int allele)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        site -- site</span>
+<span class="sd">        allele -- allele</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Count as byte</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns allele depths for all alleles and sites for a taxon in byte format</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @return Allele depths for all alleles and sites</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depthAllSitesByte&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;byte[][]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span>
+             <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_object_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="AlleleDepth.depthAllSitesByte"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth.depthAllSitesByte">[docs]</a>    <span class="k">def</span> <span class="nf">depthAllSitesByte</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns allele depths for all alleles and sites for a taxon in byte format</span>
+<span class="sd">        (negative values are logs)</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        byte[][] depthAllSitesByte(int taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Allele depths for all alleles and sites</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns total depth for given taxon and site</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return total depth</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depth&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span> <span class="n">metaInteger</span><span class="p">),</span> <span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="AlleleDepth.depth"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth.depth">[docs]</a>    <span class="k">def</span> <span class="nf">depth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total depth for given taxon and site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int depth(int taxon, int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        total depth</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns total depth of all alleles and sites for given taxon</span>
+    <span class="c"># @param taxon taxon</span>
+    <span class="c"># @return total depth for taxon</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depthForTaxon&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="AlleleDepth.depthForTaxon"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth.depthForTaxon">[docs]</a>    <span class="k">def</span> <span class="nf">depthForTaxon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total depth of all alleles and sites for given taxon</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int depthForTaxon(int taxon)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        taxon -- taxon</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        total depth for taxon</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns total depth of all alleles and taxa for given site</span>
+    <span class="c"># @param site site</span>
+    <span class="c"># @return depth</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;depthForSite&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="AlleleDepth.depthForSite"><a class="viewcode-back" href="../../../../../../../TASSELpy.net.maizegenetics.dna.snp.depth.html#TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth.AlleleDepth.depthForSite">[docs]</a>    <span class="k">def</span> <span class="nf">depthForSite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns total depth of all alleles and taxa for given site</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int depthForSite(int site)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        site -- site</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        depth</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,983 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">import</span> <span class="nn">TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition</span>
+<span class="kn">import</span> <span class="nn">TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Double</span> <span class="kn">import</span> <span class="n">metaDouble</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Boolean</span> <span class="kn">import</span> <span class="n">metaBoolean</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Number</span> <span class="kn">import</span> <span class="n">metaNumber</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">javaPrimativeArray</span><span class="p">,</span> <span class="n">meta_int_array</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/matrixalgebra/Matrix/DoubleMatrix&#39;</span><span class="p">,</span>
+                <span class="s">&#39;EigenvalueDecomposition&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/matrixalgebra/decomposition/EigenvalueDecomposition&#39;</span><span class="p">,</span>
+                <span class="s">&#39;SingularValueDecomposition&#39;</span><span class="p">:</span> <span class="s">&#39;net/maizegenetics/matrixalgebra/decomposition/SingularValueDecomposition&#39;</span><span class="p">}</span>
+
+<div class="viewcode-block" id="metaDoubleMatrix"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.metaDoubleMatrix">[docs]</a><span class="k">class</span> <span class="nc">metaDoubleMatrix</span><span class="p">:</span>
+    <span class="n">__metaclass__</span> <span class="o">=</span> <span class="n">ABCMeta</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__subclasshook__</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">DoubleMatrix</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="DoubleMatrix"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix">[docs]</a><span class="k">class</span> <span class="nc">DoubleMatrix</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrapper for the DoubleMatrix interface, which is implemented by several classes</span>
+<span class="sd">    that call native methods</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="DoubleMatrix.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="c">############</span>
+    <span class="c"># Python magic methods</span>
+    <span class="c">############</span></div>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">tuple</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&quot;Must specify particular cell&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChecked</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">tuple</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&quot;Must specify particular cell&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberOfRows</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;</span><span class="si">%d</span><span class="s"> x </span><span class="si">%d</span><span class="s"> Matrix&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numberOfRows</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberOfColumns</span><span class="p">())</span>
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">metaNumber</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalarAdd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DoubleMatrix</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">plus</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Unsupported operand type(s)&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">metaNumber</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DoubleMatrix</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">plusEquals</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Unsupported operand type(s)&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">metaNumber</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="o">-</span><span class="n">other</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DoubleMatrix</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">minus</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Unsupported operand type(s)&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">metaNumber</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__add__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mul__</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DoubleMatrix</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="bp">self</span> <span class="o">+</span> <span class="n">other</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Unsupported operand type(s)&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__isub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">metaNumber</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__sub__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DoubleMatrix</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">minusEquals</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Unsupported operand type(s)&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">metaNumber</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scalarMult</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DoubleMatrix</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mult</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Unsupported operand type(s)&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__imul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">metaNumber</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">scalarMultEquals</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="n">other</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DoubleMatrix</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&quot;Unsupported operand type(s)&quot;</span><span class="p">)</span>
+    <span class="c">## Gets data and doesn&#39;t check to make sure they are in the matrix</span>
+    <span class="c"># @param row The zero-based row index</span>
+    <span class="c"># @param col The zero-based column index</span>
+    <span class="c"># @return The value at row, col</span>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;get&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.get"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets data and doesn&#39;t check to make sure they are in the matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double get(int row, int col)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        row -- The zero-based row index</span>
+<span class="sd">        col -- The zero-based column index</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The value at row, col</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets data and checks to make sure they are in the matrix</span>
+    <span class="c"># @param row The zero-based row index</span>
+    <span class="c"># @param col The zero-based column index</span>
+    <span class="c"># @return The value at row, col</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getChecked&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.getChecked"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getChecked">[docs]</a>    <span class="k">def</span> <span class="nf">getChecked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets data and checks to make sure they are in the matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double getChecked(int row, int col)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        row -- The zero-based row index</span>
+<span class="sd">        col -- The zero-based column index</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The value at row, col</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sets the matrix value at row, col. The coordinates are not checked to make</span>
+    <span class="c"># sure they fall in the matrix</span>
+    <span class="c"># @param row The zero-based row index</span>
+    <span class="c"># @param col The zero-based column index</span>
+    <span class="c"># @param value The value to be set at row, col</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;set&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;double&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaDouble</span><span class="p">),</span>
+                   <span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.set"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the matrix value at row, col. The coordinates are not checked to make</span>
+<span class="sd">        sure they fall in the matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void set(int row, int col, double value)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        row -- The zero-based row index</span>
+<span class="sd">        col -- The zero-based column index</span>
+<span class="sd">        value -- The value to be set at row, col</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sets the matrix value at row, col. The coordinates are checked to make</span>
+    <span class="c"># sure they fall in the matrix</span>
+    <span class="c"># @param row The zero-based row index</span>
+    <span class="c"># @param col The zero-based column index</span>
+    <span class="c"># @param value The value to be set at row, col</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;setChecked&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;double&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaDouble</span><span class="p">),</span>
+                   <span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.setChecked"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.setChecked">[docs]</a>    <span class="k">def</span> <span class="nf">setChecked</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the matrix value at row, col. The coordinates are checked to make</span>
+<span class="sd">        sure they fall in the matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void setChecked(int row, int col, double value)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        row -- The zero-based row index</span>
+<span class="sd">        col -- The zero-based column index</span>
+<span class="sd">        value -- The value to be set at row, col</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the tranpose of this matrix</span>
+    <span class="c"># @return The transpose of this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;transpose&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.transpose"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.transpose">[docs]</a>    <span class="k">def</span> <span class="nf">transpose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the tranpose of this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix transpose()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The transpose of this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Multiply this matrix times another</span>
+    <span class="c"># @param dm A double matrix</span>
+    <span class="c"># @param transpose If true, this matrix will be transposed before multiplying</span>
+    <span class="c"># @param transposedm If ture, dm will be transposed before multiplying</span>
+    <span class="c"># @return The multiplied matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;mult&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">],</span>
+                            <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(</span><span class="n">metaDoubleMatrix</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">,</span>
+                            <span class="n">metaBoolean</span><span class="p">),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.mult"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.mult">[docs]</a>    <span class="k">def</span> <span class="nf">mult</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Multiply this matrix times another</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix mult(DoubleMatrix dm, boolean transpose, boolean transposedm)</span>
+<span class="sd">        DoubleMatrix mult(DoubleMatrix dm)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        DoubleMatrix mult(DoubleMatrix dm, boolean transpose, boolean transposedm)</span>
+<span class="sd">            dm -- A double matrix</span>
+<span class="sd">            transpose -- If true, this matrix will be transposed before multiplying</span>
+<span class="sd">            transposedm -- If true, dm will be transposed before multiplying</span>
+<span class="sd">        DoubleMatrix mult(DoubleMatrix dm)</span>
+<span class="sd">            dm -- A double matrix</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The multiplied matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Using this function for combining multiplication and addition allows the implementing</span>
+    <span class="c"># library to optimize the operations</span>
+    <span class="c"># @param A The matrix to be multiplied</span>
+    <span class="c"># @param B The matrix to be added, can be null</span>
+    <span class="c"># @param alpha -- scalar multiplier for A</span>
+    <span class="c"># @param beta scalar multiplier for B</span>
+    <span class="c"># @param transpose -- If true, X is transposed</span>
+    <span class="c"># @param transposeA - If true, A is transposed</span>
+    <span class="c"># @param transposeB -- If true, B is transposed</span>
+    <span class="c"># @return alpha*XA+beta*B where X is this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;multadd&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">],</span>
+                             <span class="s">&#39;double&#39;</span><span class="p">,</span><span class="s">&#39;double&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">,</span><span class="s">&#39;boolean&#39;</span><span class="p">],</span>
+                             <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                  <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,</span><span class="n">metaDoubleMatrix</span><span class="p">,</span><span class="n">metaDouble</span><span class="p">,</span><span class="n">metaDouble</span><span class="p">,</span>
+                   <span class="n">metaBoolean</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">),</span>
+                  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.multadd"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.multadd">[docs]</a>    <span class="k">def</span> <span class="nf">multadd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Using this function for combining multiplication and addition allows the</span>
+<span class="sd">        implementing library to optimize the operations</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix multadd(DoubleMatrix A, DoubleMatrix B, double alpha, double beta,</span>
+<span class="sd">                             boolean transpose, boolean transposeA)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        A -- The matrix to be multiplied</span>
+<span class="sd">        B -- The matrix to be added, can be null</span>
+<span class="sd">        alpha -- scalar multiplier for A</span>
+<span class="sd">        beta -- scalar multiplier for B</span>
+<span class="sd">        transpose -- If true, X is transposed</span>
+<span class="sd">        transposeA -- If true, A is transposed</span>
+<span class="sd">        transposeB -- If true, B is transposed</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        alpha*XA+beta*B where X is this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets X&#39;x or X&#39;dm, where X is this matrix</span>
+    <span class="c"># @param dm The second matrix</span>
+    <span class="c"># @return The cross product</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;crossproduct&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.crossproduct"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.crossproduct">[docs]</a>    <span class="k">def</span> <span class="nf">crossproduct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get X&#39;X or X&#39;dm, where X is this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix crossproduct()</span>
+<span class="sd">        DoubleMatrix crossproduct(DoubleMatrix dm)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        DoubleMatrix crossproduct(DoubleMatrix dm)</span>
+<span class="sd">            dm -- The second matrix</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The cross product</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets XX&#39; or Xdm&#39;, where X is this matrix</span>
+    <span class="c"># @param dm The second matrix</span>
+    <span class="c"># @return The tcrossproduct</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;tcrossproduct&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.tcrossproduct"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.tcrossproduct">[docs]</a>    <span class="k">def</span> <span class="nf">tcrossproduct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets XX&#39; or Xdm&#39;, where X is this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix tcrossproduct()</span>
+<span class="sd">        DoubleMatrix tcrossproduct(DoubleMatrix dm)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        DoubleMatrix tcrossproduct(DoubleMatrix dm)</span>
+<span class="sd">            dm -- The second matrix</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The tcrossproduct</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Puts two matrices together</span>
+    <span class="c"># @param dm A DoubleMatrix</span>
+    <span class="c"># @param rows true if rows are to be concatenated, false if columns are to be concatenated</span>
+    <span class="c"># @return X with dm appended, where X is this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;concatenate&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">],</span>
+                            <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                            <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,</span><span class="n">metaBoolean</span><span class="p">),</span>
+                            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.concatenate"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.concatenate">[docs]</a>    <span class="k">def</span> <span class="nf">concatenate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Puts two matrices together</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix concatenate(DoubleMatrix dm, boolean rows)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        dm -- a DoubleMatrix</span>
+<span class="sd">        rows -- true if rows are to be concatenated, false if columns are to be concatenated</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Returns X with dm appended, where X is this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the inverse of a square matrix, without modifying the original matrix</span>
+    <span class="c"># @return The inverse of a square matrix if it is non-singular, null otherwise</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;inverse&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.inverse"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.inverse">[docs]</a>    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the inverse of a square matrix, without modifying the original matrix.</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix inverse()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The inverse of a square matrix if it is non-singular, null otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Inverts a square matrix, replacing the original with the inverse</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;invert&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;void&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.invert"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.invert">[docs]</a>    <span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This inverts a square matrix, replacing the original with the inverse</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void invert()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;generalizedInverse&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.generalizedInverse"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverse">[docs]</a>    <span class="k">def</span> <span class="nf">generalizedInverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the generalized inverse of a square matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix generalizedInverse()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The generalized inverse of a square matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Inverts the matrix and returns the rank as the first element in rank[]. The</span>
+    <span class="c"># original matrix is not modified</span>
+    <span class="c"># @param rank Array to hold element where rank will be stored</span>
+    <span class="c"># @return A generalized inverse of this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;generalizedInverseWithRank&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int[]&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">meta_int_array</span><span class="p">,),</span>
+                  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.generalizedInverseWithRank"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.generalizedInverseWithRank">[docs]</a>    <span class="k">def</span> <span class="nf">generalizedInverseWithRank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inverts the matrix and returns the rank as the first element in rank[]. The</span>
+<span class="sd">        original matrix is not modified</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix generalizedInverseWithRank(int[] rank)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        rank -- Array to hold element where rank will be stored</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        A generalized inverse of this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Solves the matrix</span>
+    <span class="c"># @param Y a DoubleMatrix</span>
+    <span class="c"># @return The least squares solutions for B, where XB=Y and X is this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;solve&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.solve"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.solve">[docs]</a>    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solves the matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix solve(DoubleMatrix Y)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        Y -- a DoubleMatrix</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The least squares solutions for B, where XB = Y and X is this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the number of rows in this matrix</span>
+    <span class="c"># @return Number of rows in this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;numberOfRows&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.numberOfRows"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfRows">[docs]</a>    <span class="k">def</span> <span class="nf">numberOfRows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the number of rows in this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int numberOfRows()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of rows in this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the number of columns in this matrix</span>
+    <span class="c"># @return Number of columns in this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;numberOfColumns&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.numberOfColumns"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.numberOfColumns">[docs]</a>    <span class="k">def</span> <span class="nf">numberOfColumns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the number of columns in this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int numberOfColumns()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Number of columns in this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the row of the matrix as a column vector</span>
+    <span class="c"># @param i a row index</span>
+    <span class="c"># @return The ith row of this matrix as a column vector</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;row&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.row"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.row">[docs]</a>    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the row of the matrix as a row vector</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix row(int i)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        i -- a row index</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The ith row of this matrix as a column vector</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the column of the matrix as a column vector</span>
+    <span class="c"># @param j A column index</span>
+    <span class="c"># @return The jth row of this matrix as a column vector</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;column&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(</span><span class="n">metaInteger</span><span class="p">,),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.column"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.column">[docs]</a>    <span class="k">def</span> <span class="nf">column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the column of the matrix as a column vector</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix column(int j)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        j -- A column index</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The jth row of this matrix as a column vector</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets an array of three DoubleMatrices. Where X is this matrix, the first is</span>
+    <span class="c"># X&#39;X, the second is the inverse of X&#39;X, and the third is I-XGX&#39;</span>
+    <span class="c"># @return Array of three DoubleMatrices. Where X is this matrix, the first is X&#39;X,</span>
+    <span class="c"># the second is inverse of X&#39;X, and the third is I-XGX&#39;</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getXtXGM&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]</span><span class="o">+</span><span class="s">&#39;[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="o">.</span><span class="n">wrap_existing_array</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.getXtXGM"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getXtXGM">[docs]</a>    <span class="k">def</span> <span class="nf">getXtXGM</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets an array of three DoubleMatrices. Where X is this matrix, the first is</span>
+<span class="sd">        X&#39;X, the second is the inverse of X&#39;X, and the third is I-XGX&#39;</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix[] getXtXGM()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An array of three DoubleMatrices. Where X is this matrix, the first is X&#39;X,</span>
+<span class="sd">        the second is the inverse of X&#39;X, and the third is I-XGX&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets a copy of the matrix</span>
+    <span class="c"># @return A copy of the matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;copy&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.copy"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets a copy of the matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix copy()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        A copy of the matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the eigenvalue decomposition of this matrix</span>
+    <span class="c"># @return An eigenvalue decomposition of this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getEigenvalueDecomposition&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;EigenvalueDecomposition&#39;</span><span class="p">]),</span>
+                   <span class="p">(),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TASSELpy</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">maizegenetics</span><span class="o">.</span><span class="n">matrixalgebra</span><span class="o">.</span>\
+                              <span class="n">decomposition</span><span class="o">.</span><span class="n">EigenvalueDecomposition</span><span class="o">.</span>\
+                              <span class="n">EigenvalueDecomposition</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.getEigenvalueDecomposition"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getEigenvalueDecomposition">[docs]</a>    <span class="k">def</span> <span class="nf">getEigenvalueDecomposition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the Eigenvalue decomposition of this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        EigenvalueDecomposition getEigenvalueDecomposition()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An Eigenvalue Decomposition of this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the singular value decomposition of this matrix</span>
+    <span class="c"># @return An singular value decomposition of this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getSingularValueDecomposition&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;SingularValueDecomposition&#39;</span><span class="p">]),</span>
+                   <span class="p">(),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">TASSELpy</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">maizegenetics</span><span class="o">.</span><span class="n">matrixalgebra</span><span class="o">.</span>\
+                              <span class="n">decomposition</span><span class="o">.</span><span class="n">SingularValueDecomposition</span><span class="o">.</span>\
+                              <span class="n">SingularValueDecomposition</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.getSingularValueDecomposition"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSingularValueDecomposition">[docs]</a>    <span class="k">def</span> <span class="nf">getSingularValueDecomposition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the Singular Value decomposition of this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        SingularValueDecomposition getSingularValueDecomposition()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An Singular Value Decomposition of this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Subtracts a matrix from this matrix, X, without modifying X</span>
+    <span class="c"># @param dm A DoubleMatrix to subtract</span>
+    <span class="c"># @return A new DoubleMatrix created by subtracting dm from this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;minus&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.minus"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minus">[docs]</a>    <span class="k">def</span> <span class="nf">minus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Subtracts a matrix from this matrix, X, without modifying X</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix minus(DoubleMatrix dm)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        dm -- A DoubleMatrix to subtract</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        A new DoubleMatrix created by subtracting dm from this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## This function subtracts dm, modifying the original matrix</span>
+    <span class="c"># @param dm A DoubleMatrix to subtract</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;minusEquals&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.minusEquals"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.minusEquals">[docs]</a>    <span class="k">def</span> <span class="nf">minusEquals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function subtracts dm, modifying the original matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void minusEquals(DoubleMatrix dm)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        dm -- A DoubleMatrix to subtract</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Adds a matrix from this matrix, X, without modifying X</span>
+    <span class="c"># @param dm A DoubleMatrix to add</span>
+    <span class="c"># @return A new DoubleMatrix created by adding dm from this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;plus&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.plus"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plus">[docs]</a>    <span class="k">def</span> <span class="nf">plus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a matrix from this matrix, X, without modifying X</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix plus(DoubleMatrix dm)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        dm -- A DoubleMatrix to add</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        A new DoubleMatrix created by adding dm from this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## This function adds dm, modifying the original matrix</span>
+    <span class="c"># @param dm A DoubleMatrix to add</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;plusEquals&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="n">metaDoubleMatrix</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.plusEquals"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.plusEquals">[docs]</a>    <span class="k">def</span> <span class="nf">plusEquals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function adds dm, modifying the original matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void plusEquals(DoubleMatrix dm)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        dm -- A DoubleMatrix to add</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Adds a scalar to this matrix and returns a new matrix. The original is</span>
+    <span class="c"># not modified</span>
+    <span class="c"># @param s A scalar</span>
+    <span class="c"># @return The sum of this matrix and a scalar s</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;scalarAdd&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;double&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaDouble</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.scalarAdd"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAdd">[docs]</a>    <span class="k">def</span> <span class="nf">scalarAdd</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a scalar to this matrix and returns a new matrix. The original is</span>
+<span class="sd">        not modified</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix scalarAdd(double s)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        s -- a scalar</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The sum of this matrix and a scalar s</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Adds a scalar s to this matrix, replacing the original matrix with the result</span>
+    <span class="c"># @param s A scalar</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;scalarAddEquals&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;double&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaDouble</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.scalarAddEquals"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarAddEquals">[docs]</a>    <span class="k">def</span> <span class="nf">scalarAddEquals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds a scalar s to this matrix, replacing the original matrix with the result</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void scalarAddEquals(double s)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        s -- a scalar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Multiplies a scalar with this matrix and returns a new matrix. The original is</span>
+    <span class="c"># not modified</span>
+    <span class="c"># @param s A scalar</span>
+    <span class="c"># @return The sum of this matrix and a scalar s</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;scalarMult&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;double&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">metaDouble</span><span class="p">,),</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.scalarMult"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMult">[docs]</a>    <span class="k">def</span> <span class="nf">scalarMult</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Multiplies a scalar to this matrix and returns a new matrix. The original is</span>
+<span class="sd">        not modified</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix scalarMult(double s)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        s -- a scalar</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The sum of this matrix and a scalar s</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Multiplies a scalar s with this matrix, replacing the original matrix with the result</span>
+    <span class="c"># @param s A scalar</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;scalarMultEquals&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;double&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaDouble</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.scalarMultEquals"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.scalarMultEquals">[docs]</a>    <span class="k">def</span> <span class="nf">scalarMultEquals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Multiplies a scalar s to this matrix, replacing the original matrix with the result</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void scalarMultEquals(double s)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        s -- a scalar</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Creates a new  matrix consisting of the rows and columns of this matrix in the</span>
+    <span class="c"># order specified. If rows or columns is null, then all rows or columns, respectively,</span>
+    <span class="c"># will be included</span>
+    <span class="c"># @param rows The rows to be included in the new matrix</span>
+    <span class="c"># @param columns The columns to be included in the new matrix</span>
+    <span class="c"># @return A new matrix consisting of the specified rows and columns</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getSelection&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int[]&#39;</span><span class="p">,</span><span class="s">&#39;int[]&#39;</span><span class="p">],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DoubleMatrix&#39;</span><span class="p">]),</span>
+                   <span class="p">(</span><span class="n">meta_int_array</span><span class="p">,</span> <span class="n">meta_int_array</span><span class="p">),</span>
+                  <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DoubleMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="DoubleMatrix.getSelection"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.getSelection">[docs]</a>    <span class="k">def</span> <span class="nf">getSelection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a new matrix consisting of the rows and columns of this matrix in the</span>
+<span class="sd">        order specified. If rows or columns is null, then all rows or columns, respectively,</span>
+<span class="sd">        will be included</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DoubleMatrix getSelection(int[] rows, int[] columns)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        rows -- The rows to be included in the new matrix</span>
+<span class="sd">        columns -- The columns to be included in the new matrix</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        A new matrix consisting of the specified rows and columns</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sums a row</span>
+    <span class="c"># @param row The index of the row to sum</span>
+    <span class="c"># @return The sum of the elements in this row</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;rowSum&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.rowSum"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.rowSum">[docs]</a>    <span class="k">def</span> <span class="nf">rowSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sums a row</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double rowSum(int row)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        row -- The row index to sum</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The sum of the elements in this row</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sums a column</span>
+    <span class="c"># @param column The index of the column to sum</span>
+    <span class="c"># @return The sum of the elements in this column</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;columnSum&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;double&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.columnSum"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnSum">[docs]</a>    <span class="k">def</span> <span class="nf">columnSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sums a column</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        double columnSum(int column)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        column -- The column index to sum</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The sum of the elements in this column</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the column rank of this matrix</span>
+    <span class="c"># @return The column rank of this matrix</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;columnRank&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="DoubleMatrix.columnRank"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix.DoubleMatrix.columnRank">[docs]</a>    <span class="k">def</span> <span class="nf">columnRank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the column rank of this matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        int columnRank()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The column rank of this matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,752 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.util.BitSet &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.util.BitSet</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Object</span> <span class="kn">import</span> <span class="n">Object</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Integer</span> <span class="kn">import</span> <span class="n">metaInteger</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Long</span> <span class="kn">import</span> <span class="n">metaLong</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.primativeArray</span> <span class="kn">import</span> <span class="n">javaPrimativeArray</span><span class="p">,</span> <span class="n">meta_long_array</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">javabridge</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;BitSet&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/util/BitSet&#39;</span><span class="p">}</span>
+
+<span class="c">## Class that is only used to subclass BitSet so that it can be referred</span>
+<span class="c"># to as a type within BitSet</span>
+<div class="viewcode-block" id="MetaBitSet"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.MetaBitSet">[docs]</a><span class="k">class</span> <span class="nc">MetaBitSet</span><span class="p">(</span><span class="n">Object</span><span class="p">):</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="BitSet"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet">[docs]</a><span class="k">class</span> <span class="nc">BitSet</span><span class="p">(</span><span class="n">MetaBitSet</span><span class="p">):</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]</span>
+    <span class="c">## Returns capacity</span>
+    <span class="c"># @return capacity</span>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;capacity&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;long&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.capacity"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.capacity">[docs]</a>    <span class="k">def</span> <span class="nf">capacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns capacity</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        Capacity</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the current capacity of this set. Included for</span>
+    <span class="c"># compatibility. This is not equal to cardinality</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;size&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;long&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.size"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.size">[docs]</a>    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the current capacity of this set. Included for</span>
+<span class="sd">        compatibility. This is not equal to cardinality</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;isEmpty&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="c">## Returns true if there are no set bits</span>
+<div class="viewcode-block" id="BitSet.isEmpty"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.isEmpty">[docs]</a>    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if there are no set bits</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Expert: returns the long[] storing the bits</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getBits&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&quot;long[]&quot;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;long[]&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javaPrimativeArray</span><span class="o">.</span><span class="n">make_array_from_obj</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;long&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.getBits"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBits">[docs]</a>    <span class="k">def</span> <span class="nf">getBits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expert: returns the long[] storing the bits</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        getBits()</span>
+<span class="sd">        getBits(int startWord, int endWord)</span>
+<span class="sd">        getBits(int index)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+<span class="sd">           Second method:</span>
+<span class="sd">              startWord -- integer for first word</span>
+<span class="sd">              endWord -- integer for last word</span>
+<span class="sd">           Third method:</span>
+<span class="sd">              index -- index</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Expert: sets a new long[] to use as the bit storage</span>
+    <span class="c"># @param bits long[] to use as the bit storage</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;setBits&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&quot;long[]&quot;</span><span class="p">],</span><span class="s">&quot;void&quot;</span><span class="p">),(</span><span class="n">meta_long_array</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.setBits"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setBits">[docs]</a>    <span class="k">def</span> <span class="nf">setBits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expert: sets a new long[] to use as the bit storage</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        bits -- long[] to use as the bit storage</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Expert: sets specified word with given bits</span>
+    <span class="c"># @param wordNum word index</span>
+    <span class="c"># @param bits bits</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;setLong&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaLong</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.setLong"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setLong">[docs]</a>    <span class="k">def</span> <span class="nf">setLong</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expert: sets the specified word with given bits</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        wordNum -- word index</span>
+<span class="sd">        bits -- bits</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Expert: gets the number of longs in the array that</span>
+    <span class="c"># are in use</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getNumWords&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.getNumWords"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getNumWords">[docs]</a>    <span class="k">def</span> <span class="nf">getNumWords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expert: gets the number of longs in the array that</span>
+<span class="sd">        are in use</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;setNumWords&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="c">## Expert: sets the number of longs in the array that are in use</span>
+    <span class="c"># @param nWords The number of longs in the array that should be in use</span>
+<div class="viewcode-block" id="BitSet.setNumWords"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.setNumWords">[docs]</a>    <span class="k">def</span> <span class="nf">setNumWords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expert: sets the number of longs in the array that are in use</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        nWords -- The number of longs in the array that should be in use</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true or false for the specified bit index</span>
+    <span class="c"># @param index index</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;get&quot;</span><span class="p">,</span>
+              <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+              <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.get"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true or false for the specified bit index</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        get(int index)</span>
+<span class="sd">        get(long index)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index (long or int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true or false for the specified bit index</span>
+    <span class="c"># @param The index should be less than the BitSet size</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;fastGet&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.fastGet"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastGet">[docs]</a>    <span class="k">def</span> <span class="nf">fastGet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true or false for the specified bit index</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        fastGet(int index)</span>
+<span class="sd">        fastGet(long index)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index (long or int), should be less than the BitSet size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns 1 if the bit is set, 0 if not</span>
+    <span class="c"># @param index, should be less than the BitSet size</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getBit&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.getBit"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getBit">[docs]</a>    <span class="k">def</span> <span class="nf">getBit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns 1 if the bit is set, 0 if not</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index, should be less than the BitSet size</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sets a bit, expanding the set size if necessary</span>
+    <span class="c"># @param index index (long)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;set&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">,</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,</span><span class="n">metaLong</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.set"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.set">[docs]</a>    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets a bit, expanding the set size if necessary</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        set(long index)</span>
+<span class="sd">        set(long startIndex, long endIndex)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index (long)</span>
+<span class="sd">        startIndex -- lower index (long)</span>
+<span class="sd">        endIndex -- one-past the last bit to set (long)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sets the bit at the specified index.</span>
+    <span class="c"># The index should be less than the bitset size</span>
+    <span class="c"># @param index index (long)</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;fastSet&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.fastSet"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastSet">[docs]</a>    <span class="k">def</span> <span class="nf">fastSet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the bit at the specified index. The</span>
+<span class="sd">        index should be less than the BitSet size</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        fastSet(int index)</span>
+<span class="sd">        fastSet(long index)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index (long or int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Clears a bit.</span>
+    <span class="c"># The index should be less than the BitSet size</span>
+    <span class="c"># @param index index</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;fastClear&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.fastClear"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastClear">[docs]</a>    <span class="k">def</span> <span class="nf">fastClear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clears a bit</span>
+<span class="sd">        The index should be less than the BitSet size</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        fastClear(int index)</span>
+<span class="sd">        fastClear(long index)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index (long or int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Clears a bit or range of bits, allowing access beyond the current set</span>
+    <span class="c"># size without changing the size</span>
+    <span class="c"># @param index index to clear</span>
+    <span class="c"># @param startIndex lower index</span>
+    <span class="c"># @param endIndex one-past the last bit to clear</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;clear&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">,</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,</span><span class="n">metaInteger</span><span class="p">),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">,</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,</span><span class="n">metaLong</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.clear"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.clear">[docs]</a>    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Clears a bit or range of bits, allowing access beyond the current set</span>
+<span class="sd">        size without changing the size</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        clear(long index)</span>
+<span class="sd">        clear(int startIndex, int endIndex)</span>
+<span class="sd">        clear(long startIndex, long endIndex)</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">           clear(long index)</span>
+<span class="sd">              index -- The index to clear</span>
+<span class="sd">           clear(int startIndex, int endIndex)</span>
+<span class="sd">           clear(long startIndex, long endIndex)</span>
+<span class="sd">              startIndex -- lower index</span>
+<span class="sd">              endIndex -- one-past the last bit to clear</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Sets a bit and returns the previous value.</span>
+    <span class="c"># The index should be less than the BitSet size</span>
+    <span class="c"># @param index The index to clear and view (long or int)</span>
+    <span class="c"># @return The previous value of the bit</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getAndSet&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.getAndSet"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getAndSet">[docs]</a>    <span class="k">def</span> <span class="nf">getAndSet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets a bit and returns the previous value.</span>
+<span class="sd">        The index should be less than the BitSet size</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        getAndSet(int index)</span>
+<span class="sd">        getAndSet(long index)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- The index to clear and view (long or int)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The previous value of the bit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Flips a bit.</span>
+    <span class="c"># The index should be less than the BitSet size</span>
+    <span class="c"># @param index The index of the bit to flip</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;fastFlip&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.fastFlip"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.fastFlip">[docs]</a>    <span class="k">def</span> <span class="nf">fastFlip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flips a bit.</span>
+<span class="sd">        The index should be less than the BitSet size</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        fastFlip(int index)</span>
+<span class="sd">        fastFlip(long index)</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">        </span>
+<span class="sd">        index -- The index of the bit to flip (long or int)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Flips a bit, expanding the set size if necessary</span>
+    <span class="c"># @param index The index to flip</span>
+    <span class="c"># @param startIndex lower index</span>
+    <span class="c"># @param endIndex one-past the last bit to flip</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;flip&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">,</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,</span><span class="n">metaLong</span><span class="p">),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.flip"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.flip">[docs]</a>    <span class="k">def</span> <span class="nf">flip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flips a bit, expanding the set size if necessary</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        flip(long index)</span>
+<span class="sd">        flip(long startIndex, long endIndex)</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">           flip(long index)</span>
+<span class="sd">              index -- The index to flip</span>
+<span class="sd">           flip(long startIndex, long endIndex)</span>
+<span class="sd">              startIndex -- lower index</span>
+<span class="sd">              endIndex -- one-past the last bit to flip</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Flips a bit and returns the resulting bit value.</span>
+    <span class="c"># The index should be less than the BitSet size</span>
+    <span class="c"># @param index The index to flip and get</span>
+    <span class="c"># @return The bit in the state to which it was just flipped</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;flipAndGet&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.flipAndGet"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.flipAndGet">[docs]</a>    <span class="k">def</span> <span class="nf">flipAndGet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Flips a bit and returns the resulting bit value.</span>
+<span class="sd">        The index should be less than the BitSet size</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        flipAndGet(int index)</span>
+<span class="sd">        flipAndGet(long index)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- The index to flip and get</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The bit in the state to which it was just flipped</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns number of set bits (up to and including bit</span>
+    <span class="c"># at given index)</span>
+    <span class="c"># @param index index</span>
+    <span class="c"># @return The number of set bits</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;cardinality&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;long&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;long&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.cardinality"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.cardinality">[docs]</a>    <span class="k">def</span> <span class="nf">cardinality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns number of set bits</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        long cardinality()</span>
+<span class="sd">        long cardinality(int index)</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">           long cardinality(int index):</span>
+<span class="sd">              index -- index</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The number of set bits</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the index of the first set bit starting at the</span>
+    <span class="c"># index specified. -1 is returned if there are no more set</span>
+    <span class="c"># bits</span>
+    <span class="c"># @param index - index</span>
+    <span class="c"># @return The next set bit</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;nextSetBit&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;long&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.nextSetBit"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.nextSetBit">[docs]</a>    <span class="k">def</span> <span class="nf">nextSetBit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the index of the first set bit starting at the</span>
+<span class="sd">        index specified. -1 is returned if there are no more set</span>
+<span class="sd">        bits</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        long nextSetBit(long index)</span>
+<span class="sd">        int nextSetBit(int index)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index (long or int)</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The next set bit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the index of the previous set bit starting at</span>
+    <span class="c"># the index specified. If the bit at the index is set, index</span>
+    <span class="c"># is returned, otherwise the next lower numbered set bit</span>
+    <span class="c"># is returned. -1 is returned if there are no more set bits</span>
+    <span class="c"># @param index index</span>
+    <span class="c"># @return The previous set bit</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;previousSetBit&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;long&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">),</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.previousSetBit"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.previousSetBit">[docs]</a>    <span class="k">def</span> <span class="nf">previousSetBit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the index of the previous set bit starting at</span>
+<span class="sd">        the index specified. If the bit at the index is set, index</span>
+<span class="sd">        is returned, otherwise the next lower numbered set bit</span>
+<span class="sd">        is retuned. -1 is returned if there are no more set bits</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        long previousSetBit(long index)</span>
+<span class="sd">        int previousSetBit(int index)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        index -- index</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        The previous set bit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## this = this AND other</span>
+    <span class="c"># @param other Another BitSet instance</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;intersect&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">MetaBitSet</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.intersect"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersect">[docs]</a>    <span class="k">def</span> <span class="nf">intersect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this = this AND other</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void intersect(BitSet other)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        other -- Another BitSet instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## this = this OR other</span>
+    <span class="c"># @param other Another BitSet instance</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;union&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">MetaBitSet</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.union"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.union">[docs]</a>    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this = this OR other</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void union(BitSet other)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        other -- Another BitSet instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Remove all elements set in other. this = this AND_NOT other</span>
+    <span class="c"># @param other Another BitSet instance</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;remove&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">MetaBitSet</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.remove"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove all elements set in other. this = this AND_NOT other</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void remove(BitSet other)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        other -- Another BitSEt instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## this = this XOR other</span>
+    <span class="c"># @param other Another BitSet instance</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;xor&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">MetaBitSet</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.xor"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.xor">[docs]</a>    <span class="k">def</span> <span class="nf">xor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this = this XOR other</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void xor(BitSet other)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        other -- Another BitSet instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## this = this AND other</span>
+    <span class="c"># @param other Another BitSet instance</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;and&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">MetaBitSet</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">_and</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this = this AND other</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void xor(BitSet other)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        other -- Another BitSet instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## this = this OR other</span>
+    <span class="c"># @param other Another BitSet instance</span>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;or&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">MetaBitSet</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">_or</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this = this OR other</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void or(BitSet other)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        other -- Another BitSet instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## this = this ANDNOT other</span>
+    <span class="c"># @param other Another BitSet instance</span>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;andNot&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">MetaBitSet</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.andNot"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.andNot">[docs]</a>    <span class="k">def</span> <span class="nf">andNot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        this = this ANDNOT other</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void xor(BitSet other)</span>
+<span class="sd">        </span>
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        other -- Another BitSet instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns true if the sets have any elements in common</span>
+    <span class="c"># @param other Another BitSet instance</span>
+    <span class="c"># @return Whether the sets have any elements in common</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;intersects&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;BitSet&#39;</span><span class="p">]],</span><span class="s">&#39;boolean&#39;</span><span class="p">),(</span><span class="n">MetaBitSet</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.intersects"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.intersects">[docs]</a>    <span class="k">def</span> <span class="nf">intersects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns true if the sets have any elements in common</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        boolean intersects(BitSet other)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        other -- Another BitSet instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Expand the long[] with the size given as a number of words (64 bit longs).</span>
+    <span class="c"># getNumWords() is unchanged by this call</span>
+    <span class="c"># @param numWords The number of words to expand the long[] by</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;ensureCapacityWords&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.ensureCapacityWords"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacityWords">[docs]</a>    <span class="k">def</span> <span class="nf">ensureCapacityWords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Expand the long[] with the size given as a number of words (64 bit longs).</span>
+<span class="sd">        getNumWords() is unchanged by this call</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void ensureCapacityWords(int numWords)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        numWords -- The number of words to expand the long[] by</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Ensure that the long[] is big enough to hold numBits, expanding it</span>
+    <span class="c"># if necessary. getNumWords() is unchanged by this call.</span>
+    <span class="c"># @param numBits The number of bits the BitSet should be able to hold</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;ensureCapacity&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;long&#39;</span><span class="p">],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">metaLong</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.ensureCapacity"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.ensureCapacity">[docs]</a>    <span class="k">def</span> <span class="nf">ensureCapacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ensure that the long[] is big enough to hold numBits, expanding it</span>
+<span class="sd">        if necessary. getNumWords() is unchanged by this call</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void ensureCapacity(long numBits)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        numBits -- The number of bits the BitSet should be able to hold</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Lowers numWords, the number of words in use, by checking for trailing</span>
+    <span class="c"># zero words</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;trimTrailingZeros&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;void&#39;</span><span class="p">),(),</span><span class="bp">None</span><span class="p">))</span>
+<div class="viewcode-block" id="BitSet.trimTrailingZeros"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.trimTrailingZeros">[docs]</a>    <span class="k">def</span> <span class="nf">trimTrailingZeros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Lowers numWords, the number of words in use, by checking for trailing</span>
+<span class="sd">        zero words</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        void trimTrailingZeros()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;indexOfNthSetBit&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="s">&#39;int&#39;</span><span class="p">],</span><span class="s">&#39;int&#39;</span><span class="p">),(</span><span class="n">metaInteger</span><span class="p">,),</span><span class="bp">None</span><span class="p">))</span>
+    <span class="c">## Returns index of the nth set bit.</span>
+    <span class="c"># @param n nth set bit</span>
+<div class="viewcode-block" id="BitSet.indexOfNthSetBit"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.indexOfNthSetBit">[docs]</a>    <span class="k">def</span> <span class="nf">indexOfNthSetBit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns index of the nth set bit</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        n -- nth set bit</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Returns the indices of set bits</span>
+    <span class="c"># @return indices</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getIndicesOfSetBits&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="s">&#39;int[]&#39;</span><span class="p">),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">javabridge</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span><span class="o">.</span><span class="n">get_int_array_elements</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="BitSet.getIndicesOfSetBits"><a class="viewcode-back" href="../../../../../TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.BitSet.BitSet.getIndicesOfSetBits">[docs]</a>    <span class="k">def</span> <span class="nf">getIndicesOfSetBits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the indices of set bits</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

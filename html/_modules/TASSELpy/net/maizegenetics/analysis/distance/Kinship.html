@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.analysis.distance.Kinship &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.net.maizegenetics.analysis.distance.Kinship</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.helper</span> <span class="kn">import</span> <span class="n">make_sig</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.utils.Overloading</span> <span class="kn">import</span> <span class="n">javaOverload</span><span class="p">,</span><span class="n">javaConstructorOverload</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix</span> <span class="kn">import</span> <span class="n">DistanceMatrix</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.dna.snp.GenotypeTable</span> <span class="kn">import</span> <span class="n">GenotypeTable</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.net.maizegenetics.trait.SimplePhenotype</span> <span class="kn">import</span> <span class="n">SimplePhenotype</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Enum</span> <span class="kn">import</span> <span class="n">enum</span> <span class="k">as</span> <span class="n">java_enum</span>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.lang.Enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="n">java_imports</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;DistanceMatrix&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/taxa/distance/DistanceMatrix&#39;</span><span class="p">,</span>
+                <span class="s">&#39;GenotypeTable&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/dna/snp/GenotypeTable&#39;</span><span class="p">,</span>
+                <span class="s">&#39;Kinship&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/analysis/distance/Kinship&#39;</span><span class="p">,</span>
+                <span class="s">&#39;SimplePhenotype&#39;</span><span class="p">:</span><span class="s">&#39;net/maizegenetics/trait/SimplePhenotype&#39;</span><span class="p">}</span>
+<div class="viewcode-block" id="Kinship"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship">[docs]</a><span class="k">class</span> <span class="nc">Kinship</span><span class="p">(</span><span class="n">DistanceMatrix</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Kinship tools by Zhiwu Zhang</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_java_name</span> <span class="o">=</span> <span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Kinship&#39;</span><span class="p">]</span>
+    <span class="c">## Creates a kinship matrix</span>
+    <span class="nd">@javaConstructorOverload</span><span class="p">(</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;Kinship&#39;</span><span class="p">],</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;GenotypeTable&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">GenotypeTable</span><span class="p">,)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;SimplePhenotype&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">SimplePhenotype</span><span class="p">,)),</span>
+            <span class="p">(</span><span class="n">make_sig</span><span class="p">([</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DistanceMatrix&#39;</span><span class="p">]],</span><span class="s">&#39;void&#39;</span><span class="p">),(</span><span class="n">DistanceMatrix</span><span class="p">,)))</span>
+<div class="viewcode-block" id="Kinship.__init__"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a kinship matrix</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        Kinship(GenotypeTable mar)</span>
+<span class="sd">        Kinship(SimplePhenotype ped)</span>
+<span class="sd">        Kinship(DistanceMatrix dm)</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        Kinship(GenotypeTable mar)</span>
+<span class="sd">            mar -- A GenotypeTable used to calculated Kinship</span>
+<span class="sd">        Kinship(SimplePhenotype ped)</span>
+<span class="sd">            ped -- A SimplePhenotype table for calculating from Phenotype</span>
+<span class="sd">        Kinship(DistanceMatrix dm)</span>
+<span class="sd">            dm -- A DistanceMatrix instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+    <span class="c">## Gets the DistanceMatrix containing the kinship values</span>
+    <span class="c"># @return DistanceMatrix containing the kinship values</span></div>
+    <span class="nd">@javaOverload</span><span class="p">(</span><span class="s">&quot;getDm&quot;</span><span class="p">,</span>
+                  <span class="p">(</span><span class="n">make_sig</span><span class="p">([],</span><span class="n">java_imports</span><span class="p">[</span><span class="s">&#39;DistanceMatrix&#39;</span><span class="p">]),(),</span>
+                   <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">DistanceMatrix</span><span class="p">(</span><span class="n">obj</span><span class="o">=</span><span class="n">x</span><span class="p">)))</span>
+<div class="viewcode-block" id="Kinship.getDm"><a class="viewcode-back" href="../../../../../../TASSELpy.net.maizegenetics.analysis.distance.html#TASSELpy.net.maizegenetics.analysis.distance.Kinship.Kinship.getDm">[docs]</a>    <span class="k">def</span> <span class="nf">getDm</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gets the DistanceMatrix containing the Kinship values</span>
+
+<span class="sd">        Signatures:</span>
+
+<span class="sd">        DistanceMatrix getDm()</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        DistanceMatrix containing kinship values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

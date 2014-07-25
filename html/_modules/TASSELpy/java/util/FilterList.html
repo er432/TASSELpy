@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.java.util.FilterList &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for TASSELpy.java.util.FilterList</h1><div class="highlight"><pre>
+<span class="kn">from</span> <span class="nn">TASSELpy.java.util.List</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="c">## Python-specific class used to apply functional programming</span>
+<span class="c"># filtering to a wrapped java list</span>
+<div class="viewcode-block" id="FilterList"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.FilterList.FilterList">[docs]</a><span class="k">class</span> <span class="nc">FilterList</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Python-specific class used to apply functional programming</span>
+<span class="sd">    filtering to a wrapped java list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="FilterList.__init__"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.FilterList.FilterList.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FilterList</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="c">## Iterates through the list, but only returns items for which a</span>
+    <span class="c"># function evaluates True</span>
+    <span class="c"># @param filterFunc A function that accepts the list generic type as an argument</span>
+    <span class="c"># and returns true or false</span>
+    <span class="c"># @return An iterator that only returns objects evaluating true</span></div>
+<div class="viewcode-block" id="FilterList.filterIterator"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.FilterList.FilterList.filterIterator">[docs]</a>    <span class="k">def</span> <span class="nf">filterIterator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filterFunc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iterates through the list, but only returns items for which a function</span>
+<span class="sd">        evaluates True.</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        filterFunc -- A function that accepts the list generic type as an argument and</span>
+<span class="sd">                      returns true or false</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An iterator that only returns objects evaluating true</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">## Loop through the iterator</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterator</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">filterFunc</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">item</span>
+    <span class="c">## Enumerates the list, returning index and items for which a function</span>
+    <span class="c"># evaluates True</span>
+    <span class="c"># @param filterFunc A function that accepts the list generic type as an argument</span>
+    <span class="c"># and returns true or false</span>
+    <span class="c"># @return An iterator of (index, object) for objects evaluating true</span></div>
+<div class="viewcode-block" id="FilterList.filterEnumerator"><a class="viewcode-back" href="../../../../TASSELpy.java.util.html#TASSELpy.java.util.FilterList.FilterList.filterEnumerator">[docs]</a>    <span class="k">def</span> <span class="nf">filterEnumerator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filterFunc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enumerates the list, returning index and items for which a function</span>
+<span class="sd">        evaluates True</span>
+
+<span class="sd">        Arguments:</span>
+
+<span class="sd">        filterFunc -- A function that accepts the list generic type as an argument and</span>
+<span class="sd">                      returns true or false</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        An iterator of (index, object) for objects evaluating true</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c">## Loop through the iterator</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterator</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">filterFunc</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+            <span class="n">ind</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    </div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../../../index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,977 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="next" title="TASSELpy.data package" href="TASSELpy.data.html" />
+    <link rel="prev" title="Loading and Manipulating GenotypeTables" href="tutorial/genotype_tables.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.data.html" title="TASSELpy.data package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial/genotype_tables.html" title="Loading and Manipulating GenotypeTables"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-package">
+<h1>TASSELpy package<a class="headerlink" href="#tasselpy-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="TASSELpy.data.html">TASSELpy.data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.data.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.data.html#module-TASSELpy.data.data_constants">TASSELpy.data.data_constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.data.html#module-TASSELpy.data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TASSELpy.java.html">TASSELpy.java package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.java.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TASSELpy.java.lang.html">TASSELpy.java.lang package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.java.lang.reflect.html">TASSELpy.java.lang.reflect package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.java.lang.reflect.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.java.lang.reflect.html#module-TASSELpy.java.lang.reflect.Array">TASSELpy.java.lang.reflect.Array module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.java.lang.reflect.html#module-TASSELpy.java.lang.reflect">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Boolean">TASSELpy.java.lang.Boolean module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Byte">TASSELpy.java.lang.Byte module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Comparable">TASSELpy.java.lang.Comparable module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Double">TASSELpy.java.lang.Double module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Enum">TASSELpy.java.lang.Enum module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Float">TASSELpy.java.lang.Float module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Integer">TASSELpy.java.lang.Integer module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Iterable">TASSELpy.java.lang.Iterable module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Long">TASSELpy.java.lang.Long module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Number">TASSELpy.java.lang.Number module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Object">TASSELpy.java.lang.Object module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Runnable">TASSELpy.java.lang.Runnable module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.String">TASSELpy.java.lang.String module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang.Thread">TASSELpy.java.lang.Thread module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.lang.html#module-TASSELpy.java.lang">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="TASSELpy.java.util.html">TASSELpy.java.util package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.AbstractMap">TASSELpy.java.util.AbstractMap module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.ArrayList">TASSELpy.java.util.ArrayList module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.Collection">TASSELpy.java.util.Collection module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.FilterList">TASSELpy.java.util.FilterList module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.HashMap">TASSELpy.java.util.HashMap module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.Iterator">TASSELpy.java.util.Iterator module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.List">TASSELpy.java.util.List module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.ListIterator">TASSELpy.java.util.ListIterator module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.Map">TASSELpy.java.util.Map module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util.Set">TASSELpy.java.util.Set module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.java.util.html#module-TASSELpy.java.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.java.html#module-TASSELpy.java">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TASSELpy.net.html">TASSELpy.net package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.net.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TASSELpy.net.maizegenetics.html">TASSELpy.net.maizegenetics package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.net.maizegenetics.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.html">TASSELpy.net.maizegenetics.analysis package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.distance.html">TASSELpy.net.maizegenetics.analysis.distance package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.distance.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.distance.html#module-TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix">TASSELpy.net.maizegenetics.analysis.distance.IBSDistanceMatrix module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.distance.html#module-TASSELpy.net.maizegenetics.analysis.distance.Kinship">TASSELpy.net.maizegenetics.analysis.distance.Kinship module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.distance.html#module-TASSELpy.net.maizegenetics.analysis.distance">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.popgen.html">TASSELpy.net.maizegenetics.analysis.popgen package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.popgen.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.popgen.html#module-TASSELpy.net.maizegenetics.analysis.popgen.LDResult">TASSELpy.net.maizegenetics.analysis.popgen.LDResult module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.popgen.html#module-TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium">TASSELpy.net.maizegenetics.analysis.popgen.LinkageDisequilibrium module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.popgen.html#module-TASSELpy.net.maizegenetics.analysis.popgen">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.analysis.html#module-TASSELpy.net.maizegenetics.analysis">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.html">TASSELpy.net.maizegenetics.dna package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.map.html">TASSELpy.net.maizegenetics.dna.map package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.map.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.map.html#module-TASSELpy.net.maizegenetics.dna.map.Chromosome">TASSELpy.net.maizegenetics.dna.map.Chromosome module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.map.html#module-TASSELpy.net.maizegenetics.dna.map.Position">TASSELpy.net.maizegenetics.dna.map.Position module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.map.html#module-TASSELpy.net.maizegenetics.dna.map.PositionList">TASSELpy.net.maizegenetics.dna.map.PositionList module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.map.html#module-TASSELpy.net.maizegenetics.dna.map">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.html">TASSELpy.net.maizegenetics.dna.snp package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.depth.html">TASSELpy.net.maizegenetics.dna.snp.depth package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.depth.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.depth.html#module-TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth">TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.depth.html#module-TASSELpy.net.maizegenetics.dna.snp.depth">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.score.html">TASSELpy.net.maizegenetics.dna.snp.score package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.score.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.score.html#module-TASSELpy.net.maizegenetics.dna.snp.score.SiteScore">TASSELpy.net.maizegenetics.dna.snp.score.SiteScore module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.score.html#module-TASSELpy.net.maizegenetics.dna.snp.score">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.html#module-TASSELpy.net.maizegenetics.dna.snp.CoreGenotypeTable">TASSELpy.net.maizegenetics.dna.snp.CoreGenotypeTable module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.html#module-TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable">TASSELpy.net.maizegenetics.dna.snp.FilterGenotypeTable module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.html#module-TASSELpy.net.maizegenetics.dna.snp.GenotypeTable">TASSELpy.net.maizegenetics.dna.snp.GenotypeTable module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.html#module-TASSELpy.net.maizegenetics.dna.snp.ImportUtils">TASSELpy.net.maizegenetics.dna.snp.ImportUtils module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.snp.html#module-TASSELpy.net.maizegenetics.dna.snp">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.tag.html">TASSELpy.net.maizegenetics.dna.tag package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.tag.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.tag.html#tasselpy-net-maizegenetics-dna-tag-tags-module">TASSELpy.net.maizegenetics.dna.tag.Tags module</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.tag.html#module-TASSELpy.net.maizegenetics.dna.tag">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.html#module-TASSELpy.net.maizegenetics.dna.WHICH_ALLELE">TASSELpy.net.maizegenetics.dna.WHICH_ALLELE module</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.dna.html#module-TASSELpy.net.maizegenetics.dna">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.html">TASSELpy.net.maizegenetics.matrixalgebra package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html">TASSELpy.net.maizegenetics.matrixalgebra.Matrix package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix">TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrix module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory">TASSELpy.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactory module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.Matrix.html#module-TASSELpy.net.maizegenetics.matrixalgebra.Matrix">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html">TASSELpy.net.maizegenetics.matrixalgebra.decomposition package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition">TASSELpy.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecomposition module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition">TASSELpy.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecomposition module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.decomposition.html#module-TASSELpy.net.maizegenetics.matrixalgebra.decomposition">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.matrixalgebra.html#module-TASSELpy.net.maizegenetics.matrixalgebra">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.net.maizegenetics.stats.html">TASSELpy.net.maizegenetics.stats package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.stats.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.stats.statistics.html">TASSELpy.net.maizegenetics.stats.statistics package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.stats.statistics.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.stats.statistics.html#module-TASSELpy.net.maizegenetics.stats.statistics.FisherExact">TASSELpy.net.maizegenetics.stats.statistics.FisherExact module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.stats.statistics.html#module-TASSELpy.net.maizegenetics.stats.statistics">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.stats.html#module-TASSELpy.net.maizegenetics.stats">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.html">TASSELpy.net.maizegenetics.taxa package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.distance.html">TASSELpy.net.maizegenetics.taxa.distance package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.distance.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.distance.html#module-TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix">TASSELpy.net.maizegenetics.taxa.distance.DistanceMatrix module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.distance.html#module-TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix">TASSELpy.net.maizegenetics.taxa.distance.TaxaListMatrix module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.distance.html#module-TASSELpy.net.maizegenetics.taxa.distance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.html#module-TASSELpy.net.maizegenetics.taxa.TaxaList">TASSELpy.net.maizegenetics.taxa.TaxaList module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.html#module-TASSELpy.net.maizegenetics.taxa.TaxaListBuilder">TASSELpy.net.maizegenetics.taxa.TaxaListBuilder module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.html#module-TASSELpy.net.maizegenetics.taxa.Taxon">TASSELpy.net.maizegenetics.taxa.Taxon module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.taxa.html#module-TASSELpy.net.maizegenetics.taxa">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.net.maizegenetics.trait.html">TASSELpy.net.maizegenetics.trait package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.trait.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.trait.html#module-TASSELpy.net.maizegenetics.trait.AbstractPhenotype">TASSELpy.net.maizegenetics.trait.AbstractPhenotype module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.trait.html#module-TASSELpy.net.maizegenetics.trait.Phenotype">TASSELpy.net.maizegenetics.trait.Phenotype module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.trait.html#module-TASSELpy.net.maizegenetics.trait.SimplePhenotype">TASSELpy.net.maizegenetics.trait.SimplePhenotype module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.trait.html#module-TASSELpy.net.maizegenetics.trait.Trait">TASSELpy.net.maizegenetics.trait.Trait module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.trait.html#module-TASSELpy.net.maizegenetics.trait">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html">TASSELpy.net.maizegenetics.util package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#module-TASSELpy.net.maizegenetics.util.BitSet">TASSELpy.net.maizegenetics.util.BitSet module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#module-TASSELpy.net.maizegenetics.util.GeneralAnnotation">TASSELpy.net.maizegenetics.util.GeneralAnnotation module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#module-TASSELpy.net.maizegenetics.util.OpenBitSet">TASSELpy.net.maizegenetics.util.OpenBitSet module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#module-TASSELpy.net.maizegenetics.util.ProgressListener">TASSELpy.net.maizegenetics.util.ProgressListener module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#module-TASSELpy.net.maizegenetics.util.TableReport">TASSELpy.net.maizegenetics.util.TableReport module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#module-TASSELpy.net.maizegenetics.util.UnmodifiableBitSet">TASSELpy.net.maizegenetics.util.UnmodifiableBitSet module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#module-TASSELpy.net.maizegenetics.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.net.maizegenetics.html#module-TASSELpy.net.maizegenetics">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.net.html#module-TASSELpy.net">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TASSELpy.test.html">TASSELpy.test package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.test.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="TASSELpy.test.java.html">TASSELpy.test.java package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.test.java.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.test.java.lang.html">TASSELpy.test.java.lang package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#module-TASSELpy.test.java.lang.BooleanTest">TASSELpy.test.java.lang.BooleanTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#module-TASSELpy.test.java.lang.ByteTest">TASSELpy.test.java.lang.ByteTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#module-TASSELpy.test.java.lang.DoubleTest">TASSELpy.test.java.lang.DoubleTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#module-TASSELpy.test.java.lang.FloatTest">TASSELpy.test.java.lang.FloatTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#module-TASSELpy.test.java.lang.IntegerTest">TASSELpy.test.java.lang.IntegerTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#module-TASSELpy.test.java.lang.LongTest">TASSELpy.test.java.lang.LongTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#module-TASSELpy.test.java.lang.langTestSuite">TASSELpy.test.java.lang.langTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.lang.html#module-TASSELpy.test.java.lang">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.test.java.util.html">TASSELpy.test.java.util package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.util.html#submodules">Submodules</a></li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.util.html#module-TASSELpy.test.java.util.MapTest">TASSELpy.test.java.util.MapTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.util.html#module-TASSELpy.test.java.util.utilTestSuite">TASSELpy.test.java.util.utilTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.java.util.html#module-TASSELpy.test.java.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.test.java.html#module-TASSELpy.test.java">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="TASSELpy.test.net.html">TASSELpy.test.net package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.test.net.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.html">TASSELpy.test.net.maizegenetics package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.html">TASSELpy.test.net.maizegenetics.analysis package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.distance.html">TASSELpy.test.net.maizegenetics.analysis.distance package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.distance.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.distance.html#module-TASSELpy.test.net.maizegenetics.analysis.distance.KinshipTest">TASSELpy.test.net.maizegenetics.analysis.distance.KinshipTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.distance.html#module-TASSELpy.test.net.maizegenetics.analysis.distance.distanceTestSuite">TASSELpy.test.net.maizegenetics.analysis.distance.distanceTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.distance.html#module-TASSELpy.test.net.maizegenetics.analysis.distance">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.popgen.html">TASSELpy.test.net.maizegenetics.analysis.popgen package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.popgen.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.popgen.html#module-TASSELpy.test.net.maizegenetics.analysis.popgen.LDResultTest">TASSELpy.test.net.maizegenetics.analysis.popgen.LDResultTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.popgen.html#module-TASSELpy.test.net.maizegenetics.analysis.popgen.LinkageDisequilibriumTest">TASSELpy.test.net.maizegenetics.analysis.popgen.LinkageDisequilibriumTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.popgen.html#module-TASSELpy.test.net.maizegenetics.analysis.popgen.popgenTestSuite">TASSELpy.test.net.maizegenetics.analysis.popgen.popgenTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.popgen.html#module-TASSELpy.test.net.maizegenetics.analysis.popgen">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.html#module-TASSELpy.test.net.maizegenetics.analysis.IBSDistanceMatrixTest">TASSELpy.test.net.maizegenetics.analysis.IBSDistanceMatrixTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.html#module-TASSELpy.test.net.maizegenetics.analysis.analysisTestSuite">TASSELpy.test.net.maizegenetics.analysis.analysisTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.analysis.html#module-TASSELpy.test.net.maizegenetics.analysis">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.dna.html">TASSELpy.test.net.maizegenetics.dna package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.dna.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.dna.snp.html">TASSELpy.test.net.maizegenetics.dna.snp package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.dna.snp.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.dna.snp.html#module-TASSELpy.test.net.maizegenetics.dna.snp.GenotypeTableTest">TASSELpy.test.net.maizegenetics.dna.snp.GenotypeTableTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.dna.snp.html#module-TASSELpy.test.net.maizegenetics.dna.snp.snpTestSuite">TASSELpy.test.net.maizegenetics.dna.snp.snpTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.dna.snp.html#module-TASSELpy.test.net.maizegenetics.dna.snp">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.dna.html#module-TASSELpy.test.net.maizegenetics.dna">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.html">TASSELpy.test.net.maizegenetics.matrixalgebra package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.html">TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactoryTest">TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixFactoryTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixTest">TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.DoubleMatrixTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.MatrixTestSuite">TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.MatrixTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.html">TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecompositionTest">TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.EigenvalueDecompositionTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecompositionTest">TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.SingularValueDecompositionTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.decompositionTestSuite">TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.decompositionTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.matrixalgebra.html#module-TASSELpy.test.net.maizegenetics.matrixalgebra">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.stats.html">TASSELpy.test.net.maizegenetics.stats package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.stats.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.stats.statistics.html">TASSELpy.test.net.maizegenetics.stats.statistics package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.stats.statistics.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.stats.statistics.html#module-TASSELpy.test.net.maizegenetics.stats.statistics.FisherExactTest">TASSELpy.test.net.maizegenetics.stats.statistics.FisherExactTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.stats.statistics.html#module-TASSELpy.test.net.maizegenetics.stats.statistics.statisticsTestSuite">TASSELpy.test.net.maizegenetics.stats.statistics.statisticsTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.stats.statistics.html#module-TASSELpy.test.net.maizegenetics.stats.statistics">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.stats.html#module-TASSELpy.test.net.maizegenetics.stats">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.html">TASSELpy.test.net.maizegenetics.taxa package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l9"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.distance.html">TASSELpy.test.net.maizegenetics.taxa.distance package</a><ul>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.distance.html#submodules">Submodules</a></li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.distance.html#module-TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest">TASSELpy.test.net.maizegenetics.taxa.distance.DistanceMatrixTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.distance.html#module-TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest">TASSELpy.test.net.maizegenetics.taxa.distance.TaxaListMatrixTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.distance.html#module-TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite">TASSELpy.test.net.maizegenetics.taxa.distance.distanceTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l10"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.distance.html#module-TASSELpy.test.net.maizegenetics.taxa.distance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.html#module-TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest">TASSELpy.test.net.maizegenetics.taxa.TaxaListBuilderTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.html#module-TASSELpy.test.net.maizegenetics.taxa.TaxaListTest">TASSELpy.test.net.maizegenetics.taxa.TaxaListTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.html#module-TASSELpy.test.net.maizegenetics.taxa.TaxonTest">TASSELpy.test.net.maizegenetics.taxa.TaxonTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.html#module-TASSELpy.test.net.maizegenetics.taxa.taxaTestSuite">TASSELpy.test.net.maizegenetics.taxa.taxaTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.taxa.html#module-TASSELpy.test.net.maizegenetics.taxa">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.trait.html">TASSELpy.test.net.maizegenetics.trait package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.trait.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.trait.html#module-TASSELpy.test.net.maizegenetics.trait.PhenotypeTest">TASSELpy.test.net.maizegenetics.trait.PhenotypeTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.trait.html#module-TASSELpy.test.net.maizegenetics.trait.TraitTest">TASSELpy.test.net.maizegenetics.trait.TraitTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.trait.html#module-TASSELpy.test.net.maizegenetics.trait.traitTestSuite">TASSELpy.test.net.maizegenetics.trait.traitTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.trait.html#module-TASSELpy.test.net.maizegenetics.trait">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.util.html">TASSELpy.test.net.maizegenetics.util package</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.util.html#submodules">Submodules</a></li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.util.html#module-TASSELpy.test.net.maizegenetics.util.TableReportTest">TASSELpy.test.net.maizegenetics.util.TableReportTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.util.html#module-TASSELpy.test.net.maizegenetics.util.utilTestSuite">TASSELpy.test.net.maizegenetics.util.utilTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.util.html#module-TASSELpy.test.net.maizegenetics.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="TASSELpy.test.net.maizegenetics.html#module-TASSELpy.test.net.maizegenetics">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.test.net.html#module-TASSELpy.test.net">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="TASSELpy.test.utils.html">TASSELpy.test.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.test.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.test.utils.html#module-TASSELpy.test.utils.primativeArrayTest">TASSELpy.test.utils.primativeArrayTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.test.utils.html#module-TASSELpy.test.utils.utilsTestSuite">TASSELpy.test.utils.utilsTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="TASSELpy.test.utils.html#module-TASSELpy.test.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.test.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.test.html#module-TASSELpy.test.javaObjTest">TASSELpy.test.javaObjTest module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.test.html#module-TASSELpy.test.mainTestSuite">TASSELpy.test.mainTestSuite module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.test.html#module-TASSELpy.test">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="TASSELpy.utils.html">TASSELpy.utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.utils.html#module-TASSELpy.utils.DocInherit">TASSELpy.utils.DocInherit module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.utils.html#module-TASSELpy.utils.OrderedSet">TASSELpy.utils.OrderedSet module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.utils.html#module-TASSELpy.utils.Overloading">TASSELpy.utils.Overloading module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.utils.html#module-TASSELpy.utils.helper">TASSELpy.utils.helper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.utils.html#module-TASSELpy.utils.primativeArray">TASSELpy.utils.primativeArray module</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TASSELpy.utils.html#module-TASSELpy.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.TASSELbridge">
+<span id="tasselpy-tasselbridge-module"></span><h2>TASSELpy.TASSELbridge module<a class="headerlink" href="#module-TASSELpy.TASSELbridge" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.TASSELbridge.TASSELbridge">
+<em class="property">class </em><tt class="descclassname">TASSELpy.TASSELbridge.</tt><tt class="descname">TASSELbridge</tt><a class="reference internal" href="_modules/TASSELpy/TASSELbridge.html#TASSELbridge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.TASSELbridge.TASSELbridge" title="Permalink to this definition">¶</a></dt>
+<dd><p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.TASSELbridge.TASSELbridge.start" title="TASSELpy.TASSELbridge.TASSELbridge.start"><tt class="xref py py-obj docutils literal"><span class="pre">start</span></tt></a>([tassel_dir])</td>
+<td>Starts the JVM and connects to the TASSEL JAR</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.TASSELbridge.TASSELbridge.stop" title="TASSELpy.TASSELbridge.TASSELbridge.stop"><tt class="xref py py-obj docutils literal"><span class="pre">stop</span></tt></a>()</td>
+<td>Kills the JVM</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="TASSELpy.TASSELbridge.TASSELbridge.start">
+<em class="property">static </em><tt class="descname">start</tt><big>(</big><em>tassel_dir=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/TASSELbridge.html#TASSELbridge.start"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.TASSELbridge.TASSELbridge.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the JVM and connects to the TASSEL JAR</p>
+<p>Arguments:</p>
+<p>tassel_dir &#8211; The directory containing the TASSEL JAR</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.TASSELbridge.TASSELbridge.stop">
+<em class="property">static </em><tt class="descname">stop</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/TASSELbridge.html#TASSELbridge.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.TASSELbridge.TASSELbridge.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Kills the JVM</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.javaObj">
+<span id="tasselpy-javaobj-module"></span><h2>TASSELpy.javaObj module<a class="headerlink" href="#module-TASSELpy.javaObj" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.javaObj.genericJavaObj">
+<em class="property">class </em><tt class="descclassname">TASSELpy.javaObj.</tt><tt class="descname">genericJavaObj</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#genericJavaObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.genericJavaObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.javaObj.javaObj" title="TASSELpy.javaObj.javaObj"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.javaObj.javaObj</span></tt></a></p>
+<p>Base class for all java object wrappers that you want to accept angle bracket arguments</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.javaObj.genericJavaObj.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#genericJavaObj.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.genericJavaObj.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the type of elements that would be given by angel brackets in java
+i.e. MyClass&lt;String&gt; myobj</p>
+<p>Arguments:</p>
+<p>generic &#8211; wrapper class</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.javaObj.javaArray">
+<em class="property">class </em><tt class="descclassname">TASSELpy.javaObj.</tt><tt class="descname">javaArray</tt><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaArray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.javaObj.javaObj" title="TASSELpy.javaObj.javaObj"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.javaObj.javaObj</span></tt></a></p>
+<p>Base class for arrays of wrapped objects</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.javaObj.javaArray.get_array_type" title="TASSELpy.javaObj.javaArray.get_array_type"><tt class="xref py py-obj docutils literal"><span class="pre">get_array_type</span></tt></a>(Class)</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.javaObj.javaArray.make_array" title="TASSELpy.javaObj.javaArray.make_array"><tt class="xref py py-obj docutils literal"><span class="pre">make_array</span></tt></a>(Class_instance,&nbsp;length[,&nbsp;pyType])</td>
+<td>Makes a wrapped java array for some java class</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.javaObj.javaArray.to_numpy_array" title="TASSELpy.javaObj.javaArray.to_numpy_array"><tt class="xref py py-obj docutils literal"><span class="pre">to_numpy_array</span></tt></a>()</td>
+<td>Makes a numpy array copy of the Java primative array</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.javaObj.javaArray.to_wrapped_array" title="TASSELpy.javaObj.javaArray.to_wrapped_array"><tt class="xref py py-obj docutils literal"><span class="pre">to_wrapped_array</span></tt></a>(arr_instance,&nbsp;pyType[,&nbsp;setter])</td>
+<td>Wraps a current array</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="TASSELpy.javaObj.javaArray.get_array_type">
+<em class="property">static </em><tt class="descname">get_array_type</tt><big>(</big><em>Class</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaArray.get_array_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaArray.get_array_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.javaObj.javaArray.make_array">
+<em class="property">static </em><tt class="descname">make_array</tt><big>(</big><em>Class_instance</em>, <em>length</em>, <em>pyType=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaArray.make_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaArray.make_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a wrapped java array for some java class</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>Class_instance &#8211; Either an instance of a javaObj, an instance of a javabridge.JB_Object,</dt>
+<dd>an instance of javabridge._javabridge.JB_Class, or the name of a java class
+as path/to/class</dd>
+<dt>pyType &#8211; The type of the javaObj. This must be passed unless using a javaObj instance to make</dt>
+<dd>the array</dd>
+</dl>
+<p>Returns:</p>
+<p>The wrapped java array</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.javaObj.javaArray.to_numpy_array">
+<tt class="descname">to_numpy_array</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaArray.to_numpy_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaArray.to_numpy_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a numpy array copy of the Java primative array</p>
+<p>Returns:</p>
+<p>Numpy array containing data</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.javaObj.javaArray.to_wrapped_array">
+<em class="property">static </em><tt class="descname">to_wrapped_array</tt><big>(</big><em>arr_instance</em>, <em>pyType</em>, <em>setter=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaArray.to_wrapped_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaArray.to_wrapped_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps a current array</p>
+<p>Arguments:</p>
+<p>arr_instance &#8211; A java object containing the array
+pyType &#8211; The type of the javaObj</p>
+<p>Returns:</p>
+<p>The wrapped java array</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.javaObj.javaObj">
+<em class="property">class </em><tt class="descclassname">TASSELpy.javaObj.</tt><tt class="descname">javaObj</tt><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.javaObj.javaObj.getArray" title="TASSELpy.javaObj.javaObj.getArray"><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt></a>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.javaObj.javaObj.getDblArray" title="TASSELpy.javaObj.javaObj.getDblArray"><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt></a>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.javaObj.javaObj.wrap_existing_array" title="TASSELpy.javaObj.javaObj.wrap_existing_array"><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt></a>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="classmethod">
+<dt id="TASSELpy.javaObj.javaObj.getArray">
+<em class="property">classmethod </em><tt class="descname">getArray</tt><big>(</big><em>size</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaObj.getArray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaObj.getArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets an empty wrapped java array that can accept the type of the wrapped
+java object</p>
+<p>Arguments:</p>
+<p>size &#8211; the size of the array</p>
+<p>Returns:</p>
+<p>An instance of the array of the given size</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="TASSELpy.javaObj.javaObj.getDblArray">
+<em class="property">classmethod </em><tt class="descname">getDblArray</tt><big>(</big><em>rows</em>, <em>cols=None</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaObj.getDblArray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaObj.getDblArray" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets an empty wrapped java array that can accept the type of other wrapped java arrays:
+i.e. Object[][]</p>
+<p>Arguments:</p>
+<p>rows &#8211; The number of rows that should be in the array (the first dimension)
+cols &#8211; The number of columns that should be in the array (if not specified, the</p>
+<blockquote>
+<div>array objects will not be instantiated at these locations</div></blockquote>
+<p>Returns:</p>
+<p>An instance of an array of arrays</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="TASSELpy.javaObj.javaObj.wrap_existing_array">
+<em class="property">classmethod </em><tt class="descname">wrap_existing_array</tt><big>(</big><em>arr_instance</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/javaObj.html#javaObj.wrap_existing_array"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.javaObj.javaObj.wrap_existing_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps a java array of this class&#8217;s type</p>
+<p>Arguments:</p>
+<p>arr_instance &#8211; The java array</p>
+<p>Returns:</p>
+<p>The wrapped java array</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.release">
+<span id="tasselpy-release-module"></span><h2>TASSELpy.release module<a class="headerlink" href="#module-TASSELpy.release" title="Permalink to this headline">¶</a></h2>
+<p>Release data for Ranger (based on release.py from Networkx library).</p>
+<dl class="function">
+<dt id="TASSELpy.release.get_info">
+<tt class="descclassname">TASSELpy.release.</tt><tt class="descname">get_info</tt><big>(</big><em>dynamic=True</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/release.html#get_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.release.get_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="TASSELpy.release.get_revision">
+<tt class="descclassname">TASSELpy.release.</tt><tt class="descname">get_revision</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/release.html#get_revision"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.release.get_revision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns revision and vcs information, dynamically obtained.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="TASSELpy.release.write_versionfile">
+<tt class="descclassname">TASSELpy.release.</tt><tt class="descname">write_versionfile</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/TASSELpy/release.html#write_versionfile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.release.write_versionfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a static file containing version information.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.version">
+<span id="tasselpy-version-module"></span><h2>TASSELpy.version module<a class="headerlink" href="#module-TASSELpy.version" title="Permalink to this headline">¶</a></h2>
+<p>Version information for Ranger, created during installation.</p>
+<p>Do not add this file to the repository.</p>
+</div>
+<div class="section" id="module-TASSELpy">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.TASSELbridge">TASSELpy.TASSELbridge module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.javaObj">TASSELpy.javaObj module</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-TASSELpy.release">TASSELpy.release module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.version">TASSELpy.version module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tutorial/genotype_tables.html"
+                        title="previous chapter">Loading and Manipulating GenotypeTables</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="TASSELpy.data.html"
+                        title="next chapter">TASSELpy.data package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="TASSELpy.data.html" title="TASSELpy.data package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial/genotype_tables.html" title="Loading and Manipulating GenotypeTables"
+             >previous</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

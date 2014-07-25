@@ -1,0 +1,1075 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>TASSELpy.net.maizegenetics.trait package &mdash; TASSELpy 0.1.dev-20140723133829 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.dev-20140723133829',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="TASSELpy 0.1.dev-20140723133829 documentation" href="index.html" />
+    <link rel="up" title="TASSELpy.net.maizegenetics package" href="TASSELpy.net.maizegenetics.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" accesskey="U">TASSELpy.net.maizegenetics package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tasselpy-net-maizegenetics-trait-package">
+<h1>TASSELpy.net.maizegenetics.trait package<a class="headerlink" href="#tasselpy-net-maizegenetics-trait-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.trait.AbstractPhenotype">
+<span id="tasselpy-net-maizegenetics-trait-abstractphenotype-module"></span><h2>TASSELpy.net.maizegenetics.trait.AbstractPhenotype module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.trait.AbstractPhenotype" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.trait.AbstractPhenotype.AbstractPhenotype">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.trait.AbstractPhenotype.</tt><tt class="descname">AbstractPhenotype</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/AbstractPhenotype.html#AbstractPhenotype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.AbstractPhenotype.AbstractPhenotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getData</span></tt>(*args)</td>
+<td>Gets data from the phenotype</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfTaxa</span></tt>(*args)</td>
+<td>Gets the number of taxa or rows in this data set</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfTraits</span></tt>(*args)</td>
+<td>Gets the number of traits or columns in this data set</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxa</span></tt>(*args)</td>
+<td>Get the taxa in this data set in order by row number</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxon</span></tt>(*args)</td>
+<td>Gets a taxon</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTrait</span></tt>(*args)</td>
+<td>Gets a trait</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTraits</span></tt>(*args)</td>
+<td>Gets the traits or columns of this dataset, in order by column number</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">setData</span></tt>(*args)</td>
+<td>Sets the double value for this trait and taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">whichTaxon</span></tt>(*args)</td>
+<td>Gets the index of a taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">whichTrait</span></tt>(*args)</td>
+<td>Gets the index of a trait</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.AbstractPhenotype.AbstractPhenotype.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/AbstractPhenotype.html#AbstractPhenotype.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.AbstractPhenotype.AbstractPhenotype.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.trait.Phenotype">
+<span id="tasselpy-net-maizegenetics-trait-phenotype-module"></span><h2>TASSELpy.net.maizegenetics.trait.Phenotype module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.trait.Phenotype" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.trait.Phenotype.</tt><tt class="descname">Phenotype</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.net.maizegenetics.util.html#TASSELpy.net.maizegenetics.util.TableReport.TableReport" title="TASSELpy.net.maizegenetics.util.TableReport.TableReport"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.util.TableReport.TableReport</span></tt></a></p>
+<p>A collection of data for a set of Taxa. Each taxon is expected to appear only
+once in the data. 
+Data is represented as a two dimensional table of doubles, with taxa as rows
+and traits as columns.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getData" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getData"><tt class="xref py py-obj docutils literal"><span class="pre">getData</span></tt></a>(*args)</td>
+<td>Gets data from the phenotype</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTaxa" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTaxa"><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfTaxa</span></tt></a>(*args)</td>
+<td>Gets the number of taxa or rows in this data set</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTraits" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTraits"><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfTraits</span></tt></a>(*args)</td>
+<td>Gets the number of traits or columns in this data set</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxa" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxa"><tt class="xref py py-obj docutils literal"><span class="pre">getTaxa</span></tt></a>(*args)</td>
+<td>Get the taxa in this data set in order by row number</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxon" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxon"><tt class="xref py py-obj docutils literal"><span class="pre">getTaxon</span></tt></a>(*args)</td>
+<td>Gets a taxon</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTrait" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTrait"><tt class="xref py py-obj docutils literal"><span class="pre">getTrait</span></tt></a>(*args)</td>
+<td>Gets a trait</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTraits" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTraits"><tt class="xref py py-obj docutils literal"><span class="pre">getTraits</span></tt></a>(*args)</td>
+<td>Gets the traits or columns of this dataset, in order by column number</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.setData" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.setData"><tt class="xref py py-obj docutils literal"><span class="pre">setData</span></tt></a>(*args)</td>
+<td>Sets the double value for this trait and taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTaxon" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTaxon"><tt class="xref py py-obj docutils literal"><span class="pre">whichTaxon</span></tt></a>(*args)</td>
+<td>Gets the index of a taxon</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTrait" title="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTrait"><tt class="xref py py-obj docutils literal"><span class="pre">whichTrait</span></tt></a>(*args)</td>
+<td>Gets the index of a trait</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getData">
+<tt class="descname">getData</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.getData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets data from the phenotype</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getData</em> (int <strong>taxon</strong>, int <strong>trait</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getData</em> (Taxon <strong>taxon</strong>, Trait <strong>trait</strong>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>getData</em> ()</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>taxon</strong> (<em>Taxon</em>) &#8211; an integer i, representing the ith row in the data set</li>
+<li><strong>trait</strong> (<em>Trait</em>) &#8211; an integer j, representing the jth column in the data set</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The data stored for the given trait and taxon</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">double</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTaxa">
+<tt class="descname">getNumberOfTaxa</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.getNumberOfTaxa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTaxa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of taxa or rows in this data set</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getNumberOfTaxa</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of taxa or rows in this data set</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTraits">
+<tt class="descname">getNumberOfTraits</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.getNumberOfTraits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getNumberOfTraits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of traits or columns in this data set</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getNumberOfTraits</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of traits or columns in this data set</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxa">
+<tt class="descname">getTaxa</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.getTaxa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the taxa in this data set in order by row number</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getTaxa</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The taxa in this data set in order by row number</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">TaxaList</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxon">
+<tt class="descname">getTaxon</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.getTaxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTaxon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a taxon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getTaxon</em> (int <strong>taxon</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>taxon</strong> (<em>int</em>) &#8211; An integer j, representing the jth row in the data set</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Taxon for this row</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Taxon</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTrait">
+<tt class="descname">getTrait</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.getTrait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTrait" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a trait</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getTrait</em> (int <strong>trait</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>trait</strong> (<em>int</em>) &#8211; An integer j, representing the jth column in the data set</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The Trait for this column</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Trait</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTraits">
+<tt class="descname">getTraits</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.getTraits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.getTraits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the traits or columns of this dataset, in order by column number</p>
+<p>Signatures:</p>
+<p>List&lt;Trait&gt; getTraits()</p>
+<p>Returns:</p>
+<p>The traits or columns of this dataset, in order by column number</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.setData">
+<tt class="descname">setData</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.setData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.setData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the double value for this trait and taxon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>setData</em> (int <strong>taxon</strong>, int <strong>trait</strong>, double <strong>value</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>taxon</strong> (<em>int</em>) &#8211; An integer i, representing the ith row in the data set</li>
+<li><strong>trait</strong> (<em>int</em>) &#8211; An ineger j, representing the jth column in the data set</li>
+<li><strong>value</strong> (<em>double</em>) &#8211; The data to be stored for the ith taxon, jth trait</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTaxon">
+<tt class="descname">whichTaxon</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.whichTaxon"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTaxon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the index of a taxon</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>whichTaxon</em> (Taxon <strong>taxon</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>taxon</strong> (<em>Taxon</em>) &#8211; taxon</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The index of the taxon, representing the row in which the data for this taxon is stored</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTrait">
+<tt class="descname">whichTrait</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Phenotype.html#Phenotype.whichTrait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Phenotype.Phenotype.whichTrait" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the index of a trait</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>whichTrait</em> (Trait <strong>trait</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>trait</strong> (<em>Trait</em>) &#8211; trait</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The index of the trait, representing the column in which the data for this trait is stored</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.trait.SimplePhenotype">
+<span id="tasselpy-net-maizegenetics-trait-simplephenotype-module"></span><h2>TASSELpy.net.maizegenetics.trait.SimplePhenotype module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.trait.SimplePhenotype" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.trait.SimplePhenotype.SimplePhenotype">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.trait.SimplePhenotype.</tt><tt class="descname">SimplePhenotype</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/SimplePhenotype.html#SimplePhenotype"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.SimplePhenotype.SimplePhenotype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.AbstractPhenotype.AbstractPhenotype" title="TASSELpy.net.maizegenetics.trait.AbstractPhenotype.AbstractPhenotype"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.net.maizegenetics.trait.AbstractPhenotype.AbstractPhenotype</span></tt></a></p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getColumnCount</span></tt>(*args)</td>
+<td>Gets the number of columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getData</span></tt>(*args)</td>
+<td>Gets data from the phenotype</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getElementCount</span></tt>(*args)</td>
+<td>Gets the total number of elements in the dataset</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfTaxa</span></tt>(*args)</td>
+<td>Gets the number of taxa or rows in this data set</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfTraits</span></tt>(*args)</td>
+<td>Gets the number of traits or columns in this data set</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRow</span></tt>(*args)</td>
+<td>Returns specified row</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getRowCount</span></tt>(*args)</td>
+<td>Gets the number of rows</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableColumnNames</span></tt>(*args)</td>
+<td>Gets the names of the columns</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTableTitle</span></tt>(*args)</td>
+<td>Gets the title of the table</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxa</span></tt>(*args)</td>
+<td>Get the taxa in this data set in order by row number</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTaxon</span></tt>(*args)</td>
+<td>Gets a taxon</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTrait</span></tt>(*args)</td>
+<td>Gets a trait</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getTraits</span></tt>(*args)</td>
+<td>Gets the traits or columns of this dataset, in order by column number</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getValueAt</span></tt>(*args)</td>
+<td>Returns value at given row and column</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">setData</span></tt>(*args)</td>
+<td>Sets the double value for this trait and taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">whichTaxon</span></tt>(*args)</td>
+<td>Gets the index of a taxon</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">whichTrait</span></tt>(*args)</td>
+<td>Gets the index of a trait</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.SimplePhenotype.SimplePhenotype.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/SimplePhenotype.html#SimplePhenotype.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.SimplePhenotype.SimplePhenotype.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiates a SimplePhenotype object</p>
+<p>Signatures:</p>
+<p>SimplePhenotype(TaxaList taxa, List&lt;Trait&gt; traits, DoubleMatrix2D data)
+SimplePhenotype(TaxaList taxa, List&lt;Trait&gt; traits, double[][] data)
+SimplePhenotype(TaxaList taxa, List&lt;Trait&gt; traits)</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.trait.Trait">
+<span id="tasselpy-net-maizegenetics-trait-trait-module"></span><h2>TASSELpy.net.maizegenetics.trait.Trait module<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.trait.Trait" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.trait.Trait.</tt><tt class="descname">Trait</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="TASSELpy.java.lang.html#TASSELpy.java.lang.Comparable.Comparable" title="TASSELpy.java.lang.Comparable.Comparable"><tt class="xref py py-class docutils literal"><span class="pre">TASSELpy.java.lang.Comparable.Comparable</span></tt></a></p>
+<p>Data descriptor that contains information about a trait, factor, covariate, 
+or other item for which data may be stored. It may contain information 
+about the experimental unit on which data was collected (factors). It may contain information 
+about how the data is to be used in an analysis. Data values will be stored as doubles. 
+In the case of discrete variables, the value stored will be 0, 1, ... indicating the variable level. 
+For discrete variables, labels or names corresponding to each variable level would be stored as well.</p>
+<p class="rubric">Methods</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.addFactor" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.addFactor"><tt class="xref py py-obj docutils literal"><span class="pre">addFactor</span></tt></a>(*args)</td>
+<td>Adds a new factor and its value or changes the value of an existing factor.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">clone</span></tt>(*args)</td>
+<td>Creates and returns a copy of this object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">compareTo</span></tt>(*args)</td>
+<td>Compares this object with the specified object for order.</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">equals</span></tt>(*args)</td>
+<td>Indicates whether some other object is &#8220;equal to&#8221; this one</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">getArray</span></tt>(size)</td>
+<td>Gets an empty wrapped java array that can accept the type of the wrapped</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">getDblArray</span></tt>(rows[,&nbsp;cols])</td>
+<td>Gets an empty wrapped java array that can accept the type of other wrapped java arrays: i.e.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorNames" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorNames"><tt class="xref py py-obj docutils literal"><span class="pre">getFactorNames</span></tt></a>(*args)</td>
+<td>Gets the names for the factors for this trait.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorValue" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorValue"><tt class="xref py py-obj docutils literal"><span class="pre">getFactorValue</span></tt></a>(*args)</td>
+<td>Gets a factor value</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getInstance" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getInstance"><tt class="xref py py-obj docutils literal"><span class="pre">getInstance</span></tt></a>(*args)</td>
+<td>Gets a copy of an existing trait</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabel" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabel"><tt class="xref py py-obj docutils literal"><span class="pre">getLevelLabel</span></tt></a>(*args)</td>
+<td>Gets the name of a level</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabels" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabels"><tt class="xref py py-obj docutils literal"><span class="pre">getLevelLabels</span></tt></a>(*args)</td>
+<td>Gets the level labels</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getName" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getName"><tt class="xref py py-obj docutils literal"><span class="pre">getName</span></tt></a>(*args)</td>
+<td>Gets the name by which the trait is identified</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfFactors" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfFactors"><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfFactors</span></tt></a>(*args)</td>
+<td>Gets the number of factors for this trait</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfLevels" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfLevels"><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfLevels</span></tt></a>(*args)</td>
+<td>Gets the number of levels</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfProperties" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfProperties"><tt class="xref py py-obj docutils literal"><span class="pre">getNumberOfProperties</span></tt></a>(*args)</td>
+<td>Gets the number of entries in the property map</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperties" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperties"><tt class="xref py py-obj docutils literal"><span class="pre">getProperties</span></tt></a>(*args)</td>
+<td>The entry set for this trait&#8217;s property map</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperty" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperty"><tt class="xref py py-obj docutils literal"><span class="pre">getProperty</span></tt></a>(*args)</td>
+<td>Gets the value of this property, null if property does not exist</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getPropertyNames" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getPropertyNames"><tt class="xref py py-obj docutils literal"><span class="pre">getPropertyNames</span></tt></a>(*args)</td>
+<td>Gets all the property names for this trait</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getType" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.getType"><tt class="xref py py-obj docutils literal"><span class="pre">getType</span></tt></a>(*args)</td>
+<td>Gets the type of this trait</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.hasLevels" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.hasLevels"><tt class="xref py py-obj docutils literal"><span class="pre">hasLevels</span></tt></a>(*args)</td>
+<td>Returns whether the trait has levels</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">hashCode</span></tt>(*args)</td>
+<td>Returns a hash code vlaue for the object</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.isDiscrete" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.isDiscrete"><tt class="xref py py-obj docutils literal"><span class="pre">isDiscrete</span></tt></a>(*args)</td>
+<td>Gets whether this trait is discrete</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.setLevelLabels" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.setLevelLabels"><tt class="xref py py-obj docutils literal"><span class="pre">setLevelLabels</span></tt></a>(*args)</td>
+<td>Sets the level labels</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.setProperty" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.setProperty"><tt class="xref py py-obj docutils literal"><span class="pre">setProperty</span></tt></a>(*args)</td>
+<td>Adds a property or sets a new value for an existing property</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.setType" title="TASSELpy.net.maizegenetics.trait.Trait.Trait.setType"><tt class="xref py py-obj docutils literal"><span class="pre">setType</span></tt></a>(*args)</td>
+<td>Sets the type of this trait</td>
+</tr>
+<tr class="row-even"><td><tt class="xref py py-obj docutils literal"><span class="pre">toString</span></tt>(*args)</td>
+<td>Returns a string representation of the object</td>
+</tr>
+<tr class="row-odd"><td><tt class="xref py py-obj docutils literal"><span class="pre">wrap_existing_array</span></tt>(arr_instance)</td>
+<td>Wraps a java array of this class&#8217;s type</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for Trait</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>Trait</em> (String <strong>name</strong>, boolean <strong>isDiscrete</strong>, String <strong>type</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>String</em>) &#8211; this trait</li>
+<li><strong>isDicrete</strong> &#8211; true if this trait is discrete, false if it is continuous</li>
+<li><strong>type</strong> (<em>String</em>) &#8211; the trait type; data, covariate, factor, marker, or exclude</li>
+<li><strong>properties</strong> &#8211; a property map, which can be null</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.addFactor">
+<tt class="descname">addFactor</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.addFactor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.addFactor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new factor and its value or changes the value of an existing factor.
+A factor might be an environment or a rep number</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>addFactor</em> (String <strong>name</strong>, String <strong>value</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>String</em>) &#8211; this factor&#8217;s name</li>
+<li><strong>value</strong> (<em>String</em>) &#8211; the factor&#8217;s value for this trait</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorNames">
+<tt class="descname">getFactorNames</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getFactorNames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorNames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the names for the factors for this trait. Returns null if
+there are no factors</p>
+<p>Signatures:</p>
+<p>ArrayList&lt;String&gt; getFactorNames()</p>
+<p>Returns:</p>
+<p>Names for the factors for this trait. Returns null if there
+are no factors</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorValue">
+<tt class="descname">getFactorValue</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getFactorValue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getFactorValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a factor value</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getFactorValue</em> (String <strong>factorName</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The value of this factor or null if the factor does not exist</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getInstance">
+<em class="property">static </em><tt class="descname">getInstance</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getInstance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a copy of an existing trait</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getInstance</em> (Trait <strong>trait</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>trait</strong> (<em>Trait</em>) &#8211; the trait to be copied</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A copy of the trait</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Trait</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabel">
+<tt class="descname">getLevelLabel</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getLevelLabel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name of a level</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getLevelLabel</em> (int <strong>level</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>level</strong> (<em>int</em>) &#8211; the level number (0,1,...)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The name of this level</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabels">
+<tt class="descname">getLevelLabels</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getLevelLabels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getLevelLabels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the level labels</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getLevelLabels</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">For a discrete trait, the names of the levels or values this trait can take</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String[]</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getName">
+<tt class="descname">getName</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the name by which the trait is identified</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getName</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Name by which the trait is identified</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfFactors">
+<tt class="descname">getNumberOfFactors</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getNumberOfFactors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfFactors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of factors for this trait</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getNumberOfFactors</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of factors for this trait</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfLevels">
+<tt class="descname">getNumberOfLevels</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getNumberOfLevels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfLevels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of levels</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getNumberOfLevels</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of levels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfProperties">
+<tt class="descname">getNumberOfProperties</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getNumberOfProperties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getNumberOfProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the number of entries in the property map</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getNumberOfProperties</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The number of entries in the property map</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperties">
+<tt class="descname">getProperties</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getProperties"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>The entry set for this trait&#8217;s property map</p>
+<p>Signatures:</p>
+<p>Set&lt;Entry&lt;String, Object&gt;&gt; getProperties()</p>
+<p>Returns:</p>
+<p>The entry Set for this trait&#8217;s property map</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperty">
+<tt class="descname">getProperty</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getProperty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the value of this property, null if property does not exist</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getProperty</em> (String <strong>propertyName</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>propertyName</strong> (<em>String</em>) &#8211; The name of a property for this trait</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The value of this property null if the property does not exist</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">Object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getPropertyNames">
+<tt class="descname">getPropertyNames</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getPropertyNames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getPropertyNames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets all the property names for this trait</p>
+<p>Signatures:</p>
+<p>Set&lt;String&gt; getPropertyNames()</p>
+<p>Returns:</p>
+<p>All the property names for this trait</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.getType">
+<tt class="descname">getType</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.getType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.getType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the type of this trait</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>getType</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The type of this trait: data, covariate, factor, marker, or exclude</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">String</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.hasLevels">
+<tt class="descname">hasLevels</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.hasLevels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.hasLevels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the trait has levels</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>hasLevels</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if the trait has levels</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.isDiscrete">
+<tt class="descname">isDiscrete</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.isDiscrete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.isDiscrete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets whether this trait is discrete</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>isDiscrete</em> ()</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">true if this trait is discrete, false if it is continuous</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.setLevelLabels">
+<tt class="descname">setLevelLabels</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.setLevelLabels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.setLevelLabels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the level labels</p>
+<p>Signatures:</p>
+<p>void setLevelLabels(String[] levelLabels)</p>
+<p>Arguments:</p>
+<dl class="docutils">
+<dt>levelLabels &#8211; for a discrete trait, the names of the levels or values this trait</dt>
+<dd>can take</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.setProperty">
+<tt class="descname">setProperty</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.setProperty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.setProperty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a property or sets a new value for an existing property</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><p class="first"><em>setProperty</em> (String <strong>propertyName</strong>, Object <strong>value</strong>)</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>propertyName</strong> (<em>String</em>) &#8211; a name</li>
+<li><strong>value</strong> (<em>Object</em>) &#8211; The value for this property</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.Trait.setType">
+<tt class="descname">setType</tt><big>(</big><em>*args</em><big>)</big><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#Trait.setType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.Trait.setType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the type of this trait</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Signature:</th><td class="field-body"><em>setType</em> (String <strong>type</strong>)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><strong>type</strong> (<em>String</em>) &#8211; The type of this trait: data covariate, factor, marker, or exclude</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="TASSELpy.net.maizegenetics.trait.Trait.metaTrait">
+<em class="property">class </em><tt class="descclassname">TASSELpy.net.maizegenetics.trait.Trait.</tt><tt class="descname">metaTrait</tt><a class="reference internal" href="_modules/TASSELpy/net/maizegenetics/trait/Trait.html#metaTrait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#TASSELpy.net.maizegenetics.trait.Trait.metaTrait" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-TASSELpy.net.maizegenetics.trait">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-TASSELpy.net.maizegenetics.trait" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">TASSELpy.net.maizegenetics.trait package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.trait.AbstractPhenotype">TASSELpy.net.maizegenetics.trait.AbstractPhenotype module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.trait.Phenotype">TASSELpy.net.maizegenetics.trait.Phenotype module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.trait.SimplePhenotype">TASSELpy.net.maizegenetics.trait.SimplePhenotype module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.trait.Trait">TASSELpy.net.maizegenetics.trait.Trait module</a></li>
+<li><a class="reference internal" href="#module-TASSELpy.net.maizegenetics.trait">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/TASSELpy.net.maizegenetics.trait.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">TASSELpy 0.1.dev-20140723133829 documentation</a> &raquo;</li>
+          <li><a href="TASSELpy.html" >TASSELpy package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.html" >TASSELpy.net package</a> &raquo;</li>
+          <li><a href="TASSELpy.net.maizegenetics.html" >TASSELpy.net.maizegenetics package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Eli Rodgers-Melnick.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
