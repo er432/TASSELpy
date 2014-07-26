@@ -3,7 +3,13 @@
 
 TASSELpy is a Python API for the Java program TASSEL 5. 
 
-Dependencies:
+Documentation: http://pythonhosted.org/tasselpy
+
+Download: https://pypi.python.org/pypi/tasselpy
+
+Dependencies: 
+
+numpy
 
 javabridge (http://pythonhosted.org/javabridge)
 
