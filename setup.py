@@ -5,8 +5,9 @@ import sys
 
 sys.path.insert(0,'TASSELpy')
 import release
+import TASSELpy
 sys.path.pop(0)
-version = release.write_versionfile()
+version = TASSELpy.__version__
 packages = ['TASSELpy',
             'TASSELpy.java',
             'TASSELpy.java.lang',
