@@ -58,6 +58,7 @@ setup(
     name='tasselpy',
     version='0.15',
     author='Eli Rodgers-Melnick',
+    author_email='er432@cornell.edu',
     description='A Python API for TASSEL',
     url='https://github.com/er432/TASSELpy',
     platforms=['Linux','Mac OSX', 'Windows', 'Unix'],
