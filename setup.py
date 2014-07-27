@@ -34,6 +34,7 @@ packages = ['TASSELpy',
             'TASSELpy.net.maizegenetics.taxa.distance',
             'TASSELpy.net.maizegenetics.trait',
             'TASSELpy.net.maizegenetics.util',
+            'TASSELpy.utils',
             'TASSELpy.test',
             'TASSELpy.test.java',
             'TASSELpy.test.java.lang',
@@ -52,11 +53,12 @@ packages = ['TASSELpy',
             'TASSELpy.test.net.maizegenetics.taxa',
             'TASSELpy.test.net.maizegenetics.taxa.distance',
             'TASSELpy.test.net.maizegenetics.trait',
-            'TASSELpy.test.net.maizegenetics.util'
+            'TASSELpy.test.net.maizegenetics.util',
+            'TASSELpy.test.utils'
            ]
 setup(
     name='tasselpy',
-    version='0.15',
+    version='0.16',
     author='Eli Rodgers-Melnick',
     author_email='er432@cornell.edu',
     description='A Python API for TASSEL',
@@ -76,6 +78,7 @@ setup(
         'Topic :: Scientific/Engineering :: Information Analysis'
     ],
     packages=packages,
+    package_data={'TASSELpy':['data/*.txt','lib/*']},
     license='BSD'
     )
 # setup(
