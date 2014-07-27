@@ -1,0 +1,11 @@
+include MANIFEST.in
+include setup.py
+include INSTALL.txt
+include LICENSE.txt
+
+recursive-include examples *.py *.edgelist *.mbox *.gz *.bz2 *.zip
+recursive-include doc *.py *.rst Makefile *.html *.png *.txt *.css
+
+global-exclude *~
+global-exclude *.pyc
+global-exclude .svn
