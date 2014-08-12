@@ -8,23 +8,24 @@ from TASSELpy.utils.helper import make_sig
 from TASSELpy.javaObj import javaArray
 from TASSELpy.utils.Overloading import javaConstructorOverload, javaOverload
 from TASSELpy.utils.Overloading import javaGenericOverload
-import TASSELpy.net.maizegenetics.plugindef.Plugin
+from . import Plugin
 
 ## Dictionary to hold java imports
 java_imports = {'Class':'java/lang/Class',
                 'DataSet':'net/maizegenetics/plugindef/DataSet',
                 'Datum':'net/maizegenetics/plugindef/Datum',
                 'List':'java/util/List',
-                'Plugin':'net/maizegenetics/plugindef/Plugin'}
+                'Plugin':'net/maizegenetics/plugindef/Plugin',
+                'String':'java/lang/String'}
 
 class DataSet(Object):
     """ This is a set of Datum """
     _java_name = java_imports['DataSet']
     @javaConstructorOverload(java_imports['DataSet'],
                              (make_sig([java_imports['List'],java_imports['Plugin']],'void'),
-                               (List, TASSELpy.net.maizegenetics.plugindef.Plugin.Plugin)),
+                               (List, Plugin)),
                              (make_sig([java_imports['Datum'],java_imports['Plugin']],'void'),
-                               (Datum, TASSELpy.net.maizegenetics.plugindef.Plugin.Plugin)),
+                               (Datum, Plugin)),
                              (make_sig([java_imports['Datum']+'[]',java_imports['Plugin']],'void'),
                                javaArray.get_array_type(Datum)))
     def __init__(self, *args, **kwargs):
@@ -99,7 +100,7 @@ class DataSet(Object):
         pass
     @javaOverload("getCreator",
                   (make_sig([],java_imports['Plugin']),(),
-                   lambda x: TASSELpy.net.maizegenetics.plugindef.Plugin.Plugin(obj=x)))
+                   lambda x: Plugin(obj=x)))
     def getCreator(self, *args):
         """ Gets the creator of the dataset
 
@@ -189,3 +190,4 @@ class DataSet(Object):
         The list of data to keep
         """
         pass
+

@@ -34,7 +34,7 @@ class Class(Object):
         super(Class, self).__init__(*args, **kwargs)
     @javaGenericOverload("cast",
                          (make_sig([java_imports['Object']],java_imports['Object']),
-                          (Object,)'/@1/'))
+                          (Object,),'/@1/'))
     def cast(self, *args):
         """ Casts an object to the class or interface represented by this Class
         object
@@ -73,7 +73,7 @@ class Class(Object):
         """
         pass
     @javaOverload("isPrimitive",
-                  (make_sig([],None),(),None))
+                  (make_sig([],'boolean'),(),None))
     def isPrimitive(self, *args):
         """ Determines if the specified Class object represents a primitive type.
 

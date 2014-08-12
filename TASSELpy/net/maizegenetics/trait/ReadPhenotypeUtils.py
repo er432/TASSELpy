@@ -46,9 +46,9 @@ class ReadPhenotypeUtils(Object):
         """
         pass
     @javaStaticOverload(java_imports["ReadPhenotypeUtils"], "doubleFromCharacterTrait",
-                        make_sig([java_imports['Trait'], java_imports['String']+'[]'],
+                        (make_sig([java_imports['Trait'], java_imports['String']+'[]'],
                                  'double[]'), (Trait, javaArray.get_array_type(String)),
-                                 lambda x: javaPrimativeArray.make_array_from_obj('double',x))
+                                 lambda x: javaPrimativeArray.make_array_from_obj('double',x)))
     def doubleFromCharacterTrait(*args):
         """ Converts a character trait to doubles
 

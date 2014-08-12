@@ -8,6 +8,8 @@ import re
 
 java_imports = {'String':'java/lang/String'}
 str_class = javabridge.get_env().find_class(java_imports['String'])
+to_java_string = lambda x: javabridge.make_instance(java_imports['String'],
+                                                    "(Ljava/lang/String;)V", x)
 ## Define numpy types that need to be converted to java arrays
 def make_string_array(arr):
     java_arr = javabridge.get_env().make_object_array(len(arr),str_class)
@@ -231,14 +233,20 @@ class javaStaticOverload(object):
                 self.return_func_dict[pyargs] = lambda x: x
             else:
                 self.return_func_dict[pyargs] = py_return
+    def _arg_convert(self, x):
+        if isinstance(x, TASSELpy.javaObj.javaObj):
+            return x.o
+        elif isinstance(x, str):
+            return to_java_string(x)
+        else:
+            return x
     def __call__(self, f):
         def wrapped_f(*args):
             # Get the right function based on argument types
             key = tuple(map(type,args))
             # Convert any wrapped java items to their java objects
             args = list(args)
-            args = map(lambda x: (x.o if isinstance(x,TASSELpy.javaObj.javaObj) else x),
-                               args)
+            args = map(self._arg_convert, args)
             # Convert any numpy arrays to their java arrays
             if np.ndarray in key:
                 args = map(lambda x: array_conversion_func_dict[x.dtype.type](x) \

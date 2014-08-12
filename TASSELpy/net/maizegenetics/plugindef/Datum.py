@@ -1,4 +1,4 @@
-from TASSELpy.lang.Object import Object
+from TASSELpy.java.lang.Object import Object
 from TASSELpy.java.lang.String import metaString
 from TASSELpy.utils.helper import make_sig
 from TASSELpy.utils.Overloading import javaOverload, javaConstructorOverload

@@ -3,9 +3,11 @@ from TASSELpy.java.lang.String import String, metaString
 from TASSELpy.net.maizegenetics.plugindef.PluginParameter import PluginParameter
 from TASSELpy.java.lang.Comparable import Comparable
 from TASSELpy.java.lang.Enum import Enum
-from TASSELpy.net.maizegenetics.plugindef.DataSet import DataSet
 from TASSELpy.utils.Overloading import javaConstructorOverload, javaOverload
 from TASSELpy.utils.helper import make_sig
+from TASSELpy.javaObj import javaArray
+from abc import ABCMeta
+from . import DataSet
 
 ## Dictionary to hold java imports
 java_imports = {'Comparable':'java/lang/Comparable',
@@ -15,6 +17,15 @@ java_imports = {'Comparable':'java/lang/Comparable',
                 'Plugin':'net/maizegenetics/plugindef/Plugin',
                 'PluginParameter':'net/maizegenetics/plugindef/PluginParameter',
                 'String':'java/lang/String'}
+
+class metaPlugin:
+    __metaclass__ = ABCMeta
+    @classmethod
+    def __subclasshook__(cls, C):
+        if issubclass(C, Plugin):
+            return True
+        else:
+            return False
 
 class Plugin(Object):
     _java_name = java_imports['Plugin']
@@ -125,7 +136,7 @@ class Plugin(Object):
         """
         pass
     @javaOverload("receiveInput",
-                  (make_sig([java_imports['Plugin']],'void'),(Plugin,),None))
+                  (make_sig([java_imports['Plugin']],'void'),(metaPlugin,),None))
     def receiveInput(self, *args):
         """ Sets up this plugin to receive input from another plugin
 
@@ -197,3 +208,39 @@ class Plugin(Object):
         description
         """
         pass
+
+# TODO: Get the following working:
+"""
+from TASSELpy.TASSELbridge import TASSELbridge
+TASSELbridge.start()
+from TASSELpy.data.data_constants import *
+from TASSELpy.net.maizegenetics.dna.snp.ImportUtils import ImportUtils
+from TASSELpy.net.maizegenetics.dna.snp.GenotypeTableUtils import GenotypeTableUtils
+from TASSELpy.net.maizegenetics.trait.ReadPhenotypeUtils import ReadPhenotypeUtils
+from TASSELpy.net.maizegenetics.trait.FilterPhenotype import FilterPhenotype
+from TASSELpy.utils.primativeArray import javaPrimativeArray
+from TASSELpy.java.util.LinkedList import LinkedList
+from TASSELpy.net.maizegenetics.plugindef.Datum import Datum
+from TASSELpy.net.maizegenetics.plugindef.DataSet import DataSet
+from TASSELpy.net.maizegenetics.analysis.data.IntersectionAlignmentPlugin import IntersectionAlignmentPlugin
+import numpy as np
+
+inputAlign = ImportUtils.readFromHapmap(HAPMAP_FILE)
+traits = ReadPhenotypeUtils.readGenericFile(TRAITS_FILE)
+pop = ReadPhenotypeUtils.readGenericFile(POP_STRUCTURE_FILE)
+
+useTraits = javaPrimativeArray.make_array('int',1)
+useTraits[0] = 2
+eardia = FilterPhenotype.getInstance(traits, None, useTraits)
+a = GenotypeTableUtils.removeSitesOutsideRange(inputAlign, 0, 9)
+b = GenotypeTableUtils.removeSitesBasedOnFreqIgnoreMissing(a, np.float64(0.1),
+                                                           np.float64(1), 100)
+dataList = LinkedList(generic=(Datum,))
+dataList.add(Datum('trait',eardia,'eardia'))
+dataList.add(Datum('population',pop,'pop'))
+dataList.add(Datum('alignment',b,'genotypes'))
+
+ds = DataSet(dataList, None)
+iap = IntersectionAlignmentPlugin(None, False)
+joined = iap.performFunction(ds)
+"""

@@ -11,7 +11,7 @@ from TASSELpy.java.lang.Integer import metaInteger
 from TASSELpy.java.lang.Double import metaDouble
 from TASSELpy.java.lang.Byte import metaByte
 
-java_imports = {'BitSet':,'net/maizegenetics/util/BitSet',
+java_imports = {'BitSet':'net/maizegenetics/util/BitSet',
                 'GenotypeTable':'net/maizegenetics/dna/snp/GenotypeTable',
                 'GenotypeTableUtils':'net/maizegenetics/dna/snp/GenotypeTableUtils',
                 'Object':'java/lang/Object',
@@ -26,7 +26,7 @@ class GenotypeTableUtils(Object):
     @javaStaticOverload(java_imports['GenotypeTableUtils'],'getAllelesSortedByFrequency',
                         (make_sig(['byte[]'], 'int[][]'),(meta_byte_array,),
                          lambda x: javaPrimativeArray.get_array_type('int').wrap_existing_array(x)),
-                         (make_sig(['byte[]','int'],'int[][]'),(meta_byte_array, metaInteger),
+                         (make_sig(['byte[][]','int'],'int[][]'),(meta_byte_array, metaInteger),
                           lambda x: javaPrimativeArray.get_array_type('int').wrap_existing_array(x)),
                          (make_sig([java_imports['String']+'[][]','int'],java_imports['Object']+'[][]'),
                           (javaArray.get_array_type(javaArray.get_array_type(String)), metaInteger),
