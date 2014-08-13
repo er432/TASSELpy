@@ -6,7 +6,7 @@ from TASSELpy.java.lang.Boolean import Boolean, metaBoolean
 from TASSELpy.java.lang.Double import metaDouble
 from TASSELpy.java.lang.Integer import metaInteger
 from TASSELpy.java.lang.Long import metaLong
-from TASSELpy.java.lang.String import String
+from TASSELpy.java.lang.String import String, metaString
 
 java_imports = {'FixedEffectLMPlugin':'net/maizegenetics/analysis/association/FixedEffectLMPlugin',
                 'Frame':'java/awt/Frame',
