@@ -13,7 +13,7 @@ java_imports = {'FixedEffectLMPlugin':'net/maizegenetics/analysis/association/Fi
 
 class FixedEffectLMPlugin(AbstractPlugin):
     _java_name = java_imports['FixedEffectLMPlugin']
-    @javaConstructorOverload(java_imports['FixedEffectLMPLugin'],
+    @javaConstructorOverload(java_imports['FixedEffectLMPlugin'],
                              (make_sig([java_imports['Frame'],'boolean'],'void'),
                               (Object,metaBoolean)))    
     def __init__(self, *args, **kwargs):
