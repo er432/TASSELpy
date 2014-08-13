@@ -9,6 +9,7 @@ from TASSELpy.java.lang.Long import metaLong
 from TASSELpy.java.lang.String import String
 
 java_imports = {'FixedEffectLMPlugin':'net/maizegenetics/analysis/association/FixedEffectLMPlugin',
+                'Frame':'java/awt/Frame',
                 'String':'java/lang/String'}
 
 class FixedEffectLMPlugin(AbstractPlugin):
