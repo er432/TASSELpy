@@ -111,12 +111,26 @@ class javaOverload(object):
         self.func_dict = signature_dict()
         self.return_func_dict = signature_dict()
         for sig, pyargs, py_return in args:
+            pyargs = tuple(map(self._process_pyarg, pyargs))
             self.func_dict[pyargs] = javabridge.make_method(func_name,
                                                     sig)
             if py_return is None:
                 self.return_func_dict[pyargs] = lambda x: x
             else:
-                self.return_func_dict[pyargs] = py_return
+                self.return_func_dict[pyargs] = self._process_py_return(py_return)
+    def _process_pyarg(self, x):
+        if isinstance(x, tuple):
+            #return getattr(__import__(x[0],globals(),locals(),[x[1]]),x[1])
+            return getattr(__import__(x[0],globals(),locals()),x[1])
+        else:
+            return x
+    def _process_py_return(self, x):
+        if isinstance(x, tuple):
+            #func = getattr(__import__(x[0],globals(),locals(),[x[1]]),x[1]).__init__
+            func = getattr(__import__(x[0],globals(),locals()),x[1]).__init__
+            return lambda y: func(obj = y)
+        else:
+            return x
     def __call__(self, f):
         @wraps(f)
         def wrapped_f(*args):
@@ -161,7 +175,14 @@ class javaConstructorOverload(object):
         ## Create signature dictionary of {(python args) -> function}
         self.func_dict = signature_dict()
         for sig, pyargs in args:
+            pyargs = tuple(map(self._process_pyarg, pyargs))
             self.func_dict[pyargs] = javabridge.make_new(self.class_name,sig)
+    def _process_pyarg(self, x):
+        if isinstance(x, tuple):
+            #return getattr(__import__(x[0],globals(),locals(),[x[1]]),x[1])
+            return getattr(__import__(x[0],globals(),locals()),x[1])
+        else:
+            return x
     def __call__(self, f):
         @wraps(f)
         def wrapped_f(*args, **kwargs):
