@@ -84,7 +84,7 @@ class genericJavaObj(javaObj):
     """
     def __init__(self, *args, **kwargs):
         """
-        Sets the type of elements that would be given by angel brackets in java
+        Sets the type of elements that would be given by angle brackets in java
         i.e. MyClass<String> myobj
 
         Arguments:

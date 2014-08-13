@@ -142,7 +142,16 @@ class javaOverload(object):
                 args[1:] = map(lambda x: (x.o if isinstance(x,TASSELpy.javaObj.javaObj) else x),
                                    args[1:])
                 return_val = self.func_dict[key](*args)
-                return self.return_func_dict[key](return_val)
+                if self.func_name != 'getClass':
+                    return self.return_func_dict[key](return_val)
+                else:
+                    # Special method for getClass to put in generic type
+                    return_obj = self.return_func_dict[key](return_val)
+                    if not hasattr(return_obj, 'generic_dict'):
+                        return return_obj
+                    else:
+                        return_obj.generic_dict['/@1/'] = type(args[0])
+                        return return_obj
             else:
                 return_val = self.func_dict[()](*args)
                 return self.return_func_dict[()](return_val)
@@ -190,7 +199,10 @@ class javaConstructorOverload(object):
                 ## If wrapping existing java object, put in
                 # raw Java object as attribute so that methods can
                 # find it
-                args[0].o = kwargs['obj']
+                if isinstance(kwargs['obj'], unicode):
+                    args[0].o = to_java_string(kwargs['obj'])
+                else:
+                    args[0].o = kwargs['obj']
             elif len(self.func_dict) == 0:
                 ## Skip if there are no actual java functions being wrapped
                 pass

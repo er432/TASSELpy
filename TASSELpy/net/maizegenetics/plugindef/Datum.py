@@ -2,8 +2,10 @@ from TASSELpy.java.lang.Object import Object
 from TASSELpy.java.lang.String import metaString
 from TASSELpy.utils.helper import make_sig
 from TASSELpy.utils.Overloading import javaOverload, javaConstructorOverload
+from TASSELpy.java.lang.Class import Class
 
-java_imports = {'Datum':'net/maizegenetics/plugindef/Datum',
+java_imports = {'Class':'java/lang/Class',
+                'Datum':'net/maizegenetics/plugindef/Datum',
                 'Object':'java/lang/Object',
                 'String':'java/lang/String'}
 
@@ -84,5 +86,20 @@ class Datum(Object):
         Returns:
 
         The comment for the datum
+        """
+        pass
+    @javaOverload("getDataType",
+                  (make_sig([],java_imports['Class']),(),
+                   lambda x: Class(obj=x)))
+    def getDataType(self, *args):
+        """ Gets the class of the datum
+
+        Signatures:
+
+        Class getDataType()
+
+        Returns:
+
+        The Class of the Data
         """
         pass

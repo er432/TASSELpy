@@ -33,6 +33,13 @@ class TableReportTest(unittest.TestCase):
         list_builder.add(Taxon('second'))
         taxa_list = list_builder.build()
         cls.mat = DistanceMatrix(primative_mat, taxa_list)
+    def test_toDict(self):
+        if debug: print("Testing toDict")
+        theDict = self.mat.toDict()
+        self.assertEquals(len(theDict),3)
+        self.assertEquals(theDict['Taxa'],['first','second'])
+        self.assertEquals(theDict['second'],[0.25,0.0])
+        self.assertEquals(theDict['first'],[0.0,0.25])
     def test_getTableColumnNames(self):
         if debug: print "Testing getTableColumnNames with DistanceMatrix"
         names = self.mat.getTableColumnNames()

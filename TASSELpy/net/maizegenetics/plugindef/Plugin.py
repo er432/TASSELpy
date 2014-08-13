@@ -391,38 +391,3 @@ class Plugin(Object):
         """
         pass
 
-# TODO: Get the following working:
-"""
-from TASSELpy.TASSELbridge import TASSELbridge
-TASSELbridge.start()
-from TASSELpy.data.data_constants import *
-from TASSELpy.net.maizegenetics.dna.snp.ImportUtils import ImportUtils
-from TASSELpy.net.maizegenetics.dna.snp.GenotypeTableUtils import GenotypeTableUtils
-from TASSELpy.net.maizegenetics.trait.ReadPhenotypeUtils import ReadPhenotypeUtils
-from TASSELpy.net.maizegenetics.trait.FilterPhenotype import FilterPhenotype
-from TASSELpy.utils.primativeArray import javaPrimativeArray
-from TASSELpy.java.util.LinkedList import LinkedList
-from TASSELpy.net.maizegenetics.plugindef.Datum import Datum
-from TASSELpy.net.maizegenetics.plugindef.DataSet import DataSet
-from TASSELpy.net.maizegenetics.analysis.data.IntersectionAlignmentPlugin import IntersectionAlignmentPlugin
-import numpy as np
-
-inputAlign = ImportUtils.readFromHapmap(HAPMAP_FILE)
-traits = ReadPhenotypeUtils.readGenericFile(TRAITS_FILE)
-pop = ReadPhenotypeUtils.readGenericFile(POP_STRUCTURE_FILE)
-
-useTraits = javaPrimativeArray.make_array('int',1)
-useTraits[0] = 2
-eardia = FilterPhenotype.getInstance(traits, None, useTraits)
-a = GenotypeTableUtils.removeSitesOutsideRange(inputAlign, 0, 9)
-b = GenotypeTableUtils.removeSitesBasedOnFreqIgnoreMissing(a, np.float64(0.1),
-                                                           np.float64(1), 100)
-dataList = LinkedList(generic=(Datum,))
-dataList.add(Datum('trait',eardia,'eardia'))
-dataList.add(Datum('population',pop,'pop'))
-dataList.add(Datum('alignment',b,'genotypes'))
-
-ds = DataSet(dataList, None)
-iap = IntersectionAlignmentPlugin(None, False)
-joined = iap.performFunction(ds)
-"""

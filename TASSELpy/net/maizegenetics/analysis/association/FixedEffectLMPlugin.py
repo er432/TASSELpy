@@ -116,3 +116,85 @@ class FixedEffectLMPlugin(AbstractPlugin):
         seed -- the seed
         """
         pass
+
+class easy_GLM(FixedEffectLMPlugin):
+    """ Subclass of FixedEffectLMPlugin that allows for easy running of GLMs
+    """
+    def __init__(self, outputFile = None, restrictOutput = False, maxP = None,
+                 permute = False, numberOfPermutations = 1000, seed = None):
+        """ Instantiates a GLM analysis
+
+        Parameters
+        ----------
+        outputFile : str, optional
+            A file for outputting results
+        restrictOutput : boolean, optional
+            Whether to restrict output
+        maxP : double, optional
+            A maximum p-value
+        permute : boolean, optional
+            Whether to run permutations
+        numberOfPermutations : int, optional
+            Number of permutations to perform (if performing permutations)
+        seed : int, optional
+            Random seed if reproducible permutations desired
+        """
+        # Call the java constructor
+        super(easy_GLM, self).__init__(None, False)
+        # Set the parameters
+        if outputFile:
+            self.setOutputFile(outputFile)
+        self.setRestrictOutput(restrictOutput)
+        if maxP:
+            self.setMaxP(maxP)
+        self.setPermute(permute)
+        self.setNumberOfPermutations(numberOfPermutations)
+        if seed:
+            self.setRandomizer(seed)
+    # TODO: Finish easy_GLM class
+
+"""
+    from TASSELpy.TASSELbridge import TASSELbridge
+TASSELbridge.start()
+from TASSELpy.data.data_constants import *
+from TASSELpy.net.maizegenetics.dna.snp.ImportUtils import ImportUtils
+from TASSELpy.net.maizegenetics.dna.snp.GenotypeTableUtils import GenotypeTableUtils
+from TASSELpy.net.maizegenetics.trait.ReadPhenotypeUtils import ReadPhenotypeUtils
+from TASSELpy.net.maizegenetics.trait.FilterPhenotype import FilterPhenotype
+from TASSELpy.utils.primativeArray import javaPrimativeArray
+from TASSELpy.java.util.LinkedList import LinkedList
+from TASSELpy.net.maizegenetics.plugindef.Datum import Datum
+from TASSELpy.net.maizegenetics.plugindef.DataSet import DataSet
+from TASSELpy.net.maizegenetics.analysis.data.IntersectionAlignmentPlugin import IntersectionAlignmentPlugin
+from TASSELpy.net.maizegenetics.util.TableReport import TableReport
+from TASSELpy.net.maizegenetics.trait.MarkerPhenotypeAdapter import MarkerPhenotypeAdapter
+from TASSELpy.net.maizegenetics.trait.MarkerPhenotype import MarkerPhenotype
+from TASSELpy.net.maizegenetics.trait.CombinePhenotype import CombinePhenotype
+from TASSELpy.net.maizegenetics.trait.Phenotype import Phenotype
+from TASSELpy.net.maizegenetics.trait.Trait import Trait
+from TASSELpy.net.maizegenetics.analysis.association.FixedEffectLMPlugin import FixedEffectLMPlugin
+import numpy as np
+
+inputAlign = ImportUtils.readFromHapmap(HAPMAP_FILE)
+traits = ReadPhenotypeUtils.readGenericFile(TRAITS_FILE)
+pop = ReadPhenotypeUtils.readGenericFile(POP_STRUCTURE_FILE)
+
+useTraits = javaPrimativeArray.make_array('int',1)
+useTraits[0] = 2
+eardia = FilterPhenotype.getInstance(traits, None, useTraits)
+a = GenotypeTableUtils.removeSitesOutsideRange(inputAlign, 0, 9)
+b = GenotypeTableUtils.removeSitesBasedOnFreqIgnoreMissing(a, np.float64(0.1),
+                                                           np.float64(1), 100)
+dataList = LinkedList(generic=(Datum,))
+#dataList.add(Datum('trait',eardia,'eardia'))
+dataList.add(Datum('allTraits', traits, 'traits'))
+dataList.add(Datum('population',pop,'pop'))
+dataList.add(Datum('alignment',b,'genotypes'))
+
+ds = DataSet(dataList, None)
+iap = IntersectionAlignmentPlugin(None, False)
+joined = iap.performFunction(ds)
+
+flm = FixedEffectLMPlugin(None, False)
+resultSet = flm.performFunction(joined)
+"""
