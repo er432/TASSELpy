@@ -3,10 +3,16 @@ from TASSELpy.java.lang.Integer import metaInteger
 from TASSELpy.utils.Overloading import javaOverload, javaConstructorOverload
 from TASSELpy.javaObj import javaArray
 from TASSELpy.utils.helper import make_sig
+import re
 
 java_imports = {'Object':'java/lang/Object',
                 'String':'java/lang/String',
-                'TableReport':'net/maizegenetics/util/TableReport.java'}
+                'TableReport':'net/maizegenetics/util/TableReport'}
+
+## Compile regular expressions
+int_re = re.compile(r'^-*[\d]+$')
+float_re = re.compile(r'(^-*[\d]+\.[\d]+$|^-*[\d]{1}([\.]?[\d])*(E|e)-[\d]+$)')
+
 class TableReport(Object):
     """
     Interface for classes with data that can be presented in tables
@@ -16,6 +22,27 @@ class TableReport(Object):
     @javaConstructorOverload(java_imports['TableReport'])
     def __init__(self, *args, **kwargs):
         pass
+    def toDict(self):
+        """ Outputs the table as a dictionary
+
+        Returns
+        -------
+        Dictionary of column -> (vals)
+        """
+        ncols = self.getColumnCount()
+        nrows = self.getRowCount()
+        # Create dictionary of index -> column name
+        col_dict = dict((i, str(x)) for i, x in enumerate(self.getTableColumnNames()))
+        return_dict = dict((str(x),[]) for x in self.getTableColumnNames())
+        for i in xrange(nrows):
+            for j in xrange(ncols):
+                val = str(self.getValueAt(i,j))
+                if int_re.match(val):
+                    val = int(val)
+                elif float_re.match(val):
+                    val = float(val)
+                return_dict[col_dict[j]].append(val)
+        return return_dict
     ## Gets the names of the columns
     # @return Column names
     @javaOverload("getTableColumnNames",

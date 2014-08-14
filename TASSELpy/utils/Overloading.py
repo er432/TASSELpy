@@ -6,8 +6,14 @@ import numpy as np
 import javabridge
 import re
 
+if not javabridge.get_env():
+    from TASSELpy import TASSELbridge
+    TASSELbridge.start()
+
 java_imports = {'String':'java/lang/String'}
 str_class = javabridge.get_env().find_class(java_imports['String'])
+to_java_string = lambda x: javabridge.make_instance(java_imports['String'],
+                                                    "(Ljava/lang/String;)V", x)
 ## Define numpy types that need to be converted to java arrays
 def make_string_array(arr):
     java_arr = javabridge.get_env().make_object_array(len(arr),str_class)
@@ -109,12 +115,26 @@ class javaOverload(object):
         self.func_dict = signature_dict()
         self.return_func_dict = signature_dict()
         for sig, pyargs, py_return in args:
+            pyargs = tuple(map(self._process_pyarg, pyargs))
             self.func_dict[pyargs] = javabridge.make_method(func_name,
                                                     sig)
             if py_return is None:
                 self.return_func_dict[pyargs] = lambda x: x
             else:
-                self.return_func_dict[pyargs] = py_return
+                self.return_func_dict[pyargs] = self._process_py_return(py_return)
+    def _process_pyarg(self, x):
+        if isinstance(x, tuple):
+            #return getattr(__import__(x[0],globals(),locals(),[x[1]]),x[1])
+            return getattr(__import__(x[0],globals(),locals()),x[1])
+        else:
+            return x
+    def _process_py_return(self, x):
+        if isinstance(x, tuple):
+            #func = getattr(__import__(x[0],globals(),locals(),[x[1]]),x[1]).__init__
+            func = getattr(__import__(x[0],globals(),locals()),x[1]).__init__
+            return lambda y: func(obj = y)
+        else:
+            return x
     def __call__(self, f):
         @wraps(f)
         def wrapped_f(*args):
@@ -126,7 +146,16 @@ class javaOverload(object):
                 args[1:] = map(lambda x: (x.o if isinstance(x,TASSELpy.javaObj.javaObj) else x),
                                    args[1:])
                 return_val = self.func_dict[key](*args)
-                return self.return_func_dict[key](return_val)
+                if self.func_name != 'getClass':
+                    return self.return_func_dict[key](return_val)
+                else:
+                    # Special method for getClass to put in generic type
+                    return_obj = self.return_func_dict[key](return_val)
+                    if not hasattr(return_obj, 'generic_dict'):
+                        return return_obj
+                    else:
+                        return_obj.generic_dict['/@1/'] = type(args[0])
+                        return return_obj
             else:
                 return_val = self.func_dict[()](*args)
                 return self.return_func_dict[()](return_val)
@@ -159,7 +188,14 @@ class javaConstructorOverload(object):
         ## Create signature dictionary of {(python args) -> function}
         self.func_dict = signature_dict()
         for sig, pyargs in args:
+            pyargs = tuple(map(self._process_pyarg, pyargs))
             self.func_dict[pyargs] = javabridge.make_new(self.class_name,sig)
+    def _process_pyarg(self, x):
+        if isinstance(x, tuple):
+            #return getattr(__import__(x[0],globals(),locals(),[x[1]]),x[1])
+            return getattr(__import__(x[0],globals(),locals()),x[1])
+        else:
+            return x
     def __call__(self, f):
         @wraps(f)
         def wrapped_f(*args, **kwargs):
@@ -167,7 +203,10 @@ class javaConstructorOverload(object):
                 ## If wrapping existing java object, put in
                 # raw Java object as attribute so that methods can
                 # find it
-                args[0].o = kwargs['obj']
+                if isinstance(kwargs['obj'], unicode):
+                    args[0].o = to_java_string(kwargs['obj'])
+                else:
+                    args[0].o = kwargs['obj']
             elif len(self.func_dict) == 0:
                 ## Skip if there are no actual java functions being wrapped
                 pass
@@ -231,14 +270,20 @@ class javaStaticOverload(object):
                 self.return_func_dict[pyargs] = lambda x: x
             else:
                 self.return_func_dict[pyargs] = py_return
+    def _arg_convert(self, x):
+        if isinstance(x, TASSELpy.javaObj.javaObj):
+            return x.o
+        elif isinstance(x, str):
+            return to_java_string(x)
+        else:
+            return x
     def __call__(self, f):
         def wrapped_f(*args):
             # Get the right function based on argument types
             key = tuple(map(type,args))
             # Convert any wrapped java items to their java objects
             args = list(args)
-            args = map(lambda x: (x.o if isinstance(x,TASSELpy.javaObj.javaObj) else x),
-                               args)
+            args = map(self._arg_convert, args)
             # Convert any numpy arrays to their java arrays
             if np.ndarray in key:
                 args = map(lambda x: array_conversion_func_dict[x.dtype.type](x) \
