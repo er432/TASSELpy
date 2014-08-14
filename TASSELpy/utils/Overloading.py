@@ -6,6 +6,10 @@ import numpy as np
 import javabridge
 import re
 
+if not javabridge.get_env():
+    from TASSELpy import TASSELbridge
+    TASSELbridge.start()
+
 java_imports = {'String':'java/lang/String'}
 str_class = javabridge.get_env().find_class(java_imports['String'])
 to_java_string = lambda x: javabridge.make_instance(java_imports['String'],
