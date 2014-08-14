@@ -8,3 +8,4 @@ TASSELpy Tutorial
 
    start_stop
    genotype_tables
+   quant_gen
