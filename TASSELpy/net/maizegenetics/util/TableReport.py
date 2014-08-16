@@ -1,5 +1,10 @@
 from TASSELpy.java.lang.Object import Object
-from TASSELpy.java.lang.Integer import metaInteger
+from TASSELpy.java.lang.Integer import metaInteger, Integer
+from TASSELpy.java.lang.Double import Double
+from TASSELpy.java.lang.String import String
+from TASSELpy.java.lang.Float import Float
+from TASSELpy.java.lang.Byte import Byte
+from TASSELpy.java.lang.Long import Long
 from TASSELpy.utils.Overloading import javaOverload, javaConstructorOverload
 from TASSELpy.javaObj import javaArray
 from TASSELpy.utils.helper import make_sig
@@ -21,7 +26,60 @@ class TableReport(Object):
     ## Instantiates a TableReport
     @javaConstructorOverload(java_imports['TableReport'])
     def __init__(self, *args, **kwargs):
-        pass
+        ## Create dictionary of column -> index
+        self.colLabels = dict((str(col), i) for i,col in enumerate(self.getTableColumnNames()))
+    def _class_caster(self, x):
+        if not isinstance(x, Object):
+            return x
+        elif x.getClass().getName() == 'java.lang.String':
+            return x.castTo(String)
+        elif x.getClass().getName() == 'java.lang.Integer':
+            return x.castTo(Integer)
+        elif x.getClass().getName() == 'java.lang.Double':
+            return x.castTo(Double)
+        elif x.getClass().getName() == 'java.lang.Float':
+            return x.castTo(Float)
+        elif x.getClass().getName() == 'java.lang.Byte':
+            return x.castTo(Byte)
+        elif x.getClass().getName() == 'java.lang.Long':
+            return x.castTo(Long)
+        else: return x
+    # TODO: Fix casting issue
+    def __getitem__(self, inds):
+        """ Gets an entry from the TableReport
+
+        Parameters
+        ----------
+        inds : int or tuple
+            Either the zero-based index of a row to get or a tuple of
+            two numbers, where the first is the row and the second is the
+            column, or a tuple of a number of a string, where the string is the
+            name of the column to get
+
+        Returns
+        -------
+        Either a single entry or a dictionary for the row
+        """
+        if type(inds) == tuple:
+            inds = list(inds)
+            if len(inds) > 2:
+                raise TypeError("Two indices maximum")
+            elif type(inds[1]) == str:
+                # Get the index associated with the column
+                try:
+                    inds[1] = self.colLabels[inds[1]]
+                except KeyError:
+                    raise KeyError("%s is not a column label" % inds[1])
+            if type(inds[0]) != int:
+                raise TypeError("Row index must be integer")
+            row = self.getRow(inds[0])
+            return self._class_caster(row[inds[1]])
+        elif type(inds) == int:
+            row = self.getRow(inds)
+            # Return the row as a dictionary
+            return dict((k,self._class_caster(row[v])) for k,v in self.colLabels.items())
+        else:
+            raise TypeError("Row index must be integer")
     def toDict(self):
         """ Outputs the table as a dictionary
 
@@ -37,11 +95,7 @@ class TableReport(Object):
         for i in xrange(nrows):
             for j in xrange(ncols):
                 val = str(self.getValueAt(i,j))
-                if int_re.match(val):
-                    val = int(val)
-                elif float_re.match(val):
-                    val = float(val)
-                return_dict[col_dict[j]].append(val)
+                return_dict[col_dict[j]].append(self._class_caster(val))
         return return_dict
     ## Gets the names of the columns
     # @return Column names
