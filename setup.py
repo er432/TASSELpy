@@ -65,7 +65,7 @@ packages = ['TASSELpy',
            ]
 setup(
     name='tasselpy',
-    version='0.19',
+    version='0.20',
     author='Eli Rodgers-Melnick',
     author_email='er432@cornell.edu',
     description='A Python API for TASSEL',
