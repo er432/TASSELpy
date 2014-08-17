@@ -43,7 +43,18 @@ class TableReport(Object):
             return x.castTo(Byte)
         elif x.getClass().getName() == 'java.lang.Long':
             return x.castTo(Long)
-        else: return x
+        else:
+            try:
+                # Hail Mary cast
+                castClass = getattr(__import__('TASSELpy.%s' % x.getClass().getName(),
+                                       globals(), locals(),
+                                       [x.getClass().getName().split('.')[-1]]),
+                                       x.getClass().getName().split('.')[-1])
+                return x.castTo(castClass)
+            except ImportError:
+                return x
+            except AttributeError:
+                return x
     def __getitem__(self, inds):
         """ Gets an entry from the TableReport
 
@@ -93,7 +104,7 @@ class TableReport(Object):
         return_dict = dict((str(x),[]) for x in self.getTableColumnNames())
         for i in xrange(nrows):
             for j in xrange(ncols):
-                val = str(self.getValueAt(i,j))
+                val = self.getValueAt(i,j)
                 return_dict[col_dict[j]].append(self._class_caster(val))
         return return_dict
     ## Gets the names of the columns
