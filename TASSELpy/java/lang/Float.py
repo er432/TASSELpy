@@ -333,4 +333,4 @@ class Float(Comparable, Number):
     def __ixor__(self, other):
         return self.__xor__(other)
     def __repr__(self):
-        return "Float(%d)" % self.floatValue()
+        return "Float(%0.5g)" % self.floatValue()

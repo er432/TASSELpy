@@ -64,22 +64,22 @@ class Double(Comparable, Number):
         pass        
     @DocInherit
     def toPrimative(self):
-        return self.floatValue()        
+        return self.doubleValue()        
     ###################################
     ## Numeric magic methods
     ###################################
     def __pos__(self):
-        return Float(+self.toPrimative())
+        return Double(+self.toPrimative())
     def __neg__(self):
-        return Float(-self.toPrimative())
+        return Double(-self.toPrimative())
     def __abs__(self):
-        return Float(abs(self.toPrimative()))
+        return Double(abs(self.toPrimative()))
     def __invert__(self):
-        return Float(~self.toPrimative())
+        return Double(~self.toPrimative())
     def __floor__(self):
-        return Float(np.floor(self.toPrimative()))
+        return Double(np.floor(self.toPrimative()))
     def __ceil__(self):
-        return Float(np.ceil(self.toPrimative()))
+        return Double(np.ceil(self.toPrimative()))
     ###################################
     ## Arithmetic magic methods
     ###################################
@@ -213,4 +213,4 @@ class Double(Comparable, Number):
     def __ixor__(self, other):
         return self.__xor__(other)
     def __repr__(self):
-        return "Double(%d)" % self.doubleValue()
+        return "Double(%0.5g)" % self.doubleValue()

@@ -50,11 +50,25 @@ The two variables returned, ``marker_effects`` and ``allele_effects``, are actua
 instances of
 :class:`TASSELpy.net.maizegenetics.util.TableReport`. However, I have added a
 convenience method to ``TableReport`` that returns a normal Python dictionary.
+Alternatively, you can access ``TableReport`` like a data frame. The first 
+approach is shown with the ``marker_effects`` table, while the second is shown
+with the ``allele_effects`` table.
 
 .. doctest::
 
    >>> marker_effects = marker_effects.toDict()
    >>> marker_effects.keys()
-   ['marker_F', 'markerR2', 'modelMS', 'errorMS', 'Trait', 'modelDF', 'errorDF', 'Locus', 'Locus_pos', 'markerDF', 'marker_p', 'Marker', 'markerMS']
+   ['marker_F', 'markerR2', 'modelMS', 'errorMS', 'Trait', 'modelDF', 
+   'errorDF', 'Locus', 'Locus_pos', 'markerDF', 'marker_p', 'Marker', 'markerMS']
    >>> marker_effects['marker_p'][:10]
-   [0.43840160640231907, 0.9416599121923893, 0.7049479924759525, 0.982243618828328, 0.8942029764864173, 0.1041698354391335, 0.6956794772390522, 0.8227948022963533, 0.23701678610514712, 0.8267525051080115]
+   [0.43840160640231907, 0.9416599121923893, 0.7049479924759525, 0.982243618828328, 
+   0.8942029764864173, 0.1041698354391335, 0.6956794772390522, 0.8227948022963533, 
+   0.23701678610514712, 0.8267525051080115]
+   >>> allele_effects[0]
+   {'Trait': String('EarDia'), 'Locus': String('1'), 'Marker': String('PZB00859.1'), 
+   'Locus_pos': Integer(157104), 'Allele': String('C'), 'Estimate': Double(0.093935), 
+   'Obs': Integer(181)}
+   >>> allele_effects[0,2]
+   Integer(181)
+   >>> allele_effects[0,'Obs']
+   Integer(181)
