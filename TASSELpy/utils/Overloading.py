@@ -1,6 +1,7 @@
 #from TASSELpy.javaObj import javaObj,genericJavaObj
 import TASSELpy.javaObj
 from TASSELpy.utils.OrderedSet import lruOrderedSet
+from TASSELpy.utils.caching import LRUcache
 from functools import wraps,update_wrapper,partial
 import numpy as np
 import javabridge
@@ -173,6 +174,7 @@ class javaConstructorOverload(object):
     args -- tuples of form (java signature,(python arg types))
             e.g. ("(I)V",(int,))
     """
+    # TODO: turn func_dict, return_func_dict into LRU caches
     def __init__(self, class_name, *args):
         """
         Creates a function decorator for a javabridge function that is
@@ -345,29 +347,30 @@ class javaGenericOverload(object):
         # Store function parameters
         self.func_params = args
         # Set the sig_set dictionary
-        self.sig_set = lruOrderedSet()
+        self.func_dict = LRUcache(lambda x: x)
+        self.return_func_dict = LRUcache(lambda x: x)
     def __call__(self, f):
         @wraps(f)
         def wrapped_f(*args):
             ## If the signature is not set, do it
-            if args[0] not in self.sig_set:
-                self.func_dict = signature_dict()
-                self.return_func_dict = signature_dict()
+            if args[0].o not in self.func_dict:
+                self.func_dict[args[0].o] = signature_dict()
+                self.return_func_dict[args[0].o] = signature_dict()                        
                 ## Set up signature dictionary ##
                 for sig, pyargs, py_return in self.func_params:
                     ## Replace any instances of strings in the pyargs with the python type
                     pyargs = tuple(map(lambda x: (args[0].generic_dict[x] if \
                                         x in args[0].generic_dict else TASSELpy.javaObj.javaObj) if \
                                        type(x) == str else x,pyargs))
-                    # Set func_dict entries
-                    self.func_dict[pyargs] = javabridge.make_method(self.func_name,sig)
+                    # Set func_dict[args[0].o] entries
+                    self.func_dict[args[0].o][pyargs] = javabridge.make_method(self.func_name,sig)
                     if type(py_return) == str:
                         ## If return function is replaced with string, meaning
                         # to instantiate generic type
                         if hasattr(args[0].generic_dict[py_return],'generic_dict'):
                             generic_tuple = tuple(map(lambda x: x[1],
                                     sorted(args[0].generic_dict[py_return].generic_dict.items())))
-                            self.return_func_dict[pyargs] = lambda x: \
+                            self.return_func_dict[args[0].o][pyargs] = lambda x: \
                               args[0].generic_dict[py_return](obj=x, generic=generic_tuple) if \
                               isinstance(x,javabridge.JB_Object) else \
                               (args[0].generic_dict[py_return](x) if x is not None else None)
@@ -394,7 +397,7 @@ class javaGenericOverload(object):
                                         if obj is None: return obj
                                         else:
                                             return args[0].generic_dict[py_return](obj=obj)
-                            self.return_func_dict[pyargs] = da_return_func
+                            self.return_func_dict[args[0].o][pyargs] = da_return_func
                     elif isinstance(py_return, dict):
                         ## If this is a dictionary, specify the generic type
                         # and make constructor call method
@@ -402,7 +405,7 @@ class javaGenericOverload(object):
                             raise ValueError("Return type of object not given")
                         elif 'generic' not in py_return:
                             raise ValueError("Generic type(s) for return object not given")
-                        self.return_func_dict[pyargs] = \
+                        self.return_func_dict[args[0].o][pyargs] = \
                               lambda x: py_return['type'](obj=x,
                                 generic=tuple(map(lambda y: args[0].generic_dict[y] if \
                                                   isinstance(y,str) else y,
@@ -410,26 +413,21 @@ class javaGenericOverload(object):
                                         isinstance(x,javabridge.JB_Object) else x
                     elif py_return is None:
                         ## If no return function specified, return raw output
-                        self.return_func_dict[pyargs] = lambda x: x
+                        self.return_func_dict[args[0].o][pyargs] = lambda x: x
                     else:
                         ## If function specified, use that
-                        self.return_func_dict[pyargs] = py_return
-                # Set sig_set variable to true
-                self.sig_set.add(args[0])
+                        self.return_func_dict[args[0].o][pyargs] = py_return
             ## Run the function ##
             if len(args) > 1:
                 # Get the right function based on argument types
                 key = tuple(map(type, args[1:]))
                 # Convert any wrapped java items to their java objects
                 args = list(args)
-                #args[1:] = map(lambda x: (x.o if not hasattr(x,'toPrimative') else x.toPrimative()) \
-                #                    if isinstance(x,TASSELpy.javaObj.javaObj) else x,
-                #                   args[1:])
                 args[1:] = map(lambda x: (x.o if isinstance(x,TASSELpy.javaObj.javaObj) else x),
                                    args[1:])
-                return_val = self.func_dict[key](*args)
-                return self.return_func_dict[key](return_val)
+                return_val = self.func_dict[args[0].o][key](*args)
+                return self.return_func_dict[args[0].o][key](return_val)
             else:
-                return_val = self.func_dict[()](*args)
-                return self.return_func_dict[()](return_val)
+                return_val = self.func_dict[args[0].o][()](*args)
+                return self.return_func_dict[args[0].o][()](return_val)
         return wrapped_f

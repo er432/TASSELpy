@@ -213,4 +213,4 @@ class Double(Comparable, Number):
     def __ixor__(self, other):
         return self.__xor__(other)
     def __repr__(self):
-        return "Double(%d)" % self.doubleValue()
+        return "Double(%0.5g)" % self.doubleValue()

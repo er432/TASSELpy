@@ -44,7 +44,6 @@ class TableReport(Object):
         elif x.getClass().getName() == 'java.lang.Long':
             return x.castTo(Long)
         else: return x
-    # TODO: Fix casting issue
     def __getitem__(self, inds):
         """ Gets an entry from the TableReport
 
