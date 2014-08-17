@@ -37,7 +37,7 @@ class TableReportTest(unittest.TestCase):
         if debug: print("Testing toDict")
         theDict = self.mat.toDict()
         self.assertEquals(len(theDict),3)
-        self.assertEquals(theDict['Taxa'],['first','second'])
+        self.assertEquals(theDict['Taxa'],[Taxon('first'),Taxon('second')])
         self.assertEquals(theDict['second'],[0.25,0.0])
         self.assertEquals(theDict['first'],[0.0,0.25])
     def test_getTableColumnNames(self):

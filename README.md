@@ -13,6 +13,10 @@ numpy
 
 javabridge (http://pythonhosted.org/javabridge)
 
+Installation:
+
+pip install -U tasselpy
+
 Example:
 ```python
 import os

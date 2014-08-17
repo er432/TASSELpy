@@ -14,6 +14,7 @@ from TASSELpy.test.net.maizegenetics.analysis.popgen.popgenTestSuite import popg
 from TASSELpy.test.net.maizegenetics.stats.statistics.statisticsTestSuite import statisticsTestSuite
 from TASSELpy.test.net.maizegenetics.matrixalgebra.Matrix.MatrixTestSuite import MatrixTestSuite
 from TASSELpy.test.net.maizegenetics.matrixalgebra.decomposition.decompositionTestSuite import decompositionTestSuite
+from TASSELpy.test.net.maizegenetics.analysis.association.associationTestSuite import associationTestSuite
 from TASSELpy.TASSELbridge import TASSELbridge
 
 
@@ -37,6 +38,7 @@ class mainTestSuite(unittest.TestSuite):
         self.addTest(unittest.makeSuite(javaArrayTest))
         self.addTest(unittest.makeSuite(genericJavaObjTest))
         self.addTest(taxaTestSuite())
+        self.addTest(associationTestSuite())
 
 if __name__ == "__main__":
     runner = unittest.TextTestRunner()
