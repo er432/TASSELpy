@@ -9,6 +9,7 @@ Subpackages
     TASSELpy.net.maizegenetics.analysis
     TASSELpy.net.maizegenetics.dna
     TASSELpy.net.maizegenetics.matrixalgebra
+    TASSELpy.net.maizegenetics.plugindef
     TASSELpy.net.maizegenetics.stats
     TASSELpy.net.maizegenetics.taxa
     TASSELpy.net.maizegenetics.trait

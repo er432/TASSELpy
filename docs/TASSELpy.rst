@@ -31,22 +31,6 @@ TASSELpy.javaObj module
     :undoc-members:
     :show-inheritance:
 
-TASSELpy.release module
------------------------
-
-.. automodule:: TASSELpy.release
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-TASSELpy.version module
------------------------
-
-.. automodule:: TASSELpy.version
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 
 Module contents
 ---------------

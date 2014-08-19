@@ -27,6 +27,14 @@ TASSELpy.java.lang.Byte module
     :undoc-members:
     :show-inheritance:
 
+TASSELpy.java.lang.Class module
+-------------------------------
+
+.. automodule:: TASSELpy.java.lang.Class
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 TASSELpy.java.lang.Comparable module
 ------------------------------------
 

@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
 
     TASSELpy.net.maizegenetics.dna.snp.depth
+    TASSELpy.net.maizegenetics.dna.snp.genotypecall
     TASSELpy.net.maizegenetics.dna.snp.score
 
 Submodules
@@ -32,6 +33,14 @@ TASSELpy.net.maizegenetics.dna.snp.GenotypeTable module
 -------------------------------------------------------
 
 .. automodule:: TASSELpy.net.maizegenetics.dna.snp.GenotypeTable
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+TASSELpy.net.maizegenetics.dna.snp.GenotypeTableUtils module
+------------------------------------------------------------
+
+.. automodule:: TASSELpy.net.maizegenetics.dna.snp.GenotypeTableUtils
     :members:
     :undoc-members:
     :show-inheritance:

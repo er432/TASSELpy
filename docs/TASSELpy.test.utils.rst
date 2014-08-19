@@ -4,6 +4,14 @@ TASSELpy.test.utils package
 Submodules
 ----------
 
+TASSELpy.test.utils.cachingTest module
+--------------------------------------
+
+.. automodule:: TASSELpy.test.utils.cachingTest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 TASSELpy.test.utils.primativeArrayTest module
 ---------------------------------------------
 

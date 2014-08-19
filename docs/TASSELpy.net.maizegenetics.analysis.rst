@@ -6,6 +6,8 @@ Subpackages
 
 .. toctree::
 
+    TASSELpy.net.maizegenetics.analysis.association
+    TASSELpy.net.maizegenetics.analysis.data
     TASSELpy.net.maizegenetics.analysis.distance
     TASSELpy.net.maizegenetics.analysis.popgen
 

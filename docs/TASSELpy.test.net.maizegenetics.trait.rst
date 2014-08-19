@@ -4,6 +4,14 @@ TASSELpy.test.net.maizegenetics.trait package
 Submodules
 ----------
 
+TASSELpy.test.net.maizegenetics.trait.MarkerPhenotypeTest module
+----------------------------------------------------------------
+
+.. automodule:: TASSELpy.test.net.maizegenetics.trait.MarkerPhenotypeTest
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 TASSELpy.test.net.maizegenetics.trait.PhenotypeTest module
 ----------------------------------------------------------
 

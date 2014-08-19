@@ -28,6 +28,14 @@ TASSELpy.utils.Overloading module
     :undoc-members:
     :show-inheritance:
 
+TASSELpy.utils.caching module
+-----------------------------
+
+.. automodule:: TASSELpy.utils.caching
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 TASSELpy.utils.helper module
 ----------------------------
 
