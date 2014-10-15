@@ -20,6 +20,14 @@ TASSELpy.net.maizegenetics.util.GeneralAnnotation module
     :undoc-members:
     :show-inheritance:
 
+TASSELpy.net.maizegenetics.util.GeneralAnnotationStorage module
+---------------------------------------------------------------
+
+.. automodule:: TASSELpy.net.maizegenetics.util.GeneralAnnotationStorage
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 TASSELpy.net.maizegenetics.util.OpenBitSet module
 -------------------------------------------------
 

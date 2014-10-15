@@ -28,6 +28,14 @@ TASSELpy.net.maizegenetics.dna.snp.genotypecall.GenotypeCallTable module
     :undoc-members:
     :show-inheritance:
 
+TASSELpy.net.maizegenetics.dna.snp.genotypecall.GenotypeMergeRule module
+------------------------------------------------------------------------
+
+.. automodule:: TASSELpy.net.maizegenetics.dna.snp.genotypecall.GenotypeMergeRule
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 TASSELpy.net.maizegenetics.dna.snp.genotypecall.NucleotideGenotypeCallTable module
 ----------------------------------------------------------------------------------
 
