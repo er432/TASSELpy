@@ -196,34 +196,12 @@ class GenotypeTableTest(unittest.TestCase):
         if debug: print "Testing chromosomesOffsets"
         arr = self.data.chromosomesOffsets()
         self.assertIsInstance(arr,meta_int_array)
-    def test_siteScore(self):
-        if debug: print "Testing siteScore"
-        try:
-            score = self.data.siteScore(0,0)
-            self.assertIsInstance(score,metaInteger)
-        except JavaException as e:
-            self.assertTrue(is_instance_of(e.throwable, java_imports['IllegalStateException']))
-    def test_siteScores(self):
-        if debug: print "Testing siteScores"
-        try:
-            score = self.data.siteScores()
-            self.assertIsInstance(score,metaInteger)
-        except JavaException as e:
-            self.assertTrue(is_instance_of(e.throwable, java_imports['IllegalStateException']))
     def test_hasDepth(self):
         if debug: print "Testing hasDepth"
         self.assertIsInstance(self.data.hasDepth(),metaBoolean)
-    def test_hasSiteScores(self):
-        if debug: print "Testing hasSiteScores"
-        self.assertIsInstance(self.data.hasSiteScores(),metaBoolean)
-    def test_siteScoreType(self):
-        if debug: print "Testing siteScoreType"
-        try:
-            scoretype = self.data.siteScoreType()
-            self.assertTrue(any(map(lambda x: scoretype.equals(x),
-                                    self.data.SITE_SCORE_TYPE.__dict__.values())))
-        except JavaException as e:
-            self.assertTrue(is_instance_of(e.throwable, java_imports['NullPointerException']))
+    def test_hasAlleleProbabilities(self):
+        if debug: print("Testing hasAlleleProbabilities")
+        self.assertFalse(self.data.hasAlleleProbabilities())
     def test_indelSize(self):
         if debug: print "Testing indelSize"
         self.assertIsInstance(self.data.indelSize(0),metaInteger)

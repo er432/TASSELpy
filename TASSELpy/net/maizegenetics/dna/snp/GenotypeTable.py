@@ -2,6 +2,7 @@ from TASSELpy.net.maizegenetics.util.OpenBitSet import OpenBitSet
 from TASSELpy.net.maizegenetics.dna.WHICH_ALLELE import WHICH_ALLELE
 from TASSELpy.net.maizegenetics.dna.map.Chromosome import Chromosome
 from TASSELpy.net.maizegenetics.dna.snp.depth.AlleleDepth import AlleleDepth
+from TASSELpy.net.maizegenetics.dna.snp.score.AlleleProbability import AlleleProbability
 from TASSELpy.net.maizegenetics.dna.map.PositionList import PositionList
 from TASSELpy.utils.helper import make_sig
 from TASSELpy.utils.Overloading import javaOverload,javaConstructorOverload
@@ -15,6 +16,7 @@ from TASSELpy.java.lang.Byte import metaByte
 from TASSELpy.javaObj import javaArray
 from TASSELpy.utils.primativeArray import javaPrimativeArray
 from TASSELpy.net.maizegenetics.taxa.TaxaList import TaxaList
+from TASSELpy.net.maizegenetics.dna.snp.score.SiteScore import SiteScore
 import numpy as np
 import javabridge
 
@@ -49,11 +51,7 @@ class GenotypeTable(MetaGenotypeTable):
 
     Use GenotypeTableBuilder to create GenotypeTable
     """
-    ## SITE_SCORE_TYPE enum
-    SITE_SCORE_TYPE=java_enum(java_imports['GenotypeTable']+'$SITE_SCORE_TYPE',
-                              "None","MixedScoreTypes","QualityScore",
-                              "ImputedProbablity","Dosage",
-                              subclass='SITE_SCORE_TYPE')
+    SITE_SCORE_TYPE = SiteScore.SITE_SCORE_TYPE
     ## ALLELE_SORT_TYPE enum
     ALLELE_SORT_TYPE=java_enum(java_imports['GenotypeTable']+'$ALLELE_SORT_TYPE',
                             "Frequency","Depth","Global_Frequency","Reference",
@@ -1011,39 +1009,18 @@ class GenotypeTable(MetaGenotypeTable):
         True if this genotype table has sequencing depth
         """
         pass
-    ## Returns true if this genotype table has site scores
-    # @return True if this genotype table has site scores
-    @javaOverload("hasSiteScores",
+    @javaOverload("hasAlleleProbabilities",
                   (make_sig([],'boolean'),(),None))
-    def hasSiteScores(self, *args):
-        """
-        Returns true if this genotype table has site scores
-        
-        Signatures:
-
-        boolean hasSiteScores()
-
-        Returns:
-
-        True if this genotype table has site scores
-        """
-        pass
-    ## Return what type of site scores this genotype table has
-    # @return Site score type
-    @javaOverload("siteScoreType",
-                  (make_sig([],java_imports['GenotypeTable']+'$SITE_SCORE_TYPE'),
-                   (),lambda x: Enum(obj=x)))
-    def siteScoreType(self, *args):
-        """
-        Return what type of site scores this genotype table has
+    def hasAlleleProbabilities(self, *args):
+        """ Returns true if this genotype table has allele probabilities
 
         Signatures:
 
-        GenotypeTable.SITE_SCORE_TYPE siteScoreType()
-        
+        boolean hasAlleleProbabilities()
+
         Returns:
 
-        Site score type
+        true if this genotype table has allele probabilities
         """
         pass
     ## Returns size of indel at given site

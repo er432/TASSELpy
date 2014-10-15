@@ -4,10 +4,11 @@ from TASSELpy.java.lang.Double import Double
 from TASSELpy.java.lang.String import String
 from TASSELpy.java.lang.Float import Float
 from TASSELpy.java.lang.Byte import Byte
-from TASSELpy.java.lang.Long import Long
+from TASSELpy.java.lang.Long import Long, metaLong
 from TASSELpy.utils.Overloading import javaOverload, javaConstructorOverload
 from TASSELpy.javaObj import javaArray
 from TASSELpy.utils.helper import make_sig
+import numpy as np
 import re
 
 java_imports = {'Object':'java/lang/Object',
@@ -82,11 +83,14 @@ class TableReport(Object):
                     raise KeyError("%s is not a column label" % inds[1])
             if type(inds[0]) != int:
                 raise TypeError("Row index must be integer")
-            row = self.getRow(inds[0])
+            row = self.getRow(long(inds[0]))
             return self._class_caster(row[inds[1]])
         elif type(inds) == int:
-            row = self.getRow(inds)
+            row = self.getRow(long(inds))
             # Return the row as a dictionary
+            return dict((k,self._class_caster(row[v])) for k,v in self.colLabels.items())
+        elif type(inds) == long:
+            row = self.getRow(inds)
             return dict((k,self._class_caster(row[v])) for k,v in self.colLabels.items())
         else:
             raise TypeError("Row index must be integer")
@@ -162,14 +166,14 @@ class TableReport(Object):
     ## Gets the number of rows
     # @return Number of rows
     @javaOverload("getRowCount",
-                  (make_sig([],'int'),(),None))
+                  (make_sig([],'long'),(),np.int64))
     def getRowCount(self, *args):
         """
         Gets the number of rows
 
         Signatures:
 
-        int getRowCount()
+        long getRowCount()
 
         Returns:
 
@@ -179,7 +183,7 @@ class TableReport(Object):
     ## Gets the total number of elements in the dataset
     # @return total number of elements
     @javaOverload("getElementCount",
-                  (make_sig([],'int'),(),None))
+                  (make_sig([],'long'),(),np.int64))
     def getElementCount(self, *args):
         """
         Gets the total number of elements in the dataset
@@ -187,7 +191,7 @@ class TableReport(Object):
 
         Signatures:
 
-        int getElementCount()
+        long getElementCount()
 
         Returns:
 
@@ -198,7 +202,7 @@ class TableReport(Object):
     # @param row row number
     # @return row
     @javaOverload("getRow",
-                  (make_sig(['int'],java_imports['Object']+'[]'),(metaInteger,),
+                  (make_sig(['long'],java_imports['Object']+'[]'),(metaLong,),
                    Object.wrap_existing_array))
     def getRow(self, *args):
         """
@@ -206,7 +210,7 @@ class TableReport(Object):
 
         Signatures:
 
-        Object[] getRow(int row)
+        Object[] getRow(long row)
 
         Arguments:
 

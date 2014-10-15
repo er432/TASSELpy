@@ -174,7 +174,6 @@ class javaConstructorOverload(object):
     args -- tuples of form (java signature,(python arg types))
             e.g. ("(I)V",(int,))
     """
-    # TODO: turn func_dict, return_func_dict into LRU caches
     def __init__(self, class_name, *args):
         """
         Creates a function decorator for a javabridge function that is

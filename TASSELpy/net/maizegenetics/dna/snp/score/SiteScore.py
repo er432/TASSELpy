@@ -3,6 +3,7 @@ from TASSELpy.java.lang.Integer import metaInteger
 from TASSELpy.java.lang.Enum import Enum
 from TASSELpy.utils.Overloading import javaOverload,javaConstructorOverload
 from TASSELpy.utils.helper import make_sig
+from TASSELpy.java.lang.Enum import enum as java_enum
 import numpy as np
 import javabridge
 
@@ -14,6 +15,13 @@ class SiteScore(Object):
     """
     SiteScore
     """
+    ## SITE_SCORE_TYPE enum
+    SITE_SCORE_TYPE = java_enum(java_imports['SiteScore']+'$SITE_SCORE_TYPE',
+                                'None','QualityScore','ReferenceProbablity',
+                                'Dosage','DepthA','DepthC','DepthG','DepthT',
+                                'DepthGap','DepthInsertion','ProbA','ProbC',
+                                'ProbG','ProbT','ProbGap','ProbInsertion',
+                                subclass='SITE_SCORE_TYPE')
     @javaConstructorOverload(java_imports['SiteScore'])
     def __init__(self, *args, **kwargs):
         pass

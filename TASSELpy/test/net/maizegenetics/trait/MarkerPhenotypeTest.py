@@ -49,7 +49,7 @@ class MarkerPhenotypeTest(unittest.TestCase):
         combined = MarkerPhenotype.getInstance(self.aln, self.trait, False)
         self.assertIsInstance(combined.getPhenotype(), Phenotype)
         self.assertEqual(combined.getPhenotype().getRowCount(), 279)
-                
+
 if __name__ == "__main__":
     debug = True
     unittest.main(exit=False)
